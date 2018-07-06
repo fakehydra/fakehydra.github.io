@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="服务器操作系统网络配置" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>linux运维学习 第三天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="服务器操作系统网络配置">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux运维学习 第三天">
+<meta property="og:url" content="http://yoursite.com/2018/07/05/linux运维学习-第三天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="服务器操作系统网络配置">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-06T11:55:15.051Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux运维学习 第三天">
+<meta name="twitter:description" content="服务器操作系统网络配置">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-linux运维学习-第三天" class="post-linux运维学习-第三天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      linux运维学习 第三天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/linux运维学习-第三天/" data-id="cjj9xyswg00052sly86tvpmer" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>服务器操作系统网络配置</p>
+<a id="more"></a>
+<h4 id="如何实现网络远程管理虚拟主机（Linux系统）"><a href="#如何实现网络远程管理虚拟主机（Linux系统）" class="headerlink" title="如何实现网络远程管理虚拟主机（Linux系统）"></a>如何实现网络远程管理虚拟主机（Linux系统）</h4><h3 id="两个配置步骤"><a href="#两个配置步骤" class="headerlink" title="两个配置步骤"></a>两个配置步骤</h3><p>步骤一<br>a)虚拟软件的网络相关配置<br>编辑–虚拟网络编辑器<br>网络模式：NAT模式<br>主机连接适配器  勾选<br>是否开启DHCP功能  勾选<br>子网：10.0.0.0 子网掩码：255.255.255.0</p>
+<p>b）ip地址是什么鬼：你家的门牌号（地址）<br>可以自己配置ip地址：静态ip<br>别人分配ip地址：动态ip地址（DHCP–Dynamic Host Configuration Protocol)</p>
+<p>c)虚拟主机中网卡设置<br>连接–勾选<br>启动时连接–勾选<br>网卡模式–勾选</p>
+<p>步骤二<br>虚拟主机中操作系统网络配置</p>
+<p>setup–网络设置–设备配置–eth0(eth1 eth2)<br>DNS:域名解析（将域名转换为ip地址）</p>
+<p>开启DHCP功能<br>配置好DNS服务器地址<br>将on boot 勾选<br>ok–save–save&amp;quit–quit–q</p>
+<h2 id="linux系统中所有的配置想要生效–重启服务（网络-网卡服务）"><a href="#linux系统中所有的配置想要生效–重启服务（网络-网卡服务）" class="headerlink" title="*linux系统中所有的配置想要生效–重启服务（网络/网卡服务）"></a>*linux系统中所有的配置想要生效–重启服务（网络/网卡服务）</h2><h2 id="重启网卡eth0命令"><a href="#重启网卡eth0命令" class="headerlink" title="重启网卡eth0命令"></a>重启网卡eth0命令</h2><p>ifdown eth0–关闭网卡 eth0<br>ifup eth0–开启网卡</p>
+<p>*linux 系统中当所有配置完毕后别忘进行检查</p>
+<p>ifconfig eth0 –检查网卡配置信息<br>ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> —检查网络是否通畅</p>
+<h3 id="虚拟主机相关常见问题"><a href="#虚拟主机相关常见问题" class="headerlink" title="虚拟主机相关常见问题"></a>虚拟主机相关常见问题</h3><p>01）虚拟主机中的系统日常不要关闭，挂起就好（建议）<br>02）如果显示虚拟主机打开有权限问题，将所有虚拟主机关闭后重新启动<br>03）可能影响虚拟主机网络畅通的因素—Windows主机中虚拟软件服务<br>*windows +r –services.msc (共有5个服务)</p>
+<h3 id="远程软件说明"><a href="#远程软件说明" class="headerlink" title="远程软件说明"></a>远程软件说明</h3><p>推荐xshell（毕竟便宜）</p>
+<h2 id="远程连接排查思路（去大保健之路）"><a href="#远程连接排查思路（去大保健之路）" class="headerlink" title="远程连接排查思路（去大保健之路）"></a>远程连接排查思路（去大保健之路）</h2><p>01）路通不通（ping 目的）<br>原因：a.ip地址配置不正确<br>     b.虚拟软件的网卡配置不正确<br>     c.ping 10.0.0.200 -t ,重启一下网卡<br>2）防火墙程序<br>*/etc/init.d/iptables stop – 关闭<br> /etc/init.d/iptables status –查看</p>
+<p>3）确认大保健公司有没有营业（确保远程服务开启）<br> telnet 10.0.0.200 22<br> sshd 端口： 22<br> http 端口：80</p>
+<p> 连接测试成功：<br>[d:~]$ telnet 10.0.0.200 22</p>
+<p>Connecting to 10.0.0.200:22…<br>Connection established.<br>To escape to local shell, press ‘Ctrl+Alt+]’.<br>SSH-2.0-OpenSSH_5.3</p>
+<p>连接测试不成功<br>[d:~]$ telnet 10.0.0.200 22</p>
+<p>Connecting to 10.0.0.200:22…<br>Could not connect to ‘10.0.0.200’ (port 22): Connection failed.<br>Type `help’ to learn how to use Xshell prompt.</p>
+<p>/eth/init.d/sshd start   &lt;–开启远程连接服务<br>/eth/init.d/sshd status  &lt;–查看是否开启</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=66"></iframe>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/05/linux运维学习-第三天/">
+    <time datetime="2018-07-05T10:41:34.000Z" class="entry-date">
+        2018-07-05
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/05/每天一个Linux命令/" rel="prev"><span class="meta-nav">←</span> 每天一个Linux命令</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/05/Linux运维学习-第二天/" rel="next">Linux运维学习 第二天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/06/每天一个Linux命令01/">每天一个Linux命令</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/06/linux命令学习笔记/">linux命令学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/05/每天一个Linux命令/">每天一个Linux命令</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/05/linux运维学习-第三天/">linux运维学习 第三天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/每天一个Linux命令/" style="font-size: 15px;">每天一个Linux命令</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 10px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
