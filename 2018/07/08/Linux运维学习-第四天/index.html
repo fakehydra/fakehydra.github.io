@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第一关测验练习题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-08T08:33:42.529Z">
+<meta property="og:updated_time" content="2018-07-08T08:54:11.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第四天">
 <meta name="twitter:description" content="第一关测验练习题">
@@ -107,24 +107,65 @@ shrink current system   --缩小现有系统（存在一个系统，压缩原存
 use free space   --使用剩余空间
 
 creat custom layout   --创建自定义布局
-</code></pre><h2 id="常用的分区方法"><a href="#常用的分区方法" class="headerlink" title="常用的分区方法"></a>常用的分区方法</h2><p>/boot   200M引导分区<br>/swap   交换分区==内存大小的1.5倍，超过8G，只分8G即可<br>/       剩余所有</p>
-<h2 id="数据重要的情况下分区"><a href="#数据重要的情况下分区" class="headerlink" title="数据重要的情况下分区"></a>数据重要的情况下分区</h2><p>/boot   200M引导分区<br>/swap   交换分区==内存大小的1.5倍，超过8G，只分8G即可<br>/       50-200G<br>data    剩余空间都分配给数据分区</p>
-<h2 id="服务器使用场景不确定"><a href="#服务器使用场景不确定" class="headerlink" title="服务器使用场景不确定"></a>服务器使用场景不确定</h2><p>/boot   200M引导分区<br>/swap   交换分区==内存大小的1.5倍，超过8G，只分8G即可<br>/       50-200G<br>剩余空间不分区</p>
-<h3 id="虚拟软件的网络模式说明"><a href="#虚拟软件的网络模式说明" class="headerlink" title="虚拟软件的网络模式说明"></a>虚拟软件的网络模式说明</h3><p>a)可以访问外网的模式<br>  NAT模式：优势–虚拟主机IP地址不会占用真实主机的IP地址资源<br>          劣势–局域网其他主机不可以直接访问虚拟主机（也是可以访问的，但是比较麻烦）<br>  桥接模式：优势–局域网其他主机可以直接访问虚拟主机<br>           劣势–虚拟主机IP地址会占用真实主机的IP地址</p>
-<p>b)不可以访问外网的模式<br>  仅主机模式：只能虚拟主机直之间的交流通讯，不能访问外网</p>
+</code></pre><h2 id="常用的分区方法"><a href="#常用的分区方法" class="headerlink" title="常用的分区方法"></a>常用的分区方法</h2><pre><code>/boot   200M引导分区
+/swap   交换分区==内存大小的1.5倍，超过8G，只分8G即可
+/       剩余所有
+</code></pre><h2 id="数据重要的情况下分区"><a href="#数据重要的情况下分区" class="headerlink" title="数据重要的情况下分区"></a>数据重要的情况下分区</h2><pre><code>/boot   200M引导分区
+/swap   交换分区==内存大小的1.5倍，超过8G，只分8G即可
+/       50-200G
+</code></pre><p>data    剩余空间都分配给数据分区</p>
+<h2 id="服务器使用场景不确定"><a href="#服务器使用场景不确定" class="headerlink" title="服务器使用场景不确定"></a>服务器使用场景不确定</h2><pre><code>/boot   200M引导分区
+/swap   交换分区==内存大小的1.5倍，超过8G，只分8G即可
+/       50-200G 
+剩余空间不分区
+</code></pre><h3 id="虚拟软件的网络模式说明"><a href="#虚拟软件的网络模式说明" class="headerlink" title="虚拟软件的网络模式说明"></a>虚拟软件的网络模式说明</h3><h2 id="a-可以访问外网的模式"><a href="#a-可以访问外网的模式" class="headerlink" title="a)可以访问外网的模式"></a>a)可以访问外网的模式</h2><p>  NAT模式：优势–虚拟主机IP地址不会占用真实主机的IP地址资源<br>          劣势–局域网其他主机不可以直接访问虚拟主机（也是可以访问的，但是比较麻烦）<br>  桥接模式：优势–局域网其他主机可以直接访问虚拟主机<br>           劣势–虚拟主机IP地址会占用真实主机的IP地址</p>
+<h2 id="b-不可以访问外网的模式"><a href="#b-不可以访问外网的模式" class="headerlink" title="b)不可以访问外网的模式"></a>b)不可以访问外网的模式</h2><p>  仅主机模式：只能虚拟主机直之间的交流通讯，不能访问外网</p>
 <p>*虚拟软件的快照功能（月光宝盒）<br>  多做一些快照（建议）<br>PS:系统关闭状态制作快照会更快</p>
-<h4 id="day4-第一关测验练习题"><a href="#day4-第一关测验练习题" class="headerlink" title="day4 第一关测验练习题"></a>day4 第一关测验练习题</h4><h3 id="必知必会题目（铺垫知识）"><a href="#必知必会题目（铺垫知识）" class="headerlink" title="必知必会题目（铺垫知识）"></a>必知必会题目（铺垫知识）</h3><p>01.命令行提示符<br>     [root@jinc ~]# 命令行<br>     root:用户信息；登陆用户<br>     @   ：提示符中的分隔符号<br>     jinc:主机名<br>     ~   ：显示登陆用户所在路径信息<br>02.书写命令格式<br>   合法命令  空格[命令参数] 空格 [路径信息或文件数据信息]</p>
-<p>   *说明：在命令中有中括号表示的信息是可有可无的，没有中括号信息是必须输入上的。<br>03.Linux系统目录结构<br>   一切从跟开始</p>
-<h3 id="第一关测验练习题"><a href="#第一关测验练习题" class="headerlink" title="第一关测验练习题"></a>第一关测验练习题</h3><p>01.创建一个目录 /data<br>    make directory ==mk dir==mkdir 创建目录命令</p>
-<p>02.在/data 下面创建文件oldboy.txt<br>    touch oldboy.txt<br>03.为oldboy.txt增加内容“i am studying linux ”<br>   方法一：使用vim进行编辑<br>         vi/vim oldboy.txt<br>         i –进入编辑模式<br>         写入内容<br>         esc退出编辑模式<br>         ：wq 保存退出<br>    方法二：echo 命令 –将编写内容输入到屏幕<br>           [root@jinc ~]# echo “hello “<br>                          hello &lt;–显示到屏幕<br>           echo “内容” &gt;/路径/文件<br>           [root@jinc ~]# echo “hello “ &gt;/data/oldboy.txt<br>           [root@jinc ~]# cat /data/oldboy.txt hello<br>           [root@jinc ~]#<br>    方法三：cat –一次性向一个文件中放入多行内容<br>           cat &gt;/文件&lt;&lt;EOF(开始)<br>           内容<br>           EOF（结尾）</p>
-<pre><code>[root@jinc ~]# cat &gt;/data/oldboy.txt &lt;&lt;EOF
-&gt; oldboy
-&gt; oldgirl
-&gt; olddog 
-&gt; EOF
-[root@jinc ~]# cat /data/oldboy.txt oldboy
-oldgirl
-olddog
+<h4 id="day4-第一关测验练习题"><a href="#day4-第一关测验练习题" class="headerlink" title="day4 第一关测验练习题"></a>day4 第一关测验练习题</h4><h3 id="必知必会题目（铺垫知识）"><a href="#必知必会题目（铺垫知识）" class="headerlink" title="必知必会题目（铺垫知识）"></a>必知必会题目（铺垫知识）</h3><p> 01.命令行提示符</p>
+<pre><code>[root@jinc ~]# 命令行 
+root:用户信息；登陆用户
+@   ：提示符中的分隔符号
+jinc:主机名
+~   ：显示登陆用户所在路径信息
+</code></pre><p>02.书写命令格式</p>
+<pre><code>合法命令  空格[命令参数] 空格 [路径信息或文件数据信息]
+</code></pre><h2 id="说明：在命令中有中括号表示的信息是可有可无的，没有中括号信息是必须输入上的。"><a href="#说明：在命令中有中括号表示的信息是可有可无的，没有中括号信息是必须输入上的。" class="headerlink" title="说明：在命令中有中括号表示的信息是可有可无的，没有中括号信息是必须输入上的。"></a>说明：在命令中有中括号表示的信息是可有可无的，没有中括号信息是必须输入上的。</h2><p>03.Linux系统目录结构</p>
+<pre><code>一切从跟开始
+</code></pre><h3 id="第一关测验练习题"><a href="#第一关测验练习题" class="headerlink" title="第一关测验练习题"></a>第一关测验练习题</h3><p>01.创建一个目录 /data </p>
+<pre><code>make directory ==mk dir==mkdir 创建目录命令
+</code></pre><p>02.在/data 下面创建文件oldboy.txt</p>
+<pre><code>touch oldboy.txt
+</code></pre><p>03.为oldboy.txt增加内容“i am studying linux ”</p>
+<p>   方法一：使用vim进行编辑</p>
+<pre><code>      vi/vim oldboy.txt
+     i --进入编辑模式
+     写入内容
+     esc退出编辑模式
+     ：wq 保存退出
+
+方法二：echo 命令 --将编写内容输入到屏幕
+
+       [root@jinc ~]# echo &quot;hello &quot;
+                      hello &lt;--显示到屏幕
+       echo “内容” &gt;/路径/文件
+       [root@jinc ~]# echo &quot;hello &quot; &gt;/data/oldboy.txt 
+       [root@jinc ~]# cat /data/oldboy.txt hello 
+       [root@jinc ~]# 
+
+方法三：cat --一次性向一个文件中放入多行内容
+
+       cat &gt;/文件&lt;&lt;EOF(开始)
+       内容 
+       EOF（结尾）
+
+       [root@jinc ~]# cat &gt;/data/oldboy.txt &lt;&lt;EOF
+       &gt; oldboy
+       &gt; oldgirl
+       &gt; olddog 
+       &gt; EOF
+       [root@jinc ~]# cat /data/oldboy.txt oldboy
+       oldgirl
+       olddog
 </code></pre><h4 id="扩展：如何实现单用户模式破解root用户密码？"><a href="#扩展：如何实现单用户模式破解root用户密码？" class="headerlink" title="扩展：如何实现单用户模式破解root用户密码？"></a>扩展：如何实现单用户模式破解root用户密码？</h4><pre><code>重启Linux 
 
 开机的时候按e（edit）键
@@ -139,7 +180,9 @@ olddog
 
 按b键重启
 
-在单用户模式下输入passwd 修改密码 输入两次新密码后重启系统
+在单用户模式下输入passwd 修改密码 
+
+输入两次新密码后重启系统
 </code></pre>
       
     </div><!-- .entry-content -->
