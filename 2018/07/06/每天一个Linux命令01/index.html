@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第一个Linux命令">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-06T12:09:44.808Z">
+<meta property="og:updated_time" content="2018-07-08T08:46:01.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每天一个Linux命令">
 <meta name="twitter:description" content="第一个Linux命令">
@@ -90,7 +90,16 @@
       
         <p>第一个Linux命令</p>
 <a id="more"></a>
-
+<h5 id="shutdown-关机"><a href="#shutdown-关机" class="headerlink" title="shutdown  关机"></a>shutdown  关机</h5><h3 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h3><p>shutdown [选项]  时间  消息</p>
+<h2 id="01）-注意shutdown命令和后面的选项之间至少要有一个空格。"><a href="#01）-注意shutdown命令和后面的选项之间至少要有一个空格。" class="headerlink" title="*01） 注意shutdown命令和后面的选项之间至少要有一个空格。"></a>*01） 注意shutdown命令和后面的选项之间至少要有一个空格。</h2><p>02）通常情况下我们执行的shutdown命令为shutdown -h now 或 shutdown -r now </p>
+<pre><code>参数选项 |       解释说明
+  -r    |  重启系统，而不是关机
+  -h    |  关机 例如：shutdown -h now 
+  -H    |  关机（halt)，经测试，使用该参数关机后系统并未完全关机
+  -P    |  关机（poweroff），不常用
+  -c    |  取消正在执行的shutdown指令
+  -k    |  只发送关机警告信息并拒绝新用户登陆，但是并不实际关机。
+</code></pre>
       
     </div><!-- .entry-content -->
 
