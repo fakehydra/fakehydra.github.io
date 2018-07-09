@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="Linux三剑客之一">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T11:32:18.130Z">
+<meta property="og:updated_time" content="2018-07-09T11:42:20.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux三剑客之 sed">
 <meta name="twitter:description" content="Linux三剑客之一">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjje6t34q0000o8ly14irqvon" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjje76uxl00017olywbetxr4f" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -102,18 +102,20 @@ sed是操作、过滤和转换文本内容的强大工具。常用功能包括�
 
  -i        |   直接修改文件内容，而不是输出到终端。
            |   如果不适用-i 选项，则sed 只是修改内存中的数据，并不会影响磁盘上的文件
-</code></pre><h2 id="sed常用内置命令字符的功能说明"><a href="#sed常用内置命令字符的功能说明" class="headerlink" title="sed常用内置命令字符的功能说明"></a>sed常用内置命令字符的功能说明</h2><pre><code> sed的内置命令字符      |     解释说明
+</code></pre><h2 id="sed常用内置命令字符的功能说明"><a href="#sed常用内置命令字符的功能说明" class="headerlink" title="sed常用内置命令字符的功能说明"></a>sed常用内置命令字符的功能说明</h2><pre><code> sed的内置命令字符    |     解释说明
 
-     a(append)          |    表示追加文本，在指定行后面添加一行或多行文本
+ a(append)          |    表示追加文本，在指定行后面添加一行或多行文本
 
-      [root@jinc1 test]# sed &apos;2a 6,dandan,CSO&apos; persons.txt 
-      1,oldboy,CEO
-      2,zhangyao,CTO
-      6,dandan,CSO
-      3,alex,CFO
-      4,yy,CFO
-      5,feixue,CIO
-      (在第2行后添加6,dandan,CSO)                          
+
+ [root@jinc1 test]# sed &apos;2a 6,dandan,CSO&apos; persons.txt 
+  1,oldboy,CEO
+  2,zhangyao,CTO
+  6,dandan,CSO
+  3,alex,CFO
+  4,yy,CFO
+  5,feixue,CIO
+  (在第2行后添加6,dandan,CSO)   
+
 
 
 
@@ -134,18 +136,33 @@ d(delete)           |    只在输出时删除指定行的文本
  4,yy,CFO
  5,feixue,CIO
 
-     p(print)            |      表示打印匹配行的内容，通常p会与选项-n一起使用
-    [root@jinc1 test]# sed &apos;2p&apos; persons.txt 
-     1,oldboy,CEO
-     2,zhangyao,CTO
-     2,zhangyao,CTO
-     3,alex,CFO
-     4,yy,CFO
-     5,feixue,CIO
+ p(print)           |      表示打印匹配行的内容，通常p会与选项-n一起使用
+[root@jinc1 test]# sed &apos;2p&apos; persons.txt 
+ 1,oldboy,CEO
+ 2,zhangyao,CTO
+ 2,zhangyao,CTO
+ 3,alex,CFO
+ 4,yy,CFO
+ 5,feixue,CIO
 </code></pre><h2 id="当我们只使用-p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），"><a href="#当我们只使用-p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），" class="headerlink" title="当我们只使用 p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），"></a>当我们只使用 p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），</h2><p>所以，我们一般使用-n来取消默认输出，只输出匹配行文本</p>
 <pre><code>[root@jinc1 test]# sed -n &apos;2p&apos; persons.txt 
 2,zhangyao,CTO
-</code></pre>
+
+ s/regexp/replacement/  |      匹配regexp部分内容，用replacement替换regexp匹配的内容，
+ regexp部分可以使用正则表达式，在replacement部分可以使用特殊字符串&amp;和\1-\9等匹配regexp部
+ 分的部分内容。在实战场景中，s/regexp/replacement/  结尾常与g匹配做全局的替换。
+
+[root@jinc1 test]# sed &apos;s#zhangyao#dandan#g&apos; persons.txt 
+ 1,oldboy,CEO
+ 2,dandan,CTO
+ 3,alex,CFO
+ 4,yy,CFO
+ 5,feixue,CIO
+</code></pre><h3 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h3><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=28762749&auto=1&height=66"></iframe>
+
+
+
+
       
     </div><!-- .entry-content -->
 
