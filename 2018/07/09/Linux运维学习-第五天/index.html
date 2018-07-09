@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第一关测验练习题–续">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T13:17:44.751Z">
+<meta property="og:updated_time" content="2018-07-09T13:19:54.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第五天">
 <meta name="twitter:description" content="第一关测验练习题–续">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjjeakq1t00052wlyzfxq4e0f" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjjeanj6c00059glywceenmst" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -115,7 +115,7 @@ drwxr-xr-x. 3 root root 4096 Jul  6 01:46 /tmp/data/
 <li><p>把/data 移动到 /root 目录下</p>
 <p> move 移动 ==mv 移动命令 ==剪切功能<br> mv 要移动的文件或目录信息 路径<br> [root@jinc data]# mv /data/ /root/</p>
 </li>
-<li><p>进入/root目录下的data目录，删除oldboy.txt文件<br> a) 第一种方法：</p>
+<li><p>进入/root目录下的data目录，删除oldboy.txt文件<br>a) 第一种方法：</p>
 <pre><code>remove 移除 ==rm 移除命令
 rm 要移除的文件或目录信息
 [root@jinc data]# ls
@@ -123,7 +123,7 @@ oldboy.txt
 [root@jinc data]# rm oldboy.txt
 [root@jinc data]# ls
 [root@jinc data]# 
-</code></pre><p> b) 第二种方法：精确删除多个文件信息。</p>
+</code></pre><p>b) 第二种方法：精确删除多个文件信息。</p>
 <pre><code>第一里程：找出相应的文件数据
  find 查找数据信息命令
  find 在哪找东西 找的东西的类型 找的东西的名称
@@ -133,9 +133,7 @@ oldboy.txt
 /root/data/oldboy.txt
 第二里程：将数据进行删除
  [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;|xargs rm -f
-</code></pre></li>
-</ol>
-<p>c)第三种方法：</p>
+</code></pre><p>c)第三种方法：</p>
 <pre><code>第一里程：找出相应的文件数据
         同find 
 
@@ -143,7 +141,9 @@ oldboy.txt
         [root@jinc1 data]# rm -rf &apos;find *.txt&apos;
 
         [root@jinc1 tmp]# rm -rf $(find *.txt)
-</code></pre><p> PS:一切皆文件</p>
+</code></pre></li>
+</ol>
+<p> PS:一切皆文件</p>
 <pre><code>反引号作用：在一个命令中嵌入执行一个命令
 [root@jinc ~]# `which cat` /etc/hosts
 
