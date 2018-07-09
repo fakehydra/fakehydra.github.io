@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第一关测验练习题–续">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T13:19:54.825Z">
+<meta property="og:updated_time" content="2018-07-09T13:21:22.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第五天">
 <meta name="twitter:description" content="第一关测验练习题–续">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjjeanj6c00059glywceenmst" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjjeapdax0008bwly605nmi4b" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -134,6 +134,8 @@ oldboy.txt
 第二里程：将数据进行删除
  [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;|xargs rm -f
 </code></pre><p>c)第三种方法：</p>
+</li>
+</ol>
 <pre><code>第一里程：找出相应的文件数据
         同find 
 
@@ -141,9 +143,7 @@ oldboy.txt
         [root@jinc1 data]# rm -rf &apos;find *.txt&apos;
 
         [root@jinc1 tmp]# rm -rf $(find *.txt)
-</code></pre></li>
-</ol>
-<p> PS:一切皆文件</p>
+</code></pre><p> PS:一切皆文件</p>
 <pre><code>反引号作用：在一个命令中嵌入执行一个命令
 [root@jinc ~]# `which cat` /etc/hosts
 
