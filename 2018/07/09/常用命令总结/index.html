@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="这里只有一篇文章">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T08:17:19.322Z">
+<meta property="og:updated_time" content="2018-07-09T08:32:11.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用命令总结">
 <meta name="twitter:description" content="这里只有一篇文章">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjjdzucik000c1clyokbraujy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjje0dib2000cboly3ogy1uad" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -91,15 +91,22 @@
         <p>这里只有一篇文章</p>
 <a id="more"></a>
 <h4 id="PS-用英文词语去记住命令"><a href="#PS-用英文词语去记住命令" class="headerlink" title="PS:用英文词语去记住命令"></a>PS:用英文词语去记住命令</h4><ol>
-<li>mkdir  ==  make directory –创建一个新的空目录<br>mkdir [option] [directory]<br>mkdir [选项] [目录]<br>说明：mkdir命令后面的选项和目录，每个元素之间都至少要一个空格<pre><code>mkdir命令可以同时创建多个目录 --mkdir 1 2 3 ....
-</code></pre>参数选项    |      解释说明                               |   使用范例<br>  -p       | * 递归创建目录（父目录及子目录及子目录的子目录 | [root@jinc1 test]# mkdir -p / ceshi/1/2/3/4<pre><code>|
-</code></pre>  -m       |   设置新创建目录的默认目录对应的权限          |  </li>
+<li><p>mkdir  ==  make directory –创建一个新的空目录</p>
+<p>mkdir [option] [directory]</p>
+<p>mkdir [选项] [目录]</p>
+<p>说明：mkdir命令后面的选项和目录，每个元素之间都至少要一个空格</p>
+<pre><code>mkdir命令可以同时创建多个目录 --mkdir 1 2 3 ....
+</code></pre><p>mkdir -p  &lt;– 创建父目录及子目录及子目录的子目录。。。</p>
+<p>[root@jinc1 test]# mkdir -p /ceshi/1/2/3/4<br>[root@jinc1 test]# ls -ld /ceshi/1/2/3/4/<br>drwxr-xr-x. 2 root root 4096 Jul  8 18:46 /ceshi/1/2/3/4/</p>
+<p>mkdir -v  &lt;– 显示详细信息</p>
+<p>   [root@jinc1 ~]# mkdir -pv 4/5</p>
+<pre><code>mkdir: created directory `4&apos;
+mkdir: created directory `4/5&apos;
+</code></pre></li>
 </ol>
-<pre><code>[root@jinc1 test]# mkdir -p /ceshi/1/2/3/4
-[root@jinc1 test]# ls -ld /ceshi/1/2/3/4/
-drwxr-xr-x. 2 root root 4096 Jul  8 18:46 /ceshi/1/2/3/4/
-</code></pre><ol start="2">
-<li><p>ls     ==   list             –列表显示文件或目录<br>ls -l    &lt;—l参数表示查看文件目录详细信息</p>
+<ol start="2">
+<li><p>ls     ==   list             –列表显示文件或目录</p>
+<p>ls -l    &lt;—l参数表示查看文件目录详细信息</p>
 <pre><code>[root@jinc1 ~]# ls -l test/
  total 12
  drwxr-xr-x. 3 root root 4096 Jul  8 14:17 a
@@ -112,7 +119,10 @@ data/
 <pre><code>[root@jinc1 ~]# ls -dl data/
 drwxr-xr-x. 2 root root 4096 Jul  8 18:56 data/
 </code></pre></li>
-<li><p>cd     ==change directory    –切换当前所在的路径信息<br>cd /data &lt;—切换到根目录下的data目录中</p>
+</ol>
+<ol start="3">
+<li><p>cd     ==change directory    –切换当前所在的路径信息</p>
+<p>cd /data &lt;—切换到根目录下的data目录中</p>
 </li>
 </ol>
 
