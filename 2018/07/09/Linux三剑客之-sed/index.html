@@ -13,19 +13,19 @@
   
   
   
-  <title>Linux三剑客之 grep | 瑾川</title>
+  <title>Linux三剑客之 sed | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Linux三剑客之一">
 <meta name="keywords" content="那些年学习的Linux命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux三剑客之 grep">
-<meta property="og:url" content="http://yoursite.com/2018/07/08/Linux三剑客之-grep/index.html">
+<meta property="og:title" content="Linux三剑客之 sed">
+<meta property="og:url" content="http://yoursite.com/2018/07/09/Linux三剑客之-sed/index.html">
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="Linux三剑客之一">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T10:46:04.732Z">
+<meta property="og:updated_time" content="2018-07-09T11:29:24.012Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux三剑客之 grep">
+<meta name="twitter:title" content="Linux三剑客之 sed">
 <meta name="twitter:description" content="Linux三剑客之一">
   
   
@@ -67,7 +67,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux三剑客之-grep" class="post-Linux三剑客之-grep post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux三剑客之-sed" class="post-Linux三剑客之-sed post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -75,14 +75,14 @@
         
   
     <h1 class="entry-title article-title">
-      Linux三剑客之 grep
+      Linux三剑客之 sed
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjje6pesv000070lyoe5z4gy0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjje6pet4000170ly2uvs6gck" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -90,56 +90,69 @@
       
         <p>Linux三剑客之一</p>
 <a id="more"></a>
-<h4 id="Linux三剑客命令之grep"><a href="#Linux三剑客命令之grep" class="headerlink" title="Linux三剑客命令之grep"></a>Linux三剑客命令之grep</h4><h3 id="1-grep-命令详解"><a href="#1-grep-命令详解" class="headerlink" title="1.grep 命令详解"></a>1.grep 命令详解</h3><pre><code>grep 是Linux系统中最重要的命令之一--其主要功能为：从文本文件或管道数据流中筛选匹配的行以及数据（可配合正则表达式一起使用，功能更强大）---此为Linux运维人员必须要掌握的命令之一
-</code></pre><h3 id="2-语法格式"><a href="#2-语法格式" class="headerlink" title="2.语法格式"></a>2.语法格式</h3><pre><code>grep [options（参数）] [pattern （匹配模式）] [file（查找的文件）]--grep 命令当中的匹配模式或模式匹配，都是不要查找的东西，可以是普通的文字符号也可是正则表达式。
-</code></pre><h3 id="3-选项说明"><a href="#3-选项说明" class="headerlink" title="3.选项说明"></a>3.选项说明</h3><pre><code>参数选项    |     解释说明
-</code></pre><h2 id="v-–显示不匹配的行，或者说排除某些行"><a href="#v-–显示不匹配的行，或者说排除某些行" class="headerlink" title="-v         |  –显示不匹配的行，或者说排除某些行"></a>-v         |  –显示不匹配的行，或者说排除某些行</h2><pre><code>[root@jinc1 test]# grep -v &quot;dog&quot; old.txt 
-old 
-boy 
-girl 
-[root@jinc1 test]# cat old.txt 
-old       
-boy 
-girl
-dog
-</code></pre><h2 id="n-–显示匹配行及行号"><a href="#n-–显示匹配行及行号" class="headerlink" title="-n       |  –显示匹配行及行号"></a>-n       |  –显示匹配行及行号</h2><pre><code>[root@jinc1 test]# grep -n &quot;dog&quot; old.txt 
-4:dog
-</code></pre><h2 id="i-–不区分大小写（只适用于单字符），默认是区分大小写的"><a href="#i-–不区分大小写（只适用于单字符），默认是区分大小写的" class="headerlink" title="-i       |   –不区分大小写（只适用于单字符），默认是区分大小写的"></a>-i       |   –不区分大小写（只适用于单字符），默认是区分大小写的</h2><pre><code>[root@jinc1 test]# grep &quot;old&quot; old.txt 
-old
-[root@jinc1 test]# grep -i &quot;old&quot; old.txt 
-OLD
-old
-</code></pre><h2 id="c-–只统计匹配的行数，注意不是匹配的次数"><a href="#c-–只统计匹配的行数，注意不是匹配的次数" class="headerlink" title="-c        |   –只统计匹配的行数，注意不是匹配的次数"></a>-c        |   –只统计匹配的行数，注意不是匹配的次数</h2><pre><code>[root@jinc1 test]# grep -c &quot;old&quot; old.txt 
-2
-[root@jinc1 test]# cat old.txt 
-oldboy
-OLD
-old
-boy
-girl
-dog
-</code></pre><h2 id="E-–使用扩展的egrep命令"><a href="#E-–使用扩展的egrep命令" class="headerlink" title="-E         |  –使用扩展的egrep命令"></a>-E         |  –使用扩展的egrep命令</h2><pre><code>[root@jinc1 test]# grep -Ei &quot;old|dog&quot; old.txt 
-OLD
-old
-dog
-同时过滤old 和dog不区分
-</code></pre><h2 id="–color-auto-–为grep过滤的匹配字符串添加颜色"><a href="#–color-auto-–为grep过滤的匹配字符串添加颜色" class="headerlink" title="–color=auto –为grep过滤的匹配字符串添加颜色"></a>–color=auto –为grep过滤的匹配字符串添加颜色</h2><pre><code> [root@jinc1 test]# grep -Ei --color=auto &quot;old|boy&quot; old.txt 
- OLD
- old
- boy
-同时过滤old 和dog并为其显示颜色
-</code></pre><h2 id="w-–只匹配过滤的单词"><a href="#w-–只匹配过滤的单词" class="headerlink" title="-w           –只匹配过滤的单词"></a>-w           –只匹配过滤的单词</h2><h2 id="o-–只输出匹配的内容"><a href="#o-–只输出匹配的内容" class="headerlink" title="-o           –只输出匹配的内容"></a>-o           –只输出匹配的内容</h2><pre><code>[root@jinc1 test]# grep -o &quot;old&quot; old.txt 
-old
-old
-</code></pre><p>–未完待续–</p>
+<h4 id="Linux三剑客命令之-sed"><a href="#Linux三剑客命令之-sed" class="headerlink" title="Linux三剑客命令之 sed"></a>Linux三剑客命令之 sed</h4><h3 id="1-sed-命令详解"><a href="#1-sed-命令详解" class="headerlink" title="1.sed 命令详解"></a>1.sed 命令详解</h3><pre><code>sed是Stream Editor（字符流编辑器）的缩写，简称流编辑器
+sed是操作、过滤和转换文本内容的强大工具。常用功能包括对文件实现快速增删改查，
+其中查询的功能中最常用的两大功能是过滤（过滤指定字符串），取行（取出指定行）。
+</code></pre><h3 id="2-语法格式"><a href="#2-语法格式" class="headerlink" title="2.语法格式"></a>2.语法格式</h3><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><pre><code>1）sed以及后面的选项、命令和输入文件，每个元素之间都至少要一个空格。
+2）sed内置命令行字符，既可以是单个命令，也可以是多个命令参数的组合
+3）输入文件是sed需要处理的文件，这是可选项；sed还能够从标准输入如管道中获取输入。
+</code></pre><h3 id="3-选项说明"><a href="#3-选项说明" class="headerlink" title="3.选项说明"></a>3.选项说明</h3><h2 id="sed命令的参数选项及说明"><a href="#sed命令的参数选项及说明" class="headerlink" title="sed命令的参数选项及说明"></a>sed命令的参数选项及说明</h2><pre><code>参数选项    |     解释说明
 
+ -n        |   取消默认的sed输出，常与sed内置命令的p 连用
+
+ -i        |   直接修改文件内容，而不是输出到终端。
+           |   如果不适用-i 选项，则sed 只是修改内存中的数据，并不会影响磁盘上的文件
+</code></pre><h2 id="sed常用内置命令字符的功能说明"><a href="#sed常用内置命令字符的功能说明" class="headerlink" title="sed常用内置命令字符的功能说明"></a>sed常用内置命令字符的功能说明</h2><pre><code>sed的内置命令字符      |     解释说明
+
+    a(append)          |    表示追加文本，在指定行后面添加一行或多行文本
+
+     [root@jinc1 test]# sed &apos;2a 6,dandan,CSO&apos; persons.txt 
+     1,oldboy,CEO
+     2,zhangyao,CTO
+     6,dandan,CSO
+     3,alex,CFO
+     4,yy,CFO
+     5,feixue,CIO
+     (在第2行后添加6,dandan,CSO)                          
+
+
+
+    i(insert)          |    表示插入文本，在指定行前面添加一行或者多行文本
+    [root@jinc1 test]# sed &apos;2i 6,dandan,CTO&apos; persons.txt 
+     1,oldboy,CEO
+     6,dandan,CTO
+     2,zhangyao,CTO
+     3,alex,CFO
+     4,yy,CFO
+     5,feixue,CIO
+
+
+    d(delete)           |    只在输出时删除指定行的文本
+    [root@jinc1 test]# sed &apos;2d&apos; persons.txt 
+    1,oldboy,CEO
+    3,alex,CFO
+    4,yy,CFO
+    5,feixue,CIO
+
+    p(print)            |      表示打印匹配行的内容，通常p会与选项-n一起使用
+   [root@jinc1 test]# sed &apos;2p&apos; persons.txt 
+    1,oldboy,CEO
+    2,zhangyao,CTO
+    2,zhangyao,CTO
+    3,alex,CFO
+    4,yy,CFO
+    5,feixue,CIO
+</code></pre><h2 id="当我们只使用-p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），"><a href="#当我们只使用-p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），" class="headerlink" title="当我们只使用 p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），"></a>当我们只使用 p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），</h2><p>   所以，我们一般使用-n来取消默认输出，只输出匹配行文本</p>
+<pre><code>[root@jinc1 test]# sed -n &apos;2p&apos; persons.txt 
+2,zhangyao,CTO
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/08/Linux三剑客之-grep/">
-    <time datetime="2018-07-08T09:14:45.000Z" class="entry-date">
-        2018-07-08
+    <a href="/2018/07/09/Linux三剑客之-sed/">
+    <time datetime="2018-07-09T10:48:31.000Z" class="entry-date">
+        2018-07-09
     </time>
 </a>
     
@@ -155,10 +168,8 @@ old
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/09/常用命令总结/" rel="prev"><span class="meta-nav">←</span> 常用命令总结</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/08/Linux运维学习-第四天/" rel="next">Linux运维学习-第四天 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/07/09/常用命令总结/" rel="next">常用命令总结 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
