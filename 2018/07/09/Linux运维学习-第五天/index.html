@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第一关测验练习题–续">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T13:21:22.019Z">
+<meta property="og:updated_time" content="2018-07-09T13:23:54.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第五天">
 <meta name="twitter:description" content="第一关测验练习题–续">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjjeapdax0008bwly605nmi4b" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjjeaslyi0005twlyvzp541oo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -91,21 +91,12 @@
         <p>第一关测验练习题–续</p>
 <a id="more"></a>
 <h3 id="第一关测验练习题"><a href="#第一关测验练习题" class="headerlink" title="第一关测验练习题"></a>第一关测验练习题</h3><ol start="4">
-<li>把oldboy.txt 拷贝（复制）到/tmp 下</li>
+<li><p>把oldboy.txt 拷贝（复制）到/tmp 下</p>
+<p>cp /data/oldboy.txt /tmp<br>cp –复制文件或复制目录<br>-r   —递归复制目录数据信息<br>-a  —归档参数，包含了-r -d -p 参数的作用</p>
+<p>[root@jinc data]# cp /data/oldboy.txt  /tmp/<br> cp: overwrite /tmp/oldboy.txt’?<br> [root@jinc data]# ls -l /tmp/<br> total 4<br> -rw-r–r–. 1 root root 15 Jul  5 15:19 oldboy.txt<br> -rw-r–r–. 1 root root  0 Jul  5 22:33 text.txt<br> -rw——-. 1 root root  0 Jul  4 15:27 yum.log                                                  </p>
+</li>
 </ol>
-<p>cp /data/oldboy.txt /tmp</p>
-<pre><code>cp --复制文件或复制目录
--r   ---递归复制目录数据信息
--a  ---归档参数，包含了-r -d -p 参数的作用
-
-[root@jinc data]# cp /data/oldboy.txt  /tmp/
- cp: overwrite /tmp/oldboy.txt&apos;? 
- [root@jinc data]# ls -l /tmp/
- total 4
- -rw-r--r--. 1 root root 15 Jul  5 15:19 oldboy.txt
- -rw-r--r--. 1 root root  0 Jul  5 22:33 text.txt
- -rw-------. 1 root root  0 Jul  4 15:27 yum.log                                                  
-</code></pre><h2 id="复制目录的方法–"><a href="#复制目录的方法–" class="headerlink" title="复制目录的方法–"></a>复制目录的方法–</h2><pre><code>[root@jinc data]# cp -r /data/ /tmp/
+<h2 id="复制目录的方法–"><a href="#复制目录的方法–" class="headerlink" title="复制目录的方法–"></a>复制目录的方法–</h2><pre><code>[root@jinc data]# cp -r /data/ /tmp/
 [root@jinc data]# ls -ld /tmp/data/
 drwxr-xr-x. 3 root root 4096 Jul  6 01:46 /tmp/data/
 </code></pre><p>说明：默认复制文件如果在目标目录中已经存在，会有覆盖提示（如何解决？？？）</p>
