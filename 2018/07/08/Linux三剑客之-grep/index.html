@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="Linux三剑客之一">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T10:32:10.369Z">
+<meta property="og:updated_time" content="2018-07-09T10:38:33.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux三剑客之 grep">
 <meta name="twitter:description" content="Linux三剑客之一">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjje4nrnr00034wly9w4nj8ih" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjje4w1v70000d8lyfqwcfqwq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -93,14 +93,32 @@
 <h3 id="Linux三剑客命令之grep"><a href="#Linux三剑客命令之grep" class="headerlink" title="Linux三剑客命令之grep"></a>Linux三剑客命令之grep</h3><h2 id="1-grep-命令详解"><a href="#1-grep-命令详解" class="headerlink" title="1.grep 命令详解"></a>1.grep 命令详解</h2><pre><code>grep 是Linux系统中最重要的命令之一--其主要功能为：从文本文件或管道数据流中筛选匹配的行以及数据（可配合正则表达式一起使用，功能更强大）---此为Linux运维人员必须要掌握的命令之一
 </code></pre><h2 id="2-语法格式"><a href="#2-语法格式" class="headerlink" title="2.语法格式"></a>2.语法格式</h2><pre><code>grep [options（参数）] [pattern （匹配模式）] [file（查找的文件）]--grep 命令当中的匹配模式或模式匹配，都是不要查找的东西，可以是普通的文字符号也可是正则表达式。
 </code></pre><h2 id="3-选项说明"><a href="#3-选项说明" class="headerlink" title="3.选项说明"></a>3.选项说明</h2><pre><code>参数选项    |     解释说明
-
--v         |  --显示不匹配的行，或者说排除某些行
-</code></pre><p>[root@jinc1 test]# grep -v “dog” old.txt<br>old<br>boy<br>girl<br>[root@jinc1 test]# cat old.txt<br>old<br>boy<br>girl<br>dog</p>
-<pre><code>-n       |  --显示匹配行及行号
-</code></pre><p>[root@jinc1 test]# grep -n “dog” old.txt<br> 4:dog</p>
-<pre><code>-i       |   --不区分大小写（只适用于单字符），默认是区分大小写的
-</code></pre><p>[root@jinc1 test]# grep “old” old.txt<br>old<br>[root@jinc1 test]# grep -i “old” old.txt<br>OLD<br>old</p>
-<p>–未完待续–</p>
+</code></pre><h2 id="v-–显示不匹配的行，或者说排除某些行"><a href="#v-–显示不匹配的行，或者说排除某些行" class="headerlink" title="-v         |  –显示不匹配的行，或者说排除某些行"></a>-v         |  –显示不匹配的行，或者说排除某些行</h2><pre><code>[root@jinc1 test]# grep -v &quot;dog&quot; old.txt 
+old 
+boy 
+girl 
+[root@jinc1 test]# cat old.txt 
+old       
+boy 
+girl
+dog
+</code></pre><h2 id="n-–显示匹配行及行号"><a href="#n-–显示匹配行及行号" class="headerlink" title="-n       |  –显示匹配行及行号"></a>-n       |  –显示匹配行及行号</h2><pre><code>[root@jinc1 test]# grep -n &quot;dog&quot; old.txt 
+4:dog
+</code></pre><h2 id="i-–不区分大小写（只适用于单字符），默认是区分大小写的"><a href="#i-–不区分大小写（只适用于单字符），默认是区分大小写的" class="headerlink" title="-i       |   –不区分大小写（只适用于单字符），默认是区分大小写的"></a>-i       |   –不区分大小写（只适用于单字符），默认是区分大小写的</h2><pre><code>[root@jinc1 test]# grep &quot;old&quot; old.txt 
+old
+[root@jinc1 test]# grep -i &quot;old&quot; old.txt 
+OLD
+old
+</code></pre><h2 id="c-–只统计匹配的行数，注意不是匹配的次数"><a href="#c-–只统计匹配的行数，注意不是匹配的次数" class="headerlink" title="-c           –只统计匹配的行数，注意不是匹配的次数"></a>-c           –只统计匹配的行数，注意不是匹配的次数</h2><pre><code>[root@jinc1 test]# grep -c &quot;old&quot; old.txt 
+2
+[root@jinc1 test]# cat old.txt 
+oldboy
+OLD
+old
+boy
+girl
+dog
+</code></pre><p>–未完待续–</p>
 
       
     </div><!-- .entry-content -->
