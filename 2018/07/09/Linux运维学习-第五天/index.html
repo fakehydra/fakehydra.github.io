@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第一关测验练习题–续">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T13:00:18.629Z">
+<meta property="og:updated_time" content="2018-07-09T13:06:30.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第五天">
 <meta name="twitter:description" content="第一关测验练习题–续">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjje9ycmx0005d0lye904zy2f" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjjea69mg0005dklykxugyocn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -125,27 +125,34 @@ oldboy.txt
 [root@jinc data]# 
 </code></pre><p> b) 第二种方法：精确删除多个文件信息。</p>
 <pre><code>第一里程：找出相应的文件数据
-</code></pre><p>   find 查找数据信息命令<br>   find 在哪找东西 找的东西的类型 找的东西的名称<br>   [root@jinc ~]# find /root/data/ -type f -name “*.txt”</p>
-<pre><code>/root/data/error.txt
+</code></pre><p>   find 查找数据信息命令<br>   find 在哪找东西 找的东西的类型 找的东西的名称</p>
+<pre><code> [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;
+/root/data/error.txt
 /root/data/right.txt
 /root/data/oldboy.txt
-
-第二里程：将数据进行删除
- [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;|xargs rm -f
-</code></pre><p> c)第三种方法：</p>
-<pre><code>第一里程：找出相应的文件数据
-        同find 
-</code></pre><p>   第二里程：将数据进行删除（·· 反引号 ==$())</p>
-<pre><code>[root@jinc1 data]# rm -rf &apos;find *.txt&apos;
-
-[root@jinc1 tmp]# rm -rf $(find *.txt)
 </code></pre></li>
 </ol>
-<pre><code>PS:一切皆文件
-   反引号作用：在一个命令中嵌入执行一个命令
-    [root@jinc ~]# `which cat` /etc/hosts
+<pre><code>   第二里程：将数据进行删除
+    [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;|xargs rm -f
 
-    [root@jinc ~]# $(which cat) /etc/hosts
+
+
+c)第三种方法：
+   第一里程：找出相应的文件数据
+           同find 
+
+   第二里程：将数据进行删除（·· 反引号 ==$())
+           [root@jinc1 data]# rm -rf &apos;find *.txt&apos;
+
+           [root@jinc1 tmp]# rm -rf $(find *.txt)
+
+
+  PS:一切皆文件
+
+     反引号作用：在一个命令中嵌入执行一个命令
+      [root@jinc ~]# `which cat` /etc/hosts
+
+      [root@jinc ~]# $(which cat) /etc/hosts
 </code></pre>
       
     </div><!-- .entry-content -->
