@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="这里只有一篇文章">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T08:39:14.946Z">
+<meta property="og:updated_time" content="2018-07-09T09:27:34.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用命令总结">
 <meta name="twitter:description" content="这里只有一篇文章">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjje0mkl4000c70ly9t1z4zbz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjje2cu89000ca0lyvzelqbs4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -93,39 +93,99 @@
 <h4 id="PS-用英文词语去记住命令"><a href="#PS-用英文词语去记住命令" class="headerlink" title="PS:用英文词语去记住命令"></a>PS:用英文词语去记住命令</h4><ol>
 <li><p>mkdir  ==  make directory –创建一个新的空目录</p>
 <p>mkdir [option] [directory]<br>mkdir [选项] [目录]</p>
-<p>说明: mkdir命令后面的选项和目录，每个元素之间都至少要一个空格</p>
-<pre><code>mkdir命令可以同时创建多个目录 --mkdir 1 2 3 ....
-</code></pre><p>mkdir -p  &lt;– 创建父目录及子目录及子目录的子目录。。。</p>
-<pre><code>[root@jinc1 test]# mkdir -p /ceshi/1/2/3/4
-[root@jinc1 test]# ls -ld /ceshi/1/2/3/4/
-drwxr-xr-x. 2 root root 4096 Jul  8 18:46 /ceshi/1/2/3/4/
-</code></pre><p>mkdir -v  &lt;– 显示详细信息</p>
-<p>   [root@jinc1 ~]# mkdir -pv 4/5<br>   mkdir: created directory <code>4&#39;
-   mkdir: created directory</code>4/5’</p>
 </li>
 </ol>
-<ol start="2">
-<li><p>ls     ==   list             –列表显示文件或目录</p>
-<p>ls -l    &lt;—l参数表示查看文件目录详细信息</p>
-<pre><code>[root@jinc1 ~]# ls -l test/
- total 12
- drwxr-xr-x. 3 root root 4096 Jul  8 14:17 a
- -rw-r--r--. 1 root root   28 Jul  8 15:03 old.txt
- -rw-r--r--. 1 root root   61 Jul  8 15:37 persons.txt
-</code></pre><p>ls -d    &lt;—d查看当前指定目录信息</p>
-<pre><code>[root@jinc1 ~]# ls -d data/
-data/
-</code></pre><p>ls -ld   &lt;—查看当前指定目录的详细信息</p>
-<pre><code>[root@jinc1 ~]# ls -dl data/
-drwxr-xr-x. 2 root root 4096 Jul  8 18:56 data/
-</code></pre></li>
-</ol>
-<ol start="3">
-<li><p>cd     ==change directory    –切换当前所在的路径信息</p>
-<p>cd /data &lt;—切换到根目录下的data目录中</p>
-</li>
-</ol>
+<p>说明: mkdir命令后面的选项和目录，每个元素之间都至少要一个空格；<br>      mkdir命令可以同时创建多个目录 –mkdir 1 2 3 ….</p>
+<pre><code>mkdir -p  &lt;-- 创建父目录及子目录及子目录的子目录。。。
 
+        [root@jinc1 test]# mkdir -p /ceshi/1/2/3/4
+        [root@jinc1 test]# ls -ld /ceshi/1/2/3/4/
+        drwxr-xr-x. 2 root root 4096 Jul  8 18:46 /ceshi/1/2/3/4/
+
+mkdir -v  &lt;-- 显示详细信息
+
+    [root@jinc1 ~]# mkdir -pv 4/5
+    mkdir: created directory `4&apos;
+    mkdir: created directory `4/5&apos;
+</code></pre><ol start="2">
+<li>ls     ==   list             –列表显示文件或目录<br>ls [option] [file]<br>ls [选项] [文件或目录]</li>
+</ol>
+<p>说明：ls命令及后面的选项和文件，每个元素之间都至少要一个空格；<br>      命令后面的选项和目录文件可以省略，表示查看当前路径的文件信息</p>
+<p>参数选项说明</p>
+<pre><code>ls -l    &lt;---l参数表示查看文件目录详细信息
+
+         [root@jinc1 ~]# ls -l test/
+          total 12
+          drwxr-xr-x. 3 root root 4096 Jul  8 14:17 a
+          -rw-r--r--. 1 root root   28 Jul  8 15:03 old.txt
+          -rw-r--r--. 1 root root   61 Jul  8 15:37 persons.txt
+
+ls -d    &lt;---d查看当前指定目录信息
+
+         [root@jinc1 ~]# ls -d data/
+         data/
+
+ls -ld   &lt;---查看当前指定目录的详细信息
+
+         [root@jinc1 ~]# ls -dl data/
+         drwxr-xr-x. 2 root root 4096 Jul  8 18:56 data/
+
+ls -a    &lt;---显示目录下的所有文件，包括以“.”开头的隐藏文件
+
+          [root@jinc1 data]# ls -a
+          .  ..  ceshi.txt
+
+ls -t    &lt;---根据最后的修改时间（mtime)排序，默认是以文件名排序
+
+ls -r    &lt;---依相反次序排列
+
+ls -F    &lt;---在条目上加上文件类型的指示符号（*、/、=、@、|、 其中的一个）
+
+ls -p    &lt;---只在目录后面加上“/”
+
+ls -i    &lt;---显示inode 节点信息
+
+ls -d    &lt;---当遇到目录时，列出目录本身而非目录内的文件，并且不跟随符号链接
+
+ls -h    &lt;---以人类可读的信息显示文件或目录大小，如1kb、2MB、3GB等
+
+ls -A    &lt;---列出所有文件，包括隐藏文件，但不包括“.”和“..”这两个目录
+
+ls -S    &lt;---根据文件大小排序
+
+ls -R    &lt;---递归列出所有子目录
+
+ls -x    &lt;---逐行列出项目而不是逐栏列出
+
+ls -X    &lt;---根据扩展名排序
+
+ls -c    &lt;---根据状态改变时间（ctime)排序
+
+ls -u    &lt;---根据最后访问时间（atime)排序
+
+--color={never,always,auto}     &lt;----不同的文件类型显示不同颜色参数，never 表示不显示，always 表示总是显示，auto表示自动显示
+
+--full-time      &lt;----以完整的时间格式输出
+
+--time-style={full-iso,long-iso,iso,local}      &lt;----以不同的时间格式输出，long-iso 效果最好
+
+--time={atime,ctime}     &lt;----按不同的时间属性输出，atime 表示按访问时间，ctime 表示按改变权限属性时间，如果不加此参数则默认为最后修改时间
+</code></pre><ol start="3">
+<li>cd     ==change directory    –切换当前所在的路径信息<br>cd [option] [dir]<br>cd [选项] [目录]</li>
+</ol>
+<p>说明：注意cd命令以及后面的选项和目录，每个元素之间都至少有一个空格；<br>     cd 命令后面的选项和目录等参数都可以省略，单独执行默认切换到当前登陆用户的家目录（由系统环境变量HOME定义）<br>     cd 是bash shell 的内置命令，查看该命令对应的系统帮助需要使用 help cd</p>
+<p>参数选项以及说明：</p>
+<p>参数选项   |   解释说明</p>
+<pre><code>-P       如果切换的目标目录是一个软链接，则会直接切换到软链接指向的真正物理目标目录，与pwd命令的-P选项类似（不常用）
+
+-L       功能和-P相反，与pwd命令的-L类似。该命令不常用
+
+-         当只使用 - 选项时，将会从当前目录切换到系统环境变量“OLDPWD” 对应值的目录路径，即当前用户上一次所在的目录路径
+
+~         当只使用 ~ 选项时，将会从当前目录切换到系统环境变量“HOME” 对应值的目录路径，即当前用户的家目录所在的路径
+
+..        当只使用“..”选项时，将会从当前目录切换到当前目录的上一级目录所在的路径
+</code></pre>
       
     </div><!-- .entry-content -->
 
