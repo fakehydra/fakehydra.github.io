@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="Linux三剑客之一">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T03:44:49.308Z">
+<meta property="og:updated_time" content="2018-07-09T10:21:23.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux三剑客之 grep">
 <meta name="twitter:description" content="Linux三剑客之一">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjje2cu7g0000a0lyg91mloa7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjje49yk90000y4lyoar6o273" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -96,6 +96,30 @@
 <pre><code>参数选项    |     解释说明
 
   -v       |  --显示不匹配的行，或者说排除某些行
+
+    [root@jinc1 test]# grep -v &quot;dog&quot; old.txt 
+    old 
+    boy 
+    girl
+
+    [root@jinc1 test]# cat old.txt 
+    old 
+    boy 
+    girl
+    dog
+
+  -n       |  --显示匹配行及行号
+
+      [root@jinc1 test]# grep -n &quot;dog&quot; old.txt 
+       4:dog
+
+  -i       |   --不区分大小写（只适用于单字符），默认是区分大小写的
+
+      [root@jinc1 test]# grep &quot;old&quot; old.txt 
+      old
+      [root@jinc1 test]# grep -i &quot;old&quot; old.txt 
+      OLD
+      old
 </code></pre><p>–未完待续–</p>
 
       
