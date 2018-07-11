@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="第一天" />
+  <meta name="description" content="又一个Linux命令正在发送^-^" />
   
 
   
@@ -13,20 +13,20 @@
   
   
   
-  <title>每天一个Linux命令 | 瑾川</title>
+  <title>每天一个Linux命令03 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一天">
+  <meta name="description" content="又一个Linux命令正在发送^-^">
 <meta name="keywords" content="每天一个Linux命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一个Linux命令">
-<meta property="og:url" content="http://yoursite.com/2018/07/05/每天一个Linux命令/index.html">
+<meta property="og:title" content="每天一个Linux命令03">
+<meta property="og:url" content="http://yoursite.com/2018/07/11/每天一个Linux命令03/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="第一天">
+<meta property="og:description" content="又一个Linux命令正在发送^-^">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-06T11:55:16.904Z">
+<meta property="og:updated_time" content="2018-07-11T11:45:45.277Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个Linux命令">
-<meta name="twitter:description" content="第一天">
+<meta name="twitter:title" content="每天一个Linux命令03">
+<meta name="twitter:description" content="又一个Linux命令正在发送^-^">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -67,7 +67,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-每天一个Linux命令" class="post-每天一个Linux命令 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-每天一个Linux命令03" class="post-每天一个Linux命令03 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -75,30 +75,58 @@
         
   
     <h1 class="entry-title article-title">
-      每天一个Linux命令
+      每天一个Linux命令03
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/每天一个Linux命令/" data-id="cjjh2clrq000oe0lyj4hunwj6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/每天一个Linux命令03/" data-id="cjjh2clrv000te0lyksn1gm93" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>第一天</p>
+        <p>又一个Linux命令正在发送^-^</p>
 <a id="more"></a>
-<p>还没想好。。。稍等</p>
+<h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><h2 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h2><pre><code>mkdir == make directories  --创建目录；默认情况下，若要创建的目录已经存在，则会提示该目录已经存在，不会继续创建目录
+</code></pre><h2 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h2><pre><code>mkdir [options] [directory]
+mkdir [选项] [目录]
+</code></pre><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><pre><code>1）注意mkdir 命令以及后面的选项和目录，每个元素之间都至少要有一个空格
+2）mkdir 命令可以同时创建多个目录。
+</code></pre><h2 id="参数选项-解释说明"><a href="#参数选项-解释说明" class="headerlink" title="参数选项      |    解释说明"></a>参数选项      |    解释说明</h2><pre><code>-p          |   递归创建目录（同时创建父子目录）
+-m          |   设置新创建目录的默认目录对应的权限
+-v          |   显示创建目录的过程
+</code></pre><h2 id="小扩展"><a href="#小扩展" class="headerlink" title="小扩展"></a>小扩展</h2><pre><code>Windows 下的目录路径样式为D:\data\test,而Linux下的路径为/data/test
+</code></pre><h2 id="使用范例"><a href="#使用范例" class="headerlink" title="使用范例"></a>使用范例</h2><pre><code> mkdir -p 的使用
 
+[root@jinc1 ~]# mkdir -p /oldboy/test
+[root@jinc1 ~]# tree -d
+.
+├── 4
+│   └── 5
+├── oldboy
+│   └── test
+└── test
+
+ mkdir -v 参数的使用
+
+[root@jinc1 ~]# mkdir -pv /boy/girl
+mkdir: created directory `/boy&apos;
+mkdir: created directory `/boy/girl&apos;
+ps:这个参数的实际作用并不大。。。。
+
+mkdir -m  
+</code></pre><p>还没学到tree和权限0.0，后面再补充0.0</p>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h3>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/05/每天一个Linux命令/">
-    <time datetime="2018-07-05T12:27:17.000Z" class="entry-date">
-        2018-07-05
+    <a href="/2018/07/11/每天一个Linux命令03/">
+    <time datetime="2018-07-11T11:07:26.000Z" class="entry-date">
+        2018-07-11
     </time>
 </a>
     
@@ -114,10 +142,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/06/linux快捷键/" rel="prev"><span class="meta-nav">←</span> linux快捷键</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/05/linux运维学习-第三天/" rel="next">linux运维学习 第三天 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/07/11/Linux运维学习-第七天/" rel="next">Linux运维学习-第七天 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
