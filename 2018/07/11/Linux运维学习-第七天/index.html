@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="系统基础优化" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-第七天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="系统基础优化">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-第七天">
+<meta property="og:url" content="http://yoursite.com/2018/07/11/Linux运维学习-第七天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="系统基础优化">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-11T09:55:30.419Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-第七天">
+<meta name="twitter:description" content="系统基础优化">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第七天" class="post-Linux运维学习-第七天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-第七天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/Linux运维学习-第七天/" data-id="cjjgy8fcu000730lybqrh0zsm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>系统基础优化</p>
+<a id="more"></a>
+<h3 id="1-学习方法了解一下"><a href="#1-学习方法了解一下" class="headerlink" title="1.学习方法了解一下"></a>1.学习方法了解一下</h3><h2 id="如何能够把学到的知识记住？"><a href="#如何能够把学到的知识记住？" class="headerlink" title="如何能够把学到的知识记住？"></a>如何能够把学到的知识记住？</h2><pre><code>记住： 把知识记在了缓存（脑子里）
+潜意识记住：把知识记在了硬盘（放在心里）
+</code></pre><h2 id="理解（反复研究）"><a href="#理解（反复研究）" class="headerlink" title="理解（反复研究）"></a>理解（反复研究）</h2><pre><code>01.预习
+02.上课认真听
+03.实践练习
+04.模拟面试--进行复述知识点
+05.下课总结复习
+06.进行分享
+07.测验考核
+</code></pre><h3 id="2-知识点回顾"><a href="#2-知识点回顾" class="headerlink" title="2.知识点回顾"></a>2.知识点回顾</h3><pre><code>a）引出了三剑客命令：awk (老大) 对列操作
+                   sed (老二) 对行操作；替换取值
+                   grep (老三) 过滤
+b）别名的概念；如何设置别名；如何修改系统中已有的别名（在.bashrc 中注释后再修改）
+c）find 命令的用法
+   批量删除
+   a)利用管道
+   b）`` 或者$()
+   c)find ./type f -name &quot;*.sh&quot; -delete
+</code></pre><h3 id="3-对系统进行优化"><a href="#3-对系统进行优化" class="headerlink" title="3.对系统进行优化"></a>3.对系统进行优化</h3><pre><code>a)首先，查看系统信息
+  [root@jinc1 ~]# cat /etc/redhat-release 
+   CentOS release 6.9 (Final)
+b)查看系统架构信息
+  [root@jinc1 ~]# uname -m
+   x86_64
+c)查看内核信息
+  [root@jinc1 ~]# uname -r
+  2.6.32-696.el6.x86_64
+</code></pre><h2 id="系统基础优化-创建系统管理用户（普通用户）"><a href="#系统基础优化-创建系统管理用户（普通用户）" class="headerlink" title="系统基础优化-创建系统管理用户（普通用户）"></a>系统基础优化-创建系统管理用户（普通用户）</h2><pre><code>   用户进行分类：
+   root 用户  --超级管理员用户
+   old 用户   --普通用户
+
+   创建用户：old
+   创建用户密码信息（交互式创建密码）：
+                                   passwd old  --给old用户设置密码
+                                   passwd      --给当前登录系统用户修改密码
+                                   说明：如果用户需要重置密码，要以root用户
+                  （免交互式创建密码）：[root@jinc ~]# useradd oldgirl 
+                                      [root@jinc ~]# echo &quot;123456&quot; |passwd --stdin oldgirl
+                                      Changing password for user oldgirl.
+                                      passwd: all authent
+
+                    使用old用户：su - old 
+                    退出old用户：logout；su；ctrl+d
+
+
+总结：su - 切换用户说明：
+
+01.root用户 切换  普通用户  不需要密码信息
+02.普通用户 切换   root用户  需要密码信息
+03.普通用户 切换   普通用户   需要密码信息
+</code></pre><h2 id="系统基础优化-命令提示符信息（铺垫内容）"><a href="#系统基础优化-命令提示符信息（铺垫内容）" class="headerlink" title="系统基础优化-命令提示符信息（铺垫内容）"></a>系统基础优化-命令提示符信息（铺垫内容）</h2><pre><code>变量信息：变量可以随意命名，但尽量不要和系统已有的变量发生冲突
+        [root@jinc ~]# old=123
+        [root@jinc ~]# echo $old
+         123
+        [root@jinc ~]# old=456
+        [root@jinc ~]# echo $old
+         456
+
+环境变量：系统中已经定义好的变量
+        a)临时设置
+        [root@jinc /]# export PS1=&quot;[\u@\h \W\A]\$ &quot;
+        [root@jinc /19:42]$ 
+
+        b)永久设置
+        vim /etc/profile
+        添加后保存退出
+
+set 命令查看所有系统设置好的环境变量信息
+</code></pre><h2 id="系统基础优化-安全优化"><a href="#系统基础优化-安全优化" class="headerlink" title="系统基础优化-安全优化"></a>系统基础优化-安全优化</h2><pre><code>a) 安全服务软件---selinux(在一定程度上限制root权限)
+b) 安全服务软件---iptables（网络安全隔离的服务）
+PS：系统初始化使用时，尽量将安全服务先关闭
+</code></pre><h2 id="selinux软件如何先关闭"><a href="#selinux软件如何先关闭" class="headerlink" title="selinux软件如何先关闭"></a>selinux软件如何先关闭</h2><pre><code>a）临时关闭：
+     查看selinux状态--[root@jinc /20:00]$ getenforce 
+                       Enforcing
+                       [root@jinc /20:00]$ head -6 /etc/selinux/config 
+
+                       # This file controls the state of SELinux on the system.
+                       # SELINUX= can take one of these three values:
+                       #     enforcing - SELinux security policy is enforced. 
+                       selinux 服务处于开启状态
+
+                       #     permissive - SELinux prints warnings instead of enforcing.
+                       selinux 临时处于关闭状态，还会有安全提示 
+
+                       #     disabled - No SELinux policy is loaded.
+                       selinux 彻底处于关闭状态
+   临时关闭
+     [root@jinc /20:02]$ setenforce 0    
+     [root@jinc /20:08]$ getenforce 
+     Permissive
+
+
+   永久关闭：selinux 服务有自己的配置文件，直接修改配置文件就可以
+     [root@jinc /20:10]$ vim /etc/selinux/config   --为selinux的配置文件
+     [root@jinc1 ~]# sed &apos;s#SELINUX=enforcing#SELINUX=disabled#g  /etc/selinux/config 
+</code></pre><h2 id="iptables-软件如何先关闭"><a href="#iptables-软件如何先关闭" class="headerlink" title="iptables 软件如何先关闭?"></a>iptables 软件如何先关闭?</h2><pre><code>a)临时关闭
+  [root@jinc1 ~]# /etc/init.d/iptables stop
+
+
+b)永久关闭
+  [root@jinc1 ~]# chkconfig |grep &quot;ipt&quot;
+   iptables           0:off    1:off    2:on    3:on    4:on    5:on    6:off
+  说明：利用chkconfig命令查看服务开机自启状态   
+ [root@jinc1 ~]# chkconfig iptables off 
+ [root@jinc1 ~]# chkconfig |grep &quot;ipt&quot;
+ iptables           0:off    1:off    2:off    3:off    4:off    5:off    6:off
+  说明：利用chkconfig命令设置iptables 服务永久关闭
+</code></pre><h2 id="4-系统基础优化–防止系统乱码"><a href="#4-系统基础优化–防止系统乱码" class="headerlink" title="4.系统基础优化–防止系统乱码"></a>4.系统基础优化–防止系统乱码</h2><p>制造出乱码情况（字符集设定不对）</p>
+<pre><code>   修改一个字符集的环境变量
+    LANG=MGWN
+    echo $LANG
+    setup  测试
+
+   a)临时修改
+     LANG=en_US.UTF-8
+
+   b)永久修改
+    01. export LANG=en_US.UTF-8 &gt;&gt;/etc/profile
+
+    02.[root@jinc /21:21]$ vim /etc/sysconfig/i18n 
+
+字符集修改配置文件后希望立即生效
+ source /etc/sysconfig/i18n
+
+
+ c)修改为中文字符集(不建议使用，易出现乱码)
+     vim /etc/sysconfig/i18n
+     #LANG=&quot;en_US.UTF-8&quot;
+     LANG=&quot;ch_CN.UTF-8&quot;
+     保存退出
+     source /etc/sysconfig/i18n
+
+
+
+
+
+   /etc/init.d --此目录中一般存放的是服务程序脚本文件
+
+   运维修改文件三部曲：测试 备份 修改
+
+   source经常可以加载的配置
+
+   /etc/profile  /etc/bashrc
+   ~/.bash_profile  ~/.bashrc
+   /etc/config/i18n
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/11/Linux运维学习-第七天/">
+    <time datetime="2018-07-11T08:46:21.000Z" class="entry-date">
+        2018-07-11
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/07/10/每天一个Linux命令02/" rel="next">每天一个Linux命令02 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/11/Linux运维学习-第七天/">Linux运维学习-第七天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/10/每天一个Linux命令02/">每天一个Linux命令02</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/10/Linux运维学习-第六天/">Linux运维学习-第六天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/10/第一次测验题目汇总/">第一次测验题目汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/09/Linux运维学习-第五天/">Linux运维学习-第五天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小测试/" style="font-size: 10px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 15px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 15px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
