@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="这里只有一篇文章">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T09:27:34.557Z">
+<meta property="og:updated_time" content="2018-07-11T12:12:22.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用命令总结">
 <meta name="twitter:description" content="这里只有一篇文章">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjjh2clrm000me0lyaxmn0a2v" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjjh3a3o8000lswlygsk3ri9y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -111,8 +111,7 @@ mkdir -v  &lt;-- 显示详细信息
 <li>ls     ==   list             –列表显示文件或目录<br>ls [option] [file]<br>ls [选项] [文件或目录]</li>
 </ol>
 <p>说明：ls命令及后面的选项和文件，每个元素之间都至少要一个空格；<br>      命令后面的选项和目录文件可以省略，表示查看当前路径的文件信息</p>
-<p>参数选项说明</p>
-<pre><code>ls -l    &lt;---l参数表示查看文件目录详细信息
+<h2 id="参数选项说明"><a href="#参数选项说明" class="headerlink" title="参数选项说明"></a>参数选项说明</h2><pre><code>ls -l    &lt;---l参数表示查看文件目录详细信息
 
          [root@jinc1 ~]# ls -l test/
           total 12
@@ -174,8 +173,7 @@ ls -u    &lt;---根据最后访问时间（atime)排序
 <li>cd     ==change directory    –切换当前所在的路径信息<br>cd [option] [dir]<br>cd [选项] [目录]</li>
 </ol>
 <p>说明：注意cd命令以及后面的选项和目录，每个元素之间都至少有一个空格；<br>     cd 命令后面的选项和目录等参数都可以省略，单独执行默认切换到当前登陆用户的家目录（由系统环境变量HOME定义）<br>     cd 是bash shell 的内置命令，查看该命令对应的系统帮助需要使用 help cd</p>
-<p>参数选项以及说明：</p>
-<p>参数选项   |   解释说明</p>
+<h2 id="参数选项以及说明："><a href="#参数选项以及说明：" class="headerlink" title="参数选项以及说明："></a>参数选项以及说明：</h2><p>参数选项   |   解释说明</p>
 <pre><code>-P       如果切换的目标目录是一个软链接，则会直接切换到软链接指向的真正物理目标目录，与pwd命令的-P选项类似（不常用）
 
 -L       功能和-P相反，与pwd命令的-L类似。该命令不常用
@@ -185,7 +183,17 @@ ls -u    &lt;---根据最后访问时间（atime)排序
 ~         当只使用 ~ 选项时，将会从当前目录切换到系统环境变量“HOME” 对应值的目录路径，即当前用户的家目录所在的路径
 
 ..        当只使用“..”选项时，将会从当前目录切换到当前目录的上一级目录所在的路径
-</code></pre>
+</code></pre><ol start="4">
+<li>touch   –创建新的文件夹；改变已有文件的时间戳属性<br>touch [option] [file]<br>touch [选项] [文件]</li>
+</ol>
+<p>说明：touch 命令以及后面的选项和目录，每个元素之间都至少有一个空格；<br>     注意区分touch 和mkdir 命令的功能，mkdir命令是创建空目录，而touch 是创建空文件；<br>     在Linux中一切皆文件，虽然touch命令不能创建目录，但是可以修改目录的时间戳属性</p>
+<h2 id="参数选项以及说明"><a href="#参数选项以及说明" class="headerlink" title="参数选项以及说明"></a>参数选项以及说明</h2><pre><code>参数选项   |        解释说明
+-a        |    只更改指定文件的最后访问时间
+-d STRING |    使用字符串STRING代表的时间作为模板设置指定文件的时间属性
+-m        |    只更改指定文件的最后修改时间
+-r file   |    将指定文件的时间属性设置为与模板文件file 的时间属性相同
+-t STAMP  |    使用[[CC]YY]MMDDhhmm[.ss] 格式的时间设置文件的时间属性。格式的含义从左往右依次为：世纪、年、月、日、时、分、秒
+</code></pre><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h2>
       
     </div><!-- .entry-content -->
 
