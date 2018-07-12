@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="这里只有一篇文章">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-12T12:00:30.528Z">
+<meta property="og:updated_time" content="2018-07-12T12:04:53.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用命令总结">
 <meta name="twitter:description" content="这里只有一篇文章">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjjii4z3m001c3gly18fevfvz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjjiiam2b0017wwlys3q7i1pq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -197,20 +197,36 @@ ls -u    &lt;---根据最后访问时间（atime)排序
 <li>whois</li>
 </ol>
 <p>功能说明：查找并显示用户信息。<br>语　　法：whois [帐号名称]</p>
-<h2 id="补充说明：whois指令会去查找并显示指定帐号的用户相关信息，因为它是到Network-Solutions-的WHOIS数据库去查找，所以该帐号名称必须在上面注册方能寻获，且名称没有大小写的差别。"><a href="#补充说明：whois指令会去查找并显示指定帐号的用户相关信息，因为它是到Network-Solutions-的WHOIS数据库去查找，所以该帐号名称必须在上面注册方能寻获，且名称没有大小写的差别。" class="headerlink" title="补充说明：whois指令会去查找并显示指定帐号的用户相关信息，因为它是到Network Solutions 的WHOIS数据库去查找，所以该帐号名称必须在上面注册方能寻获，且名称没有大小写的差别。"></a>补充说明：whois指令会去查找并显示指定帐号的用户相关信息，因为它是到Network Solutions 的WHOIS数据库去查找，所以该帐号名称必须在上面注册方能寻获，且名称没有大小写的差别。</h2><ol start="6">
+<p>补充说明：whois指令会去查找并显示指定帐号的用户因为它     是到Network Solut的WHOIS数据库去查找，所以该帐号名称必须在上面注册方能寻获，且名称没有大小写的差别。</p>
+<ol start="6">
 <li>whoami</li>
 </ol>
-<p>功能说明：先似乎用户名称。<br>语　　法：whoami [–help][–version]<br>补充说明：显示自身的用户名称，本指令相当于执行”id -un”指令。<br>参　　数：<br>–help 　在线帮助。</p>
-<h2 id="–version-显示版本信息。"><a href="#–version-显示版本信息。" class="headerlink" title="–version 　显示版本信息。"></a>–version 　显示版本信息。</h2><ol start="7">
+<p>功能说明：先似乎用户名称。<br>语　　法：whoami [–help][–version]<br>补充说明：显示自身的用户名称，本指令相当于执行”id -un”指令。</p>
+<h2 id="参-数："><a href="#参-数：" class="headerlink" title="参　　数："></a>参　　数：</h2><pre><code>--help 　在线帮助。
+--version 　显示版本信息。
+</code></pre><ol start="7">
 <li>who</li>
 </ol>
 <p>功能说明：显示目前登入系统的用户信息。<br>语　　法：who [-Himqsw][–help][–version][am i][记录文件]<br>补充说明：执行这项指令可得知目前有那些用户登入系统，单独执行who指令会列出登入帐号，使用的 　　　终端机，登入时间以及从何处登入或正在使用哪个X显示器。</p>
-<p>参　　数：<br>-H或–heading 　显示各栏位的标题信息列。<br>-i或-u或–idle 　显示闲置时间，若该用户在前一分钟之内有进行任何动作，将标示成”.”号，如果该用户已超过24小时没有任何动作，则标示出”old”字符串。<br>-m 　此参数的效果和指定”am i”字符串相同。<br>-q或–count 　只显示登入系统的帐号名称和总人数。<br>-s 　此参数将忽略不予处理，仅负责解决who指令其他版本的兼容性问题。<br>-w或-T或–mesg或–message或–writable 　显示用户的信息状态栏。<br>–help 　在线帮助。</p>
-<h2 id="–version-显示版本信息。-1"><a href="#–version-显示版本信息。-1" class="headerlink" title="–version 　显示版本信息。"></a>–version 　显示版本信息。</h2><ol start="8">
+<h2 id="参-数：-1"><a href="#参-数：-1" class="headerlink" title="参　　数："></a>参　　数：</h2><pre><code>-H或--heading 　显示各栏位的标题信息列。
+-i或-u或--idle 　显示闲置时间，若该用户在前一分钟之内有进行任     何动作，将标示成&quot;.&quot;号，如果该用户已超过24小时没有任何动作，则标     示出&quot;old&quot;字符串。
+-m 　此参数的效果和指定&quot;am i&quot;字符串相同。
+-q或--count 　只显示登入系统的帐号名称和总人数。
+-s      　此参数将忽略不予处理，仅负责解决who指令其他版本的兼容性问题。
+-w或-T或--mesg或--message或--writable      　显示用户的信息状态栏。
+--help 　在线帮助。
+--version 　显示版本信息。
+</code></pre><ol start="8">
 <li>w</li>
 </ol>
-<p>功能说明：显示目前登入系统的用户信息。<br>语　　法：w [-fhlsuV][用户名称]<br>补充说明：执行这项指令可得知目前登入系统的用户有那些人，以及他们正在执行的程序。单独执行w<br>指令会显示所有的用户，您也可指定用户名称，仅显示某位用户的相关信息。<br>参　　数：<br>-f 　开启或关闭显示用户从何处登入系统。<br>-h 　不显示各栏位的标题信息列。<br>-l 　使用详细格式列表，此为预设值。<br>-s 　使用简洁格式列表，不显示用户登入时间，终端机阶段作业和程序所耗费的CPU时间。<br>-u 　忽略执行程序的名称，以及该程序耗费CPU时间的信息。<br>-V 　显示版本信息。</p>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h2>
+<p>功能说明：显示目前登入系统的用户信息。<br>语　　法：w [-fhlsuV][用户名称]<br>补充说明：执行这项指令可得知目前登入系统的用户有那些人，以及他们正在执行的程序。单独执行w<br>指令会显示所有的用户，您也可指定用户名称，仅显示某位用户的相关信息。</p>
+<h2 id="参-数：-2"><a href="#参-数：-2" class="headerlink" title="参　　数："></a>参　　数：</h2><pre><code>-f 　开启或关闭显示用户从何处登入系统。
+-h 　不显示各栏位的标题信息列。
+-l 　使用详细格式列表，此为预设值。
+-s 　使用简洁格式列表，不显示用户登入时间，终端机阶段作业和程序     所耗费的CPU时间。
+-u 　忽略执行程序的名称，以及该程序耗费CPU时间的信息。
+-V 　显示版本信息。
+</code></pre><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h2>
       
     </div><!-- .entry-content -->
 
