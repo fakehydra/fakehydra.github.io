@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="初识Linux权限">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-12T10:39:36.724Z">
+<meta property="og:updated_time" content="2018-07-12T11:54:14.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="这是一个命令">
 <meta name="twitter:description" content="初识Linux权限">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjjifh3df0011jclycw4rh7o4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjjihwxa60013p8ly7d688nps" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -106,6 +106,25 @@ r--     4
 -w-     2
 --x     1
 ---     0
+</code></pre><h2 id="权限属性列表为10个字符："><a href="#权限属性列表为10个字符：" class="headerlink" title="权限属性列表为10个字符："></a>权限属性列表为10个字符：</h2><pre><code>[root@jinc1 oldboy]# ls -al
+total 24
+drwx------. 2 oldboy oldboy 4096 Jul  8 18:05 .
+drwxr-xr-x. 4 root   root   4096 Jul  9 02:24 ..
+-rw-------. 1 oldboy oldboy  146 Jul  9 09:39 .bash_history
+-rw-r--r--. 1 oldboy oldboy   18 Mar 23  2017 .bash_logout
+-rw-r--r--. 1 oldboy oldboy  176 Mar 23  2017 .bash_profile
+-rw-r--r--. 1 oldboy oldboy  124 Mar 23  2017 .bashrc
+</code></pre><h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><pre><code>第一个字符表示文件类型，d为目录 -为普通文件 l为连接      b为可存储的接口设备 c为键盘鼠标等输入设备
+2、3、4个字符表示所有者权限，5、6、7个字符表示所有者同组用户权限，     8、9、10为其他用户权限
+第二个字符表示所有者读权限，如果有权限则为r，没有权限则为-
+第三个字符表示所有者写权限，如果有权限则为w，没有权限则为-
+第四个字符表示所有者执行权限，如果有权限则为x，没有权限则为-
+第五个字符表示所有者同组用户读权限，如果有权限则为r，没有权限则     为-
+第六个字符表示所有者同组用户写权限，如果有权限则为w，没有权限则     为-
+第七个字符表示所有者同组用户执行权限，如果有权限则为x，没有权限     则为-
+第八个字符表示其他非同组读权限，如果有权限则为r，没有权限则为-
+第九个字符表示其他非同组写权限，如果有权限则为w，没有权限则为-
+第十个字符表示其他非同组执行权限，如果有权限则为x，没有权限则为-
 </code></pre><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h2>
       
     </div><!-- .entry-content -->
