@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第二次测验">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T07:46:33.527Z">
+<meta property="og:updated_time" content="2018-07-18T09:07:50.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二次测验题目汇总">
 <meta name="twitter:description" content="第二次测验">
@@ -99,7 +99,7 @@ LANG=en
 </code></pre><h4 id="方法一：利用tree命令"><a href="#方法一：利用tree命令" class="headerlink" title="方法一：利用tree命令"></a>方法一：利用tree命令</h4><pre><code>tree -Ld 1
 </code></pre><h4 id="方法二：利用find命令"><a href="#方法二：利用find命令" class="headerlink" title="方法二：利用find命令"></a>方法二：利用find命令</h4><pre><code>find /root/oldboy/ -type d -maxdepth 1 （绝对路径）
 find ./ -maxdepth 1 -type d （相对路径）
-</code></pre><h4 id="方法三：利用三剑客命令"><a href="#方法三：利用三剑客命令" class="headerlink" title="方法三：利用三剑客命令"></a>方法三：利用三剑客命令</h4><pre><code>ls -l /root/oldboy/|grep &quot;d&quot;  --以d开头
+</code></pre><h4 id="方法三：利用三剑客命令"><a href="#方法三：利用三剑客命令" class="headerlink" title="方法三：利用三剑客命令"></a>方法三：利用三剑客命令</h4><pre><code>ls -l /root/oldboy/|grep &quot;^d&quot;  --以d开头
 ll -F /root/oldboy/|grep &quot;/$&quot;  --以/结尾
 
 ls -l /root/oldboy/|sed -n &quot;/^d/p&quot; --以d开头
@@ -214,9 +214,9 @@ x   --解压提取数据信息
 说明：解压时，如果解压的数据时间信息不准确会有报错
 </code></pre><h3 id="第十二题：如何进行文件字符信息过滤"><a href="#第十二题：如何进行文件字符信息过滤" class="headerlink" title="第十二题：如何进行文件字符信息过滤"></a>第十二题：如何进行文件字符信息过滤</h3><h4 id="环境创建-1"><a href="#环境创建-1" class="headerlink" title="环境创建"></a>环境创建</h4><pre><code>mkdir /oldboy -p ;echo &quot;i am oldboy,myqq is 664341340&quot; &gt;/oldboy/oldboy.txt
 </code></pre><h4 id="解题-1"><a href="#解题-1" class="headerlink" title="解题"></a>解题</h4><h5 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h5><pre><code>sed &apos;s#i am ##g&apos; oldboy/oldboy.txt|sed &quot;s#myqq is##g&quot;
-</code></pre><h5 id="第二种方法：利用awk-命令"><a href="#第二种方法：利用awk-命令" class="headerlink" title="第二种方法：利用awk 命令"></a>第二种方法：利用awk 命令</h5><pre><code>awk -F &quot;，&quot; &apos;print $3,$6&apos; /oldboy/oldboy.txt
+</code></pre><h5 id="第二种方法：利用awk-命令"><a href="#第二种方法：利用awk-命令" class="headerlink" title="第二种方法：利用awk 命令"></a>第二种方法：利用awk 命令</h5><pre><code>awk -F &quot;[ ,]&quot; &apos;{print $3,$6}&apos; /oldboy/oldboy.txt 
 
-awk -F &quot;[ ,]&quot; &apos;print $3,NF&apos; /oldboy/oldboy.txt
+awk -F &quot;[ ,]&quot; &apos;{print $3,$NF}&apos; /oldboy/oldboy.txt 
 </code></pre><h5 id="第三种方法：利用cut命令"><a href="#第三种方法：利用cut命令" class="headerlink" title="第三种方法：利用cut命令"></a>第三种方法：利用cut命令</h5><pre><code>sed &apos;s#,# #g&apos; /oldboy/oldboy.txt|cut -d &quot; &quot; -f3,6
 </code></pre><h2 id="第十三题：如何详细查看文件行数信息"><a href="#第十三题：如何详细查看文件行数信息" class="headerlink" title="第十三题：如何详细查看文件行数信息"></a>第十三题：如何详细查看文件行数信息</h2><h4 id="第一种方法："><a href="#第一种方法：" class="headerlink" title="第一种方法："></a>第一种方法：</h4><pre><code>cat -n line.txt|tail -1|awk &apos;{print $1}&apos;
 </code></pre><h4 id="第二种方法："><a href="#第二种方法：" class="headerlink" title="第二种方法："></a>第二种方法：</h4><pre><code>wc line.txt
