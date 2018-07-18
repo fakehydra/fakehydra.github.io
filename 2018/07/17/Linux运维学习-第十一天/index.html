@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="十一天~">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-17T13:18:57.778Z">
+<meta property="og:updated_time" content="2018-07-18T12:07:28.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第十一天">
 <meta name="twitter:description" content="十一天~">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux运维学习-第十一天/" data-id="cjjqyzvut000jxwlyqbqcl0qg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux运维学习-第十一天/" data-id="cjjr36teo000h8sly8zb31fst" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -153,7 +153,7 @@ runlevel   --查看当前系统运行级别
 [root@jinc ~]# chkconfig |grep ipt  --查看
 </code></pre><h3 id="设置服务在指定级别开机自启"><a href="#设置服务在指定级别开机自启" class="headerlink" title="设置服务在指定级别开机自启"></a>设置服务在指定级别开机自启</h3><h4 id="设置方法：-1"><a href="#设置方法：-1" class="headerlink" title="设置方法："></a>设置方法：</h4><pre><code>[root@jinc ~]# chkconfig --level 3 iptables on
 [root@jinc ~]# chkconfig |grep ipt
-</code></pre><h2 id="第十题：如何设置中文字符信息显示"><a href="#第十题：如何设置中文字符信息显示" class="headerlink" title="第十题：如何设置中文字符信息显示"></a>第十题：如何设置中文字符信息显示</h2><h4 id="临时修改："><a href="#临时修改：" class="headerlink" title="临时修改："></a>临时修改：</h4><pre><code>export LANG=en_US.UTF-8
+</code></pre><h2 id="第十题：如何设置中文字符信息显示"><a href="#第十题：如何设置中文字符信息显示" class="headerlink" title="第十题：如何设置中文字符信息显示"></a>第十题：如何设置中文字符信息显示</h2><h4 id="临时修改："><a href="#临时修改：" class="headerlink" title="临时修改："></a>临时修改：</h4><pre><code>export LANG=zh_CN.UTF-8
 </code></pre><h4 id="永久修改"><a href="#永久修改" class="headerlink" title="永久修改"></a>永久修改</h4><pre><code>修改/etc/sysconfig/i18n 文件
 LANG=en_US.UTF-8
 使之生效：source /etc/sysconfig/i18n
@@ -218,6 +218,10 @@ wc -l kine.txt
       <ul>
         
           <li>
+            <a href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a>
+          </li>
+        
+          <li>
             <a href="/2018/07/18/第二次测验题目汇总/">第二次测验题目汇总</a>
           </li>
         
@@ -233,10 +237,6 @@ wc -l kine.txt
             <a href="/2018/07/17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a>
           </li>
         
-          <li>
-            <a href="/2018/07/16/每天一个Linux命令04/">每天一个Linux命令04</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -246,7 +246,7 @@ wc -l kine.txt
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -255,7 +255,7 @@ wc -l kine.txt
   <aside class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 17.5px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12.5px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 17.5px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 15px;">那些年学习的Linux命令</a>
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
     </div>
   </aside>
 
