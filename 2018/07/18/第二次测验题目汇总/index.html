@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第二次测验">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T09:07:50.921Z">
+<meta property="og:updated_time" content="2018-07-18T09:41:03.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二次测验题目汇总">
 <meta name="twitter:description" content="第二次测验">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjjqtplsu001uh0lyy9goj6cw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjjqxst9r001yrcly71jzqkry" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -171,17 +171,17 @@ for 循环的变量 in 范围 ；do 循环做的事 ；done
 </code></pre><h5 id="第二步：将找出的文件复制到-tmp目录"><a href="#第二步：将找出的文件复制到-tmp目录" class="headerlink" title="第二步：将找出的文件复制到/tmp目录"></a>第二步：将找出的文件复制到/tmp目录</h5><pre><code>方法一：[root@jinc1 oldboy]# find ./ -type f -name &quot;*.txt&quot; -size +1M|xargs cp -t /tmp
 方法二：[root@jinc1 oldboy]# find ./ -type f -name &quot;*.txt&quot; -size +1M|xargs -i cp {} /tmp
 方法三：[root@jinc1 oldboy]# find ./ -type f -name &quot;*.txt&quot; -size +1M|xargs -I {} cp {} /tmp
-</code></pre><h2 id="第七题：打印配置文件nginx-conf内容的行号及内容，该如何做？"><a href="#第七题：打印配置文件nginx-conf内容的行号及内容，该如何做？" class="headerlink" title="第七题：打印配置文件nginx.conf内容的行号及内容，该如何做？"></a>第七题：打印配置文件nginx.conf内容的行号及内容，该如何做？</h2><h3 id="模拟环境创建"><a href="#模拟环境创建" class="headerlink" title="模拟环境创建"></a>模拟环境创建</h3><pre><code>[root@jinc1 oldboy]# echo stu{01..20} |xargs -n1 &gt; old.txt 
+</code></pre><h2 id="第七题：打印配置文件nginx-conf内容的行号及内容，该如何做？"><a href="#第七题：打印配置文件nginx-conf内容的行号及内容，该如何做？" class="headerlink" title="第七题：打印配置文件nginx.conf内容的行号及内容，该如何做？"></a>第七题：打印配置文件nginx.conf内容的行号及内容，该如何做？</h2><h3 id="模拟环境创建"><a href="#模拟环境创建" class="headerlink" title="模拟环境创建"></a>模拟环境创建</h3><pre><code>[root@jinc1 oldboy]# echo stu{01..20} |xargs -n1 &gt; nginx.conf
 </code></pre><h4 id="解题方法-2"><a href="#解题方法-2" class="headerlink" title="解题方法"></a>解题方法</h4><pre><code>方法一：vim编辑。。就不多说了。。。一般人都会
 方法二：利用cat命令
-[root@jinc1 oldboy]# cat -n old.txt 
+[root@jinc1 oldboy]# cat -n nginx.conf 
 方法三：利用三剑客命令：
 01：grep 
- [root@jinc1 oldboy]# grep -n &quot;.&quot; old.txt 
+ [root@jinc1 oldboy]# grep -n &quot;.&quot; nginx.conf 
 02.sed
- [root@jinc1 oldboy]# sed &apos;=&apos; old.txt |xargs -n2
+ [root@jinc1 oldboy]# sed &apos;=&apos; nginx |xargs -n2
 03.awk
- [root@jinc1 oldboy]# awk &apos;{print NR,$1}&apos; old.txt
+ [root@jinc1 oldboy]# awk &apos;{print NR,$1}&apos; nginx.conf
 </code></pre><h2 id="第八题：如何查看配置系统运行级别"><a href="#第八题：如何查看配置系统运行级别" class="headerlink" title="第八题：如何查看配置系统运行级别"></a>第八题：如何查看配置系统运行级别</h2><pre><code>cat /etc/init.d  --查看
 runlevel   --查看当前系统运行级别
 </code></pre><h4 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h4><pre><code>永久修改：vim /etc/inittab
