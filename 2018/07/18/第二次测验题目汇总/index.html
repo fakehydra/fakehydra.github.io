@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第二次测验">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T09:41:03.136Z">
+<meta property="og:updated_time" content="2018-07-18T10:06:34.469Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二次测验题目汇总">
 <meta name="twitter:description" content="第二次测验">
@@ -82,7 +82,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjjqxst9r001yrcly71jzqkry" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjjqypjwy001yfklypg2rmzbg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -190,9 +190,9 @@ runlevel   --查看当前系统运行级别
 [root@jinc ~]# chkconfig |grep ipt  --查看
 </code></pre><h3 id="设置服务在指定级别开机自启"><a href="#设置服务在指定级别开机自启" class="headerlink" title="设置服务在指定级别开机自启"></a>设置服务在指定级别开机自启</h3><h4 id="设置方法：-1"><a href="#设置方法：-1" class="headerlink" title="设置方法："></a>设置方法：</h4><pre><code>[root@jinc ~]# chkconfig --level 3 iptables on
 [root@jinc ~]# chkconfig |grep ipt
-</code></pre><h2 id="第十题：如何设置中文字符信息显示"><a href="#第十题：如何设置中文字符信息显示" class="headerlink" title="第十题：如何设置中文字符信息显示"></a>第十题：如何设置中文字符信息显示</h2><h4 id="临时修改："><a href="#临时修改：" class="headerlink" title="临时修改："></a>临时修改：</h4><pre><code>export LANG=en_US.UTF-8
+</code></pre><h2 id="第十题：如何设置中文字符信息显示"><a href="#第十题：如何设置中文字符信息显示" class="headerlink" title="第十题：如何设置中文字符信息显示"></a>第十题：如何设置中文字符信息显示</h2><h4 id="临时修改："><a href="#临时修改：" class="headerlink" title="临时修改："></a>临时修改：</h4><pre><code>export LANG=&quot;zh_CN.UTF-8&quot; 
 </code></pre><h4 id="永久修改"><a href="#永久修改" class="headerlink" title="永久修改"></a>永久修改</h4><pre><code>修改/etc/sysconfig/i18n 文件
-LANG=en_US.UTF-8
+LANG=&quot;zh_CN.UTF-8&quot; 
 使之生效：source /etc/sysconfig/i18n
 检查：echo $LANG
 </code></pre><h2 id="第十一题：如何进行系统数据-压缩-打包-etc-目录"><a href="#第十一题：如何进行系统数据-压缩-打包-etc-目录" class="headerlink" title="第十一题：如何进行系统数据 压缩  打包/etc/目录"></a>第十一题：如何进行系统数据 压缩  打包/etc/目录</h2><h4 id="a-请用tar打包-etc整个目录（打包及压缩）。"><a href="#a-请用tar打包-etc整个目录（打包及压缩）。" class="headerlink" title="a.请用tar打包/etc整个目录（打包及压缩）。"></a>a.请用tar打包/etc整个目录（打包及压缩）。</h4><pre><code>tar zcvf 箱子  要打包的数据信息/cattar
