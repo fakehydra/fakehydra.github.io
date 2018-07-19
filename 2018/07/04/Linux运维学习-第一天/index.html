@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="Linux运维学习日记，第一天0.0" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习 第一天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux运维学习日记，第一天0.0">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习 第一天">
+<meta property="og:url" content="http://yoursite.com/2018/07/04/Linux运维学习-第一天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Linux运维学习日记，第一天0.0">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-16T07:22:43.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习 第一天">
+<meta name="twitter:description" content="Linux运维学习日记，第一天0.0">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">Github</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第一天" class="post-Linux运维学习-第一天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习 第一天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/04/Linux运维学习-第一天/" data-id="cjjs082ov0005q4ly5l3b7qt1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>Linux运维学习日记，第一天0.0</p>
+<a id="more"></a>
+<h4 id="电脑升级"><a href="#电脑升级" class="headerlink" title="电脑升级"></a>电脑升级</h4><p>  前期了解到架构的时候需要开到10几台虚拟机，就我那渣渣电脑，铁定凉凉，就决定去升级了一下自己的小女朋友 qaq 加固态加内存条0.0心好痛-。-</p>
+<h4 id="开始学习了"><a href="#开始学习了" class="headerlink" title="开始学习了"></a>开始学习了</h4><h3 id="第一天"><a href="#第一天" class="headerlink" title="第一天"></a>第一天</h3><h2 id="首先，了解了一下运维人员的三大职责："><a href="#首先，了解了一下运维人员的三大职责：" class="headerlink" title="首先，了解了一下运维人员的三大职责："></a>首先，了解了一下运维人员的三大职责：</h2><pre><code>1.数据不丢失
+2.服务器24小时开机
+3.客户体验好
+</code></pre><h2 id="然后，就是硬件了"><a href="#然后，就是硬件了" class="headerlink" title="然后，就是硬件了"></a>然后，就是硬件了</h2><pre><code>1.服务器硬件组成：内存（眼睛），CPU（大脑），电源（心脏），硬盘     （肚子），风扇（皮肤）。
+
+2.cpu路数：一路=一个电源  核数=处理芯片
+
+3.dell服务器：1U（厚度为4.45cm） 2U 4U
+
+4.服务器类型：机架式，刀片式，塔式
+
+5.缓存缓冲：
+buffer缓冲 存缓冲  将数据存储到内存里面
+cache缓存 读缓存  将数据从内存中读取出来
+
+低并发数据存储方式：数据--硬盘--内存
+高并发数据存储方式：数据--内存--硬盘
+</code></pre><h2 id="什么是程序（软件）？"><a href="#什么是程序（软件）？" class="headerlink" title="什么是程序（软件）？"></a>什么是程序（软件）？</h2><pre><code>开发人员编写的代码文件。
+</code></pre><h2 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a>什么是进程？</h2><pre><code>一个程序运行起来，成为进程。
+进程（普通）
+守护进程：持续存在的进程
+</code></pre><h2 id="去IOE活动"><a href="#去IOE活动" class="headerlink" title="去IOE活动"></a>去IOE活动</h2><pre><code>I：IBM大小型机服务器
+O：orance 贵（MYSQL）代替
+E：EMC 数据存储 超贵（云服务器）
+</code></pre><h2 id="磁盘的接口类型"><a href="#磁盘的接口类型" class="headerlink" title="磁盘的接口类型"></a>磁盘的接口类型</h2><pre><code>IDE--SCSI--STAT--SAS
+不同的接口类型影响数据存储效率（了解下所有磁盘接口样子哈。。）
+</code></pre><h2 id="磁盘阵列"><a href="#磁盘阵列" class="headerlink" title="磁盘阵列"></a>磁盘阵列</h2><pre><code>实现磁盘阵列技术必须要有阵列卡
+在安装系统之前需要配置磁盘阵列 RAID 0 1 5 6 10 01 
+</code></pre><h2 id="阵列卡（RAID）"><a href="#阵列卡（RAID）" class="headerlink" title="阵列卡（RAID）:"></a>阵列卡（RAID）:</h2><pre><code>1.可以把所有硬盘的容量加在一起
+2.数据更安全
+3.更高的性能
+</code></pre><h3 id="服务器标配，连接到服务器必须经过RAID卡；需要一个单独的电池；"><a href="#服务器标配，连接到服务器必须经过RAID卡；需要一个单独的电池；" class="headerlink" title="*服务器标配，连接到服务器必须经过RAID卡；需要一个单独的电池；"></a>*服务器标配，连接到服务器必须经过RAID卡；需要一个单独的电池；</h3><h2 id="解决数据不丢的方法："><a href="#解决数据不丢的方法：" class="headerlink" title="解决数据不丢的方法："></a>解决数据不丢的方法：</h2><pre><code>1.ups(一组蓄电池)     不间断供电（持续供电10分钟，IDC数据中心机房-UPS一小时）
+2.选双路电的机房，使用双电源，分别皆不同的电路，服务器要放到不同    的机柜、地区。
+3.柴油发电机+油管，一般机房会和附近的加油站签订紧急供油协议
+</code></pre><h2 id="戴尔PowerEdge-R940配置信息"><a href="#戴尔PowerEdge-R940配置信息" class="headerlink" title="戴尔PowerEdge R940配置信息"></a>戴尔PowerEdge R940配置信息</h2><pre><code>产品类型：机架式
+CPU类型：Intel 至强 铂金 8180M
+结构类型：3U
+CPU型号：Xeon Platinum 8180M
+CPU主频：2.5GHz
+智能加速主频：3.8GHz
+</code></pre><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=586299&auto=1&height=66"></iframe>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/04/Linux运维学习-第一天/">
+    <time datetime="2018-07-04T11:11:17.000Z" class="entry-date">
+        2018-07-04
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/05/Linux运维学习-第二天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习 第二天</a></span>
+    
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/第二次测验题目汇总/">第二次测验题目汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux同步网络时间/">Linux同步网络时间</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

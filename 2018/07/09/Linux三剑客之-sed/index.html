@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="Linux三剑客之一" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux三剑客之 sed | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux三剑客之一">
+<meta name="keywords" content="那些年学习的Linux命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux三剑客之 sed">
+<meta property="og:url" content="http://yoursite.com/2018/07/09/Linux三剑客之-sed/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Linux三剑客之一">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-09T11:42:20.501Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux三剑客之 sed">
+<meta name="twitter:description" content="Linux三剑客之一">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">Github</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux三剑客之-sed" class="post-Linux三剑客之-sed post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux三剑客之 sed
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjjs082ol0001q4lywi5acpbd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>Linux三剑客之一</p>
+<a id="more"></a>
+<h4 id="Linux三剑客命令之-sed"><a href="#Linux三剑客命令之-sed" class="headerlink" title="Linux三剑客命令之 sed"></a>Linux三剑客命令之 sed</h4><h3 id="1-sed-命令详解"><a href="#1-sed-命令详解" class="headerlink" title="1.sed 命令详解"></a>1.sed 命令详解</h3><pre><code>sed是Stream Editor（字符流编辑器）的缩写，简称流编辑器
+sed是操作、过滤和转换文本内容的强大工具。常用功能包括对文件实现快速增删改查，
+其中查询的功能中最常用的两大功能是过滤（过滤指定字符串），取行（取出指定行）。
+</code></pre><h3 id="2-语法格式"><a href="#2-语法格式" class="headerlink" title="2.语法格式"></a>2.语法格式</h3><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><pre><code>1）sed以及后面的选项、命令和输入文件，每个元素之间都至少要一个空格。
+2）sed内置命令行字符，既可以是单个命令，也可以是多个命令参数的组合
+3）输入文件是sed需要处理的文件，这是可选项；sed还能够从标准输入如管道中获取输入。
+</code></pre><h3 id="3-选项说明"><a href="#3-选项说明" class="headerlink" title="3.选项说明"></a>3.选项说明</h3><h2 id="sed命令的参数选项及说明"><a href="#sed命令的参数选项及说明" class="headerlink" title="sed命令的参数选项及说明"></a>sed命令的参数选项及说明</h2><pre><code>参数选项    |     解释说明
+
+ -n        |   取消默认的sed输出，常与sed内置命令的p 连用
+
+ -i        |   直接修改文件内容，而不是输出到终端。
+           |   如果不适用-i 选项，则sed 只是修改内存中的数据，并不会影响磁盘上的文件
+</code></pre><h2 id="sed常用内置命令字符的功能说明"><a href="#sed常用内置命令字符的功能说明" class="headerlink" title="sed常用内置命令字符的功能说明"></a>sed常用内置命令字符的功能说明</h2><pre><code> sed的内置命令字符    |     解释说明
+
+ a(append)          |    表示追加文本，在指定行后面添加一行或多行文本
+
+
+ [root@jinc1 test]# sed &apos;2a 6,dandan,CSO&apos; persons.txt 
+  1,oldboy,CEO
+  2,zhangyao,CTO
+  6,dandan,CSO
+  3,alex,CFO
+  4,yy,CFO
+  5,feixue,CIO
+  (在第2行后添加6,dandan,CSO)   
+
+
+
+
+ i(insert)          |    表示插入文本，在指定行前面添加一行或者多行文本
+ [root@jinc1 test]# sed &apos;2i 6,dandan,CTO&apos; persons.txt 
+  1,oldboy,CEO
+  6,dandan,CTO
+  2,zhangyao,CTO
+  3,alex,CFO
+  4,yy,CFO
+  5,feixue,CIO
+
+
+d(delete)           |    只在输出时删除指定行的文本
+[root@jinc1 test]# sed &apos;2d&apos; persons.txt 
+ 1,oldboy,CEO
+ 3,alex,CFO
+ 4,yy,CFO
+ 5,feixue,CIO
+
+ p(print)           |      表示打印匹配行的内容，通常p会与选项-n一起使用
+[root@jinc1 test]# sed &apos;2p&apos; persons.txt 
+ 1,oldboy,CEO
+ 2,zhangyao,CTO
+ 2,zhangyao,CTO
+ 3,alex,CFO
+ 4,yy,CFO
+ 5,feixue,CIO
+</code></pre><h2 id="当我们只使用-p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），"><a href="#当我们只使用-p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），" class="headerlink" title="当我们只使用 p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），"></a>当我们只使用 p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），</h2><p>所以，我们一般使用-n来取消默认输出，只输出匹配行文本</p>
+<pre><code>[root@jinc1 test]# sed -n &apos;2p&apos; persons.txt 
+2,zhangyao,CTO
+
+ s/regexp/replacement/  |      匹配regexp部分内容，用replacement替换regexp匹配的内容，
+ regexp部分可以使用正则表达式，在replacement部分可以使用特殊字符串&amp;和\1-\9等匹配regexp部
+ 分的部分内容。在实战场景中，s/regexp/replacement/  结尾常与g匹配做全局的替换。
+
+[root@jinc1 test]# sed &apos;s#zhangyao#dandan#g&apos; persons.txt 
+ 1,oldboy,CEO
+ 2,dandan,CTO
+ 3,alex,CFO
+ 4,yy,CFO
+ 5,feixue,CIO
+</code></pre><h3 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h3><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=28762749&auto=1&height=66"></iframe>
+
+
+
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/09/Linux三剑客之-sed/">
+    <time datetime="2018-07-09T10:48:31.000Z" class="entry-date">
+        2018-07-09
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/09/Linux运维学习-第五天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第五天</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/09/常用命令总结/" rel="next">常用命令总结 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/第二次测验题目汇总/">第二次测验题目汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux同步网络时间/">Linux同步网络时间</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

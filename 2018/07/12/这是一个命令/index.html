@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="初识Linux权限" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>这是一个命令 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="初识Linux权限">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="这是一个命令">
+<meta property="og:url" content="http://yoursite.com/2018/07/12/这是一个命令/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="初识Linux权限">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-12T11:54:14.680Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="这是一个命令">
+<meta name="twitter:description" content="初识Linux权限">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">Github</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-这是一个命令" class="post-这是一个命令 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      这是一个命令
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjjs082r1001kq4ly762a0lsf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>初识Linux权限</p>
+<a id="more"></a>
+<h2 id="linux-权限初体验"><a href="#linux-权限初体验" class="headerlink" title="linux 权限初体验"></a>linux 权限初体验</h2><pre><code>r(read,读取）：对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权限。
+w(write,写入）：对文件而言，具有新增，修改，删除文件内容的权限；对目录来说，具有新建，删除，修改，移动目录内文件的权限。
+x(execute,执行）：对文件而言，具有执行文件的权限；对目录来说该用户具有进入目录的权限
+
+1.目录的只读访问不允许使用cd进入目录，必须要有执行的权限
+2.只有执行权限只能进入目录，不能看到目录下的内容，要看的话需要可读权限
+3.一个文件能否删除，主要看该文件所在目录对用户是否具有写权限，若没有，则该目录下文件只能被文件所有者删除
+4.目录的w位不设置，即使你拥有目录中某文件的w权限也不能该文件
+</code></pre><h2 id="数字模式解读"><a href="#数字模式解读" class="headerlink" title="数字模式解读"></a>数字模式解读</h2><pre><code>rwx     7  
+rw      6
+r-w     5
+r--     4
+-wx     3
+-w-     2
+--x     1
+---     0
+</code></pre><h2 id="权限属性列表为10个字符："><a href="#权限属性列表为10个字符：" class="headerlink" title="权限属性列表为10个字符："></a>权限属性列表为10个字符：</h2><pre><code>[root@jinc1 oldboy]# ls -al
+total 24
+drwx------. 2 oldboy oldboy 4096 Jul  8 18:05 .
+drwxr-xr-x. 4 root   root   4096 Jul  9 02:24 ..
+-rw-------. 1 oldboy oldboy  146 Jul  9 09:39 .bash_history
+-rw-r--r--. 1 oldboy oldboy   18 Mar 23  2017 .bash_logout
+-rw-r--r--. 1 oldboy oldboy  176 Mar 23  2017 .bash_profile
+-rw-r--r--. 1 oldboy oldboy  124 Mar 23  2017 .bashrc
+</code></pre><h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><pre><code>第一个字符表示文件类型，d为目录 -为普通文件 l为连接      b为可存储的接口设备 c为键盘鼠标等输入设备
+2、3、4个字符表示所有者权限，5、6、7个字符表示所有者同组用户权限，     8、9、10为其他用户权限
+第二个字符表示所有者读权限，如果有权限则为r，没有权限则为-
+第三个字符表示所有者写权限，如果有权限则为w，没有权限则为-
+第四个字符表示所有者执行权限，如果有权限则为x，没有权限则为-
+第五个字符表示所有者同组用户读权限，如果有权限则为r，没有权限则     为-
+第六个字符表示所有者同组用户写权限，如果有权限则为w，没有权限则     为-
+第七个字符表示所有者同组用户执行权限，如果有权限则为x，没有权限     则为-
+第八个字符表示其他非同组读权限，如果有权限则为r，没有权限则为-
+第九个字符表示其他非同组写权限，如果有权限则为w，没有权限则为-
+第十个字符表示其他非同组执行权限，如果有权限则为x，没有权限则为-
+</code></pre><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h2>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/12/这是一个命令/">
+    <time datetime="2018-07-12T09:01:30.000Z" class="entry-date">
+        2018-07-12
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/12/Linux运维学习-第八天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第八天</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/11/每天一个Linux命令03/" rel="next">每天一个Linux命令03 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/第二次测验题目汇总/">第二次测验题目汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux同步网络时间/">Linux同步网络时间</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

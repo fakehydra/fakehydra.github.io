@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="Linux三剑客之一" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux三剑客之 grep | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux三剑客之一">
+<meta name="keywords" content="那些年学习的Linux命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux三剑客之 grep">
+<meta property="og:url" content="http://yoursite.com/2018/07/08/Linux三剑客之-grep/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Linux三剑客之一">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-09T11:42:42.155Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux三剑客之 grep">
+<meta name="twitter:description" content="Linux三剑客之一">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">Github</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux三剑客之-grep" class="post-Linux三剑客之-grep post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux三剑客之 grep
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjjs082od0000q4lycnl7bswk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>Linux三剑客之一</p>
+<a id="more"></a>
+<h4 id="Linux三剑客命令之grep"><a href="#Linux三剑客命令之grep" class="headerlink" title="Linux三剑客命令之grep"></a>Linux三剑客命令之grep</h4><h3 id="1-grep-命令详解"><a href="#1-grep-命令详解" class="headerlink" title="1.grep 命令详解"></a>1.grep 命令详解</h3><pre><code>grep 是Linux系统中最重要的命令之一--其主要功能为：从文本文件或管道数据流中筛选匹配的行以及数据（可配合正则表达式一起使用，功能更强大）---此为Linux运维人员必须要掌握的命令之一
+</code></pre><h3 id="2-语法格式"><a href="#2-语法格式" class="headerlink" title="2.语法格式"></a>2.语法格式</h3><pre><code>grep [options（参数）] [pattern （匹配模式）] [file（查找的文件）]--grep 命令当中的匹配模式或模式匹配，都是不要查找的东西，可以是普通的文字符号也可是正则表达式。
+</code></pre><h3 id="3-选项说明"><a href="#3-选项说明" class="headerlink" title="3.选项说明"></a>3.选项说明</h3><pre><code>参数选项    |     解释说明
+</code></pre><h2 id="v-–显示不匹配的行，或者说排除某些行"><a href="#v-–显示不匹配的行，或者说排除某些行" class="headerlink" title="-v         |  –显示不匹配的行，或者说排除某些行"></a>-v         |  –显示不匹配的行，或者说排除某些行</h2><pre><code>[root@jinc1 test]# grep -v &quot;dog&quot; old.txt 
+old 
+boy 
+girl 
+[root@jinc1 test]# cat old.txt 
+old       
+boy 
+girl
+dog
+</code></pre><h2 id="n-–显示匹配行及行号"><a href="#n-–显示匹配行及行号" class="headerlink" title="-n       |  –显示匹配行及行号"></a>-n       |  –显示匹配行及行号</h2><pre><code>[root@jinc1 test]# grep -n &quot;dog&quot; old.txt 
+4:dog
+</code></pre><h2 id="i-–不区分大小写（只适用于单字符），默认是区分大小写的"><a href="#i-–不区分大小写（只适用于单字符），默认是区分大小写的" class="headerlink" title="-i       |   –不区分大小写（只适用于单字符），默认是区分大小写的"></a>-i       |   –不区分大小写（只适用于单字符），默认是区分大小写的</h2><pre><code>[root@jinc1 test]# grep &quot;old&quot; old.txt 
+old
+[root@jinc1 test]# grep -i &quot;old&quot; old.txt 
+OLD
+old
+</code></pre><h2 id="c-–只统计匹配的行数，注意不是匹配的次数"><a href="#c-–只统计匹配的行数，注意不是匹配的次数" class="headerlink" title="-c        |   –只统计匹配的行数，注意不是匹配的次数"></a>-c        |   –只统计匹配的行数，注意不是匹配的次数</h2><pre><code>[root@jinc1 test]# grep -c &quot;old&quot; old.txt 
+2
+[root@jinc1 test]# cat old.txt 
+oldboy
+OLD
+old
+boy
+girl
+dog
+</code></pre><h2 id="E-–使用扩展的egrep命令"><a href="#E-–使用扩展的egrep命令" class="headerlink" title="-E         |  –使用扩展的egrep命令"></a>-E         |  –使用扩展的egrep命令</h2><pre><code>[root@jinc1 test]# grep -Ei &quot;old|dog&quot; old.txt 
+OLD
+old
+dog
+同时过滤old 和dog不区分
+</code></pre><h2 id="–color-auto-–为grep过滤的匹配字符串添加颜色"><a href="#–color-auto-–为grep过滤的匹配字符串添加颜色" class="headerlink" title="–color=auto –为grep过滤的匹配字符串添加颜色"></a>–color=auto –为grep过滤的匹配字符串添加颜色</h2><pre><code> [root@jinc1 test]# grep -Ei --color=auto &quot;old|boy&quot; old.txt 
+ OLD
+ old
+ boy
+同时过滤old 和dog并为其显示颜色
+</code></pre><h2 id="w-–只匹配过滤的单词"><a href="#w-–只匹配过滤的单词" class="headerlink" title="-w           –只匹配过滤的单词"></a>-w           –只匹配过滤的单词</h2><h2 id="o-–只输出匹配的内容"><a href="#o-–只输出匹配的内容" class="headerlink" title="-o           –只输出匹配的内容"></a>-o           –只输出匹配的内容</h2><pre><code>[root@jinc1 test]# grep -o &quot;old&quot; old.txt 
+old
+old
+</code></pre><h2 id="–未完待续–"><a href="#–未完待续–" class="headerlink" title="–未完待续–"></a>–未完待续–</h2><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=28762749&auto=1&height=66"></iframe>
+
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/08/Linux三剑客之-grep/">
+    <time datetime="2018-07-08T09:14:45.000Z" class="entry-date">
+        2018-07-08
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/09/常用命令总结/" rel="prev"><span class="meta-nav">←</span> 常用命令总结</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/08/Linux运维学习-第四天/" rel="next">Linux运维学习-第四天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/第二次测验题目汇总/">第二次测验题目汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux同步网络时间/">Linux同步网络时间</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
