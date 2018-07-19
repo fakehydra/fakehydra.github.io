@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="一个比较鸡肋的命令~" />
+  <meta name="description" content="@#￥%…………" />
   
 
   
@@ -13,20 +13,20 @@
   
   
   
-  <title>每天一个Linux命令05 | 瑾川</title>
+  <title>Linux运维学习-第十三天 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个比较鸡肋的命令~">
-<meta name="keywords" content="每天一个Linux命令">
+  <meta name="description" content="@#￥%…………">
+<meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天一个Linux命令05">
-<meta property="og:url" content="http://yoursite.com/2018/07/18/每天一个Linux命令05/index.html">
+<meta property="og:title" content="Linux运维学习-第十三天">
+<meta property="og:url" content="http://yoursite.com/2018/07/19/Linux运维学习-第十三天/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="一个比较鸡肋的命令~">
+<meta property="og:description" content="@#￥%…………">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T12:11:36.595Z">
+<meta property="og:updated_time" content="2018-07-19T07:21:44.886Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个Linux命令05">
-<meta name="twitter:description" content="一个比较鸡肋的命令~">
+<meta name="twitter:title" content="Linux运维学习-第十三天">
+<meta name="twitter:description" content="@#￥%…………">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -69,7 +69,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-每天一个Linux命令05" class="post-每天一个Linux命令05 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第十三天" class="post-Linux运维学习-第十三天 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -77,97 +77,36 @@
         
   
     <h1 class="entry-title article-title">
-      每天一个Linux命令05
+      Linux运维学习-第十三天
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/每天一个Linux命令05/" data-id="cjjs89ht0001pp8ly5kargksc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux运维学习-第十三天/" data-id="cjjs89hrv000lp8lyztciog88" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="一个比较鸡肋的命令"><a href="#一个比较鸡肋的命令" class="headerlink" title="一个比较鸡肋的命令~"></a>一个比较鸡肋的命令~</h3><a id="more"></a>
-<h2 id="nl命令"><a href="#nl命令" class="headerlink" title="nl命令"></a>nl命令</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre><code>nl (选项) (参数)
-</code></pre><h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><pre><code>-b ：指定行号指定的方式，主要有两种：
-    -b a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；
-    -b t ：如果有空行，空的那一行不要列出行号(默认值)；
-
--n ：列出行号表示的方法，主要有三种：
-    -n ln ：行号在萤幕的最左方显示；
-    -n rn ：行号在自己栏位的最右方显示，且不加 0 ；
-    -n rz ：行号在自己栏位的最右方显示，且加 0 ；
-
--w ：行号栏位的占用的位数。
--p ：在逻辑定界符处不重新开始计算。
-</code></pre><h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><pre><code>用 nl 列出 log2015.log 的内容：
-
-[root@localhost test]# nl log2015.log
-1 2015-01
-2 2015-02
-
-
-3 ======[root@localhost test]#
-
-说明：文件中的空白行，nl 不会加上行号
-
-用 nl 列出 log2015.log 的内容，空本行也加上行号：
-
-[root@localhost test]# nl -b a log2015.log
-1 2015-01
-2 2015-02
-3
-4
-5 ======[root@localhost test]#
-
-让行号前面自动补上0，统一输出格式：
-
-[root@localhost test]# nl -b a -n rz log2015.log
-000001 2015-01
-000002 2015-02
-000003 2015-03
-000004 2015-04
-000005 2015-05
-000006 2015-06
-000007 2015-07
-000008 2015-08
-000009 2015-09
-000010 2015-10
-000011 2015-11
-000012 2015-12
-000013 =======
-
-[root@localhost test]# nl -b a -n rz -w 3 log2015.log
-001 2015-01
-002 2015-02
-003 2015-03
-004 2015-04
-005 2015-05
-006 2015-06
-007 2015-07
-008 2015-08
-009 2015-09
-010 2015-10
-011 2015-11
-012 2015-12
-013 =======
-</code></pre><h4 id="说明：nl-b-a-n-rz命令行号默认为六位，要调整位数可以加上参数-w-3调整为3位"><a href="#说明：nl-b-a-n-rz命令行号默认为六位，要调整位数可以加上参数-w-3调整为3位" class="headerlink" title="说明：nl -b a -n rz命令行号默认为六位，要调整位数可以加上参数-w 3调整为3位"></a>说明：nl -b a -n rz命令行号默认为六位，要调整位数可以加上参数-w 3调整为3位</h4><h5 id="虽然这。。。。比较鸡肋。。但是还是可以用滴"><a href="#虽然这。。。。比较鸡肋。。但是还是可以用滴" class="headerlink" title="虽然这。。。。比较鸡肋。。但是还是可以用滴~~"></a>虽然这。。。。比较鸡肋。。但是还是可以用滴<del>~</del>~</h5>
+        <p>@#￥%…………</p>
+<a id="more"></a>
+<p>%^&amp;^&amp;$<em>#%#%$%$</em>%*$%^$^%$#$#%$&amp;^%$%$%#$#$@@$%$%^$&amp;$%$%^</p>
+<h4 id="–end"><a href="#–end" class="headerlink" title="–end"></a>–end</h4>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/18/每天一个Linux命令05/">
-    <time datetime="2018-07-18T11:59:46.000Z" class="entry-date">
-        2018-07-18
+    <a href="/2018/07/19/Linux运维学习-第十三天/">
+    <time datetime="2018-07-19T07:20:12.000Z" class="entry-date">
+        2018-07-19
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
 
     </footer>
 </article>
@@ -177,10 +116,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/19/nginx-简单安装-排错/" rel="prev"><span class="meta-nav">←</span> nginx 简单安装&amp;排错</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/18/第二次测验题目汇总/" rel="next">第二次测验题目汇总 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/07/19/每天一个Linux命令-07/" rel="next">每天一个Linux命令-07 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
