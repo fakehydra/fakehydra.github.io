@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第二次测验">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T10:14:33.366Z">
+<meta property="og:updated_time" content="2018-07-19T08:59:39.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二次测验题目汇总">
 <meta name="twitter:description" content="第二次测验">
@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjjs89htk002bp8lyjid62u3j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjjsbu2kx0028a4lyxzuehuwa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -219,6 +219,8 @@ x   --解压提取数据信息
 </code></pre><h5 id="第二种方法：利用awk-命令"><a href="#第二种方法：利用awk-命令" class="headerlink" title="第二种方法：利用awk 命令"></a>第二种方法：利用awk 命令</h5><pre><code>awk -F &quot;[ ,]&quot; &apos;{print $3,$6}&apos; /oldboy/oldboy.txt 
 
 awk -F &quot;[ ,]&quot; &apos;{print $3,$NF}&apos; /oldboy/oldboy.txt 
+
+awk &apos;BEGIN{FS=&quot;[ ,]&quot;}{print $3,$6}&apos; oldboy.txt
 </code></pre><h5 id="第三种方法：利用cut命令"><a href="#第三种方法：利用cut命令" class="headerlink" title="第三种方法：利用cut命令"></a>第三种方法：利用cut命令</h5><pre><code>sed &apos;s#,# #g&apos; /oldboy/oldboy.txt|cut -d &quot; &quot; -f3,6
 </code></pre><h2 id="第十三题：如何详细查看文件行数信息"><a href="#第十三题：如何详细查看文件行数信息" class="headerlink" title="第十三题：如何详细查看文件行数信息"></a>第十三题：如何详细查看文件行数信息</h2><h4 id="第一种方法："><a href="#第一种方法：" class="headerlink" title="第一种方法："></a>第一种方法：</h4><pre><code>cat -n line.txt|tail -1|awk &apos;{print $1}&apos;
 </code></pre><h4 id="第二种方法："><a href="#第二种方法：" class="headerlink" title="第二种方法："></a>第二种方法：</h4><pre><code>wc line.txt

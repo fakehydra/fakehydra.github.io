@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="第十二天了~">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T07:11:41.236Z">
+<meta property="og:updated_time" content="2018-07-19T08:58:19.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第十二天">
 <meta name="twitter:description" content="第十二天了~">
@@ -84,14 +84,14 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/" data-id="cjjs89hry000op8lyn2ieetjm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/" data-id="cjjsbu2jj000oa4lys38nwi39" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
         <h3 id="第十二天了"><a href="#第十二天了" class="headerlink" title="第十二天了~"></a>第十二天了~</h3><a id="more"></a>
-<h2 id="第二关测验练习题——续"><a href="#第二关测验练习题——续" class="headerlink" title="第二关测验练习题——续"></a>第二关测验练习题——续</h2><h3 id="11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录"><a href="#11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录" class="headerlink" title="11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录"></a>11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录</h3><h4 id="a-请用tar打包-etc整个目录（打包及压缩）。"><a href="#a-请用tar打包-etc整个目录（打包及压缩）。" class="headerlink" title="a.请用tar打包/etc整个目录（打包及压缩）。"></a>a.请用tar打包/etc整个目录（打包及压缩）。</h4><pre><code>tar zcvf 箱子  要打包的数据信息/cattar
+<h2 id="第二关测验练习题——续"><a href="#第二关测验练习题——续" class="headerlink" title="第二关测验练习题——续"></a>第二关测验练习题——续</h2><h2 id="11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录"><a href="#11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录" class="headerlink" title="11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录"></a>11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录</h2><h4 id="a-请用tar打包-etc整个目录（打包及压缩）。"><a href="#a-请用tar打包-etc整个目录（打包及压缩）。" class="headerlink" title="a.请用tar打包/etc整个目录（打包及压缩）。"></a>a.请用tar打包/etc整个目录（打包及压缩）。</h4><pre><code>tar zcvf 箱子  要打包的数据信息/cattar
 
 tar zcvf /tmp/oldboy.tar.gz /etc/
 
@@ -113,6 +113,8 @@ x   --解压提取数据信息
 </code></pre><h5 id="第二种方法：利用awk-命令"><a href="#第二种方法：利用awk-命令" class="headerlink" title="第二种方法：利用awk 命令"></a>第二种方法：利用awk 命令</h5><pre><code>awk -F &quot;，&quot; &apos;print $3,$6&apos; /oldboy/oldboy.txt
 
 awk -F &quot;[ ,]&quot; &apos;print $3,NF&apos; /oldboy/oldboy.txt
+
+awk &apos;BEGIN{FS=&quot;[ ,]&quot;}{print $3,$6}&apos; oldboy.txt
 </code></pre><h5 id="第三种方法：利用cut命令"><a href="#第三种方法：利用cut命令" class="headerlink" title="第三种方法：利用cut命令"></a>第三种方法：利用cut命令</h5><pre><code>sed &apos;s#,# #g&apos; /oldboy/oldboy.txt|cut -d &quot; &quot; -f3,6
 </code></pre><h3 id="第十四题：过滤出-etc-services-文件包含3306或1521两数字所在的行的内容。"><a href="#第十四题：过滤出-etc-services-文件包含3306或1521两数字所在的行的内容。" class="headerlink" title="第十四题：过滤出/etc/services 文件包含3306或1521两数字所在的行的内容。"></a>第十四题：过滤出/etc/services 文件包含3306或1521两数字所在的行的内容。</h3><h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><pre><code>grep -E &quot;3306|1521&quot; /etc/services
 
