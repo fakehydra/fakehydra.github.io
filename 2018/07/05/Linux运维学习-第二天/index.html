@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="服务器系统安装" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习 第二天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="服务器系统安装">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习 第二天">
+<meta property="og:url" content="http://yoursite.com/2018/07/05/Linux运维学习-第二天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="服务器系统安装">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-06T11:55:13.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习 第二天">
+<meta name="twitter:description" content="服务器系统安装">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">Github</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第二天" class="post-Linux运维学习-第二天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习 第二天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/Linux运维学习-第二天/" data-id="cjjrzboat000cwklynrfhhstj" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h5 id="服务器系统安装"><a href="#服务器系统安装" class="headerlink" title="服务器系统安装"></a>服务器系统安装</h5><a id="more"></a>
+<h3 id="1-什么是操作系统（中介）"><a href="#1-什么是操作系统（中介）" class="headerlink" title="1.什么是操作系统（中介）"></a>1.什么是操作系统（中介）</h3><p>Linux操作系统：是开源的 可以自由传播的 多用户 多任务的系统</p>
+<p>操作系统组成：计算机硬件+系统核心+命令解释器+外围应用程序</p>
+<h3 id="2-Linux发展历史"><a href="#2-Linux发展历史" class="headerlink" title="2.Linux发展历史"></a>2.Linux发展历史</h3><p>1969年：Unix诞生于贝尔实验室<br>1984年：Minix诞生 谭宁邦（教学使用的Minix系统）<br>198X年：FSF诞生（斯托曼）<br>目标：建立一个与Unix一样NB的系统<br>公司：自由软件基金会（FSF）<br>项目：GNU项目（GNU=GNU is not unix    优秀软件：gawk,bash,gcc,emaces<br>没有完善的内核）<br>规则：GPL协议（通用公共许可） –开源的，自由传播的；必须将修改之后的代码公布出来。<br>1991年：Linux=GNU/Linux内核</p>
+<h3 id="3-Linux安装部署"><a href="#3-Linux安装部署" class="headerlink" title="3.Linux安装部署"></a>3.Linux安装部署</h3><h2 id="选择什么版本进行安装"><a href="#选择什么版本进行安装" class="headerlink" title="选择什么版本进行安装"></a>选择什么版本进行安装</h2><p>简单说下32跟64的区别：<br>32bit—i386 程序运算方式不同；内存容量不同（不超过4G）；台式机（家用）<br>64bit—x86_64 程序运算方式不同（超过4G）；服务器（企业）</p>
+<p>进行虚拟化软件部署，创建虚拟主机（虚拟机安装就不说了。）</p>
+<h2 id="安装部署Linux"><a href="#安装部署Linux" class="headerlink" title="安装部署Linux"></a>安装部署Linux</h2><p>F12=下一步</p>
+<h2 id="分区方法"><a href="#分区方法" class="headerlink" title="分区方法"></a>分区方法</h2><p>/boot 分区：当Linux系统空间不够的时候，向硬盘借取空间；指定借取空间==swap空间（交换空间；swap分区大小==真实内存空间*1.5，当内存大于或等于8G，swap分区就是8G<br>/分区：剩下的所有</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=785902&auto=1&height=66"></iframe>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/05/Linux运维学习-第二天/">
+    <time datetime="2018-07-05T05:03:14.000Z" class="entry-date">
+        2018-07-05
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/05/linux运维学习-第三天/" rel="prev"><span class="meta-nav">←</span> linux运维学习 第三天</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/04/Linux运维学习-第一天/" rel="next">Linux运维学习 第一天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/第二次测验题目汇总/">第二次测验题目汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux同步网络时间/">Linux同步网络时间</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

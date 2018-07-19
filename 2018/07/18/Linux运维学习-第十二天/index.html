@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="第十二天了~" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-第十二天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第十二天了~">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-第十二天">
+<meta property="og:url" content="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="第十二天了~">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-18T07:11:41.236Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-第十二天">
+<meta name="twitter:description" content="第十二天了~">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/fakehydra">Github</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第十二天" class="post-Linux运维学习-第十二天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-第十二天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/" data-id="cjjrzbob8000lwklysy4c1ok2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="第十二天了"><a href="#第十二天了" class="headerlink" title="第十二天了~"></a>第十二天了~</h3><a id="more"></a>
+<h2 id="第二关测验练习题——续"><a href="#第二关测验练习题——续" class="headerlink" title="第二关测验练习题——续"></a>第二关测验练习题——续</h2><h3 id="11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录"><a href="#11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录" class="headerlink" title="11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录"></a>11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录</h3><h4 id="a-请用tar打包-etc整个目录（打包及压缩）。"><a href="#a-请用tar打包-etc整个目录（打包及压缩）。" class="headerlink" title="a.请用tar打包/etc整个目录（打包及压缩）。"></a>a.请用tar打包/etc整个目录（打包及压缩）。</h4><pre><code>tar zcvf 箱子  要打包的数据信息/cattar
+
+tar zcvf /tmp/oldboy.tar.gz /etc/
+
+    z   --表示压缩数据的方式  gzip
+    c   --创建需要压缩的数据包 create
+    v   --详细显示压缩过程（可不用）
+    f   --指定生成压缩文件路径信息
+
+检查压缩包数据信息方法：tar tf  压缩包
+                          t :检查压缩包数据信息
+</code></pre><h4 id="b-请用tar打包-etc整个目录（打包及压缩，但需要排除-etc-services文件）。"><a href="#b-请用tar打包-etc整个目录（打包及压缩，但需要排除-etc-services文件）。" class="headerlink" title="b.请用tar打包/etc整个目录（打包及压缩，但需要排除/etc/services文件）。"></a>b.请用tar打包/etc整个目录（打包及压缩，但需要排除/etc/services文件）。</h4><pre><code>[root@jinc etc]# tar zcf /tmp/oldgirl.tar.gz /etc/ --exclude=/etc/services 
+
+ --exclude=要排除的数据信息    排除=后面的数据信息
+</code></pre><h4 id="c-请把a点命令的压缩包，解压到-tmp指定目录下（最好只用tar命令实现）。"><a href="#c-请把a点命令的压缩包，解压到-tmp指定目录下（最好只用tar命令实现）。" class="headerlink" title="c.请把a点命令的压缩包，解压到/tmp指定目录下（最好只用tar命令实现）。"></a>c.请把a点命令的压缩包，解压到/tmp指定目录下（最好只用tar命令实现）。</h4><pre><code> tar zxvf oldboy.tar.gz -C /tmp
+x   --解压提取数据信息
+说明：解压时，如果解压的数据时间信息不准确会有报错
+</code></pre><h3 id="第十二题：如何进行文件字符信息过滤"><a href="#第十二题：如何进行文件字符信息过滤" class="headerlink" title="第十二题：如何进行文件字符信息过滤"></a>第十二题：如何进行文件字符信息过滤</h3><h4 id="环境创建"><a href="#环境创建" class="headerlink" title="环境创建"></a>环境创建</h4><pre><code>mkdir /oldboy -p ;echo &quot;i am oldboy,myqq is 664341340&quot; &gt;/oldboy/oldboy.txt
+</code></pre><h4 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h4><h5 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h5><pre><code>sed &apos;s#i am ##g&apos; oldboy/oldboy.txt|sed &quot;s#myqq is##g&quot;
+</code></pre><h5 id="第二种方法：利用awk-命令"><a href="#第二种方法：利用awk-命令" class="headerlink" title="第二种方法：利用awk 命令"></a>第二种方法：利用awk 命令</h5><pre><code>awk -F &quot;，&quot; &apos;print $3,$6&apos; /oldboy/oldboy.txt
+
+awk -F &quot;[ ,]&quot; &apos;print $3,NF&apos; /oldboy/oldboy.txt
+</code></pre><h5 id="第三种方法：利用cut命令"><a href="#第三种方法：利用cut命令" class="headerlink" title="第三种方法：利用cut命令"></a>第三种方法：利用cut命令</h5><pre><code>sed &apos;s#,# #g&apos; /oldboy/oldboy.txt|cut -d &quot; &quot; -f3,6
+</code></pre><h3 id="第十四题：过滤出-etc-services-文件包含3306或1521两数字所在的行的内容。"><a href="#第十四题：过滤出-etc-services-文件包含3306或1521两数字所在的行的内容。" class="headerlink" title="第十四题：过滤出/etc/services 文件包含3306或1521两数字所在的行的内容。"></a>第十四题：过滤出/etc/services 文件包含3306或1521两数字所在的行的内容。</h3><h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><pre><code>grep -E &quot;3306|1521&quot; /etc/services
+
+或者 egrep &quot;3306|1521&quot; /etc/services
+</code></pre><h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><pre><code>sed -n &quot;/3306\|1521/p&quot; /etc/services
+
+或者 sed -rn &quot;/3306|1521/p&quot; /etc/services
+</code></pre><h4 id="方法三："><a href="#方法三：" class="headerlink" title="方法三："></a>方法三：</h4><pre><code>awk &quot;/3306|1521/&quot; /etc/services
+</code></pre><h5 id="特殊正则-或"><a href="#特殊正则-或" class="headerlink" title="| 特殊正则 或"></a>| 特殊正则 或</h5>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/18/Linux运维学习-第十二天/">
+    <time datetime="2018-07-18T06:25:45.000Z" class="entry-date">
+        2018-07-18
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/18/第二次测验题目汇总/" rel="prev"><span class="meta-nav">←</span> 第二次测验题目汇总</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/17/Linux同步网络时间/" rel="next">Linux同步网络时间 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/第二次测验题目汇总/">第二次测验题目汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux同步网络时间/">Linux同步网络时间</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
