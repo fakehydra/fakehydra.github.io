@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="关于密码安全-PAM模块" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux关于密码二三事 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于密码安全-PAM模块">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux关于密码二三事">
+<meta property="og:url" content="http://yoursite.com/2018/07/19/Linux关于密码二三事/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="关于密码安全-PAM模块">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-19T12:42:40.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux关于密码二三事">
+<meta name="twitter:description" content="关于密码安全-PAM模块">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux关于密码二三事" class="post-Linux关于密码二三事 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux关于密码二三事
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux关于密码二三事/" data-id="cjjsjq6dh0003g0ly9t2heq2j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="关于密码安全-PAM模块"><a href="#关于密码安全-PAM模块" class="headerlink" title="关于密码安全-PAM模块"></a>关于密码安全-PAM模块</h3><a id="more"></a>
+<h3 id="首先我们可以用下面的命令判断是否用了PAM"><a href="#首先我们可以用下面的命令判断是否用了PAM" class="headerlink" title="首先我们可以用下面的命令判断是否用了PAM"></a>首先我们可以用下面的命令判断是否用了PAM</h3><pre><code>[root@jinc pam.d]# ldd /usr/bin/passwd |grep libpam
+    libpam_misc.so.0 =&gt; /lib64/libpam_misc.so.0 (0x00007f8b75630000)
+    libpam.so.0 =&gt; /lib64/libpam.so.0 (0x00007f8b74a2d000)
+[root@jinc pam.d]# 
+</code></pre><h4 id="如看到有类似的输出，说明该程序使用了PAM，没有输出，则没有使用。"><a href="#如看到有类似的输出，说明该程序使用了PAM，没有输出，则没有使用。" class="headerlink" title="如看到有类似的输出，说明该程序使用了PAM，没有输出，则没有使用。"></a>如看到有类似的输出，说明该程序使用了PAM，没有输出，则没有使用。</h4><h4 id="而我这里是有输出的，所以可以确定我的是使用了PAM模块的"><a href="#而我这里是有输出的，所以可以确定我的是使用了PAM模块的" class="headerlink" title="而我这里是有输出的，所以可以确定我的是使用了PAM模块的"></a>而我这里是有输出的，所以可以确定我的是使用了PAM模块的</h4><h3 id="PAM身份验证配置文件"><a href="#PAM身份验证配置文件" class="headerlink" title="PAM身份验证配置文件"></a>PAM身份验证配置文件</h3><pre><code>/etc/pam.d/目录包含应用程序的PAM配置文件。例如，login程序将其程序/服务名称定义为login，与之对应的PAM配置文件为/etc/pam.d/login。
+</code></pre><h2 id="PAM模块接口-模块管理组"><a href="#PAM模块接口-模块管理组" class="headerlink" title="PAM模块接口(模块管理组)"></a>PAM模块接口(模块管理组)</h2><h3 id="PAM为认证任务提供四种类型可用的模块接口，它们分别提供不同的认证服务："><a href="#PAM为认证任务提供四种类型可用的模块接口，它们分别提供不同的认证服务：" class="headerlink" title="PAM为认证任务提供四种类型可用的模块接口，它们分别提供不同的认证服务："></a>PAM为认证任务提供四种类型可用的模块接口，它们分别提供不同的认证服务：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">√ auth	- 认证模块接口，如验证用户身份、检查密码是否可以通过，并设置用户凭据</span><br><span class="line">√ account	- 账户模块接口，检查指定账户是否满足当前验证条件，如用户是否有权访问所请求的服务，检查账户是否到期</span><br><span class="line">√ password 	- 密码模块接口，用于更改用户密码，以及强制使用强密码配置</span><br><span class="line">√ session	- 会话模块接口，用于管理和配置用户会话。会话在用户成功认证之后启动生效</span><br></pre></td></tr></table></figure>
+<p>单个PAM库模块可以提供给任何或所有模块接口使用。例如，pam_unix.so提供给四个模块接口使用。</p>
+<h2 id="PAM控制标志"><a href="#PAM控制标志" class="headerlink" title="PAM控制标志"></a>PAM控制标志</h2><pre><code>所有的PAM模块被调用时都会返回成功或者失败的结果，每个PAM模块中由多个对应的控制标志决定结果是否通过或失败。每一个控制标志对应一个处理结果，PAM库将这些通过/失败的结果整合为一个整体的通过/失败结果，然后将结果返回给应用程序。模块可以按特定的顺序堆叠。控制标志是实现用户在对某一个特定的应用程序或服务身份验证的具体实现细节。该控制标志是PAM配置文件中的第二个字段，PAM控制标志如下：
+</code></pre><pre><code>&gt; required     - 模块结果必须成功才能继续认证，如果在此处测试失败，则继续测试引用在该模块接口的下一个模块，直到所有的模块测试完成     ，才将结果通知给用户。
+&gt; requisite     - 模块结果必须成功才能继续认证，如果在此处测试失败，则会立即将失败结果通知给用户。
+&gt; sufficient     - 模块结果如果测试失败，将被忽略。如果sufficient模块测试成功，并且之前的required模块没有发生故障，PAM会向应     用程序返回通过的结果，不会再调用堆栈中其他模块。
+&gt; optional     - 该模块返回的通过/失败结果被忽略。当没有其他模块被引用时，标记为optional模块并且成功验证时该模块才是必须的。该模     块被调用来执行一些操作，并不影响模块堆栈的结果。
+&gt; include    - 与其他控制标志不同，include与模块结果的处理方式无关。该标志用于直接引用其他PAM模块的配置参数
+</code></pre><h2 id="PAM配置方法"><a href="#PAM配置方法" class="headerlink" title="PAM配置方法"></a>PAM配置方法</h2><pre><code>所有的PAM配置方法都在man手册中有说明，比如要查找某个程序支持PAM模块的配置，
+可以使用man 加模块名(去掉.so)查找说明，如# man pam_unix。(模块名可以在目
+    录/lib/security/或/lib64/security/中找到。)
+</code></pre><h3 id="强制使用强密码（用户密码安全配置）"><a href="#强制使用强密码（用户密码安全配置）" class="headerlink" title="强制使用强密码（用户密码安全配置）"></a>强制使用强密码（用户密码安全配置）</h3><pre><code>PAM配置文件：/etc/pam.d/system-auth-ac
+
+模块名称：pam_cracklib(仅适用于password模块接口)
+
+模块参数：
+
+minlen=12       密码字符长度不少于12位(默认为9)
+
+lcredit=-1      至少包含1个小写字母
+
+ucredit=-1      至少包含1个大写字母
+
+dcredit=-1      至少包含1个数字
+
+ocredit=-1      至少包含1个特殊字符
+
+retry=3         配置密码时，提示3次用户密码错误输入
+
+difok=6         配置密码时，新密码中至少6个字符与旧密码不同(默认为5)
+</code></pre><h4 id="其他常用参数："><a href="#其他常用参数：" class="headerlink" title="其他常用参数："></a>其他常用参数：</h4><pre><code>reject_username    新密码中不能包含与用户名称相同的字段
+
+maxrepeat=N        拒绝包含超过N个连续字符的密码，默认值为0表示此检查已禁用
+
+maxsequence=N      拒绝包含大于N的单调字符序列的密码，例如’1234’或’fedcb’，默认情况下即使没有这个参数配置，一般大多数这样的     密码都不会通过，除非序列只是密码的一小部分
+
+maxcla***epeat=N   拒绝包含相同类别的N个以上连续字符的密码。默认值为0表示此检查已禁用。
+
+use_authtok        强制使用先前的密码，不提示用户输入新密码(不允许用户修改密码)
+</code></pre><h5 id="模块名称：pam-unix-适用于account，auth，-password和session模块接口"><a href="#模块名称：pam-unix-适用于account，auth，-password和session模块接口" class="headerlink" title="模块名称：pam_unix (适用于account，auth， password和session模块接口)"></a>模块名称：pam_unix (适用于account，auth， password和session模块接口)</h5><h6 id="模块参数："><a href="#模块参数：" class="headerlink" title="模块参数："></a>模块参数：</h6><pre><code>remember=N     保存每个用户使用过的N个密码，强制密码不能跟历史密码重复
+</code></pre><h6 id="其他常见参数："><a href="#其他常见参数：" class="headerlink" title="其他常见参数："></a>其他常见参数：</h6><pre><code>sha512          当用户下一次更改密码时，使用SHA256算法进行加密
+
+md5             当用户更改密码时，使用MD5算法对其进行加密。
+
+try_first_pass  在提示用户输入密码之前，模块首先尝试先前的密码，以测试是否满足该模块的需求。
+
+use_first_pass  该模块强制使用先前的密码(不允许用户修改密码)，如果密码为空或者密码不对，用户将被拒绝访问
+
+shadow          用户保护密码
+
+nullok          默认不允许空密码访问服务
+
+use_authtok     强制使用先前的密码，不提示用户输入新密码(不允许用户修改密码)
+
+
+例 修改配置/etc/pam.d/system-auth-ac文件，在password模块接口行修改或添加配置参数如下：
+
+password    requisite     pam_cracklib.so try_first_pass retry=3 type= reject_username minlen=12 lcredit=-1 ucredit=-1 dcredit=-1 ocredit=-1 difok=6
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/19/Linux关于密码二三事/">
+    <time datetime="2018-07-19T12:36:49.000Z" class="entry-date">
+        2018-07-19
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/07/19/Linux运维学习-第十三天/" rel="next">Linux运维学习-第十三天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/19/Linux关于密码二三事/">Linux关于密码二三事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/Linux运维学习-第十三天/">Linux运维学习-第十三天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/每天一个Linux命令-07/">每天一个Linux命令-07</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/每天一个Linux命令-06/">每天一个Linux命令-06</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/nginx-简单安装-排错/">nginx 简单安装&amp;排错</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令-07/">每天一个Linux命令-07</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/每天一个Linux命令-07/" style="font-size: 10px;">每天一个Linux命令-07</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
