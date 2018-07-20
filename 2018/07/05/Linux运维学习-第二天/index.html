@@ -1,12 +1,9 @@
-extends views/main.pug
-
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Linux运维学习 第二天 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-05T05:03:14.000Z">July 5, 2018</time><h1 class="post__title"><a href="/2018/07/05/Linux运维学习-第二天/">Linux运维学习 第二天</a></h1><div class="post__main echo"><h5 id="服务器系统安装"><a href="#服务器系统安装" class="headerlink" title="服务器系统安装"></a>服务器系统安装</h5><a id="more"></a>
+<h3 id="1-什么是操作系统（中介）"><a href="#1-什么是操作系统（中介）" class="headerlink" title="1.什么是操作系统（中介）"></a>1.什么是操作系统（中介）</h3><p>Linux操作系统：是开源的 可以自由传播的 多用户 多任务的系统</p>
+<p>操作系统组成：计算机硬件+系统核心+命令解释器+外围应用程序</p>
+<h3 id="2-Linux发展历史"><a href="#2-Linux发展历史" class="headerlink" title="2.Linux发展历史"></a>2.Linux发展历史</h3><p>1969年：Unix诞生于贝尔实验室<br>1984年：Minix诞生 谭宁邦（教学使用的Minix系统）<br>198X年：FSF诞生（斯托曼）<br>目标：建立一个与Unix一样NB的系统<br>公司：自由软件基金会（FSF）<br>项目：GNU项目（GNU=GNU is not unix    优秀软件：gawk,bash,gcc,emaces<br>没有完善的内核）<br>规则：GPL协议（通用公共许可） –开源的，自由传播的；必须将修改之后的代码公布出来。<br>1991年：Linux=GNU/Linux内核</p>
+<h3 id="3-Linux安装部署"><a href="#3-Linux安装部署" class="headerlink" title="3.Linux安装部署"></a>3.Linux安装部署</h3><h2 id="选择什么版本进行安装"><a href="#选择什么版本进行安装" class="headerlink" title="选择什么版本进行安装"></a>选择什么版本进行安装</h2><p>简单说下32跟64的区别：<br>32bit—i386 程序运算方式不同；内存容量不同（不超过4G）；台式机（家用）<br>64bit—x86_64 程序运算方式不同（超过4G）；服务器（企业）</p>
+<p>进行虚拟化软件部署，创建虚拟主机（虚拟机安装就不说了。）</p>
+<h2 id="安装部署Linux"><a href="#安装部署Linux" class="headerlink" title="安装部署Linux"></a>安装部署Linux</h2><p>F12=下一步</p>
+<h2 id="分区方法"><a href="#分区方法" class="headerlink" title="分区方法"></a>分区方法</h2><p>/boot 分区：当Linux系统空间不够的时候，向硬盘借取空间；指定借取空间==swap空间（交换空间；swap分区大小==真实内存空间*1.5，当内存大于或等于8G，swap分区就是8G<br>/分区：剩下的所有</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=785902&auto=1&height=66"></iframe></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/学习笔记/">学习笔记</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

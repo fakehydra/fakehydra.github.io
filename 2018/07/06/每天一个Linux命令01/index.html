@@ -1,12 +1,12 @@
-extends views/main.pug
-
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>每天一个Linux命令 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-06T12:04:40.000Z">July 6, 2018</time><h1 class="post__title"><a href="/2018/07/06/每天一个Linux命令01/">每天一个Linux命令</a></h1><div class="post__main echo"><p>第一个Linux命令</p>
+<a id="more"></a>
+<h5 id="shutdown-关机"><a href="#shutdown-关机" class="headerlink" title="shutdown  关机"></a>shutdown  关机</h5><h3 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h3><p>shutdown [选项]  时间  消息</p>
+<h2 id="01）-注意shutdown命令和后面的选项之间至少要有一个空格。"><a href="#01）-注意shutdown命令和后面的选项之间至少要有一个空格。" class="headerlink" title="*01） 注意shutdown命令和后面的选项之间至少要有一个空格。"></a>*01） 注意shutdown命令和后面的选项之间至少要有一个空格。</h2><p>02）通常情况下我们执行的shutdown命令为shutdown -h now 或 shutdown -r now </p>
+<pre><code>参数选项 |       解释说明
+  -r    |  重启系统，而不是关机
+  -h    |  关机 例如：shutdown -h now 
+  -H    |  关机（halt)，经测试，使用该参数关机后系统并未完全关机
+  -P    |  关机（poweroff），不常用
+  -c    |  取消正在执行的shutdown指令
+  -k    |  只发送关机警告信息并拒绝新用户登陆，但是并不实际关机。
+</code></pre></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

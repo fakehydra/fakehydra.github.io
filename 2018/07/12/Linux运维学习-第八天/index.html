@@ -1,12 +1,106 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Linux运维学习-第八天 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-12T10:40:09.000Z">July 12, 2018</time><h1 class="post__title"><a href="/2018/07/12/Linux运维学习-第八天/">Linux运维学习-第八天</a></h1><div class="post__main echo"><h2 id="系统目录结构学习"><a href="#系统目录结构学习" class="headerlink" title="系统目录结构学习"></a>系统目录结构学习</h2><a id="more"></a>
+<h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h2 id="系统优化知识"><a href="#系统优化知识" class="headerlink" title="系统优化知识"></a>系统优化知识</h2><pre><code>01.查看系统信息
+   /etc/redhat-release  uname(-r -m -a)
+02.如何创建用户
+   useradd 创建用户
+   su - 普通用户 
+   passwd 设置密码（交互式/免交互式）
+03.系统命令提示符优化（变量/系统环境变量）04.系统安全优化
+   关闭selinux  iptables(临时/永久)
+05.系统出现乱码的解决方式
+  （修改字符集设定）
+</code></pre><h2 id="系统目录结构说明"><a href="#系统目录结构说明" class="headerlink" title="系统目录结构说明"></a>系统目录结构说明</h2><p>   挂载</p>
+<pre><code>Windows： 磁盘---分区---格式化---装系统
+Linux：   磁盘---分区---格式化---生成一个文件（磁盘分区）
+PS：Linux中一切皆文件
+分区文件放置在什么地方？/dev/sda1 sda2 sda3
+我要使用者三个分区？
+/dev/sda1(房子)--- 门（挂载点） 利用挂载的方式给磁盘分区开了个门
+安装门的过程==挂载过程
+</code></pre><h2 id="实践操作挂载过程（光驱设备-苹果；系统上-mnt-树枝）"><a href="#实践操作挂载过程（光驱设备-苹果；系统上-mnt-树枝）" class="headerlink" title="实践操作挂载过程（光驱设备-苹果；系统上 /mnt-树枝）"></a>实践操作挂载过程（光驱设备-苹果；系统上 /mnt-树枝）</h2><pre><code>第一个里程：确认存在光驱（虚拟主机设置）
+第二个里程：检查是否存在光驱设备文件
+            [root@jinc ~]# ll /dev/cdrom 
+            lrwxrwxrwx 1 root root 3 Jul  6 23:34  /dev/cdrom -&gt; sr0
+第三个里程：将设备文件进行挂载
+            mount 要挂载的设备信息 挂载到什么位置
+            mount /dev/cdrom /mnt
+第四个里程：检查是否挂载成功
+            [root@jinc1 mnt]# df -h
+            Filesystem      Size  Used Avail Use%      Mounted on
+            /dev/sda3        18G  1.5G   16G   9% /
+            tmpfs           491M     0  491M   0%       /dev/shm
+            /dev/sda1       190M   35M  146M  19% /boot
+            /dev/sr0        3.7G  3.7G     0 100% /mnt
+第五个里程：卸载
+            umount 挂载点信息     
+            umount /mnt
+   PS:卸载时离开挂载点目录（/mnt目录）
+</code></pre><h2 id="内容小结："><a href="#内容小结：" class="headerlink" title="内容小结："></a>内容小结：</h2><pre><code> linux系统的所有目录是一个有层次的倒着的树状目录结构（倒挂树形结     构），“/”根是所有目录的顶点，linux目录一切从根开始。
 
-block head
-  title
-    = page.title + ' - ' + config.title
+ 不同的目录数据可以跨越不同的磁盘分区或不同的磁盘设备（树干）可     以随意挂载到树叶（目录）上。
+ 所有的目录都是按照一定的类别有规律的组织和命名的。
 
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+ 没有挂载到树叶上的苹果，它不能直接使用。苹果需要挂载才能使用。
+
+ 没有被挂载的设备，相当于没有门和窗户的监狱，不能直接访问/进入
+
+树干-----磁盘/设备/分区
+枝叶-----挂载点（目录）----窗户/门----挂载点本质，给设备提供了一个入口
+相对路径：相对于当前路径（位置 目录）下的路径
+root@moban /]# pwd
+
+root@moban /]# cd root
+绝对路径:从根为起始点的路径
+root@moban ~]# cd /root
+root@moban ~]# /etc/init.d/iptables stop
+</code></pre><h2 id="根下面一级目录信息"><a href="#根下面一级目录信息" class="headerlink" title="根下面一级目录信息"></a>根下面一级目录信息</h2><pre><code>[root@jinc ~]# tree -L 1 /
+</code></pre><h2 id="目录下面的重要数据信息"><a href="#目录下面的重要数据信息" class="headerlink" title="目录下面的重要数据信息"></a>目录下面的重要数据信息</h2><pre><code>/etc 目录下面的重要数据
+
+      1）重要文件
+[root@jinc /]# cat /etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE=eth0   &lt;-- 设备名称 （centos 6)
+HWADDR=00:0c:29:2a:5d:ce    &lt;--设备的mac地址
+TYPE=Ethernet    &lt;--网络类型 经常用的网络为以太网
+UUID=445e4376-2409-4e3c-958c-153d34ee84ce   &lt;     --硬件标识ID信息(在一个系统中每个设备都是唯一的)
+ONBOOT=yes   &lt;--** 一定要设置为yes 
+                   激活网卡（给网卡供电）
+NM_CONTROLLED=yes  &lt;--网络管理服务 
+BOOTPROTO=none     &lt;--启动协议 == 获取地址方式 静态 动态分配
+DNS2=223.5.5.5    &lt;-- 域名解析
+DNS1=114.114.114.114
+USERCTL=no
+PEERDNS=yes     &lt;--网卡的DNS配置信息是否覆盖resolv.conf
+IPV6INIT=no
+IPADDR=10.0.0.200       &lt;--服务器网卡IP地址信息
+NETMASK=255.255.255.0   &lt;--子网掩码 (     设定一个区域可以产生多少IP地址)
+GATEWAY=10.0.0.2    &lt;--网关地址
+                        route -n
+重启网卡:/etc/init.d/network restart(对所有网卡)
+         ifdown eth0 &amp;&amp; ifup eth0(只针对eth0网卡)
+
+
+ 2）/etc/resolv.conf  --DNS服务器地址信息配置文件
+    [root@jinc /]# cat /etc/resolv.conf
+; generated by /sbin/dhclient-script
+search localdomain
+nameserver 114.114.114.114
+nameserver 223.5.5.5
+[root@jinc /]# 
+</code></pre><h2 id="说明：网卡的配置信息优先于resolv-conf"><a href="#说明：网卡的配置信息优先于resolv-conf" class="headerlink" title="说明：网卡的配置信息优先于resolv.conf"></a>说明：网卡的配置信息优先于resolv.conf</h2><pre><code> 3）/etc/hosts  --配置主机名称（域名信息）和IP地址的对应关系
+windows下：C:\Windows\System32\drivers\etc
+
+IP地址进行互相访问  
+
+4）/etc/sysconfig/network   --用于修改系统主机名 ；配置网关信息
+主机名称修改步骤：
+第一个里程：利用命令临时修改主机名
+第二个里程：编写配置文件永久修改主机名
+           vim /etc/sysconfig/network
+第三个里程：编写、etc/hosts文件，配置好主机名和IP地址对应关系
+
+ hostname +要修改成的  --不会立即生效，重连后生效
+</code></pre><h2 id="说明：命令修改主机名只是临时生效。"><a href="#说明：命令修改主机名只是临时生效。" class="headerlink" title="说明：命令修改主机名只是临时生效。"></a>说明：命令修改主机名只是临时生效。</h2><h2 id="查看磁盘分区UUID标识信息"><a href="#查看磁盘分区UUID标识信息" class="headerlink" title="查看磁盘分区UUID标识信息"></a>查看磁盘分区UUID标识信息</h2><pre><code>[root@jinc /]# blkid
+/dev/sda1: UUID=&quot;130749bd-4011-4bb7-9092-6e6c55c97888&quot;      TYPE=&quot;ext4&quot; 
+/dev/sda2: UUID=&quot;0ca31065-133e-45d9-af3a-559a7385d5ee&quot;      TYPE=&quot;swap&quot; 
+/dev/sda3: UUID=&quot;281b45af-f975-47ad-89d3-fadaae69ee6e&quot; TYPE=&quot;ext4&quot; 
+</code></pre></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/学习笔记/">学习笔记</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

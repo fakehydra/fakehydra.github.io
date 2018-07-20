@@ -1,12 +1,38 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>这是一个命令 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-12T09:01:30.000Z">July 12, 2018</time><h1 class="post__title"><a href="/2018/07/12/这是一个命令/">这是一个命令</a></h1><div class="post__main echo"><p>初识Linux权限</p>
+<a id="more"></a>
+<h2 id="linux-权限初体验"><a href="#linux-权限初体验" class="headerlink" title="linux 权限初体验"></a>linux 权限初体验</h2><pre><code>r(read,读取）：对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权限。
+w(write,写入）：对文件而言，具有新增，修改，删除文件内容的权限；对目录来说，具有新建，删除，修改，移动目录内文件的权限。
+x(execute,执行）：对文件而言，具有执行文件的权限；对目录来说该用户具有进入目录的权限
 
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+1.目录的只读访问不允许使用cd进入目录，必须要有执行的权限
+2.只有执行权限只能进入目录，不能看到目录下的内容，要看的话需要可读权限
+3.一个文件能否删除，主要看该文件所在目录对用户是否具有写权限，若没有，则该目录下文件只能被文件所有者删除
+4.目录的w位不设置，即使你拥有目录中某文件的w权限也不能该文件
+</code></pre><h2 id="数字模式解读"><a href="#数字模式解读" class="headerlink" title="数字模式解读"></a>数字模式解读</h2><pre><code>rwx     7  
+rw      6
+r-w     5
+r--     4
+-wx     3
+-w-     2
+--x     1
+---     0
+</code></pre><h2 id="权限属性列表为10个字符："><a href="#权限属性列表为10个字符：" class="headerlink" title="权限属性列表为10个字符："></a>权限属性列表为10个字符：</h2><pre><code>[root@jinc1 oldboy]# ls -al
+total 24
+drwx------. 2 oldboy oldboy 4096 Jul  8 18:05 .
+drwxr-xr-x. 4 root   root   4096 Jul  9 02:24 ..
+-rw-------. 1 oldboy oldboy  146 Jul  9 09:39 .bash_history
+-rw-r--r--. 1 oldboy oldboy   18 Mar 23  2017 .bash_logout
+-rw-r--r--. 1 oldboy oldboy  176 Mar 23  2017 .bash_profile
+-rw-r--r--. 1 oldboy oldboy  124 Mar 23  2017 .bashrc
+</code></pre><h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><pre><code>第一个字符表示文件类型，d为目录 -为普通文件 l为连接      b为可存储的接口设备 c为键盘鼠标等输入设备
+2、3、4个字符表示所有者权限，5、6、7个字符表示所有者同组用户权限，     8、9、10为其他用户权限
+第二个字符表示所有者读权限，如果有权限则为r，没有权限则为-
+第三个字符表示所有者写权限，如果有权限则为w，没有权限则为-
+第四个字符表示所有者执行权限，如果有权限则为x，没有权限则为-
+第五个字符表示所有者同组用户读权限，如果有权限则为r，没有权限则     为-
+第六个字符表示所有者同组用户写权限，如果有权限则为w，没有权限则     为-
+第七个字符表示所有者同组用户执行权限，如果有权限则为x，没有权限     则为-
+第八个字符表示其他非同组读权限，如果有权限则为r，没有权限则为-
+第九个字符表示其他非同组写权限，如果有权限则为w，没有权限则为-
+第十个字符表示其他非同组执行权限，如果有权限则为x，没有权限则为-
+</code></pre><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h2></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/小东西/">小东西</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

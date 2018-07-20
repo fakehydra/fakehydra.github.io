@@ -1,12 +1,23 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>每天一个Linux命令02 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-10T12:21:55.000Z">July 10, 2018</time><h1 class="post__title"><a href="/2018/07/10/每天一个Linux命令02/">每天一个Linux命令02</a></h1><div class="post__main echo"><p>  有一个Linux命令正在发送</p>
+  <a id="more"></a>
+<h4 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h4><h2 id="功能说明："><a href="#功能说明：" class="headerlink" title="功能说明："></a>功能说明：</h2><pre><code>pwd 命令是“print working directory”  --显示当前工作目录的绝对路径。
+</code></pre><h2 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h2><pre><code>pwd [option]
+pwd [选项]
+</code></pre><h2 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h2><pre><code>1)pwd 命令和后面选项之间至少要有一个空格
+2）通常情况下，执行pwd命令不需要带任何参数
+</code></pre><h2 id="参数选项-解释说明"><a href="#参数选项-解释说明" class="headerlink" title="参数选项     |             解释说明"></a>参数选项     |             解释说明</h2><pre><code>-L          |  logical ,表示显示逻辑路径（忽略软链接文件），取PWD系统环境变量的值，此参数不常用
+-P          |  physical，表示小时物理路径时如果当前路径是软链接文件，则会显示软链接文件对应的源文件，此参数不常用
+</code></pre><h2 id="PS-查看命令帮助时，我们经常会看见“-L，–logical”-这样的选项格式，这种写法的意思时-L-和–logical-的功能是一样的，在选择的时候任选一种即可，不能同时被使用。此外，PWD系统环境变量，可以使用“-”-符号输出其值。"><a href="#PS-查看命令帮助时，我们经常会看见“-L，–logical”-这样的选项格式，这种写法的意思时-L-和–logical-的功能是一样的，在选择的时候任选一种即可，不能同时被使用。此外，PWD系统环境变量，可以使用“-”-符号输出其值。" class="headerlink" title="PS:查看命令帮助时，我们经常会看见“-L，–logical” 这样的选项格式，这种写法的意思时-L 和–logical 的功能是一样的，在选择的时候任选一种即可，不能同时被使用。此外，PWD系统环境变量，可以使用“$” 符号输出其值。"></a>PS:查看命令帮助时，我们经常会看见“-L，–logical” 这样的选项格式，这种写法的意思时-L 和–logical 的功能是一样的，在选择的时候任选一种即可，不能同时被使用。此外，PWD系统环境变量，可以使用“$” 符号输出其值。</h2><pre><code> [root@jinc1 data]# echo $PWD
+ /root/data
 
-block head
-  title
-    = page.title + ' - ' + config.title
+ [root@jinc1 data]# pwd -L
+ /root/data
 
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+ 可见：pwd -L ==echo $PWD
+
+
+
+
+
+-未完待续-
+</code></pre></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

@@ -1,12 +1,66 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>每天一个Linux命令07 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-19T06:56:22.000Z">July 19, 2018</time><h1 class="post__title"><a href="/2018/07/19/每天一个Linux命令07/">每天一个Linux命令07</a></h1><div class="post__main echo"><p>^-^</p>
+<a id="more"></a>
+<h2 id="ss简介"><a href="#ss简介" class="headerlink" title="ss简介"></a>ss简介</h2><pre><code> ss命令用来显示处于活动状态的套接字信息。ss命令可以用来获取socket统计信息，它可以显示和netstat类似的内容。但ss的优势在于它能够显示更多更详细的有关TCP和连接状态的信息，而且比netstat更快速更高效。
+ 当服务器的socket连接数量变得非常大时，无论是使用netstat命令还是直接cat /proc/net/tcp，执行速度都会很慢。可能你不会有切身的感受，但请相信我，当服务器维持的连接达到上万个的时候，使用netstat等于浪费 生命，而用ss才是节省时间。
 
-block head
-  title
-    = page.title + ' - ' + config.title
+天下武功唯快不破。ss快的秘诀在于，它利用到了TCP协议栈中tcp_diag。tcp_diag是一个用于分析统计的模块，可以获得Linux 内核中第一手的信息，这就确保了ss的快捷高效。当然，如果你的系统中没有tcp_diag，ss也可以正常运行，只是效率会变得稍慢。
+语法
+</code></pre><h2 id="ss-选项"><a href="#ss-选项" class="headerlink" title="ss(选项)"></a>ss(选项)</h2><pre><code>选项
 
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+-h：          显示帮助信息；
+-V：          显示指令版本信息；
+-n：          不解析服务名称，以数字方式显示；
+-a：          显示所有的套接字；
+-l：          显示处于监听状态的套接字；
+-o：          显示计时器信息；
+-m：          显示套接字的内存使用情况；
+-p：          显示使用套接字的进程信息；
+-i：          显示内部的TCP信息；
+-4：          只显示ipv4的套接字；
+-6：          只显示ipv6的套接字；
+-t：          只显示tcp套接字；
+-u：          只显示udp套接字；
+-d：          只显示DCCP套接字；
+-w：          仅显示RAW套接字；
+-x：          仅显示UNIX域套接字。          
+</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="显示ICP连接"><a href="#显示ICP连接" class="headerlink" title="显示ICP连接"></a>显示ICP连接</h4><pre><code>[root@jinc1 ~]# ss -t -a
+State       Recv-Q Send-Q   Local      Address:Port       Peer Address:Port   
+LISTEN      0      128                  *:http                       *:*       
+LISTEN      0      128                      :::ssh                  :::*       
+LISTEN      0      128                  *:ssh                        *:*       
+LISTEN      0      64                       :::telnet               :::*       
+LISTEN      0      100                     ::1:smtp                 :::*       
+LISTEN      0      100               127.0.0.1:smtp                  *:*       
+ESTAB       0      0                10.0.0.201:ssh            10.0.0.1:58545   
+ESTAB       0      0                10.0.0.201:ssh            10.0.0.1:50776  
+</code></pre><h4 id="显示Sockets-摘要"><a href="#显示Sockets-摘要" class="headerlink" title="显示Sockets 摘要"></a>显示Sockets 摘要</h4><pre><code>[root@jinc1 ~]# ss -s
+Total: 433 (kernel 435)
+TCP:   8 (estab 2, closed 0, orphaned 0, synrecv      0, timewait 0/0), ports 4
+
+Transport Total     IP        IPv6
+*      435       -         -        
+RAW      0         0         0        
+UDP      0         0         0        
+TCP      8         5         3        
+INET      8         5         3        
+FRAG      0         0         0       
+</code></pre><h4 id="列出所有打开的网络连接端口"><a href="#列出所有打开的网络连接端口" class="headerlink" title="列出所有打开的网络连接端口"></a>列出所有打开的网络连接端口</h4><pre><code>[root@jinc1 ~]# ss -l
+State       Recv-Q Send-Q   Local      Address:Port       Peer Address:Port   
+LISTEN      0      128                  *:http                       *:*       
+LISTEN      0      128                      :::ssh                  :::*       
+LISTEN      0      128                  *:ssh                        *:*       
+LISTEN      0      64                       :::telnet               :::*       
+LISTEN      0      100                     ::1:smtp                 :::*       
+LISTEN      0      100               127.0.0.1:smtp                  *:*    
+</code></pre><h4 id="查看进程使用的socket"><a href="#查看进程使用的socket" class="headerlink" title="查看进程使用的socket"></a>查看进程使用的socket</h4><pre><code>[root@jinc1 ~]# ss -pl
+State       Recv-Q Send-Q   Local      Address:Port       Peer Address:Port   
+LISTEN      0      128                  *:http                       *:*             users:((&quot;nginx&quot;,2355,6),(&quot;nginx&quot;,9026,6))
+LISTEN      0      128                      :::ssh                  :::*             users:((&quot;sshd&quot;,2090,4))
+LISTEN      0      128                  *:ssh                        *:*             users:((&quot;sshd&quot;,2090,3))
+LISTEN      0      64                       :::telnet               :::*             users:((&quot;xinetd&quot;,11177,5))
+LISTEN      0      100                     ::1:smtp                 :::*             users:((&quot;master&quot;,2169,13))
+LISTEN      0      100               127.0.0.1:smtp                  *:*             users:((&quot;master&quot;,2169,12))
+</code></pre><h4 id="找出打开套接字-端口应用程序"><a href="#找出打开套接字-端口应用程序" class="headerlink" title="找出打开套接字/端口应用程序"></a>找出打开套接字/端口应用程序</h4><pre><code>[root@localhost ~]# ss -pl | grep 3306
+</code></pre><h4 id="显示所有-UDP-Sockets"><a href="#显示所有-UDP-Sockets" class="headerlink" title="显示所有 UDP Sockets"></a>显示所有 UDP Sockets</h4><pre><code>[root@jinc1 ~]# ss -u -a
+State       Recv-Q Send-Q   Local      Address:Port       Peer Address:Port   
+</code></pre></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

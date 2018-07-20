@@ -1,12 +1,34 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Linux运维学习-第十二天 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-18T06:25:45.000Z">July 18, 2018</time><h1 class="post__title"><a href="/2018/07/18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a></h1><div class="post__main echo"><h3 id="第十二天了"><a href="#第十二天了" class="headerlink" title="第十二天了~"></a>第十二天了~</h3><a id="more"></a>
+<h2 id="第二关测验练习题——续"><a href="#第二关测验练习题——续" class="headerlink" title="第二关测验练习题——续"></a>第二关测验练习题——续</h2><h2 id="11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录"><a href="#11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录" class="headerlink" title="11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录"></a>11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录</h2><h4 id="a-请用tar打包-etc整个目录（打包及压缩）。"><a href="#a-请用tar打包-etc整个目录（打包及压缩）。" class="headerlink" title="a.请用tar打包/etc整个目录（打包及压缩）。"></a>a.请用tar打包/etc整个目录（打包及压缩）。</h4><pre><code>tar zcvf 箱子  要打包的数据信息/cattar
 
-block head
-  title
-    = page.title + ' - ' + config.title
+tar zcvf /tmp/oldboy.tar.gz /etc/
 
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+    z   --表示压缩数据的方式  gzip
+    c   --创建需要压缩的数据包 create
+    v   --详细显示压缩过程（可不用）
+    f   --指定生成压缩文件路径信息
+
+检查压缩包数据信息方法：tar tf  压缩包
+                          t :检查压缩包数据信息
+</code></pre><h4 id="b-请用tar打包-etc整个目录（打包及压缩，但需要排除-etc-services文件）。"><a href="#b-请用tar打包-etc整个目录（打包及压缩，但需要排除-etc-services文件）。" class="headerlink" title="b.请用tar打包/etc整个目录（打包及压缩，但需要排除/etc/services文件）。"></a>b.请用tar打包/etc整个目录（打包及压缩，但需要排除/etc/services文件）。</h4><pre><code>[root@jinc etc]# tar zcf /tmp/oldgirl.tar.gz /etc/ --exclude=/etc/services 
+
+ --exclude=要排除的数据信息    排除=后面的数据信息
+</code></pre><h4 id="c-请把a点命令的压缩包，解压到-tmp指定目录下（最好只用tar命令实现）。"><a href="#c-请把a点命令的压缩包，解压到-tmp指定目录下（最好只用tar命令实现）。" class="headerlink" title="c.请把a点命令的压缩包，解压到/tmp指定目录下（最好只用tar命令实现）。"></a>c.请把a点命令的压缩包，解压到/tmp指定目录下（最好只用tar命令实现）。</h4><pre><code> tar zxvf oldboy.tar.gz -C /tmp
+x   --解压提取数据信息
+说明：解压时，如果解压的数据时间信息不准确会有报错
+</code></pre><h3 id="第十二题：如何进行文件字符信息过滤"><a href="#第十二题：如何进行文件字符信息过滤" class="headerlink" title="第十二题：如何进行文件字符信息过滤"></a>第十二题：如何进行文件字符信息过滤</h3><h4 id="环境创建"><a href="#环境创建" class="headerlink" title="环境创建"></a>环境创建</h4><pre><code>mkdir /oldboy -p ;echo &quot;i am oldboy,myqq is 664341340&quot; &gt;/oldboy/oldboy.txt
+</code></pre><h4 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h4><h5 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h5><pre><code>sed &apos;s#i am ##g&apos; oldboy/oldboy.txt|sed &quot;s#myqq is##g&quot;
+</code></pre><h5 id="第二种方法：利用awk-命令"><a href="#第二种方法：利用awk-命令" class="headerlink" title="第二种方法：利用awk 命令"></a>第二种方法：利用awk 命令</h5><pre><code>awk -F &quot;，&quot; &apos;print $3,$6&apos; /oldboy/oldboy.txt
+
+awk -F &quot;[ ,]&quot; &apos;print $3,NF&apos; /oldboy/oldboy.txt
+
+awk &apos;BEGIN{FS=&quot;[ ,]&quot;}{print $3,$6}&apos; oldboy.txt
+</code></pre><h5 id="第三种方法：利用cut命令"><a href="#第三种方法：利用cut命令" class="headerlink" title="第三种方法：利用cut命令"></a>第三种方法：利用cut命令</h5><pre><code>sed &apos;s#,# #g&apos; /oldboy/oldboy.txt|cut -d &quot; &quot; -f3,6
+</code></pre><h3 id="第十四题：过滤出-etc-services-文件包含3306或1521两数字所在的行的内容。"><a href="#第十四题：过滤出-etc-services-文件包含3306或1521两数字所在的行的内容。" class="headerlink" title="第十四题：过滤出/etc/services 文件包含3306或1521两数字所在的行的内容。"></a>第十四题：过滤出/etc/services 文件包含3306或1521两数字所在的行的内容。</h3><h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><pre><code>grep -E &quot;3306|1521&quot; /etc/services
+
+或者 egrep &quot;3306|1521&quot; /etc/services
+</code></pre><h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><pre><code>sed -n &quot;/3306\|1521/p&quot; /etc/services
+
+或者 sed -rn &quot;/3306|1521/p&quot; /etc/services
+</code></pre><h4 id="方法三："><a href="#方法三：" class="headerlink" title="方法三："></a>方法三：</h4><pre><code>awk &quot;/3306|1521/&quot; /etc/services
+</code></pre><h5 id="特殊正则-或"><a href="#特殊正则-或" class="headerlink" title="| 特殊正则 或"></a>| 特殊正则 或</h5></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/学习笔记/">学习笔记</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

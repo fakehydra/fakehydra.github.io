@@ -1,12 +1,51 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Linux运维学习-第五天 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-09T11:44:00.000Z">July 9, 2018</time><h1 class="post__title"><a href="/2018/07/09/Linux运维学习-第五天/">Linux运维学习-第五天</a></h1><div class="post__main echo"><p>第一关测验练习题–续</p>
+<a id="more"></a>
+<h3 id="第一关测验练习题"><a href="#第一关测验练习题" class="headerlink" title="第一关测验练习题"></a>第一关测验练习题</h3><ol start="4">
+<li><p>把oldboy.txt 拷贝（复制）到/tmp 下</p>
+<p>   cp /data/oldboy.txt /tmp<br>   cp –复制文件或复制目录<br>   -r   —递归复制目录数据信息<br>   -a  —归档参数，包含了-r -d -p 参数的作用</p>
+<p>   [root@jinc data]# cp /data/oldboy.txt  /tmp/<br>   cp: overwrite /tmp/oldboy.txt’?<br>   [root@jinc data]# ls -l /tmp/<br>   total 4<br>   -rw-r–r–. 1 root root 15 Jul  5 15:19 oldboy.txt<br>   -rw-r–r–. 1 root root  0 Jul  5 22:33 text.txt<br>   -rw——-. 1 root root  0 Jul  4 15:27 yum.log                                                  </p>
+</li>
+</ol>
+<h2 id="复制目录的方法–"><a href="#复制目录的方法–" class="headerlink" title="复制目录的方法–"></a>复制目录的方法–</h2><pre><code>[root@jinc data]# cp -r /data/ /tmp/
+[root@jinc data]# ls -ld /tmp/data/
+drwxr-xr-x. 3 root root 4096 Jul  6 01:46 /tmp/data/
+</code></pre><p>说明：默认复制文件如果在目标目录中已经存在，会有覆盖提示（如何解决？？？）</p>
+<pre><code>1.\cp  --临时取消别名
+2.unalias   --关闭别名 
+</code></pre><ol start="5">
+<li><p>把/data 移动到 /root 目录下</p>
+<p> move 移动 ==mv 移动命令 ==剪切功能<br> mv 要移动的文件或目录信息 路径<br> [root@jinc data]# mv /data/ /root/</p>
+</li>
+<li><p>进入/root目录下的data目录，删除oldboy.txt文件<br>a) 第一种方法：</p>
+<pre><code>remove 移除 ==rm 移除命令
+rm 要移除的文件或目录信息
+[root@jinc data]# ls
+oldboy.txt
+[root@jinc data]# rm oldboy.txt
+[root@jinc data]# ls
+[root@jinc data]# 
+</code></pre><p>b) 第二种方法：精确删除多个文件信息。</p>
+<pre><code>第一里程：找出相应的文件数据
+ find 查找数据信息命令
+ find 在哪找东西 找的东西的类型 找的东西的名称
+ [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;
+ /root/data/error.txt
+ /root/data/right.txt
+ /root/data/oldboy.txt
+ 第二里程：将数据进行删除
+ [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;|xargs rm -f
+</code></pre><p>c) 第三种方法：</p>
+</li>
+</ol>
+<pre><code>第一里程：找出相应的文件数据
+         同find 
 
-block head
-  title
-    = page.title + ' - ' + config.title
+第二里程：将数据进行删除（·· 反引号 ==$())
+        [root@jinc1 data]# rm -rf &apos;find *.txt&apos;
 
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+        [root@jinc1 tmp]# rm -rf $(find *.txt)
+</code></pre><h2 id="补充：管道后面的命令不识别别名"><a href="#补充：管道后面的命令不识别别名" class="headerlink" title="补充：管道后面的命令不识别别名"></a>补充：管道后面的命令不识别别名</h2><h2 id="PS-一切皆文件"><a href="#PS-一切皆文件" class="headerlink" title="PS: 一切皆文件"></a>PS: 一切皆文件</h2><pre><code>反引号作用：在一个命令中嵌入执行一个命令
+[root@jinc ~]# `which cat` /etc/hosts
+
+[root@jinc ~]# $(which cat) /etc/hosts
+</code></pre></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/学习笔记/">学习笔记</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

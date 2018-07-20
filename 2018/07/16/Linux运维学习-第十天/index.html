@@ -1,12 +1,60 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Linux运维学习-第十天 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-16T06:33:10.000Z">July 16, 2018</time><h1 class="post__title"><a href="/2018/07/16/Linux运维学习-第十天/">Linux运维学习-第十天</a></h1><div class="post__main echo"><h2 id="num-10"><a href="#num-10" class="headerlink" title="num 10"></a>num 10</h2><a id="more"></a>
+<h2 id="今天，先来了个突击小测验。。。。内容就不放出来了。。。开始正题"><a href="#今天，先来了个突击小测验。。。。内容就不放出来了。。。开始正题" class="headerlink" title="今天，先来了个突击小测验。。。。内容就不放出来了。。。开始正题."></a>今天，先来了个突击小测验。。。。内容就不放出来了。。。开始正题.</h2><h2 id="对变量与系统变量的回顾"><a href="#对变量与系统变量的回顾" class="headerlink" title="对变量与系统变量的回顾"></a>对变量与系统变量的回顾</h2><pre><code>变量：对一个字符串信息进行赋值的过程
+环境变量：系统经常使用的变量；系统中已经设置好的；环境变量都是由大写字母组成
+</code></pre><h2 id="第二关测验题目讲解"><a href="#第二关测验题目讲解" class="headerlink" title="第二关测验题目讲解"></a>第二关测验题目讲解</h2><h2 id="第一题：如何过滤出已知当前目录下oldboy中的所有一级目录"><a href="#第一题：如何过滤出已知当前目录下oldboy中的所有一级目录" class="headerlink" title="第一题：如何过滤出已知当前目录下oldboy中的所有一级目录"></a>第一题：如何过滤出已知当前目录下oldboy中的所有一级目录</h2><pre><code>(提示:不包含oldboy目录下面目录的子目录及隐藏目录，即只能是第一级目录)？五种方法
+</code></pre><h3 id="创建模拟环境"><a href="#创建模拟环境" class="headerlink" title="创建模拟环境"></a>创建模拟环境</h3><pre><code>cd ~
+mkdir oldboy -p
+cd oldboy/
+mkdir ext/oldboy test xiaodong xiaofan xingfujie -p
+touch jeacen oldboy wodi.gz yingsui.gz
+LANG=en
+</code></pre><h4 id="方法一：利用tree命令"><a href="#方法一：利用tree命令" class="headerlink" title="方法一：利用tree命令"></a>方法一：利用tree命令</h4><pre><code>tree -Ld 1
+</code></pre><h4 id="方法二：利用find命令"><a href="#方法二：利用find命令" class="headerlink" title="方法二：利用find命令"></a>方法二：利用find命令</h4><pre><code>find /root/oldboy/ -type d -maxdepth 1 （绝对路径）
+find ./ -maxdepth 1 -type d （相对路径）
+</code></pre><h4 id="方法三：利用三剑客命令"><a href="#方法三：利用三剑客命令" class="headerlink" title="方法三：利用三剑客命令"></a>方法三：利用三剑客命令</h4><pre><code>ls -l /root/oldboy/|grep &quot;d&quot;  --以d开头
+ll -F /root/oldboy/|grep &quot;/$&quot;  --以/结尾
 
-block head
-  title
-    = page.title + ' - ' + config.title
+ls -l /root/oldboy/|sed -n &quot;/^d/p&quot; --以d开头
+ll -F /root/oldboy/|sed -n &apos;/\//p&apos; --以/结尾
+ll -F /root/oldboy/|sed -n &apos;/[/]/p&apos; --以/结尾
 
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+ls -l /root/oldboy/|awk &quot;/^d/&quot; --以d开头
+ll -F /root/oldboy/|awk &apos;/\//&apos; --以/结尾
+</code></pre><h4 id="方法四：利用硬连接"><a href="#方法四：利用硬连接" class="headerlink" title="方法四：利用硬连接"></a>方法四：利用硬连接</h4><pre><code>ls -l /root/oldboy/|awk &apos;$2&gt;1&apos;
+ls -l /root/oldboy/|awk &apos;$2!=1&apos;
+</code></pre><h4 id="方法五：利用"><a href="#方法五：利用" class="headerlink" title="方法五：利用*"></a>方法五：利用*</h4><pre><code>ls -ld */
+</code></pre><h2 id="第二题：如何进行目录之间的快速切换"><a href="#第二题：如何进行目录之间的快速切换" class="headerlink" title="第二题：如何进行目录之间的快速切换"></a>第二题：如何进行目录之间的快速切换</h2><pre><code>[root@jinc oldboy]# cd /proc/sys/net/ipv4
+[root@jinc ipv4]# cd /tmp/
+[root@jinc tmp]# cd -
+/proc/sys/net/ipv4
+[root@jinc ipv4]# 
+</code></pre><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><pre><code>-  ：还原切换以前的目录信息；等价于$OLDPWD
+$OLDPWD ：记录保存切换之前的所在路径信息
+</code></pre><h3 id="cd命令用法总结"><a href="#cd命令用法总结" class="headerlink" title="cd命令用法总结"></a>cd命令用法总结</h3><pre><code>cd - :切换到上一次所在的目录信息
+   ..:切换到当前目录的上一级目录
+   . ：切换到当前所在的目录（一般用在移动到当前目录时使用）
+   ~ ：当前登录系统的家目录信息
+</code></pre><h3 id="测验："><a href="#测验：" class="headerlink" title="测验："></a>测验：</h3><pre><code>进入到/etc/sysconfig/network-scripts/目录，并查看你所在位置
+cd /etc/sysconfig/network-scripts/
+pwd
+
+进入到上一级目录，并查看你所在位置
+cd ..
+pwd
+
+进入到/root目录下面，并显示你所在位置
+cd /root cd ~
+pwd
+
+快速返回到你上一次的目录位置
+cd -
+pwd
+
+回到老家
+cd ~ cd
+pwd
+</code></pre><h2 id="第三题：一个目录中有很多文件（ls查-看时好多屏），想最快速度查看到最近更新的文件。如何看？"><a href="#第三题：一个目录中有很多文件（ls查-看时好多屏），想最快速度查看到最近更新的文件。如何看？" class="headerlink" title="第三题：一个目录中有很多文件（ls查-看时好多屏），想最快速度查看到最近更新的文件。如何看？"></a>第三题：一个目录中有很多文件（ls查-看时好多屏），想最快速度查看到最近更新的文件。如何看？</h2><pre><code>ls -t 
+利用-t参数可以按照时间顺序排序显示文件内容（由新到旧）
+ls -rt 
+利用-r参数，可以按照时间信息反向排序
+</code></pre></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/学习笔记/">学习笔记</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

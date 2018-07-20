@@ -1,12 +1,46 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Linux三剑客之 grep - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-08T09:14:45.000Z">July 8, 2018</time><h1 class="post__title"><a href="/2018/07/08/Linux三剑客之-grep/">Linux三剑客之 grep</a></h1><div class="post__main echo"><p>Linux三剑客之一</p>
+<a id="more"></a>
+<h4 id="Linux三剑客命令之grep"><a href="#Linux三剑客命令之grep" class="headerlink" title="Linux三剑客命令之grep"></a>Linux三剑客命令之grep</h4><h3 id="1-grep-命令详解"><a href="#1-grep-命令详解" class="headerlink" title="1.grep 命令详解"></a>1.grep 命令详解</h3><pre><code>grep 是Linux系统中最重要的命令之一--其主要功能为：从文本文件或管道数据流中筛选匹配的行以及数据（可配合正则表达式一起使用，功能更强大）---此为Linux运维人员必须要掌握的命令之一
+</code></pre><h3 id="2-语法格式"><a href="#2-语法格式" class="headerlink" title="2.语法格式"></a>2.语法格式</h3><pre><code>grep [options（参数）] [pattern （匹配模式）] [file（查找的文件）]--grep 命令当中的匹配模式或模式匹配，都是不要查找的东西，可以是普通的文字符号也可是正则表达式。
+</code></pre><h3 id="3-选项说明"><a href="#3-选项说明" class="headerlink" title="3.选项说明"></a>3.选项说明</h3><pre><code>参数选项    |     解释说明
+</code></pre><h2 id="v-–显示不匹配的行，或者说排除某些行"><a href="#v-–显示不匹配的行，或者说排除某些行" class="headerlink" title="-v         |  –显示不匹配的行，或者说排除某些行"></a>-v         |  –显示不匹配的行，或者说排除某些行</h2><pre><code>[root@jinc1 test]# grep -v &quot;dog&quot; old.txt 
+old 
+boy 
+girl 
+[root@jinc1 test]# cat old.txt 
+old       
+boy 
+girl
+dog
+</code></pre><h2 id="n-–显示匹配行及行号"><a href="#n-–显示匹配行及行号" class="headerlink" title="-n       |  –显示匹配行及行号"></a>-n       |  –显示匹配行及行号</h2><pre><code>[root@jinc1 test]# grep -n &quot;dog&quot; old.txt 
+4:dog
+</code></pre><h2 id="i-–不区分大小写（只适用于单字符），默认是区分大小写的"><a href="#i-–不区分大小写（只适用于单字符），默认是区分大小写的" class="headerlink" title="-i       |   –不区分大小写（只适用于单字符），默认是区分大小写的"></a>-i       |   –不区分大小写（只适用于单字符），默认是区分大小写的</h2><pre><code>[root@jinc1 test]# grep &quot;old&quot; old.txt 
+old
+[root@jinc1 test]# grep -i &quot;old&quot; old.txt 
+OLD
+old
+</code></pre><h2 id="c-–只统计匹配的行数，注意不是匹配的次数"><a href="#c-–只统计匹配的行数，注意不是匹配的次数" class="headerlink" title="-c        |   –只统计匹配的行数，注意不是匹配的次数"></a>-c        |   –只统计匹配的行数，注意不是匹配的次数</h2><pre><code>[root@jinc1 test]# grep -c &quot;old&quot; old.txt 
+2
+[root@jinc1 test]# cat old.txt 
+oldboy
+OLD
+old
+boy
+girl
+dog
+</code></pre><h2 id="E-–使用扩展的egrep命令"><a href="#E-–使用扩展的egrep命令" class="headerlink" title="-E         |  –使用扩展的egrep命令"></a>-E         |  –使用扩展的egrep命令</h2><pre><code>[root@jinc1 test]# grep -Ei &quot;old|dog&quot; old.txt 
+OLD
+old
+dog
+同时过滤old 和dog不区分
+</code></pre><h2 id="–color-auto-–为grep过滤的匹配字符串添加颜色"><a href="#–color-auto-–为grep过滤的匹配字符串添加颜色" class="headerlink" title="–color=auto –为grep过滤的匹配字符串添加颜色"></a>–color=auto –为grep过滤的匹配字符串添加颜色</h2><pre><code> [root@jinc1 test]# grep -Ei --color=auto &quot;old|boy&quot; old.txt 
+ OLD
+ old
+ boy
+同时过滤old 和dog并为其显示颜色
+</code></pre><h2 id="w-–只匹配过滤的单词"><a href="#w-–只匹配过滤的单词" class="headerlink" title="-w           –只匹配过滤的单词"></a>-w           –只匹配过滤的单词</h2><h2 id="o-–只输出匹配的内容"><a href="#o-–只输出匹配的内容" class="headerlink" title="-o           –只输出匹配的内容"></a>-o           –只输出匹配的内容</h2><pre><code>[root@jinc1 test]# grep -o &quot;old&quot; old.txt 
+old
+old
+</code></pre><h2 id="–未完待续–"><a href="#–未完待续–" class="headerlink" title="–未完待续–"></a>–未完待续–</h2><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=28762749&auto=1&height=66"></iframe>
 
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

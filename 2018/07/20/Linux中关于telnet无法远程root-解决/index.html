@@ -1,12 +1,19 @@
-extends views/main.pug
-
-block head
-  title
-    = page.title + ' - ' + config.title
-
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Linux中关于telnet无法远程root-解决 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-20T00:34:15.000Z">July 20, 2018</time><h1 class="post__title"><a href="/2018/07/20/Linux中关于telnet无法远程root-解决/">Linux中关于telnet无法远程root-解决</a></h1><div class="post__main echo"><h3 id="关于telnet无法远程root用户解决"><a href="#关于telnet无法远程root用户解决" class="headerlink" title="关于telnet无法远程root用户解决"></a>关于telnet无法远程root用户解决</h3><a id="more"></a>
+<h3 id="移除securetty文件"><a href="#移除securetty文件" class="headerlink" title="移除securetty文件"></a>移除securetty文件</h3><pre><code>验证规则设置在/etc/security文件中，该文件定义root用户只能在tty1-tty6的终端上记录，
+删除该文件或者将其改名即可避开验证规则实现root用户远程登录。
+</code></pre><h4 id="主机201："><a href="#主机201：" class="headerlink" title="主机201："></a>主机201：</h4><pre><code>[root@jinc1 ~]# mv /etc/securetty /etc/securetty.bak
+</code></pre><h4 id="主机200："><a href="#主机200：" class="headerlink" title="主机200："></a>主机200：</h4><pre><code>[root@jinc ~]# telnet 10.0.0.201
+ Trying 10.0.0.201...
+ Connected to 10.0.0.201.
+ Escape character is &apos;^]&apos;.
+ CentOS release 6.9 (Final)
+ Kernel 2.6.32-696.el6.x86_64 on an x86_64
+ jinc1 login: root
+ Password: 
+ Last login: Fri Jul 20 08:19:07 from 10.0.0.1
+ [root@jinc1 ~]# pwd
+ /root
+ [root@jinc1 ~]# ifconfig
+ eth0      Link encap:Ethernet  HWaddr 00:0C:29:17:CB:55  
+      inet addr:10.0.0.201  Bcast:10.0.0.255  Mask:255.255.255.0
+</code></pre></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/小东西/">小东西</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

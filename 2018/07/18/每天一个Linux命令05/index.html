@@ -1,12 +1,65 @@
-extends views/main.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>每天一个Linux命令05 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-18T11:59:46.000Z">July 18, 2018</time><h1 class="post__title"><a href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a></h1><div class="post__main echo"><h3 id="一个比较鸡肋的命令"><a href="#一个比较鸡肋的命令" class="headerlink" title="一个比较鸡肋的命令~"></a>一个比较鸡肋的命令~</h3><a id="more"></a>
+<h2 id="nl命令"><a href="#nl命令" class="headerlink" title="nl命令"></a>nl命令</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre><code>nl (选项) (参数)
+</code></pre><h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><pre><code>-b ：指定行号指定的方式，主要有两种：
+    -b a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；
+    -b t ：如果有空行，空的那一行不要列出行号(默认值)；
 
-block head
-  title
-    = page.title + ' - ' + config.title
+-n ：列出行号表示的方法，主要有三种：
+    -n ln ：行号在萤幕的最左方显示；
+    -n rn ：行号在自己栏位的最右方显示，且不加 0 ；
+    -n rz ：行号在自己栏位的最右方显示，且加 0 ；
 
-block main
-  include mixins/post.pug
-  +post(page, 'post')
-  
-  include plugins/reward.pug
-  include plugins/livere.pug
+-w ：行号栏位的占用的位数。
+-p ：在逻辑定界符处不重新开始计算。
+</code></pre><h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><pre><code>用 nl 列出 log2015.log 的内容：
+
+[root@localhost test]# nl log2015.log
+1 2015-01
+2 2015-02
+
+
+3 ======[root@localhost test]#
+
+说明：文件中的空白行，nl 不会加上行号
+
+用 nl 列出 log2015.log 的内容，空本行也加上行号：
+
+[root@localhost test]# nl -b a log2015.log
+1 2015-01
+2 2015-02
+3
+4
+5 ======[root@localhost test]#
+
+让行号前面自动补上0，统一输出格式：
+
+[root@localhost test]# nl -b a -n rz log2015.log
+000001 2015-01
+000002 2015-02
+000003 2015-03
+000004 2015-04
+000005 2015-05
+000006 2015-06
+000007 2015-07
+000008 2015-08
+000009 2015-09
+000010 2015-10
+000011 2015-11
+000012 2015-12
+000013 =======
+
+[root@localhost test]# nl -b a -n rz -w 3 log2015.log
+001 2015-01
+002 2015-02
+003 2015-03
+004 2015-04
+005 2015-05
+006 2015-06
+007 2015-07
+008 2015-08
+009 2015-09
+010 2015-10
+011 2015-11
+012 2015-12
+013 =======
+</code></pre><h4 id="说明：nl-b-a-n-rz命令行号默认为六位，要调整位数可以加上参数-w-3调整为3位"><a href="#说明：nl-b-a-n-rz命令行号默认为六位，要调整位数可以加上参数-w-3调整为3位" class="headerlink" title="说明：nl -b a -n rz命令行号默认为六位，要调整位数可以加上参数-w 3调整为3位"></a>说明：nl -b a -n rz命令行号默认为六位，要调整位数可以加上参数-w 3调整为3位</h4><h5 id="虽然这。。。。比较鸡肋。。但是还是可以用滴"><a href="#虽然这。。。。比较鸡肋。。但是还是可以用滴" class="headerlink" title="虽然这。。。。比较鸡肋。。但是还是可以用滴~~"></a>虽然这。。。。比较鸡肋。。但是还是可以用滴<del>~</del>~</h5></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
