@@ -1,267 +1,96 @@
-
-
 <!DOCTYPE html>
-<html lang="">
-<!--begin head-->
+<html>
 <head>
-    <meta charset="utf-8">
-<!--begin title-->
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="服务器系统安装" />
+  
 
-<title>
-    
-    Linux运维学习 第二天 |
-    
-    瑾川</title>
-<!--end title-->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--begin mete-->
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习 第二天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="服务器系统安装">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习 第二天">
+<meta property="og:url" content="http://yoursite.com/2018/07/05/Linux运维学习-第二天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="服务器系统安装">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-06T11:55:13.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习 第二天">
+<meta name="twitter:description" content="服务器系统安装">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-<meta name="author" content="瑾川"/>
-
-<!--end mete-->
-<!--begin keywords-->
-<meta name="keywords" content="Nginx,学习笔记,小东西,小测试,每天一个Linux命令,这里有一片文章,那些年学习的Linux命令"/>
-<!--end keywords-->
-<!--begin rss-->
-
-<link rel="alternate" href="/atom.xml" title="瑾川" type="application/atom+xml">
-
-<!--end rss-->
-<!--begin favicon-->
-
-<link rel="icon" href="/22.ico">
-
-<!--end favicon-->
-<!--begin style-->
-
-<!-- stylesheets list from config.yml -->
-
-<link rel="stylesheet" href="/css/hannah.css">
-
-
-<!--end style-->
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
 </head>
-<!--end head-->
-<!--begin body-->
-<body class="container-fluid">
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
 
-<!--begin menu-->
-<div class="hannah-menu">
-    <i class="fh fh-ravelry fa-2x btn fixed-menu animated bounce" id="btn_menu" aria-hidden="true"></i>
-    <div class="menu-outer container-fluid hide animated" id="div_menu">
-        <div class="row" style="margin-bottom: 5px;">
-            
-            <div class="col-md-offset-2 col-md-3 col-xs-4 text-center left-social">
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
                 
-                <a target="_blank" href="https://github.com/fakehydra" title="GitHub"><i class="fh fh-github"></i></a>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
                 
-                <style>
-                    .left-social {
-                        height: 132px;
-                        line-height: 132px;
-                        font-size: 66px;
-                    }
-
-                    .left-social * {
-                        color: #f1ce8e;
-                    }
-
-                    @media (max-width: 767px) {
-                        .left-social {
-                            line-height: 132px;
-                            font-size: 33px;
-                        }
-                    }
-                </style>
-            </div>
-            <!--begin handImg-->
-            <div class="col-md-2 col-xs-4 text-center">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
                 
-                <img src="/img/logo.jpg" alt="Head Image" class="img-circle">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
                 
+                </ul>
             </div>
-            <!--end handImg-->
-            <div class="col-md-3 col-xs-4 text-center right-social">
-                
-                <style>
-                    .right-social {
-                        height: 132px;
-                        line-height: 132px;
-                        font-size: 66px;
-                    }
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第二天" class="post-Linux运维学习-第二天 post type-post status-publish format-standard hentry">
+    <!---->
 
-                    @media (max-width: 767px) {
-                        .right-social {
-                            line-height: 132px;
-                            font-size: 33px;
-                        }
-                    }
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习 第二天
+    </h1>
+  
 
-                    .right-social * {
-                        color: #f1ce8e;
-                    }
-                </style>
-            </div>
-        </div>
-        <div class="row">
-            <div class="menu-content col-md-8 col-md-push-2 col-xs-12 ">
-                <dl class="menu-content-item">
-                    <dt class="menu-content-title">
-                        <i class="fh fh-bars" aria-hidden="true"></i> Menu
-                    </dt>
-                    <dd class="menu-content-content">
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/" class="btn btn-block">
-                                
-                                <i class="fh fh-ravelry"></i>
-                                Home
-                            </a>
-                        </div>
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/categories" class="btn btn-block">
-                                
-                                <i class="fh fh-cubes"></i>
-                                Category
-                            </a>
-                        </div>
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/tags" class="btn btn-block">
-                                
-                                <i class="fh fh-tags"></i>
-                                Tag
-                            </a>
-                        </div>
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/archives" class="btn btn-block">
-                                
-                                <i class="fh fh-archive"></i>
-                                Archives
-                            </a>
-                        </div>
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/about" class="btn btn-block">
-                                
-                                <i class="fh fh-about"></i>
-                                About
-                            </a>
-                        </div>
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/doc" class="btn btn-block">
-                                
-                                <i class="fh fh-document"></i>
-                                Doc
-                            </a>
-                        </div>
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/plug" class="btn btn-block">
-                                
-                                <i class="fh fh-plug"></i>
-                                Plug
-                            </a>
-                        </div>
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/sitemap" class="btn btn-block">
-                                
-                                <i class="fh fh-sitemap"></i>
-                                SiteMap
-                            </a>
-                        </div>
-                        
-                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
-                            <a href="/atom.xml" class="btn btn-block">
-                                <i class="fh fh-rss" aria-hidden="true"></i> RSS
-                            </a>
-                        </div>
-                    </dd>
-                </dl>
-            </div>
-        </div>
-        <div class="row">
-            <div class="menu-content col-md-8 col-md-offset-2 col-xs-12 ">
-                <dl class="col-md-6 col-xs-6 menu-content-item">
-                    <dt class="menu-content-title">
-                        <i class="fh fh-cubes" aria-hidden="true"></i> Category
-                    </dt>
-                    <dd class="menu-content-content animated zoomIn">
-                        
-                    </dd>
-                </dl>
-                <dl class="col-md-6 col-xs-6 menu-content-item">
-                    <dt class="menu-content-title">
-                        <i class="fh fh-tag" aria-hidden="true"></i> Tags
-                    </dt>
-                    <dd class="menu-content-content animated zoomIn">
-                        <ul class="menu-tag-list"><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="../../../../tags/Nginx/"><i class="fh fh-tag" aria-hidden="true"></i> Nginx</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="../../../../tags/学习笔记/"><i class="fh fh-tag" aria-hidden="true"></i> 学习笔记</a><span class="menu-tag-list-count">13</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="../../../../tags/小东西/"><i class="fh fh-tag" aria-hidden="true"></i> 小东西</a><span class="menu-tag-list-count">7</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="../../../../tags/小测试/"><i class="fh fh-tag" aria-hidden="true"></i> 小测试</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="../../../../tags/每天一个Linux命令/"><i class="fh fh-tag" aria-hidden="true"></i> 每天一个Linux命令</a><span class="menu-tag-list-count">8</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="../../../../tags/这里有一片文章/"><i class="fh fh-tag" aria-hidden="true"></i> 这里有一片文章</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="../../../../tags/那些年学习的Linux命令/"><i class="fh fh-tag" aria-hidden="true"></i> 那些年学习的Linux命令</a><span class="menu-tag-list-count">3</span></li></ul>
-                    </dd>
-                </dl>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end menu-->
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/Linux运维学习-第二天/" data-id="cjjtred3q000foklyek6k7ass" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
 
-<div class="row hannah-body">
-    <div class="col-md-8 col-md-push-2 col-xs-12">
-        <!--begin breadcrumb-->
-        <div class="bread-crumb">
-    <ul class="bread-crumb-menu animated rubberBand">
-        <li><a href="../../../../index.html"><i class="fh fh-ravelry" aria-hidden="true"></i> Home</a></li>
-        
-        <li>
-            
-            <i class="fh fh-newspaper-o" aria-hidden="true"></i>
-            
-            Linux运维学习 第二天
-        </li>
-        
-    </ul>
-    <div class="bread-crumb-search">
-        <div class="search">
-    <i class="fh fh-search icon-search"></i>
-    <input placeholder="Search ..." onkeyup="searchFunc(this,event,'../../../../search.xml')"
-           class="input-search animated fadeInRight"/>
-    <div class="search-result animated fadeInRight">
-        <a class="animated tada col-lg-12 search-result-item result-link" href="../../20/Linux中关于telnet无法远程root-解决/">Linux中关于telnet无法远程root-解决</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../19/Linux关于密码二三事/">Linux关于密码二三事</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../19/Linux运维学习-第十三天/">Linux运维学习-第十三天</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../19/每天一个Linux命令07/">每天一个Linux命令07</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../19/每天一个Linux命令-06/">每天一个Linux命令06</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../19/nginx-简单安装-排错/">nginx 简单安装&排错</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../18/每天一个Linux命令05/">每天一个Linux命令05</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../18/第二次测验题目汇总/">第二次测验题目汇总</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../17/Linux同步网络时间/">Linux同步网络时间</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../16/每天一个Linux命令04/">每天一个Linux命令04</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../16/Linux运维学习-第十天/">Linux运维学习-第十天</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../13/centos-6-x下python2-6升级为2-7/">centos 6.x下python2.6升级为2.7</a><a class="animated tada col-lg-12 search-result-item result-link" href="../../13/Linux忘记密码解决2333/">Linux忘记密码解决2333</a>
-    </div>
-</div>
-    </div>
-</div>
-        <!--end breadcrumb-->
-        <article class="post animated rollIn">
-    <h1 class="post-title">Linux运维学习 第二天</h1>
-    <div class="post-subtitle">
-        
-        <time datetime="2018-07-05T05:03:14.000Z" class="item">
-            <i class="fh fh-calendar" aria-hidden="true"></i>&nbsp;&nbsp;2018-07-05
-        </time>
-        
-        
-        
-        <span class="item">
-        <i class="fh fh-tags" aria-hidden="true"></i>&nbsp;
-            
-            <a class="label label-info tags" href="../../../../tags/学习笔记/">
-            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;学习笔记
-            </a>
-            
-        </span>
-        
-    </div>
-    
-    <blockquote>
-        <p><strong><em>简介</em></strong><br></p>
-        <h5 id="服务器系统安装"><a href="#服务器系统安装" class="headerlink" title="服务器系统安装"></a>服务器系统安装</h5>
-    </blockquote>
-    
-    <a id="more"></a>
+    <div class="entry-content">
+      
+        <h5 id="服务器系统安装"><a href="#服务器系统安装" class="headerlink" title="服务器系统安装"></a>服务器系统安装</h5><a id="more"></a>
 <h3 id="1-什么是操作系统（中介）"><a href="#1-什么是操作系统（中介）" class="headerlink" title="1.什么是操作系统（中介）"></a>1.什么是操作系统（中介）</h3><p>Linux操作系统：是开源的 可以自由传播的 多用户 多任务的系统</p>
 <p>操作系统组成：计算机硬件+系统核心+命令解释器+外围应用程序</p>
 <h3 id="2-Linux发展历史"><a href="#2-Linux发展历史" class="headerlink" title="2.Linux发展历史"></a>2.Linux发展历史</h3><p>1969年：Unix诞生于贝尔实验室<br>1984年：Minix诞生 谭宁邦（教学使用的Minix系统）<br>198X年：FSF诞生（斯托曼）<br>目标：建立一个与Unix一样NB的系统<br>公司：自由软件基金会（FSF）<br>项目：GNU项目（GNU=GNU is not unix    优秀软件：gawk,bash,gcc,emaces<br>没有完善的内核）<br>规则：GPL协议（通用公共许可） –开源的，自由传播的；必须将修改之后的代码公布出来。<br>1991年：Linux=GNU/Linux内核</p>
@@ -270,67 +99,136 @@
 <h2 id="安装部署Linux"><a href="#安装部署Linux" class="headerlink" title="安装部署Linux"></a>安装部署Linux</h2><p>F12=下一步</p>
 <h2 id="分区方法"><a href="#分区方法" class="headerlink" title="分区方法"></a>分区方法</h2><p>/boot 分区：当Linux系统空间不够的时候，向硬盘借取空间；指定借取空间==swap空间（交换空间；swap分区大小==真实内存空间*1.5，当内存大于或等于8G，swap分区就是8G<br>/分区：剩下的所有</p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=785902&auto=1&height=66"></iframe>
-</article>
-<ol class="animated rollIn hannah-toc"><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-3"><a class="animated rollIn hannah-toc-link" href="#1-什么是操作系统（中介）"><span class="animated rollIn hannah-toc-text">1.什么是操作系统（中介）</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-3"><a class="animated rollIn hannah-toc-link" href="#2-Linux发展历史"><span class="animated rollIn hannah-toc-text">2.Linux发展历史</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-3"><a class="animated rollIn hannah-toc-link" href="#3-Linux安装部署"><span class="animated rollIn hannah-toc-text">3.Linux安装部署</span></a></li></ol></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#选择什么版本进行安装"><span class="animated rollIn hannah-toc-text">选择什么版本进行安装</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#安装部署Linux"><span class="animated rollIn hannah-toc-text">安装部署Linux</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#分区方法"><span class="animated rollIn hannah-toc-text">分区方法</span></a>
-<div class="animated bounceInDown paginations">
-    <div class="col-md-8 col-md-push-2 col-xs-12">
-        <nav>
-            
-            <a href="../linux运维学习-第三天/" class="prev col-md-2 col-xs-4 text-left">&larr; Prev</a>
-            
-            <span class="page-content col-md-8  col-xs-4 text-center">
-                
-            </span>
-            
-            <a href="../../04/Linux运维学习-第一天/" class="next col-md-2 col-xs-4 text-right">Next &rarr;</a>
-            
-        </nav>
-        <div>
-            <div class="col-md-6 col-xs-6 text-left">
-                
-                linux运维学习 第三天
-                
-            </div>
-            <div class="col-md-6 col-xs-6 text-right">
-                
-                Linux运维学习 第一天
-                
-            </div>
-        </div>
-    </div>
-</div>
+      
+    </div><!-- .entry-content -->
 
-        <!--begin comments-->
-        
-<div class="comments" id="comments">
+    <footer class="entry-meta">
+    <a href="/2018/07/05/Linux运维学习-第二天/">
+    <time datetime="2018-07-05T05:03:14.000Z" class="entry-date">
+        2018-07-05
+    </time>
+</a>
     
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
 
-</div>
+    </footer>
+</article>
 
 
-        <!--end comments-->
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/05/linux运维学习-第三天/" rel="prev"><span class="meta-nav">←</span> linux运维学习 第三天</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/04/Linux运维学习-第一天/" rel="next">Linux运维学习 第一天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
     </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="https://music.163.com/#/song?id=514761281" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/20/Linux中关于telnet无法远程root-解决/">Linux中关于telnet无法远程root-解决</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/Linux关于密码二三事/">Linux关于密码二三事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/Linux运维学习-第十三天/">Linux运维学习-第十三天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/每天一个Linux命令07/">每天一个Linux命令07</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/每天一个Linux命令-06/">每天一个Linux命令06</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
 </div>
-
-<!--begin footer-->
-<footer id="footer" class="footer animated fadeInUp hide">
-    <p><i class="copy">&copy;</i> 2018 <a href="http://yoursite.com">瑾川</a> All Right Reserved.</p>
-    <p>Powered by <a href="http://hexo.io">Hexo</a>. Theme by <a href="https://github.com/objectyan/hexo-theme-hannah">hannah</a></p>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
 </footer>
-<!--end footer-->
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
 
 
-<!-- scripts list from theme config.yml -->
-
-<script src="/js/hannah.js"></script>
-
-<script src="/js/canvas-nest.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<!--begin analytics-->
+<script src="/js/script.js"></script>
 
+<script src="/js/navigation.js"></script>
 
-<!--end analytics-->
+<div id="bg"></div>
+
+  </div>
 </body>
-<!--end body-->
 </html>
