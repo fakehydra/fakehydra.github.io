@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="初识Linux权限" />
+  <meta name="description" content="关于telnet无法远程root用户解决" />
   
 
   
@@ -13,20 +13,20 @@
   
   
   
-  <title>这是一个命令 | 瑾川</title>
+  <title>Linux中关于telnet无法远程root-解决 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初识Linux权限">
+  <meta name="description" content="关于telnet无法远程root用户解决">
 <meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="这是一个命令">
-<meta property="og:url" content="http://yoursite.com/2018/07/12/这是一个命令/index.html">
+<meta property="og:title" content="Linux中关于telnet无法远程root-解决">
+<meta property="og:url" content="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="初识Linux权限">
+<meta property="og:description" content="关于telnet无法远程root用户解决">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-12T11:54:14.680Z">
+<meta property="og:updated_time" content="2018-07-20T00:36:53.324Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="这是一个命令">
-<meta name="twitter:description" content="初识Linux权限">
+<meta name="twitter:title" content="Linux中关于telnet无法远程root-解决">
+<meta name="twitter:description" content="关于telnet无法远程root用户解决">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -69,7 +69,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-这是一个命令" class="post-这是一个命令 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux中关于telnet无法远程root-解决" class="post-Linux中关于telnet无法远程root-解决 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -77,64 +77,45 @@
         
   
     <h1 class="entry-title article-title">
-      这是一个命令
+      Linux中关于telnet无法远程root-解决
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjjtnr6yb0025qklyy8t6h671" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/" data-id="cjjtnr6vn0001qkly6xyccz0g" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>初识Linux权限</p>
-<a id="more"></a>
-<h2 id="linux-权限初体验"><a href="#linux-权限初体验" class="headerlink" title="linux 权限初体验"></a>linux 权限初体验</h2><pre><code>r(read,读取）：对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权限。
-w(write,写入）：对文件而言，具有新增，修改，删除文件内容的权限；对目录来说，具有新建，删除，修改，移动目录内文件的权限。
-x(execute,执行）：对文件而言，具有执行文件的权限；对目录来说该用户具有进入目录的权限
-
-1.目录的只读访问不允许使用cd进入目录，必须要有执行的权限
-2.只有执行权限只能进入目录，不能看到目录下的内容，要看的话需要可读权限
-3.一个文件能否删除，主要看该文件所在目录对用户是否具有写权限，若没有，则该目录下文件只能被文件所有者删除
-4.目录的w位不设置，即使你拥有目录中某文件的w权限也不能该文件
-</code></pre><h2 id="数字模式解读"><a href="#数字模式解读" class="headerlink" title="数字模式解读"></a>数字模式解读</h2><pre><code>rwx     7  
-rw      6
-r-w     5
-r--     4
--wx     3
--w-     2
---x     1
----     0
-</code></pre><h2 id="权限属性列表为10个字符："><a href="#权限属性列表为10个字符：" class="headerlink" title="权限属性列表为10个字符："></a>权限属性列表为10个字符：</h2><pre><code>[root@jinc1 oldboy]# ls -al
-total 24
-drwx------. 2 oldboy oldboy 4096 Jul  8 18:05 .
-drwxr-xr-x. 4 root   root   4096 Jul  9 02:24 ..
--rw-------. 1 oldboy oldboy  146 Jul  9 09:39 .bash_history
--rw-r--r--. 1 oldboy oldboy   18 Mar 23  2017 .bash_logout
--rw-r--r--. 1 oldboy oldboy  176 Mar 23  2017 .bash_profile
--rw-r--r--. 1 oldboy oldboy  124 Mar 23  2017 .bashrc
-</code></pre><h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><pre><code>第一个字符表示文件类型，d为目录 -为普通文件 l为连接      b为可存储的接口设备 c为键盘鼠标等输入设备
-2、3、4个字符表示所有者权限，5、6、7个字符表示所有者同组用户权限，     8、9、10为其他用户权限
-第二个字符表示所有者读权限，如果有权限则为r，没有权限则为-
-第三个字符表示所有者写权限，如果有权限则为w，没有权限则为-
-第四个字符表示所有者执行权限，如果有权限则为x，没有权限则为-
-第五个字符表示所有者同组用户读权限，如果有权限则为r，没有权限则     为-
-第六个字符表示所有者同组用户写权限，如果有权限则为w，没有权限则     为-
-第七个字符表示所有者同组用户执行权限，如果有权限则为x，没有权限     则为-
-第八个字符表示其他非同组读权限，如果有权限则为r，没有权限则为-
-第九个字符表示其他非同组写权限，如果有权限则为w，没有权限则为-
-第十个字符表示其他非同组执行权限，如果有权限则为x，没有权限则为-
-</code></pre><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h2>
+        <h3 id="关于telnet无法远程root用户解决"><a href="#关于telnet无法远程root用户解决" class="headerlink" title="关于telnet无法远程root用户解决"></a>关于telnet无法远程root用户解决</h3><a id="more"></a>
+<h3 id="移除securetty文件"><a href="#移除securetty文件" class="headerlink" title="移除securetty文件"></a>移除securetty文件</h3><pre><code>验证规则设置在/etc/security文件中，该文件定义root用户只能在tty1-tty6的终端上记录，
+删除该文件或者将其改名即可避开验证规则实现root用户远程登录。
+</code></pre><h4 id="主机201："><a href="#主机201：" class="headerlink" title="主机201："></a>主机201：</h4><pre><code>[root@jinc1 ~]# mv /etc/securetty /etc/securetty.bak
+</code></pre><h4 id="主机200："><a href="#主机200：" class="headerlink" title="主机200："></a>主机200：</h4><pre><code>[root@jinc ~]# telnet 10.0.0.201
+ Trying 10.0.0.201...
+ Connected to 10.0.0.201.
+ Escape character is &apos;^]&apos;.
+ CentOS release 6.9 (Final)
+ Kernel 2.6.32-696.el6.x86_64 on an x86_64
+ jinc1 login: root
+ Password: 
+ Last login: Fri Jul 20 08:19:07 from 10.0.0.1
+ [root@jinc1 ~]# pwd
+ /root
+ [root@jinc1 ~]# ifconfig
+ eth0      Link encap:Ethernet  HWaddr 00:0C:29:17:CB:55  
+      inet addr:10.0.0.201  Bcast:10.0.0.255  Mask:255.255.255.0
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/12/这是一个命令/">
-    <time datetime="2018-07-12T09:01:30.000Z" class="entry-date">
-        2018-07-12
+    <a href="/2018/07/20/Linux中关于telnet无法远程root-解决/">
+    <time datetime="2018-07-20T00:34:15.000Z" class="entry-date">
+        2018-07-20
     </time>
 </a>
     
@@ -150,10 +131,8 @@ drwxr-xr-x. 4 root   root   4096 Jul  9 02:24 ..
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/12/Linux运维学习-第八天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第八天</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/11/每天一个Linux命令03/" rel="next">每天一个Linux命令03 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/07/19/Linux关于密码二三事/" rel="next">Linux关于密码二三事 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
