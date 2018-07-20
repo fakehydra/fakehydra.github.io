@@ -1,4 +1,267 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="瑾川"><link rel="alternative" href="/atom.xml" title="瑾川" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Linux运维学习-第九天 - 瑾川</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">瑾川</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-07-13T08:44:30.000Z">July 13, 2018</time><h1 class="post__title"><a href="/2018/07/13/Linux运维学习-第九天/">Linux运维学习-第九天</a></h1><div class="post__main echo"><h2 id="第九天了"><a href="#第九天了" class="headerlink" title="第九天了~"></a>第九天了~</h2><a id="more"></a>
+
+
+<!DOCTYPE html>
+<html lang="">
+<!--begin head-->
+<head>
+    <meta charset="utf-8">
+<!--begin title-->
+
+<title>
+    
+    Linux运维学习-第九天 |
+    
+    瑾川</title>
+<!--end title-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--begin mete-->
+
+<meta name="author" content="瑾川"/>
+
+<!--end mete-->
+<!--begin keywords-->
+<meta name="keywords" content="Nginx,学习笔记,小东西,小测试,每天一个Linux命令,这里有一片文章,那些年学习的Linux命令"/>
+<!--end keywords-->
+<!--begin rss-->
+
+<link rel="alternate" href="/atom.xml" title="瑾川" type="application/atom+xml">
+
+<!--end rss-->
+<!--begin favicon-->
+
+<link rel="icon" href="/favicon.ico">
+
+<!--end favicon-->
+<!--begin style-->
+
+<!-- stylesheets list from config.yml -->
+
+<link rel="stylesheet" href="/css/hannah.css">
+
+
+<!--end style-->
+</head>
+<!--end head-->
+<!--begin body-->
+<body class="container-fluid">
+
+<!--begin menu-->
+<div class="hannah-menu">
+    <i class="fh fh-ravelry fa-2x btn fixed-menu animated bounce" id="btn_menu" aria-hidden="true"></i>
+    <div class="menu-outer container-fluid hide animated" id="div_menu">
+        <div class="row" style="margin-bottom: 5px;">
+            
+            <div class="col-md-offset-2 col-md-3 col-xs-4 text-center left-social">
+                
+                <a target="_blank" href="https://github.com/fakehydra" title="GitHub"><i class="fh fh-github"></i></a>
+                
+                <style>
+                    .left-social {
+                        height: 132px;
+                        line-height: 132px;
+                        font-size: 66px;
+                    }
+
+                    .left-social * {
+                        color: #f1ce8e;
+                    }
+
+                    @media (max-width: 767px) {
+                        .left-social {
+                            line-height: 132px;
+                            font-size: 33px;
+                        }
+                    }
+                </style>
+            </div>
+            <!--begin handImg-->
+            <div class="col-md-2 col-xs-4 text-center">
+                
+                <img src="/img/logo.jpg" alt="Head Image" class="img-circle">
+                
+            </div>
+            <!--end handImg-->
+            <div class="col-md-3 col-xs-4 text-center right-social">
+                
+                <style>
+                    .right-social {
+                        height: 132px;
+                        line-height: 132px;
+                        font-size: 66px;
+                    }
+
+                    @media (max-width: 767px) {
+                        .right-social {
+                            line-height: 132px;
+                            font-size: 33px;
+                        }
+                    }
+
+                    .right-social * {
+                        color: #f1ce8e;
+                    }
+                </style>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-content col-md-8 col-md-push-2 col-xs-12 ">
+                <dl class="menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-bars" aria-hidden="true"></i> Menu
+                    </dt>
+                    <dd class="menu-content-content">
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/" class="btn btn-block">
+                                
+                                <i class="fh fh-ravelry"></i>
+                                Home
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/categories" class="btn btn-block">
+                                
+                                <i class="fh fh-cubes"></i>
+                                Category
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/tags" class="btn btn-block">
+                                
+                                <i class="fh fh-tags"></i>
+                                Tag
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/archives" class="btn btn-block">
+                                
+                                <i class="fh fh-archive"></i>
+                                Archives
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/about" class="btn btn-block">
+                                
+                                <i class="fh fh-about"></i>
+                                About
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/doc" class="btn btn-block">
+                                
+                                <i class="fh fh-document"></i>
+                                Doc
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/plug" class="btn btn-block">
+                                
+                                <i class="fh fh-plug"></i>
+                                Plug
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/sitemap" class="btn btn-block">
+                                
+                                <i class="fh fh-sitemap"></i>
+                                SiteMap
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/atom.xml" class="btn btn-block">
+                                <i class="fh fh-rss" aria-hidden="true"></i> RSS
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-content col-md-8 col-md-offset-2 col-xs-12 ">
+                <dl class="col-md-6 col-xs-6 menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-cubes" aria-hidden="true"></i> Category
+                    </dt>
+                    <dd class="menu-content-content animated zoomIn">
+                        
+                    </dd>
+                </dl>
+                <dl class="col-md-6 col-xs-6 menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-tag" aria-hidden="true"></i> Tags
+                    </dt>
+                    <dd class="menu-content-content animated zoomIn">
+                        <ul class="menu-tag-list"><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Nginx/"><i class="fh fh-tag" aria-hidden="true"></i> Nginx</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/学习笔记/"><i class="fh fh-tag" aria-hidden="true"></i> 学习笔记</a><span class="menu-tag-list-count">13</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/小东西/"><i class="fh fh-tag" aria-hidden="true"></i> 小东西</a><span class="menu-tag-list-count">7</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/小测试/"><i class="fh fh-tag" aria-hidden="true"></i> 小测试</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/每天一个Linux命令/"><i class="fh fh-tag" aria-hidden="true"></i> 每天一个Linux命令</a><span class="menu-tag-list-count">8</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/这里有一片文章/"><i class="fh fh-tag" aria-hidden="true"></i> 这里有一片文章</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/那些年学习的Linux命令/"><i class="fh fh-tag" aria-hidden="true"></i> 那些年学习的Linux命令</a><span class="menu-tag-list-count">3</span></li></ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end menu-->
+
+<div class="row hannah-body">
+    <div class="col-md-8 col-md-push-2 col-xs-12">
+        <!--begin breadcrumb-->
+        <div class="bread-crumb">
+    <ul class="bread-crumb-menu animated rubberBand">
+        <li><a href="/"><i class="fh fh-ravelry" aria-hidden="true"></i> Home</a></li>
+        
+        <li>
+            
+            <i class="fh fh-newspaper-o" aria-hidden="true"></i>
+            
+            Linux运维学习-第九天
+        </li>
+        
+    </ul>
+    <div class="bread-crumb-search">
+        <div class="search">
+    <i class="fh fh-search icon-search"></i>
+    <input placeholder="Search ..." onkeyup="searchFunc(this,event,'/search.xml')"
+           class="input-search animated fadeInRight"/>
+    <div class="search-result animated fadeInRight">
+        <a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/20/Linux中关于telnet无法远程root-解决/">Linux中关于telnet无法远程root-解决</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/19/Linux关于密码二三事/">Linux关于密码二三事</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/19/Linux运维学习-第十三天/">Linux运维学习-第十三天</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/19/每天一个Linux命令07/">每天一个Linux命令07</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/19/每天一个Linux命令-06/">每天一个Linux命令06</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/19/nginx-简单安装-排错/">nginx 简单安装&排错</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/18/每天一个Linux命令05/">每天一个Linux命令05</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/18/第二次测验题目汇总/">第二次测验题目汇总</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/18/Linux运维学习-第十二天/">Linux运维学习-第十二天</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/17/Linux同步网络时间/">Linux同步网络时间</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/17/Linux运维学习-第十一天/">Linux运维学习-第十一天</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/16/每天一个Linux命令04/">每天一个Linux命令04</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/16/Linux运维学习-第十天/">Linux运维学习-第十天</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/13/centos-6-x下python2-6升级为2-7/">centos 6.x下python2.6升级为2.7</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/07/13/Linux忘记密码解决2333/">Linux忘记密码解决2333</a>
+    </div>
+</div>
+    </div>
+</div>
+        <!--end breadcrumb-->
+        <article class="post animated rollIn">
+    <h1 class="post-title">Linux运维学习-第九天</h1>
+    <div class="post-subtitle">
+        
+        <time datetime="2018-07-13T08:44:30.000Z" class="item">
+            <i class="fh fh-calendar" aria-hidden="true"></i>&nbsp;&nbsp;2018-07-13
+        </time>
+        
+        
+        
+        <span class="item">
+        <i class="fh fh-tags" aria-hidden="true"></i>&nbsp;
+            
+            <a class="label label-info tags" href="/tags/学习笔记/">
+            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;学习笔记
+            </a>
+            
+        </span>
+        
+    </div>
+    
+    <blockquote>
+        <p><strong><em>简介</em></strong><br></p>
+        <h2 id="第九天了"><a href="#第九天了" class="headerlink" title="第九天了~"></a>第九天了~</h2>
+    </blockquote>
+    
+    <a id="more"></a>
 <h3 id="系统目录结构（续）"><a href="#系统目录结构（续）" class="headerlink" title="系统目录结构（续）"></a>系统目录结构（续）</h3><h2 id="etc-fstab-–让设备开机自启"><a href="#etc-fstab-–让设备开机自启" class="headerlink" title="/etc/fstab  –让设备开机自启"></a>/etc/fstab  –让设备开机自启</h2><pre><code>UUID=281b45af-f975-47ad-89d3-fadaae69ee6e   --要挂载的设备信息
 / --挂载点
 ext4 --挂载的文件系统类型  
@@ -68,4 +331,78 @@ PATH环境变量 --指定命令所在路径信息
 0.00 0.00 0.00 1/162 1869    
 一分钟 五分钟  十五分钟        
 通过uptime也可以查看负载信息 
-</code></pre></div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/学习笔记/">学习笔记</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 瑾川</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+</code></pre>
+</article>
+<ol class="animated rollIn hannah-toc"><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-3"><a class="animated rollIn hannah-toc-link" href="#系统目录结构（续）"><span class="animated rollIn hannah-toc-text">系统目录结构（续）</span></a></li></ol></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#etc-fstab-–让设备开机自启"><span class="animated rollIn hannah-toc-text">/etc/fstab  –让设备开机自启</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#etc-rc-local-–将要操作执行的命令放入该文件，使之开机自动运行"><span class="animated rollIn hannah-toc-text">/etc/rc.local   –将要操作执行的命令放入该文件，使之开机自动运行</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#etc-inittab-–Linux系统中有不同的进入方式；系统的运行级别"><span class="animated rollIn hannah-toc-text">/etc/inittab –Linux系统中有不同的进入方式；系统的运行级别</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#etc-init-d-目录-–主要用于存放服务的启动和关闭脚本"><span class="animated rollIn hannah-toc-text">/etc/init.d(目录)  –主要用于存放服务的启动和关闭脚本</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#sshd-network-iptables"><span class="animated rollIn hannah-toc-text">sshd network iptables</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#PS-不是所有服务的启动脚本都在此目录中"><span class="animated rollIn hannah-toc-text">PS:不是所有服务的启动脚本都在此目录中</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#补充说明：系统软件的安装方式"><span class="animated rollIn hannah-toc-text">补充说明：系统软件的安装方式</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#etc-profile（加载命令行配置信息文件）"><span class="animated rollIn hannah-toc-text">/etc/profile（加载命令行配置信息文件）</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#如何配置环境变量："><span class="animated rollIn hannah-toc-text">如何配置环境变量：</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#etc-bashrc-加载命令行配置信息文件）"><span class="animated rollIn hannah-toc-text">/etc/bashrc(加载命令行配置信息文件）</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#bash-profile-bashrc"><span class="animated rollIn hannah-toc-text">./.bash_profile  ~./bashrc</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#加载生效都可以用source-命令"><span class="animated rollIn hannah-toc-text">加载生效都可以用source 命令</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#man-bash-可以查看所有系统内置命令信息"><span class="animated rollIn hannah-toc-text">man bash  可以查看所有系统内置命令信息</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#var-目录信息经常发生变化-日志文件"><span class="animated rollIn hannah-toc-text">/var  目录信息经常发生变化    日志文件</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#说明：日志文件会不断增加，注意对日志文件进行切割处理"><span class="animated rollIn hannah-toc-text">说明：日志文件会不断增加，注意对日志文件进行切割处理</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-2"><a class="animated rollIn hannah-toc-link" href="#proc-loadavg"><span class="animated rollIn hannah-toc-text">/proc/loadavg</span></a>
+<div class="animated bounceInDown paginations">
+    <div class="col-md-8 col-md-push-2 col-xs-12">
+        <nav>
+            
+            <a href="/2018/07/13/centos-6-x命令行模式转图形化模式/" class="prev col-md-2 col-xs-4 text-left">&larr; Prev</a>
+            
+            <span class="page-content col-md-8  col-xs-4 text-center">
+                
+            </span>
+            
+            <a href="/2018/07/12/Linux运维学习-第八天/" class="next col-md-2 col-xs-4 text-right">Next &rarr;</a>
+            
+        </nav>
+        <div>
+            <div class="col-md-6 col-xs-6 text-left">
+                
+                centos 6.x命令行模式转图形化模式 
+                
+            </div>
+            <div class="col-md-6 col-xs-6 text-right">
+                
+                Linux运维学习-第八天
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!--begin comments-->
+        
+<div class="comments" id="comments">
+    
+
+</div>
+
+
+        <!--end comments-->
+    </div>
+</div>
+
+<!--begin footer-->
+<footer id="footer" class="footer animated fadeInUp hide">
+    <p><i class="copy">&copy;</i> 2018 <a href="http://yoursite.com">瑾川</a> All Right Reserved.</p>
+    <p>Powered by <a href="http://hexo.io">Hexo</a>. Theme by <a href="https://github.com/objectyan/hexo-theme-hannah">hannah</a></p>
+</footer>
+<!--end footer-->
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="/js/hannah.js"></script>
+
+<script src="/js/canvas-nest.js"></script>
+
+
+<!--begin analytics-->
+
+<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?8fb2a05be303b36faebf141d7317de43";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!--end analytics-->
+</body>
+<!--end body-->
+</html>
