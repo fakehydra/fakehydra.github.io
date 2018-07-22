@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="%……&amp;amp;**（（（&amp;amp;…………%￥￥" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-第十四天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="%……&amp;amp;**（（（&amp;amp;…………%￥￥">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-第十四天">
+<meta property="og:url" content="http://yoursite.com/2018/07/22/Linux运维学习-第十四天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="%……&amp;amp;**（（（&amp;amp;…………%￥￥">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-22T06:36:12.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-第十四天">
+<meta name="twitter:description" content="%……&amp;amp;**（（（&amp;amp;…………%￥￥">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第十四天" class="post-Linux运维学习-第十四天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-第十四天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/22/Linux运维学习-第十四天/" data-id="cjjwh2hht002dn8lyckwblx7n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>%……&amp;**（（（&amp;…………%￥￥</p>
+<a id="more"></a>
+<h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><h3 id="01-文件属性概述"><a href="#01-文件属性概述" class="headerlink" title="01.文件属性概述"></a>01.文件属性概述</h3><pre><code> [root@xmy-01 ~]# ll oldboy/
+ total 20
+ drwxr-xr-x. 3 root root 4096 Jul  8  2018 ext
+ -rw-r--r--. 1 root root    0 Jul  8  2018 jeacen
+ -rw-r--r--. 1 root root    0 Jul  8  2018 oldboy
+ drwxr-xr-x. 2 root root 4096 Jul  8  2018 test
+ -rw-r--r--. 1 root root    0 Jul  8  2018 wodi.gz
+ drwxr-xr-x. 2 root root 4096 Jul  8  2018 xiaodong
+ drwxr-xr-x. 2 root root 4096 Jul  8  2018 xiaofan
+ drwxr-xr-x. 2 root root 4096 Jul  8  2018 xingfujie
+ -rw-r--r--. 1 root root    0 Jul  8  2018 yingsui.gz
+
+ [root@xmy-01 ~]# ll -i oldboy/
+ total 20
+ 530979       d      rwxr-xr-x.   3     root root    4096      Jul 8 2018 ext
+ 530987       -      rw-r--r--.   1     root root       0      Jul 8 2018 jeacen
+ 530988       -      rw-r--r--.   1     root root       0      Jul 8 2018 oldboy
+ 530983       d      rwxr-xr-x.   2     root root    4096      Jul 8 2018 test
+ 530989       -      rw-r--r--.   1     root root       0      Jul 8 2018 wodi
+ 第一列    第二列     第三列     第四列    第五列     第六列     第七列
+
+
+第一列：inode信息 --- 索引信息
+第二列：文件类型 --- 通过不同符号，表示不同的文件类型  目录 d  文件 -
+第三列：文件权限 --- 对文件数据信息设置权限管理
+第四列：硬链接信息
+第五列：文件的所属用户（属主） ---文件是谁创建出来
+        文件的所属组（属组）    ---文件可以被多个用户进行管理
+第六列：文件的大小信息
+第七列：文件时间信息（创建时间 修改（属性） 编辑）    
+</code></pre><h3 id="02-文件属性信息详述—索引节点信息"><a href="#02-文件属性信息详述—索引节点信息" class="headerlink" title="02.文件属性信息详述—索引节点信息"></a>02.文件属性信息详述—索引节点信息</h3><pre><code>inode与block
+1）作用
+   inode：（index node）索引节点信息 用于存储数据的---文件的一些属性（文件的权限所属用户 所属组）
+                                                      存储这一个指针，指向数据在磁盘的真实位置（block） 
+   block:块   用于存储数据的  用于存储数据的---文件的真实数据信息
+2）来由
+   只有在磁盘做好格式化之后，产生了文件系统，才会有inode和block（收纳袋）
+3）详细了解  
+   通过访问文件原理过程
+   centos5的inode的默认大小为128字节；
+   centos6的inode的默认大小为256字节；
+
+   centos6的block的默认大小为1k  2k  4k;
+   inode 或block的默认存储空间调整方式
+
+   inode 信息
+    索引节点信息
+    会存储文件属性信息  存储数据存放在硬盘上指针信息
+
+   文件的名称信息一般存储在上级目录的block
+
+4）如何查询到相应信息
+   inode信息查看方法
+   df -i
+   [root@xmy-01 ~]# df -i
+   Filesystem      Inodes IUsed   IFree IUse% Mounted on
+   /dev/sda3      3170304 57378 3112926    2% /
+   tmpfs           125514     1  125513    1% /dev/shm
+   /dev/sda1        51200    38   51162    1% /boot
+   /dev/sdc            16    11       5   69% /app/logs
+
+   block信息查看方法：
+   df
+   [root@xmy-01 ~]# df
+   Filesystem     1K-blocks    Used Available Use% Mounted on
+   /dev/sda3       49759972 1616044  45609580   4% /
+   tmpfs             502056       0    502056   0% /dev/shm
+   /dev/sda1         194241   34845    149156  19% /boot
+   /dev/sdc              73      14        55  21% /app/logs
+</code></pre><h3 id="03-文件属性信息详述—文件类型说明"><a href="#03-文件属性信息详述—文件类型说明" class="headerlink" title="03. 文件属性信息详述—文件类型说明"></a>03. 文件属性信息详述—文件类型说明</h3><pre><code>[root@oldgirl oldboy15:10]$ ll
+total 5028
+-    rw-r--r--. 1 root root       0 Jul  8 23:51 alex.txt
+-    rw-r--r--  1 root root     128 Jan 20  2015 line.txt
+d    rwxr-xr-x  2 root root    4096 Jul 19 15:10 oldboy.txt
+l    rwxrwxrwx  1 root root      10 Jul 19 11:57 oldboy.txt_soft -&gt; oldboy.txt
+-    rw-r--r--  1 root root       0 Jul 19 14:53 oldboy01.txt
+-    rw-r--r--. 1 root root       7 Jul  9 00:34 t.sh
+d    rwxr-xr-x. 2 root root    4096 Jul  9 00:34 test
+此列：表示文件类型
+第一种：- 表示普通文件
+
+第一种普通文件：文本文件
+[root@oldgirl oldboy15:19]$ file /etc/hosts
+/etc/hosts: ASCII text
+第二种普通文件：二进制文件
+[root@oldgirl oldboy15:20]$ file /bin/cp
+/bin/cp: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.18, stripped
+第三种普通文件：数据文件
+[root@oldgirl oldboy15:22]$ file /oldboy/oldboy.zip 
+/oldboy/oldboy.zip: Zip archive data, at least v2.0 to extract
+[root@oldgirl oldboy15:22]$ file /oldboy/oldboy.tar.gz 
+/oldboy/oldboy.tar.gz: gzip compressed data, from Unix, last modified: Thu Jul 19 15:23:36 2018
+
+第二种：d 表示目录文件
+第三种：l 表示链接文件（快捷方式）
+
+识别文件信息方法：
+[root@oldgirl oldboy15:16]$ file alex.txt 
+alex.txt: empty
+[root@oldgirl oldboy15:16]$ file line.txt 
+line.txt: ASCII text
+[root@oldgirl oldboy15:16]$ file oldboy.txt
+oldboy.txt: directory
+[root@oldgirl oldboy15:17]$ file oldboy.txt_soft/
+
+
+第四种：c/b  表示为设备文件  （/dev）
+第五种： s   表示socket套接字文件（网络知识有关）
+第六种：|
+</code></pre><h3 id="04-文件属性信息详述—用户信息（所属用户-所属组信息）"><a href="#04-文件属性信息详述—用户信息（所属用户-所属组信息）" class="headerlink" title="04.文件属性信息详述—用户信息（所属用户 所属组信息）"></a>04.文件属性信息详述—用户信息（所属用户 所属组信息）</h3><pre><code>一个文件（孩子）创建出来 监护人（母亲）--所属用户  家庭其他成员--所属组  隔壁老王--其他用户
+
+在Linux系统中：用户到底有哪些身份
+第一种：皇帝       root       ---无敌的存在              uid: 0       可以登录系统
+第二种：傀儡       虚拟用户   ---管理服务的进程 nobody   uid: 1-499   不可以登录系统
+第三种：平民       普通用户   ---有权限进行限定          uid: 500+    可以登录系统
+
+[root@oldgirl oldboy15:38]$ id root
+ uid=0(root) gid=0(root) groups=0(root)
+
+ uid：用户表示id数值信息
+ gid：组表示id数值信息
+
+
+ [root@oldgirl oldboy15:51]$ head -5 /etc/passwd
+ root:    x:    0:    0:    root    :/root    :/bin/bash
+ bin:    x:    1:    1:    bin    :/bin    :/sbin/nologin
+ daemon:    x:    2:    2:    daemon    :/sbin    :/sbin/nologin
+ adm:    x:    3:    4:    adm    :/var/adm    :/sbin/nologin
+ lp:    x:    4:    7:    lp    :/var/spool/lpd    :/sbin/nologin
+ oldboy:    x:    500:500:    :/home/oldboy    :/bin/bash
+
+ 第一列：用户名称
+ 第二列：记录用户密码信息（废弃）
+ 第三列：表示uid信息
+ 第四列：表示gid信息
+ 第五列：用户注释说明信息
+ 第六列：用户的家目录
+ 第七列：用户登录后使用命令解释器 bash shell     
+</code></pre><h3 id="05-文件属性信息详述—文件权限信息"><a href="#05-文件属性信息详述—文件权限信息" class="headerlink" title="05. 文件属性信息详述—文件权限信息"></a>05. 文件属性信息详述—文件权限信息</h3><pre><code>    有什么权限：
+    读   read     r      4
+    写   write    w   2
+    执行 execute  x   1
+    没权限        -   0
+
+    权限赋予谁--赋予用户
+    文件有哪些用户可以管理  监护人（母亲）--所属用户   家庭其他成员--所属组   隔壁老王---其他用户 
+             是否有读权限  写权限    执行权限
+    属主：   r              w         x  
+    属组：   r              -         -
+    其他人： -              -         -
+
+    [root@oldgirl oldboy16:01]$ ll /etc/hosts
+    -rw-r--r-- 2 root root 193 Jul 19 12:24 /etc/hosts
+    rw-   r--   r--   如果问此文件有什么权限，644权限
+    420   400   400
+    6     4     4  
+
+    [root@oldgirl oldboy16:40]$ ll /etc/passwd
+    -rw-r--r-- 1 root root 1177 Jul 12 10:35 /etc/passwd
+    [root@oldgirl oldboy16:41]$ ll /etc/shadow
+    ---------- 1 root root 977 Jul 12 10:35 /etc/shadow
+
+2）默认一个block空间设置的大些好，还是小些好
+分情况可考虑
+存储的是比较小的数据，希望block空间小一些会更好
+默认一个block 2k  5k  3个block
+2k       2k        2k
+占满了   占满了   占用了1k
+总结：小数据，存储大的block会浪费磁盘空间
+
+存储的是比较大的数据，希望block空间大一些会更好
+默认一个block 4k  10k  3个block
+4k       4k        4k
+占满了   占满了   占用了2k    
+1k       1k        1k       1k  1k  ... 1k  10个
+
+IO的消耗（输入/输出）
+总结：大数据，存储小的block会浪费磁盘IO
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">企业案例：01.磁盘空间满的情况都有哪些？---inode空间不够用了</span><br><span class="line">解答:</span><br><span class="line">有两种情况，会造成磁盘空间满</span><br><span class="line">第一种情况：是磁盘空间block剩余不足（df -h）</span><br><span class="line">第二种情况：是磁盘空间inode剩余量不足（df -i）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">企业案例：02.如果向磁盘写入数据提示如下错误：</span><br><span class="line">No space left on device（磁盘空间不足），</span><br><span class="line">通过df -h查看磁盘空间，发现没满</span><br><span class="line">1.请问可能原因是什么？</span><br><span class="line">2.企业场景什么情况下会导致这个问题发生？</span><br><span class="line"></span><br><span class="line">问题一：</span><br><span class="line">解释一下什么是inode，什么是block，他们之间的关系</span><br><span class="line">结论：造成磁盘空间满的原因。是由于inode空间不够用</span><br><span class="line"></span><br><span class="line">问题二：</span><br><span class="line">当你创建大量小文件的时候</span><br><span class="line">后面学习定时任务，通过一个邮件方式回报</span><br></pre></td></tr></table></figure>
+<h3 id="—inode空间不足，block空间充足"><a href="#—inode空间不足，block空间充足" class="headerlink" title="—inode空间不足，block空间充足"></a>—inode空间不足，block空间充足</h3><pre><code>     #创建测试模拟环境
+     第一个里程：创建测试环境
+     dd if=/dev/zero of=/dev/sdc bs=8k count=10    --抽象的生成一个磁盘设备
+     mkfs.ext4 /dev/sdc
+     mount -o loop /dev/sdc /app/logs
+
+     第二个里程：在创建的目录中创建文件
+     touch {1..5}    创建了大量小文件
+
+     第三个里程：检查inode和block的使用
+     df -i
+     df -h
+
+
+
+方法一：删除单个乱码文件
+[root@oldgirl oldboy14:55]$ pwd
+/oldboy
+[root@oldgirl oldboy14:55]$ find /oldboy/ -type f -inum &quot;1572881&quot;
+/oldboy/???????????????02.txt
+[root@oldgirl oldboy14:56]$ find /oldboy/ -type f -inum &quot;1572881&quot;|xargs rm
+[root@oldgirl oldboy14:57]$ ll
+total 5028
+
+方法二：删除多个乱码文件
+[root@oldgirl oldboy15:01]$ find /oldboy/ -type f -inum &quot;1572881&quot; -o -inum &quot;1572882&quot; -o -inum &quot;1572883&quot;
+/oldboy/???????????????03.txt
+/oldboy/???????????????01.txt
+/oldboy/???????????????02.txt
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">面试题：已知一个网络服务的名称，请问你对应的端口号是什么？</span><br><span class="line">        [root@xmy-01 ~]# netstat -lntup|grep ssh</span><br><span class="line">        tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN      1426/sshd           </span><br><span class="line">        tcp        0      0 :::22                       :::*                        LISTEN      1426/sshd</span><br></pre></td></tr></table></figure>
+<p>作业：<br>01.扩展总结命令<br>02.预习：正则表达式  用户管理（权限） 服务–定时任务<br>03.总结一周内容        </p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/22/Linux运维学习-第十四天/">
+    <time datetime="2018-07-22T06:30:45.000Z" class="entry-date">
+        2018-07-22
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/07/20/Linux中关于telnet无法远程root-解决/" rel="next">Linux中关于telnet无法远程root-解决 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/22/Linux运维学习-第十四天/">Linux运维学习-第十四天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/20/Linux中关于telnet无法远程root-解决/">Linux中关于telnet无法远程root-解决</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/Linux关于密码二三事/">Linux关于密码二三事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/Linux运维学习-第十三天/">Linux运维学习-第十三天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/19/每天一个Linux命令07/">每天一个Linux命令07</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
