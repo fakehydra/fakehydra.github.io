@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="第一关测验练习题–续" />
+  <meta name="description" content="文件属性-续~" />
   
 
   
@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux运维学习-第五天 | 瑾川</title>
+  <title>Linux运维学习-第十五天 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一关测验练习题–续">
+  <meta name="description" content="文件属性-续~">
 <meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux运维学习-第五天">
-<meta property="og:url" content="http://yoursite.com/2018/07/09/Linux运维学习-第五天/index.html">
+<meta property="og:title" content="Linux运维学习-第十五天">
+<meta property="og:url" content="http://yoursite.com/2018/07/23/Linux运维学习-第十五天/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="第一关测验练习题–续">
+<meta property="og:description" content="文件属性-续~">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-10T11:08:17.128Z">
+<meta property="og:updated_time" content="2018-07-23T10:55:42.440Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维学习-第五天">
-<meta name="twitter:description" content="第一关测验练习题–续">
+<meta name="twitter:title" content="Linux运维学习-第十五天">
+<meta name="twitter:description" content="文件属性-续~">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -69,7 +69,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第五天" class="post-Linux运维学习-第五天 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第十五天" class="post-Linux运维学习-第十五天 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -77,77 +77,95 @@
         
   
     <h1 class="entry-title article-title">
-      Linux运维学习-第五天
+      Linux运维学习-第十五天
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjjy6bysd000izgly6hn7p7uu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/Linux运维学习-第十五天/" data-id="cjjy6byts000tzglyxlb6unip" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>第一关测验练习题–续</p>
-<a id="more"></a>
-<h3 id="第一关测验练习题"><a href="#第一关测验练习题" class="headerlink" title="第一关测验练习题"></a>第一关测验练习题</h3><ol start="4">
-<li><p>把oldboy.txt 拷贝（复制）到/tmp 下</p>
-<p>   cp /data/oldboy.txt /tmp<br>   cp –复制文件或复制目录<br>   -r   —递归复制目录数据信息<br>   -a  —归档参数，包含了-r -d -p 参数的作用</p>
-<p>   [root@jinc data]# cp /data/oldboy.txt  /tmp/<br>   cp: overwrite /tmp/oldboy.txt’?<br>   [root@jinc data]# ls -l /tmp/<br>   total 4<br>   -rw-r–r–. 1 root root 15 Jul  5 15:19 oldboy.txt<br>   -rw-r–r–. 1 root root  0 Jul  5 22:33 text.txt<br>   -rw——-. 1 root root  0 Jul  4 15:27 yum.log                                                  </p>
-</li>
-</ol>
-<h2 id="复制目录的方法–"><a href="#复制目录的方法–" class="headerlink" title="复制目录的方法–"></a>复制目录的方法–</h2><pre><code>[root@jinc data]# cp -r /data/ /tmp/
-[root@jinc data]# ls -ld /tmp/data/
-drwxr-xr-x. 3 root root 4096 Jul  6 01:46 /tmp/data/
-</code></pre><p>说明：默认复制文件如果在目标目录中已经存在，会有覆盖提示（如何解决？？？）</p>
-<pre><code>1.\cp  --临时取消别名
-2.unalias   --关闭别名 
-</code></pre><ol start="5">
-<li><p>把/data 移动到 /root 目录下</p>
-<p> move 移动 ==mv 移动命令 ==剪切功能<br> mv 要移动的文件或目录信息 路径<br> [root@jinc data]# mv /data/ /root/</p>
-</li>
-<li><p>进入/root目录下的data目录，删除oldboy.txt文件<br>a) 第一种方法：</p>
-<pre><code>remove 移除 ==rm 移除命令
-rm 要移除的文件或目录信息
-[root@jinc data]# ls
-oldboy.txt
-[root@jinc data]# rm oldboy.txt
-[root@jinc data]# ls
-[root@jinc data]# 
-</code></pre><p>b) 第二种方法：精确删除多个文件信息。</p>
-<pre><code>第一里程：找出相应的文件数据
- find 查找数据信息命令
- find 在哪找东西 找的东西的类型 找的东西的名称
- [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;
- /root/data/error.txt
- /root/data/right.txt
- /root/data/oldboy.txt
- 第二里程：将数据进行删除
- [root@jinc ~]# find /root/data/ -type f -name &quot;*.txt&quot;|xargs rm -f
-</code></pre><p>c) 第三种方法：</p>
-</li>
-</ol>
-<pre><code>第一里程：找出相应的文件数据
-         同find 
+        <h3 id="文件属性-续"><a href="#文件属性-续" class="headerlink" title="文件属性-续~"></a>文件属性-续~</h3><a id="more"></a>
+<h2 id="文件属性信息详述—链接信息"><a href="#文件属性信息详述—链接信息" class="headerlink" title="文件属性信息详述—链接信息"></a>文件属性信息详述—链接信息</h2><h3 id="软链接–soft-link"><a href="#软链接–soft-link" class="headerlink" title="软链接–soft link"></a>软链接–soft link</h3><pre><code>概念：一个数据的快捷方式
+</code></pre><h4 id="如何创建软链接："><a href="#如何创建软链接：" class="headerlink" title="如何创建软链接："></a>如何创建软链接：</h4><pre><code>ln -s 源文件 链接文件
+* 最好用绝对路径创建，不然容易失效
 
-第二里程：将数据进行删除（·· 反引号 ==$())
-        [root@jinc1 data]# rm -rf &apos;find *.txt&apos;
+[root@localhost text]# touch 1.txt
+[root@localhost text]# ln -s 1.txt 1.txt_soft
+[root@localhost text]# ls
+1.txt  1.txt_soft
+[root@localhost text]# ll
+total 2
+-rw-r--r--. 1 root root    0 Jul 17 09:19 1.txt
+lrwxrwxrwx. 1 root root    5 Jul 17 09:19 1.txt_     soft -&gt; 1.txt
+</code></pre><h3 id="查看系统的软链接信息在最后路径的后面不要加"><a href="#查看系统的软链接信息在最后路径的后面不要加" class="headerlink" title="查看系统的软链接信息在最后路径的后面不要加 /"></a>查看系统的软链接信息在最后路径的后面不要加 /</h3><h2 id="硬链接–hard-link"><a href="#硬链接–hard-link" class="headerlink" title="硬链接–hard link"></a>硬链接–hard link</h2><pre><code>概念：数据文件存储到block ，block存储到磁盘上，硬链接就是给磁盘的存储空间多开了一道门（传送门~）
+官方介绍：在同一分区内，有相同inode号码的文件，就称为互为硬链接文件
+*当硬链接数为零时，表明没有硬链接文件了
+</code></pre><h3 id="创建硬链接"><a href="#创建硬链接" class="headerlink" title="创建硬链接"></a>创建硬链接</h3><pre><code>ln 源文件 链接文件
 
-        [root@jinc1 tmp]# rm -rf $(find *.txt)
-</code></pre><h2 id="补充：管道后面的命令不识别别名"><a href="#补充：管道后面的命令不识别别名" class="headerlink" title="补充：管道后面的命令不识别别名"></a>补充：管道后面的命令不识别别名</h2><h2 id="PS-一切皆文件"><a href="#PS-一切皆文件" class="headerlink" title="PS: 一切皆文件"></a>PS: 一切皆文件</h2><pre><code>反引号作用：在一个命令中嵌入执行一个命令
-[root@jinc ~]# `which cat` /etc/hosts
+[root@localhost text]# ln 1.txt 1.txt_hard
+[root@localhost text]# ll
+total 4
+-rw-r--r--. 2 root root    0 Jul 17 09:19 1.txt
+-rw-r--r--. 2 root root    0 Jul 17 09:19 1.txt_     hard
+</code></pre><h2 id="软链接与硬链接区别："><a href="#软链接与硬链接区别：" class="headerlink" title="软链接与硬链接区别："></a>软链接与硬链接区别：</h2><h3 id="源文件数据被删除"><a href="#源文件数据被删除" class="headerlink" title="源文件数据被删除"></a>源文件数据被删除</h3><pre><code>软链接：失效
+       图形解释了软链接文件被访问的原理过程
+硬链接：正常使用
+       硬链接文件被访问原理
+       防止文件被误删
+       不要给目录创建硬链接
+       cp备份和硬链接说明：
+       占用空间大小不一样：备份占用了磁盘空间；但硬链接不占用磁盘
+       备份文件可以保证文件的完整性，防止被误修改修改；但硬链接被修改了就都修改了，无法恢复
+</code></pre><h3 id="查找所有相同inode号的硬链接："><a href="#查找所有相同inode号的硬链接：" class="headerlink" title="查找所有相同inode号的硬链接："></a>查找所有相同inode号的硬链接：</h3><pre><code>[root@oldgirl oldboy10:35]$ find / -path &quot;/proc&quot;      -prune -o -type f -inum &quot;1572866&quot;      -print           --&gt;排除/proc目录，不找此目录
+/oldboy/oldboy.txt
+/oldboy/oldboy.txt_hard02
+/tmp/oldboy.txt_hard01
+</code></pre><h2 id="补充说明："><a href="#补充说明：" class="headerlink" title="补充说明："></a>补充说明：</h2><pre><code>文件：inode 里面存储的是文件属性信息  block      中存储文件的真实数据内容
+目录：inode 里面存储的是数据属性信息  block      中存储文件的名称信息
+</code></pre><h3 id="文件属性信息说明–时间说明"><a href="#文件属性信息说明–时间说明" class="headerlink" title="文件属性信息说明–时间说明"></a>文件属性信息说明–时间说明</h3><pre><code>[root@jinc oldboy]# stat old.txt 
+Access: 2018-07-18 15:40:17.311136237 +0800
+Modify: 2018-07-18 15:40:03.685136369 +0800
+Change: 2018-07-18 15:40:03.685136369 +0800
+第一个：访问时间（access time--atime）
+        当文件信息被查看之后，访问时间会发生变化
+第二个：修改时间（modify time--mtime)，
+         文件内容信息被编辑修改了
+第三个：改变时间（change time --ctime）
+         文件属性信息发生变化
+</code></pre><h3 id="企业案例："><a href="#企业案例：" class="headerlink" title="企业案例："></a>企业案例：</h3><pre><code>01.突然监控告警:磁盘空间满了？ df -h
+   出现此问题的原因，解决问题思路
 
-[root@jinc ~]# $(which cat) /etc/hosts
+ 第一个里程：查看大的文件信息             
+ du -sh /oldboy/*
+
+  第二个里程：查询出调取文件的进程信息
+  lsof |grep 文件名称
+  第三个里程：删除大文件：释放了磁盘，但是还在磁盘里
+
+  第四个里程：重启相应服务进程
+
+  真正把数据删除了必备两点： a.链接数为0
+                           b.没有被进程调用
+</code></pre><h2 id="系统常用符号回顾"><a href="#系统常用符号回顾" class="headerlink" title="系统常用符号回顾"></a>系统常用符号回顾</h2><pre><code>$   --- 01.用于调用变量信息 $PATH
+        02.$3 $NF  在awk中取出列
+         03.#  root用户管理系统
+           $  普通用户管理系统
+！  --- 取反操作/排除操作
+        命令行 ！命令 取出最近输入的命令（慎用）
 </code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/09/Linux运维学习-第五天/">
-    <time datetime="2018-07-09T11:44:00.000Z" class="entry-date">
-        2018-07-09
+    <a href="/2018/07/23/Linux运维学习-第十五天/">
+    <time datetime="2018-07-23T10:31:34.000Z" class="entry-date">
+        2018-07-23
     </time>
 </a>
     
@@ -163,10 +181,10 @@ oldboy.txt
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/10/第一次测验题目汇总/" rel="prev"><span class="meta-nav">←</span> 第一次测验题目汇总</a></span>
+        <span class="nav-previous"><a href="/2018/07/23/每天一个Linux命令08/" rel="prev"><span class="meta-nav">←</span> 每天一个Linux命令08</a></span>
     
     
-        <span class="nav-next"><a href="/2018/07/09/Linux三剑客之-sed/" rel="next">Linux三剑客之 sed <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/07/22/Linux运维学习-第十四天/" rel="next">Linux运维学习-第十四天 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="tomcat 下载安装时遇到的坑" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>tomcat安装轶事 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="tomcat 下载安装时遇到的坑">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tomcat安装轶事">
+<meta property="og:url" content="http://yoursite.com/2018/07/23/tomcat安装轶事/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="tomcat 下载安装时遇到的坑">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-23T11:14:17.731Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tomcat安装轶事">
+<meta name="twitter:description" content="tomcat 下载安装时遇到的坑">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-tomcat安装轶事" class="post-tomcat安装轶事 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      tomcat安装轶事
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/tomcat安装轶事/" data-id="cjjy6byuj001ezgly2u6p9yc6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="tomcat-下载安装时遇到的坑"><a href="#tomcat-下载安装时遇到的坑" class="headerlink" title="tomcat 下载安装时遇到的坑"></a>tomcat 下载安装时遇到的坑</h3><a id="more"></a>
+<h3 id="由于有点需求，开始下载安装配置jdk"><a href="#由于有点需求，开始下载安装配置jdk" class="headerlink" title="由于有点需求，开始下载安装配置jdk"></a>由于有点需求，开始下载安装配置jdk</h3><h4 id="开始时在网上找了一个教程，用他给的链接去下载，但是，刚一下完，一解压就报错"><a href="#开始时在网上找了一个教程，用他给的链接去下载，但是，刚一下完，一解压就报错" class="headerlink" title="开始时在网上找了一个教程，用他给的链接去下载，但是，刚一下完，一解压就报错"></a>开始时在网上找了一个教程，用他给的链接去下载，但是，刚一下完，一解压就报错</h4><pre><code>[root@localhost ~]# tar xf jdk-8u60-linux-x64.tar.gz -C /usr/local/
+
+ gzip: stdin: not in gzip format
+ tar: Child returned status 1
+ tar: Error is not recoverable: exiting now
+ 然后我就纳闷了。。这是啥情况，看了一下文件的大小
+ [root@localhost ~]# ls -lht
+ total 48K
+ -rw-------. 1 root root 1.1K Jul 16 19:51 anaconda-ks.cfg
+ -rw-r--r--. 1 root root  22K Jul 16 19:51 install.log
+ -rw-r--r--. 1 root root 5.8K Jul 16 19:49 install.log.syslog
+ -rw-r--r--. 1 root root 5.2K Mar 21  2012 jdk-8u60-linux-x64.tar.gz
+ 黑人问号？？？5.2k的压缩包什么鬼0.0
+ 跑去官网看了下。。。300+M..我勒个去，还有的东西被谁吃了
+
+ 找到原因了，那就重新下咯，直接在官网找的最新版的压缩包~
+ 地址：http://download.oracle.com/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_linux-x64_bin.tar.gz
+
+ [root@localhost ~]# ls -lhi 
+ total 339M
+ 654095 -rw-r--r--. 1 root root 339M Jul 20  2018 jdk-10.0.2_linux-x64_bin.tar.gz
+</code></pre><h5 id="哎，这才对嘛"><a href="#哎，这才对嘛" class="headerlink" title="哎，这才对嘛"></a>哎，这才对嘛</h5><h5 id="话不多说，继续"><a href="#话不多说，继续" class="headerlink" title="话不多说，继续"></a>话不多说，继续</h5><pre><code>将下载好的压缩包解压到 /usr/local/
+
+进入目录 ：cd /usr/local/
+
+创建个链接：
+[root@localhost local]# ln -sv jdk-10.0.2/ jdk
+`jdk&apos; -&gt; `jdk-10.0.2/&apos;
+然后就是编辑配置环境了：
+[root@localhost local]# vim /etc/profile.d/jdk.sh
+JAVA_HOME=/usr/local/jdk
+PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME PATH
+~                        
+保存退出
+然后就是让他生效了：
+[root@localhost local]# source /etc/profile.d/jdk.sh 
+检查是否生效：
+[root@localhost local]# java -version
+java version &quot;10.0.2&quot; 2018-07-17
+Java(TM) SE Runtime Environment 18.3 (build 10.0.2+13)
+Java HotSpot(TM) 64-Bit Server VM 18.3 (build 10.0.2+13, mixed mode)
+</code></pre><h5 id="接下来就是正主了：tomcat下载安装"><a href="#接下来就是正主了：tomcat下载安装" class="headerlink" title="接下来就是正主了：tomcat下载安装"></a>接下来就是正主了：tomcat下载安装</h5><h5 id="同样的过程我就不多说了，看代码："><a href="#同样的过程我就不多说了，看代码：" class="headerlink" title="同样的过程我就不多说了，看代码："></a>同样的过程我就不多说了，看代码：</h5><pre><code>[root@localhost local]# tar xf apache-tomcat-9.0.10.tar.gz -C /usr/local/
+[root@localhost local]# ls
+apache-tomcat-9.0.10         etc      jdk         lib64    share
+apache-tomcat-9.0.10.tar.gz  games    jdk-10.0.2  libexec  src
+bin                          include  lib         sbin
+[root@localhost local]# ln -sv apache-tomcat-9.0.10 tomcat
+`tomcat&apos; -&gt; `apache-tomcat-9.0.10&apos;
+[root@localhost local]# vim /etc/pro
+profile    profile.d/ protocols  
+[root@localhost local]# vim /etc/pro
+profile    profile.d/ protocols  
+[root@localhost local]# vim /etc/profile.d/tomcat.sh
+CATALINA_BASE=/usr/local/tomcat
+PATH=$CATALINA_BASE/bin:$PATH
+export PATH CATALINA_BASE
+</code></pre><h5 id="保存退出"><a href="#保存退出" class="headerlink" title="保存退出"></a>保存退出</h5><h5 id="生效：-root-localhost-local-source-etc-profile-d-tomcat-sh"><a href="#生效：-root-localhost-local-source-etc-profile-d-tomcat-sh" class="headerlink" title="生效：[root@localhost local]# source /etc/profile.d/tomcat.sh"></a>生效：[root@localhost local]# source /etc/profile.d/tomcat.sh</h5><h5 id="检查："><a href="#检查：" class="headerlink" title="检查："></a>检查：</h5><pre><code>[root@localhost local]# catalina.sh version
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+Using JRE_HOME:        /usr/local/jdk
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/     java.io=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+Server version: Apache Tomcat/9.0.10
+Server built:   Jun 20 2018 17:32:21 UTC
+Server number:  9.0.10.0
+OS Name:        Linux
+OS Version:     2.6.32-696.el6.x86_64
+Architecture:   amd64
+JVM Version:    10.0.2+13
+JVM Vendor:     &quot;Oracle Corporation&quot;
+</code></pre><h4 id="安装到这就结束了"><a href="#安装到这就结束了" class="headerlink" title="安装到这就结束了"></a>安装到这就结束了</h4><h4 id="接下来就是配置了"><a href="#接下来就是配置了" class="headerlink" title="接下来就是配置了"></a>接下来就是配置了</h4><pre><code>1.配置server.xml：
+
+vim /usr/local/tomcat/conf/server.xml
+----------------------------------------------------------&gt;
+ &lt;Connector port=&quot;80&quot; protocol=&quot;HTTP/1.1&quot;      //默认端口为8080，改为80
+            connectionTimeout=&quot;20000&quot;
+            redirectPort=&quot;8443&quot; /&gt;
+
+2.tomcat有manager-gui的管理页面，想要使用必须配置管理用户，不使用可以跳过此步。配置tomcat-users.xml：
+
+vim /usr/local/tomcat/conf/tomcat-users.xml
+-------------------------------------------------------------------------------&gt;
+&lt;role rolename=&quot;manager-gui&quot;/&gt;                                        //指定用户可以使用的接口为manager-gui
+&lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui&quot;/&gt;      //用户名和密码为tomcat，在manager-gui接口使用
+
+3.创建测试页面：
+
+mkdir -pv /usr/local/tomcat/webapps/test/WEB-INF/{classes,lib}
+vim /usr/local/tomcat/webapps/test/index.jsp
+---------------------------------------------------------------&gt;
+&lt;%@ page language=&quot;java&quot; %&gt;
+&lt;%@ page import=&quot;java.util.*&quot; %&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;test&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;%
+            out.println(&quot;Hello World!&quot;);      //嵌入java语言
+        %&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+4.启动测试：
+
+catalina.sh start
+
+
+可能出现的错误--防火墙
+
+如果服务器开启的防火墙，就开启tomcat端口可以访问
+
+
+# /sbin/iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+
+
+# service iptables save
+
+
+# service iptables restart
+
+或直接修改文件/etc/sysconfig/iptables.
+
+# vi /etc/sysconfig/iptables
+
+-A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
+
+# service iptables restart
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/23/tomcat安装轶事/">
+    <time datetime="2018-07-23T11:09:00.000Z" class="entry-date">
+        2018-07-23
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/07/23/每天一个Linux命令08/" rel="next">每天一个Linux命令08 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/23/tomcat安装轶事/">tomcat安装轶事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/23/每天一个Linux命令08/">每天一个Linux命令08</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/23/Linux运维学习-第十五天/">Linux运维学习-第十五天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/22/Linux运维学习-第十四天/">Linux运维学习-第十四天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/20/Linux中关于telnet无法远程root-解决/">Linux中关于telnet无法远程root-解决</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
