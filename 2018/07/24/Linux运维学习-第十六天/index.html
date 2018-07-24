@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   
   
+  <meta name="description" content="正则伊始" />
+  
 
   
   
@@ -13,14 +15,18 @@
   
   <title>Linux运维学习-第十六天 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="正则伊始">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Linux运维学习-第十六天">
 <meta property="og:url" content="http://yoursite.com/2018/07/24/Linux运维学习-第十六天/index.html">
 <meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="正则伊始">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-24T10:58:59.741Z">
+<meta property="og:updated_time" content="2018-07-24T11:20:24.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第十六天">
+<meta name="twitter:description" content="正则伊始">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -78,13 +84,198 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/Linux运维学习-第十六天/" data-id="cjjzludoh00119glygysyngfr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/Linux运维学习-第十六天/" data-id="cjjzlzu3l002rgwlyfyn9db26" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        
+        <h3 id="正则伊始"><a href="#正则伊始" class="headerlink" title="正则伊始"></a>正则伊始</h3><a id="more"></a>
+<h3 id="今天，是个好日子0-0"><a href="#今天，是个好日子0-0" class="headerlink" title="今天，是个好日子0.0"></a>今天，是个好日子0.0</h3><h3 id="01-系统符号分类"><a href="#01-系统符号分类" class="headerlink" title="01.系统符号分类"></a>01.系统符号分类</h3><pre><code>系统常用符号  $LANG = en_US.UTF-8
+系统通配符号  主要用于快速的找到相应多个文件或目录信息  find -name &quot;*.txt&quot;
+系统正则符号  主要用于快速的找到相应文件中的内容
+基础正则符号：basic
+扩展正则符号：extended
+             01.编写shell
+             02.开发的东西（代码文件）      
+</code></pre><h3 id="02-系统常用符号回顾"><a href="#02-系统常用符号回顾" class="headerlink" title="02.系统常用符号回顾"></a>02.系统常用符号回顾</h3><pre><code> $ ---用于调用变量信息  $PATH
+ $3  $NF  在awk中取出相应列信息
+ # root用户管理系统
+ $ 普通用户管理系统
+
+！   --- 取反操作/排除操作  ！ 好看==吃藕 （awk find）
+       命令行！ 取出最近输入的命令（了解）*慎用     ！rm==history |grep rm  （最好不用！命令找rm ，因为会直接执行rm命令）
+
+|   --- 表示管道符号，管道前面命令，交给管道后面执行
+
+#   --- 表示文件内容注释符号
+       表示用户命令提示符号：#  超级用户；  $  普通用户
+
+
+
+系统定向符号回顾补充
+ &gt;    标准输出重定向符号（会覆盖掉原有内容---）
+ echo  123456 &gt;oldboy.txt
+ 1)找到oldboy.txt文件，清空文件中的内容
+ 2）向文件重定向输入新的字符内容
+
+  &gt;oldboy.txt   --- 清空一个文件内容 
+
+
+&amp;&amp;  并且符号
+ 要满足前面的命令执行成功了才能执行后面的命令
+ 前面的命令执行失败了就不执行后面的命令    
+
+||   或者符号
+前面的命令执行成功了就不执行后面的命令
+前面的命令执行失败了才执行后面的命令    
+</code></pre><h3 id="03-系统通配符号说明（表示文件信息）"><a href="#03-系统通配符号说明（表示文件信息）" class="headerlink" title="03.系统通配符号说明（表示文件信息）"></a>03.系统通配符号说明（表示文件信息）</h3><pre><code> 1） *   表示匹配所有内容
+  模拟环境：
+  mkdir /oldboy -p
+  cd /oldboy
+  touch oldboy.txt 
+  touch oldboy.log
+  touch oldgirl.log
+
+  测试题一：请找出所有以.txt结尾的文件
+  find /oldboy -type f -name &quot;*.txt&quot;
+
+  测试题二：请找出所有以oldboy命名文件
+  find /oldboy -type f -name &quot;oldboy.*&quot;
+
+  测试题三：请找出所有以old开头.log结尾的文件
+  find /oldboy -type f -name &quot;old*.log&quot;
+
+
+  请问如何用grep命令过滤相应内容：
+  grep &quot;oldboy.*&quot; oldboy.txt     &lt;---  无法执行成功
+
+  PS:grep  sed  awk  三剑客命令（高级命令） 对于低级符号 （常见符号 通配符号）
+  高级命令所经常识别的为高级符号（正则表达式）
+
+2）{}  表示构造出一个序列信息A
+
+  连续序列   
+   构造数字序列  echo {01..10}
+   构造字母序列  echo {a..z}
+
+  不连续序列
+   构造数字序列  echo {2,5,7,4}
+   构造字母序列  echo {a,t,e,u}
+
+  多个连续序列
+        echo {8..9}{3..7}
+        echo {a..f}{b..d}
+
+  多个不连续序列
+  echo {3,6,7}{1,3,5}
+  31 33 35 61 63 65 71 73 75
+
+  echo {r,-,-}{-,w,-}{-,-,x}
+  r-- r-- r-x rw- rw- rwx r-- r-- r-x --- --- --x -w- -w- -wx --- --- --x --- --- --x -w- -w- -wx --- --- --x
+
+  单个字符串和序列的组合（实现了备份的功能）
+  [root@xmy-01 oldboy]# echo oldboy{,.bak}
+  oldboy oldboy.bak
+  [root@xmy-01 oldboy]# cp oldboy.txt{,.bak}
+  [root@xmy-01 oldboy]# ll
+  -rw-r--r--. 5 root root      22 Jan 21 21:03 oldboy.txt
+  -rw-r--r--. 1 root root      22 Jan 21 21:35 oldboy.txt.bak
+</code></pre><h3 id="04-正则表达式（regular-expression-RE）"><a href="#04-正则表达式（regular-expression-RE）" class="headerlink" title="04.正则表达式（regular expression-RE）"></a>04.正则表达式（regular expression-RE）</h3><pre><code>练习的模拟环境：
+cat &gt;&gt;oldboy.txt&lt;&lt;EOF
+I am oldboy teacher!
+I teach linux.
+
+I like badminton ball ,billiard ball and chinese chess!
+my blog is http://oldboy.blog.51cto.com
+our site is http://www.etiantian.org
+my qq num is 49000448.
+
+not 4900000448.
+my god ,i am not oldbey,but OLDBOY!
+EOF
+</code></pre><h4 id="基础正则表达式-basic-regular-expression-BRE"><a href="#基础正则表达式-basic-regular-expression-BRE" class="headerlink" title="基础正则表达式- basic regular expression -BRE"></a>基础正则表达式- basic regular expression -BRE</h4><pre><code> 1）^   ---以什么什么开头的信息找出来
+
+ 测验一：找出以m开头的文件内容信息
+       grep &apos;^m&apos; oldboy.txt
+
+grep 命令特点：按行进行操作处理（过滤）
+如何给grep命令匹配处理的信息进行标记颜色
+grep &apos;^m&apos; --color=auto oldboy.txt
+grep &apos;^m&apos; --color oldboy.txt
+
+给grep命令设置别名
+alias grep=&apos;grep --color=auto&apos;
+echo &quot;alias grep=&apos;grep --color=auto&apos;&quot; &gt;&gt;/etc/profile
+source /etc/profile
+
+
+
+2）$ --以什么什么结尾的信息过滤出来
+
+测验二：找出以m结尾的文件内容信息           
+        grep &apos;m$&apos; oldboy.txt
+
+3）^$  --找寻匹配空行信息（进行过滤掉）
+
+测验三：如何过滤空行信息
+grep &apos;^$&apos; oldboy.txt     &lt;-- 过滤空行
+
+grep -v &apos;^$&apos; oldboy.txt  &lt;-- 过滤不是空行的内容信息  -v 取反
+I am oldboy teacher!
+I teach linux.
+I like badminton ball ,billiard ball and chinese chess!
+my blog is http://oldboy.blog.51cto.com
+our site is http://www.etiantian.org
+my qq num is 49000448.
+not 4900000448.
+my god ,i am not oldbey,but OLDBOY!
+
+4）.  --匹配任意一个且只能是一个字符信息（无法匹配空行信息）
+  grep &apos;.&apos; oldboy.txt
+
+5) *  --匹配0个或1次以上连续的字符信息（表示前一个字符连续出现了0次或1次以上）
+grep &apos;0*&apos; oldboy.txt
+
+？？？  什么叫匹配了0次？？？
+会匹配出文件找不到内容，预支匹配
+默认会将所有内容都显示出来
+
+
+6）.*  --匹配文件中所有内容（可以匹配空行信息）
+   grep &apos;.*&apos; oldboy.txt
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">   测验四：请找出文件以m开头，一行中所有信息</span><br><span class="line">   grep &apos;^m.*&apos; oldboy.txt</span><br><span class="line">   my blog is http://oldboy.blog.51cto.com</span><br><span class="line">   my qq num is 49000448.</span><br><span class="line">   my god ,i am not oldbey,but OLDBOY!</span><br><span class="line">   </span><br><span class="line">   测验五：请找出文件以m开头，匹配到m字符终止匹配</span><br><span class="line">   grep &apos;^m.*m&apos; oldboy.txt</span><br><span class="line">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  </span><br><span class="line"></span><br><span class="line">       连续出现的时候正则表达符号会表现贪婪性（匹配到第一个m不停止匹配，会继续匹配这行中的m）</span><br><span class="line">       grep &apos;^.*m&apos; oldboy.txt      &lt;---匹配到m就结束，无论m在一行中的哪个位置</span><br><span class="line">       I am oldboy teacher!</span><br><span class="line">       I like badminton ball ,billiard ball and chinese chess!</span><br><span class="line">       my blog is http://oldboy.blog.51cto.com</span><br><span class="line">       my qq num is 49000448.</span><br><span class="line">       my god ,i am not oldbey,but OLDBOY!</span><br><span class="line">    </span><br><span class="line">     7）\   --转译符号（中文--英文  英文--中文）</span><br><span class="line">	      作用：</span><br><span class="line">		  可以将有意义的符号，转换为没有意义 \.</span><br><span class="line">		  可以将没有意义的符号，转换成有意义的符号  \n</span><br><span class="line">	</span><br><span class="line">	      .(匹配任意字符)-- \.  --一个点字符信息  -- \\. --取消转译</span><br><span class="line">~~~~~~~~~~~~~~~~~~</span><br></pre></td></tr></table></figure>
+<pre><code>测验六 ：找出以.结尾的相应行的信息
+grep &apos;\.$&apos; oldboy.txt     &lt;--- \ 表示转译，把特殊含义的符号去掉特殊含义
+I teach linux.
+my qq num is 49000448.
+not 4900000448.
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[root@xmy-02 oldboy]# grep &apos;.$&apos; oldboy.txt    &lt;--- 让任意字符为最后一个字符，匹配最后一个字符</span><br><span class="line">   I am oldboy,myqq is 31333741</span><br><span class="line">   I am oldboy teacher!</span><br><span class="line">   I teach linux.</span><br><span class="line">   I like badminton ball ,billiard ball and chinese chess!</span><br><span class="line">   my blog is http://oldboy.blog.51cto.com</span><br><span class="line">   our site is http://www.etiantian.org</span><br><span class="line">   my qq num is 49000448.</span><br><span class="line">   not 4900000448.</span><br><span class="line">   my god ,i am not oldbey,but OLDBOY!</span><br></pre></td></tr></table></figure>
+<pre><code>测验七：将下面文件中一行信息，转换成一列显示
+01 02 03 04 05
+
+01
+02
+03
+04
+05
+
+[root@oldgirl oldboy]# tr &quot; &quot; &quot;\n&quot; &lt;alex.txt    &lt;--- \n 换行     
+01
+02
+03
+04
+05
+
+[root@xmy-01 oldboy]# echo abccbd &gt;alex.txt
+[root@xmy-01 oldboy]# cat alex.txt
+abccbd
+[root@xmy-01 oldboy]# tr &apos;abc&apos; &apos;cba&apos; &lt;alex.txt
+cbaabd
+         &lt;--- 对应字符逐一替换  a替换成c  b替换成b  c替换成a  
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     8)	[abc]	---表示匹配中括号里面的内容，匹配a或b或c  grep -E &apos;oldboy|oldgirl&apos;	</span><br><span class="line">         单个字符进行匹配	</span><br><span class="line">		 </span><br><span class="line">		 grep &apos;[oldboy]&apos; oldboy.txt</span><br><span class="line">		 grep &apos;[am]&apos; oldboy.txt</span><br><span class="line">		 grep &apos;[a|b|e]&apos; oldboy.txt</span><br><span class="line">		 grep &apos;[a-z]&apos; oldboy.txt     匹配所有字母a到z的信息</span><br><span class="line">		 </span><br><span class="line">		 grep &apos;[0-9a-z]&apos; oldboy.txt </span><br><span class="line">         grep &apos;[0-9A-Za-z]&apos; oldboy.txt		 匹配所有数字和字母信息</span><br><span class="line">		 </span><br><span class="line">		 grep &apos;[a-Z]&apos; oldboy.txt</span><br><span class="line">		 </span><br><span class="line">	 9）[^abc]   --排除/不匹配 指定字符信息</span><br><span class="line">		 grep &apos;[^a-z]&apos; oldboy.txt</span><br><span class="line">		 排除/不匹配所有小写字母</span><br><span class="line">		 </span><br><span class="line">		 grep &apos;^[^a-z]&apos; oldboy.txt</span><br><span class="line">		 匹配行头不是小写字母</span><br><span class="line">		 </span><br><span class="line">		 grep &apos;^[^0-9]&apos; oldboy.txt</span><br><span class="line">		 匹配行头不是数字</span><br><span class="line">		 </span><br><span class="line">		 grep &apos;[^0-9]$&apos; oldboy.txt</span><br><span class="line">		 匹配行尾不是数字的</span><br><span class="line">		 </span><br><span class="line">		 排除（不匹配）有数字信息的行</span><br><span class="line">		 grep -v &apos;[0-9]&apos; oldboy.txt</span><br><span class="line">		 </span><br><span class="line"></span><br><span class="line">        扩展正则表达式- extended regular expression -ERE</span><br><span class="line">   </span><br><span class="line">      1）  +  --- 匹配1次或1次以上连续字符信息</span><br><span class="line"></span><br><span class="line">      [root@xmy-02 oldboy]# egrep &apos;0*&apos; --color oldboy.txt       &lt;--- 匹配0的0次或多次</span><br><span class="line">      I am oldboy,myqq is 31333741</span><br><span class="line">      I am oldboy teacher!</span><br><span class="line">      I teach linux.</span><br><span class="line">      </span><br><span class="line">      I like badminton ball ,billiard ball and chinese chess!</span><br><span class="line">      my blog is http://oldboy.blog.51cto.com</span><br><span class="line">      our site is http://www.etiantian.org</span><br><span class="line">      my qq num is 49000448.</span><br><span class="line">      </span><br><span class="line">      not 4900000448.</span><br><span class="line">      my god ,i am not oldbey,but OLDBOY!</span><br><span class="line">      </span><br><span class="line">       egrep &apos;3*&apos; oldboy.txt    &lt;--- 匹配3的0次或多次</span><br><span class="line">       </span><br><span class="line">	   egrep  &apos;3+&apos; --color oldboy.txt   &lt;--- 匹配3的0次或多次</span><br><span class="line">	   </span><br><span class="line">	   egrep &apos;[0-9]+&apos; oldboy.txt -o     &lt;--- 匹配所有数字0次或多次，-o 表示把匹配过程按行显示出来</span><br><span class="line">       0</span><br><span class="line">       51</span><br><span class="line">       49000448</span><br><span class="line">       4900000448</span><br><span class="line">       </span><br><span class="line">       </span><br><span class="line">####  正则表达式特性说明：</span><br><span class="line">     1）正则表达式具有贪婪匹配特性</span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ </span><br><span class="line"> 终极目标一：</span><br><span class="line">oldgirl.txt</span><br><span class="line">[root@xmy-01 oldboy]# cat &gt;&gt;oldgirl.txt&lt;&lt;EOF</span><br><span class="line">&gt; 赵  110105199006096418</span><br><span class="line">&gt; 钱  110105198606096418</span><br><span class="line">&gt; 孙  110119198606096418</span><br><span class="line">&gt; 李  110105198606096418</span><br><span class="line">&gt; 周  110115197706097418</span><br><span class="line">&gt; 吴  110105198606096418</span><br><span class="line">&gt; 郑  140105199906096418</span><br><span class="line">&gt; 王  11011019860609641X</span><br><span class="line">&gt; 冯  oldboy</span><br><span class="line">&gt; 陈  110105198606096418</span><br><span class="line">&gt; 楚  130105197406096419</span><br><span class="line">&gt; 魏  oldgirl</span><br><span class="line">&gt; 蒋  110105198606096818</span><br><span class="line">&gt; 沈  150105198606096418</span><br><span class="line">&gt; 韩  11010520100609741X</span><br><span class="line">&gt; 杨  160105200606096418</span><br><span class="line">&gt; EOF</span><br><span class="line"></span><br><span class="line">[root@xmy-01 oldboy]# grep &apos;[0-9]&apos; oldgirl.txt</span><br><span class="line">赵  110105199006096418</span><br><span class="line">钱  110105198606096418</span><br><span class="line">孙  110119198606096418</span><br><span class="line">李  110105198606096418</span><br><span class="line">周  110115197706097418</span><br><span class="line">吴  110105198606096418</span><br><span class="line">郑  140105199906096418</span><br><span class="line">王  11011019860609641X</span><br><span class="line">陈  110105198606096418</span><br><span class="line">楚  130105197406096419</span><br><span class="line">蒋  110105198606096818</span><br><span class="line">沈  150105198606096418</span><br><span class="line">韩  11010520100609741X</span><br><span class="line">杨  160105200606096418</span><br><span class="line">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><br></pre></td></tr></table></figure>
+<p>终极目标二：<br>模拟在一个文件中写入电话号码<br>如果不是电话号码，就进行报错提示”格式不正确”<br>如果是电话号码，就提示输入正确<br>[root@oldgirl oldboy]# echo 10000000000 &gt;check_number.txt<br>[root@oldgirl oldboy]# egrep ‘[0-9]+’ check_number.txt<br>10000000000<br>[root@oldgirl oldboy]# echo ashidgasgdo &gt;check_number.txt<br>[root@oldgirl oldboy]# egrep ‘[0-9]+’ check_number.txt<br>[root@oldgirl oldboy]#<br>[root@oldgirl oldboy]# egrep ‘[0-9]+’ check_number.txt &amp;&amp; echo “input right” || echo “format error”<br>format error<br>[root@oldgirl oldboy]# echo 10000000000 &gt;check_number.txt<br>[root@oldgirl oldboy]# egrep ‘[0-9]+’ check_number.txt &amp;&amp; echo “input right” || echo “format error”<br>10000000000<br>input right<br><del>~</del><del>~</del><del>~</del><del>~</del><del>~</del><del>~</del><del>~</del><del>~</del><del>~</del><del>~</del><del>~</del>~~</p>
+
       
     </div><!-- .entry-content -->
 
@@ -96,6 +287,9 @@
 </a>
     
     
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
     </footer>
 </article>
 
@@ -174,7 +368,7 @@
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 
