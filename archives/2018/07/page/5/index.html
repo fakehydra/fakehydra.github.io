@@ -4,8 +4,6 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="有一个Linux命令正在发送" />
-  
 
   
   
@@ -13,20 +11,15 @@
   
   
   
-  <title>每天一个Linux命令02 | 瑾川</title>
+  <title>Archives: 2018/7 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有一个Linux命令正在发送">
-<meta name="keywords" content="每天一个Linux命令">
-<meta property="og:type" content="article">
-<meta property="og:title" content="每天一个Linux命令02">
-<meta property="og:url" content="http://yoursite.com/2018/07/10/每天一个Linux命令02/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="瑾川">
+<meta property="og:url" content="http://yoursite.com/archives/2018/07/page/5/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="有一个Linux命令正在发送">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-10T12:42:59.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个Linux命令02">
-<meta name="twitter:description" content="有一个Linux命令正在发送">
+<meta name="twitter:title" content="瑾川">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -69,84 +62,72 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-每天一个Linux命令02" class="post-每天一个Linux命令02 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
+        <div id="primary" class="site-content"><div id="content" role="main">
   
-    <h1 class="entry-title article-title">
-      每天一个Linux命令02
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="post type-post status-publish format-standard hentry archive-type-post">
+  <header class="entry-header">
+      
+  
+    <h1 class="entry-title">
+      <a class="archive-article-title" href="/2018/07/05/Linux运维学习-第二天/">Linux运维学习 第二天</a>
     </h1>
   
 
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/每天一个Linux命令02/" data-id="cjjzludp8001p9gly78b3usqz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>  有一个Linux命令正在发送</p>
-  <a id="more"></a>
-<h4 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h4><h2 id="功能说明："><a href="#功能说明：" class="headerlink" title="功能说明："></a>功能说明：</h2><pre><code>pwd 命令是“print working directory”  --显示当前工作目录的绝对路径。
-</code></pre><h2 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h2><pre><code>pwd [option]
-pwd [选项]
-</code></pre><h2 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h2><pre><code>1)pwd 命令和后面选项之间至少要有一个空格
-2）通常情况下，执行pwd命令不需要带任何参数
-</code></pre><h2 id="参数选项-解释说明"><a href="#参数选项-解释说明" class="headerlink" title="参数选项     |             解释说明"></a>参数选项     |             解释说明</h2><pre><code>-L          |  logical ,表示显示逻辑路径（忽略软链接文件），取PWD系统环境变量的值，此参数不常用
--P          |  physical，表示小时物理路径时如果当前路径是软链接文件，则会显示软链接文件对应的源文件，此参数不常用
-</code></pre><h2 id="PS-查看命令帮助时，我们经常会看见“-L，–logical”-这样的选项格式，这种写法的意思时-L-和–logical-的功能是一样的，在选择的时候任选一种即可，不能同时被使用。此外，PWD系统环境变量，可以使用“-”-符号输出其值。"><a href="#PS-查看命令帮助时，我们经常会看见“-L，–logical”-这样的选项格式，这种写法的意思时-L-和–logical-的功能是一样的，在选择的时候任选一种即可，不能同时被使用。此外，PWD系统环境变量，可以使用“-”-符号输出其值。" class="headerlink" title="PS:查看命令帮助时，我们经常会看见“-L，–logical” 这样的选项格式，这种写法的意思时-L 和–logical 的功能是一样的，在选择的时候任选一种即可，不能同时被使用。此外，PWD系统环境变量，可以使用“$” 符号输出其值。"></a>PS:查看命令帮助时，我们经常会看见“-L，–logical” 这样的选项格式，这种写法的意思时-L 和–logical 的功能是一样的，在选择的时候任选一种即可，不能同时被使用。此外，PWD系统环境变量，可以使用“$” 符号输出其值。</h2><pre><code> [root@jinc1 data]# echo $PWD
- /root/data
-
- [root@jinc1 data]# pwd -L
- /root/data
-
- 可见：pwd -L ==echo $PWD
-
-
-
-
-
--未完待续-
-</code></pre>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2018/07/10/每天一个Linux命令02/">
-    <time datetime="2018-07-10T12:21:55.000Z" class="entry-date">
-        2018-07-10
+  </header>
+  <footer class="entry-meta">
+    <a href="/2018/07/05/Linux运维学习-第二天/">
+    <time datetime="2018-07-05T05:03:14.000Z" class="entry-date">
+        2018-07-05
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
 
     </footer>
 </article>
-
-
-    
-<nav class="nav-single">
-    <h3 class="assistive-text">文章导航</h3>
-    
-        <span class="nav-previous"><a href="/2018/07/11/Linux运维学习-第七天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第七天</a></span>
+  
     
     
-        <span class="nav-next"><a href="/2018/07/10/Linux运维学习-第六天/" rel="next">Linux运维学习-第六天 <span class="meta-nav">→</span></a></span>
+    <article class="post type-post status-publish format-standard hentry archive-type-post">
+  <header class="entry-header">
+      
+  
+    <h1 class="entry-title">
+      <a class="archive-article-title" href="/2018/07/04/Linux运维学习-第一天/">Linux运维学习 第一天</a>
+    </h1>
+  
+
+  </header>
+  <footer class="entry-meta">
+    <a href="/2018/07/04/Linux运维学习-第一天/">
+    <time datetime="2018-07-04T11:11:17.000Z" class="entry-date">
+        2018-07-04
+    </time>
+</a>
     
-</nav><!-- .nav-single -->
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
 
-
-
-
-
-
+    </footer>
+</article>
+  
+  
+    </div></section>
+  
 
 </div></div>
         <div id="secondary" class="widget-area" role="complementary">

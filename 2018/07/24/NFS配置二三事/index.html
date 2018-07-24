@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="nfs 配置笔记~" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>NFS配置二三事 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="nfs 配置笔记~">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NFS配置二三事">
+<meta property="og:url" content="http://yoursite.com/2018/07/24/NFS配置二三事/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="nfs 配置笔记~">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-24T09:22:11.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NFS配置二三事">
+<meta name="twitter:description" content="nfs 配置笔记~">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-NFS配置二三事" class="post-NFS配置二三事 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      NFS配置二三事
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/NFS配置二三事/" data-id="cjjzludpz00299glyaglow339" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>nfs 配置笔记~</p>
+<a id="more"></a>
+<h2 id="NFS配置流程"><a href="#NFS配置流程" class="headerlink" title="NFS配置流程"></a>NFS配置流程</h2><h3 id="为什么要用NFS"><a href="#为什么要用NFS" class="headerlink" title="为什么要用NFS"></a>为什么要用NFS</h3><pre><code>NFS（Network File System）即网络文件系统，是FreeBSD支持的文件系统中的一种，它允许网络中的计算机之间通过TCP/IP网络共享资源。在NFS的应用中，本地NFS的客户端应用可以透明地读写位于远端NFS服务器上的文件，就像访问本地文件一样。
+NFS最早是由Sun公司发展出来的，
+简单的来说：它就是是可以透过网络，让不同的主机、不同的操作系统可以共享存储。
+</code></pre><h3 id="以下是NFS最显而易见的好处："><a href="#以下是NFS最显而易见的好处：" class="headerlink" title="以下是NFS最显而易见的好处："></a>以下是NFS最显而易见的好处：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">　　1. 节省本地存储空间，将常用的数据存放在一台NFS服务器上且可以通过网络访问，那么本地终端将可以减少自身存储空间的使用。</span><br><span class="line"></span><br><span class="line">　　2. 用户不需要在网络中的每个机器上都建有Home目录，Home目录可以放在NFS服务器上且可以在网络上被访问使用。</span><br><span class="line"></span><br><span class="line">　　3. 一些存储设备CDROM和Zip（一种高储存密度的磁盘驱动器与磁盘）等都可以在网络上被别的机器使用。这可以减少整个网络上可移动介质设备的数量。</span><br></pre></td></tr></table></figure>
+<p>NFS 的基本原则是“容许不同的客户端及服务端通过一组RPC分享相同的文件系统”，它是独立于操作系统，容许不同硬件及操作系统的系统共同进行文件的分享。</p>
+<p>　　NFS在文件传送或信息传送过程中依赖于RPC协议。RPC，远程过程调用 (Remote Procedure Call) 是能使客户端执行其他系统中程序的一种机制。NFS本身是没有提供信息传输的协议和功能的，但NFS却能让我们通过网络进行资料的分享，这是因为NFS使用了一些其它的传输协议。而这些传输协议用到这个RPC功能的。可以说NFS本身就是使用RPC的一个程序。或者说NFS也是一个RPC SERVER。所以只要用到NFS的地方都要启动RPC服务，不论是NFS SERVER或者NFS CLIENT。这样SERVER和CLIENT才能通过RPC来实现PROGRAM PORT的对应。可以这么理解RPC和NFS的关系：NFS是一个文件系统，而RPC是负责负责信息的传输。</p>
+<h2 id="服务器端："><a href="#服务器端：" class="headerlink" title="服务器端："></a>服务器端：</h2><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><pre><code>nfs-utils: 这个是NFS服务主程序（包含rpc.nfsd、rpc.mountd、daemons）
+rpcbind: 这个是CentOS6.X的RPC主程序（CentOS5.X的为portmap）
+</code></pre><h4 id="检查一下软件是否安装"><a href="#检查一下软件是否安装" class="headerlink" title="检查一下软件是否安装"></a>检查一下软件是否安装</h4><pre><code>[root@jinc2 data]# rpm -qa nfs-utils rpcbind
+rpcbind-0.2.0-16.el6.x86_64
+nfs-utils-1.2.3-78.el6.x86_64
+
+我是装好了的，没有的话直接用yum命令进行安装上面两个包
+
+yum install -y nfs-utils rpcbind #安装上述所需的两个软件包
+
+[root@jinc2 data]# /etc/init.d/rpcbind status
+rpcbind (pid  2958) is running...
+# 查询rpc服务器运行状态，若没开启，则start ，关闭为stop
+
+[root@jinc2 data]# lsof -i :111   #查询rpcbinfd监听状态（ 111为rpcbind的主端口）
+COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+rpcbind 2958  rpc    6u  IPv4  18329      0t0  UDP *:sunrpc 
+rpcbind 2958  rpc    8u  IPv4  18331      0t0  TCP *:sunrpc (LISTEN)
+rpcbind 2958  rpc    9u  IPv6  18332      0t0  UDP *:sunrpc 
+rpcbind 2958  rpc   11u  IPv6  18334      0t0  TCP *:sunrpc (LISTEN)
+
+[root@jinc2 data]# netstat -lntup |grep rpcbind #查询rpcbind服务启动状态 (同lsof查询端口效果一样)
+tcp 0 0 0.0.0.0:111 0.0.0.0:* LISTEN 1281/rpcbind
+tcp 0 0 :::111 :::* LISTEN 1281/rpcbind
+udp 0 0 0.0.0.0:608 0.0.0.0:* 1281/rpcbind
+udp 0 0 0.0.0.0:111 0.0.0.0:* 1281/rpcbind
+udp 0 0 :::608 :::* 1281/rpcbind
+udp 0 0 :::111 :::* 1281/rpcbind
+
+[root@jinc2 data]# chkconfig --list rpcbind #检查rpcbind自启动情况
+rpcbind 0:off 1:off 2:on 3:on 4:on 5:on 6:off
+</code></pre><h4 id="其他我们先不管，但是在3级别我们是要让他开启的"><a href="#其他我们先不管，但是在3级别我们是要让他开启的" class="headerlink" title="其他我们先不管，但是在3级别我们是要让他开启的"></a>其他我们先不管，但是在3级别我们是要让他开启的</h4><h4 id="若不会，命令为-：chkconfig-–level-3-rpcbind-on"><a href="#若不会，命令为-：chkconfig-–level-3-rpcbind-on" class="headerlink" title="若不会，命令为 ：chkconfig –level 3 rpcbind on"></a>若不会，命令为 ：chkconfig –level 3 rpcbind on</h4><h3 id="启动NFS服务"><a href="#启动NFS服务" class="headerlink" title="启动NFS服务"></a>启动NFS服务</h3><pre><code>[root@jinc2 data]# /etc/init.d/nfs status
+rpc.svcgssd is stopped
+rpc.mountd (pid 4029) is running...
+nfsd (pid 4045 4044 4043 4042 4041 4040 4039 4038) is running...
+rpc.rquotad (pid 4024) is running...
+[root@jinc2 data]# 
+这是查看nfs的启动状态，我这是已经开启的。同理，start 为启动，stop为停止
+
+
+[root@jinc2 data]# netstat -lntup|grep nfs #查看NFS端口启动(FNS默认端口为2049)
+[root@jinc2 data]# lsof -i :2049 #查看NFS端口启动(FNS默认端口为2049)
+[root@jinc2 data]# netstat -lntup|grep 2049 #查看NFS端口启动(FNS默认端口为2049)
+tcp 0 0 0.0.0.0:2049 0.0.0.0:* LISTEN -
+tcp 0 0 :::2049 :::* LISTEN -
+udp 0 0 0.0.0.0:2049 0.0.0.0:* -
+udp 0 0 :::2049 :::* -
+
+
+[root@jinc2 data]# rpcinfo -p localhost  #启动NFS过后rpcbind服务已经启用了对FNS的端口映射
+   program vers proto   port  service
+    100000    4   tcp    111  portmapper
+    100000    3   tcp    111  portmapper
+    100000    2   tcp    111  portmapper
+    100000    4   udp    111  portmapper
+    100000    3   udp    111  portmapper
+    100000    2   udp    111  portmapper
+    100024    1   udp  45306  status
+    100024    1   tcp  45572  status
+    100011    1   udp    875  rquotad
+    100011    2   udp    875  rquotad
+    100011    1   tcp    875  rquotad
+    100011    2   tcp    875  rquotad
+    100005    1   udp  49102  mountd
+    100005    1   tcp  36166  mountd
+    100005    2   udp  49400  mountd
+    100005    2   tcp  53483  mountd
+    100005    3   udp  51649  mountd
+    100005    3   tcp  38618  mountd
+    100003    2   tcp   2049  nfs
+    100003    3   tcp   2049  nfs
+    100227    2   tcp   2049  nfs_acl
+    100227    3   tcp   2049  nfs_acl
+    100003    2   udp   2049  nfs
+    100003    3   udp   2049  nfs
+    100227    2   udp   2049  nfs_acl
+    100227    3   udp   2049  nfs_acl
+    100021    1   udp  57035  nlockmgr
+    100021    3   udp  57035  nlockmgr
+    100021    4   udp  57035  nlockmgr
+    100021    1   tcp  46170  nlockmgr
+    100021    3   tcp  46170  nlockmgr
+    100021    4   tcp  46170  nlockmgr
+
+[root@jinc2 data]#  chkconfig --list nfs  #查看nfs的开机自启动情况
+nfs 0:off 1:off 2:on 3:on 4:on 5:on 6:off
+[root@jinc2 data]#  chkconfig nfs on #让FNS开机自启动
+
+
+[root@jinc2 data]# less /etc/init.d/rpcbind
+
+#! /bin/sh
+#
+# rpcbind       Start/Stop RPCbind
+#
+# chkconfig: 2345 13 87
+
+《2345 --启动的等级
+  13 --启动服务的顺序
+  87 --关闭服务的顺序》
+
+同理，我们查看nfs的自启动详情
+
+[root@jinc2 data]# less /etc/init.d/nfs
+#!/bin/sh
+#
+# nfs           This shell script takes care of starting and stopping
+#               the NFS services.
+#
+# chkconfig: - 30 60
+</code></pre><h5 id="lt-由上面可以看出系统默认会让rpcbind服务先启动，再启动nfs服务，但是在实际生产环境中，我们最好不要用chkconfig来控制服务的开机自启动，我们生产环境中我们一般用rc-local来管理。主要是为了方便以后查阅哪些服务开机自己，并且能控制先后顺序-gt"><a href="#lt-由上面可以看出系统默认会让rpcbind服务先启动，再启动nfs服务，但是在实际生产环境中，我们最好不要用chkconfig来控制服务的开机自启动，我们生产环境中我们一般用rc-local来管理。主要是为了方便以后查阅哪些服务开机自己，并且能控制先后顺序-gt" class="headerlink" title="&lt;由上面可以看出系统默认会让rpcbind服务先启动，再启动nfs服务，但是在实际生产环境中，我们最好不要用chkconfig来控制服务的开机自启动，我们生产环境中我们一般用rc.local来管理。主要是为了方便以后查阅哪些服务开机自己，并且能控制先后顺序&gt;"></a>&lt;由上面可以看出系统默认会让rpcbind服务先启动，再启动nfs服务，但是在实际生产环境中，我们最好不要用chkconfig来控制服务的开机自启动，我们生产环境中我们一般用rc.local来管理。主要是为了方便以后查阅哪些服务开机自己，并且能控制先后顺序&gt;</h5><h5 id="lt-为了规范化我们用rc-local来管理开机自启动-gt"><a href="#lt-为了规范化我们用rc-local来管理开机自启动-gt" class="headerlink" title="&lt;为了规范化我们用rc.local来管理开机自启动&gt;"></a>&lt;为了规范化我们用rc.local来管理开机自启动&gt;</h5><pre><code>[root@jinc2 data]# vim /etc/rc.local
+#!/bin/sh
+#
+# This script will be executed *after* all the other init sc
+ripts.
+# You can put your own initialization stuff in here if you d
+on&apos;t
+# want to do the full Sys V style init stuff.
+
+touch /var/lock/subsys/local
+ntpdate ntp.api.bz
+/etc/init.d/rpcbind start
+/etc/init.d/nfs start
+~                         
+</code></pre><h3 id="NFS服务常见进程的详细说明"><a href="#NFS服务常见进程的详细说明" class="headerlink" title="NFS服务常见进程的详细说明"></a>NFS服务常见进程的详细说明</h3><pre><code>[root@jinc2 data]# ps -ef |egrep &quot;rpc|nfs&quot; #查看nfs相进程
+rpcuser 1303 1 0 Nov22 ? 00:00:00 rpc.statd  #检查文件一致性
+root 1512 2 0 Nov22 ? 00:00:00 [rpciod/0]
+rpc 2723 1 0 02:43 ? 00:00:00 rpcbind
+root 2896 1 0 02:56 ? 00:00:00 rpc.rquotad  #磁盘配额进程
+root 2901 1 0 02:56 ? 00:00:00 rpc.mountd #权限管理验证等
+root 2908 2 0 02:56 ? 00:00:00 [nfsd4]
+root 2909 2 0 02:56 ? 00:00:00 [nfsd4_callbacks]
+root 2910 2 0 02:56 ? 00:00:00 [nfsd]
+root 2911 2 0 02:56 ? 00:00:00 [nfsd]
+root 2912 2 0 02:56 ? 00:00:00 [nfsd]
+root 2913 2 0 02:56 ? 00:00:00 [nfsd] #NFS主进程，管理登入，身份判定
+root 2914 2 0 02:56 ? 00:00:00 [nfsd]
+root 2915 2 0 02:56 ? 00:00:00 [nfsd]
+root 2916 2 0 02:56 ? 00:00:00 [nfsd]
+root 2917 2 0 02:56 ? 00:00:00 [nfsd]
+root 2948 1 0 02:56 ? 00:00:00 rpc.idmapd  #名称映射
+</code></pre><h4 id="lt-如果对上述进程不明白可以-用man命令查阅帮助信息，如-“man-rpc-statd”-gt"><a href="#lt-如果对上述进程不明白可以-用man命令查阅帮助信息，如-“man-rpc-statd”-gt" class="headerlink" title="&lt;如果对上述进程不明白可以 用man命令查阅帮助信息，如 “man rpc.statd”&gt;"></a>&lt;如果对上述进程不明白可以 用man命令查阅帮助信息，如 “man rpc.statd”&gt;</h4><h3 id="配置服务端"><a href="#配置服务端" class="headerlink" title="配置服务端"></a>配置服务端</h3><pre><code>前面介绍了NFS的启动，接下来我们配置NFS服务端的配置
+/etc/exports 是NFS程序的配置文件。并且默认为空
+/etc/exports文件的配置格式为：
+NFS共享目录 NFS客户端地址1(参数1,参数2,参数3......) 客户端地址2(参数1,参数2,参数3......)
+NFS共享目录 NFS客户端地址(参数1,参数2,参数3......) 
+
+[root@jinc2 data]# cat /etc/exports 
+/data 10.0.0.0/24(insecure,rw,async,no_root_squash)
+
+&lt;我们在此共享给 10.0.0.0/24所有主机，&gt;
+&lt;man exports 查看 例子和参数详情。如下：&gt;
+
+配置完成exports后平滑重启NFS服务 
+
+[root@NFS-server ~]# /etc/init.d/nfs reload
+
+[root@jinc2 data]# showmount -e 10.0.0.203  #查看本机挂载情况
+
+[root@jinc2 data]# mount -t nfs 10.0.0.203:/data /mnt #在本机测试挂载
+
+[root@jinc2 data]# df -h
+Filesystem        Size  Used Avail Use% Mounted on
+/dev/sda3          18G  2.5G   15G  15% /
+tmpfs             491M     0  491M   0% /dev/shm
+/dev/sda1         190M   35M  146M  19% /boot
+10.0.0.203:/data   18G  2.5G   15G  15% /mnt  --已经挂载成功
+</code></pre><h3 id="接下来就是客户端的安装了"><a href="#接下来就是客户端的安装了" class="headerlink" title="接下来就是客户端的安装了"></a>接下来就是客户端的安装了</h3><h4 id="下载和启动我就不多说了。"><a href="#下载和启动我就不多说了。" class="headerlink" title="下载和启动我就不多说了。"></a>下载和启动我就不多说了。</h4><p>我们直接查看挂载状态<br>     root@jinc2 ~]# showmount -e 10.0.0.203<br>     xport list for 10.0.0.203:<br>     data 10.0.0.0/24</p>
+<p>然后进行挂载<br>     root@jinc2 ~]# mount -t nfs 10.0.0.203:/data /mnt<br>     root@jinc2 ~]# df -h<br>     ilesystem        Size  Used Avail Use% Mounted on<br>     dev/sda3          18G  1.5G   16G   9% /<br>     mpfs             491M     0  491M   0% /dev/shm<br>     dev/sda1         190M   35M  146M  19% /boot<br>     0.0.0.203:/data   18G  2.5G   15G  15% /mnt</p>
+<pre><code>root@jinc2 ~]# mount
+dev/sda3 on / type ext4 (rw)
+roc on /proc type proc (rw)
+ysfs on /sys type sysfs (rw)
+evpts on /dev/pts type devpts (rw,gid=5,mode=620)
+mpfs on /dev/shm type tmpfs (rw,rootcontext=&quot;system_u:object_r:tmpfs_t:s0&quot;)
+dev/sda1 on /boot type ext4 (rw)
+one on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
+unrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)
+0.0.0.203:/data on /mnt type nfs (rw,addr=10.0.0.203)
+
+root@jinc2 ~]# cat /proc/mounts 
+ootfs / rootfs rw 0 0
+roc /proc proc rw,relatime 0 0
+ysfs /sys sysfs rw,seclabel,relatime 0 0
+evtmpfs /dev devtmpfs rw,seclabel,relatime,size=487436k,nr_inodes=121859,mode=755 0 0
+evpts /dev/pts devpts rw,seclabel,relatime,gid=5,mode=620,ptmxmode=000 0 0
+mpfs /dev/shm tmpfs rw,seclabel,relatime 0 0
+dev/sda3 / ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+one /selinux selinuxfs rw,relatime 0 0
+evtmpfs /dev devtmpfs rw,seclabel,relatime,size=487436k,nr_inodes=121859,mode=755 0 0
+proc/bus/usb /proc/bus/usb usbfs rw,relatime 0 0
+dev/sda1 /boot ext4 rw,seclabel,relatime,barrier=1,data=ordered 0 0
+one /proc/sys/fs/binfmt_misc binfmt_misc rw,relatime 0 0
+unrpc /var/lib/nfs/rpc_pipefs rpc_pipefs rw,relatime 0 0
+0.0.0.203:/data /mnt nfs rw,relatime,vers=3,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,timeo=600,retrans=2     sec=sys,mountaddr=10.0.0.203,mountvers=3,mountport=51649,mountproto=udp,local_lock=none,addr=10.0.0.203 0 0
+</code></pre><h4 id="客户端到这边也暂时配置完成了，接下来，我们回到服务端，给data目录添加nfsnobody权限"><a href="#客户端到这边也暂时配置完成了，接下来，我们回到服务端，给data目录添加nfsnobody权限" class="headerlink" title="客户端到这边也暂时配置完成了，接下来，我们回到服务端，给data目录添加nfsnobody权限"></a>客户端到这边也暂时配置完成了，接下来，我们回到服务端，给data目录添加nfsnobody权限</h4><pre><code>[root@jinc2 data]# grep 65534 /etc/passwd
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+</code></pre><h4 id="添加权限"><a href="#添加权限" class="headerlink" title="添加权限"></a>添加权限</h4><pre><code>[root@jinc2 ~]# chown -R nfsnobody /data
+[root@jinc2 ~]# ll /data/
+total 0
+[root@jinc2 ~]# ll -d /data/
+drwxr-xr-x. 2 nfsnobody root 4096 Jul 24 13:27 /data/
+
+
+[root@jinc2 data]# cat /var/lib/nfs/etab --查看一条配置的详细信息
+/data    10.0.0.0/24(rw,async,wdelay,hide,nocrossmnt,insecure,no_root_squash,no_all_squash,no_subtree_check,secure_     locks,acl,anonuid=65534,anongid=65534,sec=sys,rw,no_root_squash,no_all_squash)
+</code></pre><h3 id="现在我们可以对挂载目录进行各种操作，但是还没有完。我们需要把挂载命令放在rc-local里面，"><a href="#现在我们可以对挂载目录进行各种操作，但是还没有完。我们需要把挂载命令放在rc-local里面，" class="headerlink" title="现在我们可以对挂载目录进行各种操作，但是还没有完。我们需要把挂载命令放在rc.local里面，"></a>现在我们可以对挂载目录进行各种操作，但是还没有完。我们需要把挂载命令放在rc.local里面，</h3><h3 id="我们不要把挂载命令放在fstab，因为fstab比网络先启动，会出现挂载不上网络NFS"><a href="#我们不要把挂载命令放在fstab，因为fstab比网络先启动，会出现挂载不上网络NFS" class="headerlink" title="我们不要把挂载命令放在fstab，因为fstab比网络先启动，会出现挂载不上网络NFS"></a>我们不要把挂载命令放在fstab，因为fstab比网络先启动，会出现挂载不上网络NFS</h3><h3 id="附赠两个小东西："><a href="#附赠两个小东西：" class="headerlink" title="附赠两个小东西："></a>附赠两个小东西：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nfs-utils rpcbind </span><br><span class="line">/etc/init.d/rpcbind start</span><br><span class="line">/etc/init.d/nfs start</span><br><span class="line">#echo /data 10.0.0.0/24(insecure,rw,async,no_root_squash)&gt;&gt;/etc/exports</span><br><span class="line">#/etc/init.d/nfs reload</span><br><span class="line">showmount -e 10.0.0.203</span><br><span class="line">mount -t nfs 10.0.0.203:/data /mnt </span><br><span class="line">df -h</span><br><span class="line">服务器端配置命令</span><br><span class="line">带#两条命令为自己使用vim配置，添加一个开机自启</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nfs-utils rpcbind </span><br><span class="line">/etc/init.d/rpcbind start</span><br><span class="line">/etc/init.d/nfs start</span><br><span class="line">showmount -e 10.0.0.203</span><br><span class="line">mount -t nfs 10.0.0.203:/data /mnt</span><br><span class="line">dh -h </span><br><span class="line">客户端配置命令</span><br></pre></td></tr></table></figure>
+<h4 id="IP什么的自己根据实际情况搭配就好"><a href="#IP什么的自己根据实际情况搭配就好" class="headerlink" title="IP什么的自己根据实际情况搭配就好"></a>IP什么的自己根据实际情况搭配就好</h4><h3 id="补上一个，在windows下的共享"><a href="#补上一个，在windows下的共享" class="headerlink" title="补上一个，在windows下的共享"></a>补上一个，在windows下的共享</h3><pre><code>首先，要确定是能互相ping通的
+然后，开启windows下的NFS服务
+控制面板--程序--程序和功能--启用和关闭windows功能--找到NFS勾选
+接下来
+win+r--cmd
+mount 10.0.0.203:/data X:
+-mount：指令
+-10.0.0.203：服务器端IP
+-:/data:共享的目录
+X：指定win下的接受路径
+</code></pre><h4 id="end"><a href="#end" class="headerlink" title="-end-"></a>-end-</h4>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/24/NFS配置二三事/">
+    <time datetime="2018-07-24T08:40:33.000Z" class="entry-date">
+        2018-07-24
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/24/Linux运维学习-第十六天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第十六天</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/23/每天一个Linux命令09/" rel="next">每天一个Linux命令09 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/24/Linux运维学习-第十六天/">Linux运维学习-第十六天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/NFS配置二三事/">NFS配置二三事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/23/每天一个Linux命令09/">每天一个Linux命令09</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/23/tomcat安装轶事/">tomcat安装轶事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/23/每天一个Linux命令08/">每天一个Linux命令08</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 16px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 18px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
