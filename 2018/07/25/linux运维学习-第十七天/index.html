@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="第十七天" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>linux运维学习-第十七天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第十七天">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux运维学习-第十七天">
+<meta property="og:url" content="http://yoursite.com/2018/07/25/linux运维学习-第十七天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="第十七天">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-25T13:27:34.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux运维学习-第十七天">
+<meta name="twitter:description" content="第十七天">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-linux运维学习-第十七天" class="post-linux运维学习-第十七天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      linux运维学习-第十七天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/linux运维学习-第十七天/" data-id="cjk160sym001ifklynuxpmxsp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="第十七天"><a href="#第十七天" class="headerlink" title="第十七天"></a>第十七天</h3><a id="more"></a>
+<h3 id="正则表达式总结"><a href="#正则表达式总结" class="headerlink" title="正则表达式总结"></a>正则表达式总结</h3><h4 id="括号家族"><a href="#括号家族" class="headerlink" title="括号家族"></a>括号家族</h4><h3 id=""><a href="#" class="headerlink" title="[]"></a>[]</h3><p>  作用：指定多个要匹配的字符信息 a b c 0 9 中括号中的每一个字符==元素<br>        [0-9] [a-z] [A-z]</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title="()"></a>()</h3><p>   作用：将分散字符汇总成一个整体，进行匹配 I am o(ld)boy<br>         sed 命令指定一个整体信息，利用sed的替换能力，实现后项引用前项</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title="{}"></a>{}</h3><pre><code>作用：01.通配符：作为一个序列符号使用 {1..10}{1,3,5}  {1,2}{3,4}
+
+     02.扩展正则：更加灵活的匹配前一个字符连续出现的次数 {n,m} {n} {n,} {,m}
+
+
+
+
+*  --- 匹配 0次 或者 1次 或者 多次
+?  --- 匹配前一个字符0次或者1次
++  --- 匹配          1次 或者 多次
+</code></pre><h2 id="终极总结"><a href="#终极总结" class="headerlink" title="终极总结"></a>终极总结</h2><pre><code>&apos;&apos; : 所见即所得
+&quot;&quot; : 类似单引号，会识别有些符号信息（!,$PATH等）。
+没有引号：类似于双引号，可以支持通配符号
+
+`` ：执行命令，把结果交由外面处理
+</code></pre><h3 id="正则使用常见问题"><a href="#正则使用常见问题" class="headerlink" title="正则使用常见问题"></a>正则使用常见问题</h3><pre><code>1）匹配一行从头到m字符的信息
+    grep &apos;^.*&apos; oldboy.txt
+    贪婪特性：默认都是从左开头向右开始贪婪匹配
+
+2）^d 和*d 之间的区别
+    正则符号：用于匹配文件内容信息 --grep sed awk
+    通配符号：用于匹配文件名称信息 --find ls 
+
+
+
+3） 基础正则于扩展正则的区别
+     基础正则：grep sed awk 可以直接识别基础正则
+     扩展正则：egrep  sed -r   awk
+     说明：转译符号主要作用是把一个字符高级意思转换为低级意思
+</code></pre><h3 id="第三关测验练习题"><a href="#第三关测验练习题" class="headerlink" title="第三关测验练习题"></a>第三关测验练习题</h3><h4 id="如何截取文件中的数据信息（正则表达式）"><a href="#如何截取文件中的数据信息（正则表达式）" class="headerlink" title="如何截取文件中的数据信息（正则表达式）"></a>如何截取文件中的数据信息（正则表达式）</h4><pre><code>eth0      Link encap:Ethernet  HWaddr 00:0C:29:B3:36:16  
+     inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+     inet6 addr: fe80::20c:29ff:feb3:3616/64 Scope:Link
+     UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+     RX packets:6429 errors:0 dropped:0 overruns:0 frame:0
+     TX packets:4069 errors:0 dropped:0 overruns:0 carrier:0
+     collisions:0 txqueuelen:1000 
+     RX bytes:601226 (587.1 KiB)  TX bytes:521474 (509.2 KiB)
+</code></pre><h5 id="方法一：利用sed（替换数据信息）"><a href="#方法一：利用sed（替换数据信息）" class="headerlink" title="方法一：利用sed（替换数据信息）"></a>方法一：利用sed（替换数据信息）</h5><pre><code>1）定位截取内容所在的行
+ifconfig eth0|sed -n &apos;2p&apos; 
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+
+2）定位截取内容所在列
+三种方法：
+①. 利用替换功能
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*:##g&apos;
+255.255.255.0
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;
+10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;|sed &apos;s#  Bc.*$##g&apos;
+10.0.0.200
+
+②. 利用替换功能
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:|  Bc.*$##g&apos;
+10.0.0.200
+
+扩展：取第二个地址
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*t:|  M.*$##g&apos;
+10.0.0.255
+
+③. 利用后项引用前项的方法
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:(.*)  Bc.*$#\1#g&apos;
+10.0.0.200
+
+扩展：取第三个地址
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*:(.*)#\1#g&apos;
+255.255.255.0
+
+终结解法
+sed -n &apos;2     p==条件&apos;  sed -r &apos;s#^.*:(.*)#\1#g==具体做的事情&apos;
+
+sed -nr &apos;2s#^.*:(.*)#\1#gp&apos;
+[root@oldgirl oldboy]# ifconfig eth0|sed -nr &apos;2s#^.*:(.*)  Bc.*$#\1#gp&apos;
+10.0.0.200
+</code></pre><h5 id="方法二：利用awk"><a href="#方法二：利用awk" class="headerlink" title="方法二：利用awk"></a>方法二：利用awk</h5><pre><code>1）定位截取内容所在的行
+[root@oldgirl oldboy]# ifconfig eth0|awk  &apos;NR==2&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+
+2）定位截取内容所在列
+[root@oldgirl oldboy]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $4}&apos;
+10.0.0.200
+[root@xmy-01 ~]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $6}&apos;
+10.0.0.255
+[root@xmy-01 ~]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $8}&apos;
+255.255.255.0
+</code></pre><h5 id="终极解法："><a href="#终极解法：" class="headerlink" title="终极解法："></a>终极解法：</h5><pre><code>awk &apos;NR==2==条件&apos;   awk -F &quot;[ :]+&quot; &apos;{print $4}==命令&apos;
+
+awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos;     
+
+[root@oldgirl oldboy]# ifconfig eth0|awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos; 
+10.0.0.200
+
+ 方法三：利用grep
+    1）定位截取内容所在的行
+       ifconf g eth0|grep &apos;cast&apos;
+
+    2）定位截取内容所在列
+</code></pre><h4 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h4>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/25/linux运维学习-第十七天/">
+    <time datetime="2018-07-25T13:13:28.000Z" class="entry-date">
+        2018-07-25
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/07/25/ansible-安装二三事/" rel="next">ansible 安装二三事 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/25/linux运维学习-第十七天/">linux运维学习-第十七天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/25/ansible-安装二三事/">ansible 安装二三事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/25/MySQL安装配置/">MySQL安装配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/Linux运维学习-第十六天/">Linux运维学习-第十六天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/NFS配置二三事/">NFS配置二三事</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
