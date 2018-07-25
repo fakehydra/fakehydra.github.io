@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="MySQL安装了解一下" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>MySQL安装配置 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MySQL安装了解一下">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL安装配置">
+<meta property="og:url" content="http://yoursite.com/2018/07/25/MySQL安装配置/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="MySQL安装了解一下">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-25T13:02:38.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL安装配置">
+<meta name="twitter:description" content="MySQL安装了解一下">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-MySQL安装配置" class="post-MySQL安装配置 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      MySQL安装配置
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/MySQL安装配置/" data-id="cjk15bw1b0013rglyb880avs3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="MySQL安装了解一下"><a href="#MySQL安装了解一下" class="headerlink" title="MySQL安装了解一下"></a>MySQL安装了解一下</h3><a id="more"></a>
+<h2 id="MySQL安装配置"><a href="#MySQL安装配置" class="headerlink" title="MySQL安装配置"></a>MySQL安装配置</h2><h3 id="安装必要的组件"><a href="#安装必要的组件" class="headerlink" title="安装必要的组件"></a>安装必要的组件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># yum install –y autoconf automake imake libxml2-devel\</span><br><span class="line"> expat-devel cmake gcc gcc-c++ libaio libaio-devel bzr bison libtool ncurses5-devel</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># yum install –y autoconf automake imake libxml2-devel\</span><br><span class="line"> expat-devel cmake gcc gcc-c++ libaio libaio-devel bzr bison libtool ncurses5-devel</span><br></pre></td></tr></table></figure>
+<h3 id="下载解压mysql软件"><a href="#下载解压mysql软件" class="headerlink" title="下载解压mysql软件"></a>下载解压mysql软件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/local/src</span><br><span class="line"># wget -c http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.14-&lt;a href=&quot;http://www.ttlsa.com/linux/&quot; title=&quot;linux&quot;target=&quot;_blank&quot;&gt;linux&lt;/a&gt;-glibc2.5-x86_64.tar.gz/from/http://cdn.mysql.com/ -O mysql-5.6.14-linux-glibc2.5-x86_64.tar.gz</span><br><span class="line"># tar zxvf mysql-5.6.14-linux-glibc2.5-x86_64.tar.gz –C ../</span><br><span class="line"># cd /usr/local/</span><br><span class="line"># ln -s mysql-5.6.14-linux-glibc2.5-x86_64 mysql</span><br><span class="line">	</span><br><span class="line"># cd /usr/local/src</span><br><span class="line"># wget -c http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.14-linux-glibc2.5-x86_64.tar.gz/from/http://cdn.mysql.com/ -O mysql-5.6.14-linux-glibc2.5-x86_64.tar.gz</span><br><span class="line"># tar zxvf mysql-5.6.14-linux-glibc2.5-x86_64.tar.gz –C ../</span><br><span class="line"># cd /usr/local/</span><br><span class="line"># ln -s mysql-5.6.14-linux-glibc2.5-x86_64 mysql</span><br></pre></td></tr></table></figure>
+<h3 id="创建Mysql用户组和用户，及数据库存放目录："><a href="#创建Mysql用户组和用户，及数据库存放目录：" class="headerlink" title="创建Mysql用户组和用户，及数据库存放目录："></a>创建Mysql用户组和用户，及数据库存放目录：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># mkdir -p /data/mysql_data_3306</span><br><span class="line"># mkdir -p /data/mysql_log</span><br><span class="line"># mkdir -p /data/log-bin</span><br><span class="line"># groupadd mysql</span><br><span class="line"># useradd mysql -g mysql -M -s /sbin/nologin</span><br><span class="line"># chown -R mysql.mysql /data/mysql_data_3306 /data/mysql_log /data/log-bin</span><br><span class="line"># chown -R mysql.mysql /usr/local/mysql-5.6.14-linux-glibc2.5-x86_64</span><br><span class="line">	</span><br><span class="line"># mkdir -p /data/mysql_data_3306</span><br><span class="line"># mkdir -p /data/mysql_log</span><br><span class="line"># mkdir -p /data/log-bin</span><br><span class="line"># groupadd mysql</span><br><span class="line"># useradd mysql -g mysql -M -s /sbin/nologin</span><br><span class="line"># chown -R mysql.mysql /data/mysql_data_3306 /data/mysql_log /data/log-bin</span><br><span class="line"># chown -R mysql.mysql /usr/local/mysql-5.6.14-linux-glibc2.5-x86_64</span><br></pre></td></tr></table></figure>
+<h3 id="配置文件（依具体环境）"><a href="#配置文件（依具体环境）" class="headerlink" title="配置文件（依具体环境）"></a>配置文件（依具体环境）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/my.cnf</span><br><span class="line">[mysqld]</span><br><span class="line"># GENERAL #</span><br><span class="line">user = mysql</span><br><span class="line">default-storage-engine = InnoDB</span><br><span class="line">socket = /data/mysql_data_3306/mysql.sock</span><br><span class="line">pid-file = /data/mysql_data_3306/mysql.pid</span><br><span class="line">port = 3306</span><br><span class="line"># MyISAM #</span><br><span class="line">key_buffer_size = 1344M</span><br><span class="line">myisam_recover = FORCE,BACKUP</span><br><span class="line"># SAFETY #</span><br><span class="line">max_allowed_packet = 16M</span><br><span class="line">max_connect_errors = 1000000</span><br><span class="line">skip_name_resolve</span><br><span class="line"># DATA STORAGE #</span><br><span class="line">datadir = /data/mysql_data_3306/</span><br><span class="line">long_query_time = 1</span><br><span class="line"># BINARY LOGGING #</span><br><span class="line">log-bin = /data/log-bin/mysql-bin-3306</span><br><span class="line">expire-logs-days = 14</span><br><span class="line">sync-binlog = 1</span><br><span class="line">server-id = 1</span><br><span class="line">max_binlog_size = 500M</span><br><span class="line"># REPLICATION #</span><br><span class="line">relay-log = /data/log-bin/relay-bin-3306</span><br><span class="line">slave-net-timeout = 60</span><br><span class="line"># CACHES AND LIMITS #</span><br><span class="line">tmp_table_size = 32M</span><br><span class="line">max_heap_table_size = 32M</span><br><span class="line">max_connections = 500</span><br><span class="line">thread_cache_size = 50</span><br><span class="line">open_files_limit = 65535</span><br><span class="line">table_definition_cache = 4096</span><br><span class="line">table_open_cache = 4096</span><br><span class="line"># INNODB #</span><br><span class="line">innodb_data_file_path = ibdata1:128M;ibdata2:10M:autoextend</span><br><span class="line">innodb_flush_method = O_DIRECT</span><br><span class="line">innodb_log_files_in_group = 2</span><br><span class="line">innodb_lock_wait_timeout = 50</span><br><span class="line">innodb_log_file_size = 256M</span><br><span class="line">innodb_flush_log_at_trx_commit = 1</span><br><span class="line">innodb_file_per_table = 1</span><br><span class="line">innodb_thread_concurrency = 8</span><br><span class="line">innodb_buffer_pool_size = 8G</span><br><span class="line"># LOGGING #</span><br><span class="line">log-error = /data/mysql_log/mysql-error-3306.log</span><br><span class="line">log-queries-not-using-indexes = 1</span><br><span class="line">slow-query-log = 1</span><br><span class="line">long_query_time = 1</span><br><span class="line">slow-query-log-file = /data/mysql_log/mysql-slow-3306.log</span><br><span class="line"># FOR SLAVE #</span><br><span class="line">#binlog-format = ROW</span><br><span class="line">#log-slave-updates = true</span><br><span class="line">#gtid-mode = on</span><br><span class="line">#enforce-gtid-consistency = true</span><br><span class="line">#master-info-repository = TABLE</span><br><span class="line">#relay-log-info-repository = TABLE</span><br><span class="line">#sync-master-info = 1</span><br><span class="line">#slave-parallel-workers = 2</span><br><span class="line">#binlog-checksum = CRC32</span><br><span class="line">#master-verify-checksum = 1</span><br><span class="line">#slave-sql-verify-checksum = 1</span><br><span class="line">#binlog-rows-query-log_events = 1</span><br><span class="line">#report-port = 3306</span><br><span class="line">#report-host = 10.1.1.10</span><br></pre></td></tr></table></figure>
+<h3 id="系统服务"><a href="#系统服务" class="headerlink" title="系统服务"></a>系统服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cp -af /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld_3306</span><br><span class="line"># vi /etc/init.d/mysqld_3306</span><br></pre></td></tr></table></figure>
+<h4 id="修改两处位置："><a href="#修改两处位置：" class="headerlink" title="修改两处位置："></a>修改两处位置：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">basedir=/usr/local/mysql</span><br><span class="line">datadir=/data/mysql_data_3306</span><br></pre></td></tr></table></figure>
+<h3 id="执行如下命令"><a href="#执行如下命令" class="headerlink" title="执行如下命令"></a>执行如下命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># chmod 755 /etc/init.d/mysqld_3306</span><br><span class="line"># chkconfig --add mysqld_3306</span><br><span class="line"># chkconfig --level 345 mysqld_3306 on</span><br><span class="line"></span><br><span class="line"># cp -af /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld_3306</span><br><span class="line"># vi /etc/init.d/mysqld_3306</span><br></pre></td></tr></table></figure>
+<h4 id="修改两处位置：-1"><a href="#修改两处位置：-1" class="headerlink" title="修改两处位置："></a>修改两处位置：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">basedir=/usr/local/mysql</span><br><span class="line">datadir=/data/mysql_data_3306</span><br></pre></td></tr></table></figure>
+<h4 id="执行如下命令-1"><a href="#执行如下命令-1" class="headerlink" title="执行如下命令"></a>执行如下命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># chmod 755 /etc/init.d/mysqld_3306</span><br><span class="line"># chkconfig --add mysqld_3306</span><br><span class="line"># chkconfig --level 345 mysqld_3306 on</span><br></pre></td></tr></table></figure>
+<h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/local/mysql</span><br><span class="line"># ./scripts/mysql_install_db --user=mysql --defaults-file=/etc/my.cnf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/local/mysql</span><br><span class="line"># ./scripts/mysql_install_db --user=mysql --defaults-file=/etc/my.cnf</span><br></pre></td></tr></table></figure>
+<h3 id="启动数据库进程"><a href="#启动数据库进程" class="headerlink" title="启动数据库进程"></a>启动数据库进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># service mysqld_3306 start</span><br></pre></td></tr></table></figure>
+<h3 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># /usr/local/mysql/bin/mysql -p -uroot -S /tmp/mysql.sock #这里直接回车就能进入数据库系统</span><br><span class="line">Mysql&gt; delete from mysql.user where user=&apos;&apos;;</span><br><span class="line">Mysql&gt; update mysql.user set password=PASSWORD(‘xxxxxxxx’) where user=&apos;root&apos;;</span><br><span class="line">Mysql&gt;flush privileges;</span><br></pre></td></tr></table></figure>
+<h3 id="修改密码后进入"><a href="#修改密码后进入" class="headerlink" title="修改密码后进入"></a>修改密码后进入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># mysql uroot -p</span><br><span class="line">回车后输入修改后的密码</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/25/MySQL安装配置/">
+    <time datetime="2018-07-25T12:54:58.000Z" class="entry-date">
+        2018-07-25
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/25/ansible-安装二三事/" rel="prev"><span class="meta-nav">←</span> ansible 安装二三事</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/24/Linux运维学习-第十六天/" rel="next">Linux运维学习-第十六天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/25/ansible-安装二三事/">ansible 安装二三事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/25/MySQL安装配置/">MySQL安装配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/Linux运维学习-第十六天/">Linux运维学习-第十六天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/NFS配置二三事/">NFS配置二三事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/23/每天一个Linux命令09/">每天一个Linux命令09</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
