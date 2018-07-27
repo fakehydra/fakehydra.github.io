@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="hhhhhhhhhhhhh" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-第十八天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="hhhhhhhhhhhhh">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-第十八天">
+<meta property="og:url" content="http://yoursite.com/2018/07/27/Linux运维学习-第十八天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="hhhhhhhhhhhhh">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-27T05:01:19.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-第十八天">
+<meta name="twitter:description" content="hhhhhhhhhhhhh">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第十八天" class="post-Linux运维学习-第十八天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-第十八天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十八天/" data-id="cjk3ivacj002nk8ly320c0gc2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="hhhhhhhhhhhhh"><a href="#hhhhhhhhhhhhh" class="headerlink" title="hhhhhhhhhhhhh"></a>hhhhhhhhhhhhh</h3><a id="more"></a>
+<h2 id="第三关测验练习题"><a href="#第三关测验练习题" class="headerlink" title="第三关测验练习题"></a>第三关测验练习题</h2><h3 id="如何取得-etiantian-文件的权限对应的数字内容"><a href="#如何取得-etiantian-文件的权限对应的数字内容" class="headerlink" title="如何取得/etiantian 文件的权限对应的数字内容"></a>如何取得/etiantian 文件的权限对应的数字内容</h3><pre><code>如-rw-r--r-- 为 644，要求使用命令取得 644 这样的数字。
+利用stat命令获取，输出信息中的权限数值信息
+
+ 方法一：利用sed命令
+ [root@oldgirl ~]# stat /etiantian |sed -n &apos;4p&apos;|sed -r &apos;s#^.*\(0|/.*$##g&apos;
+ 644
+ [root@oldgirl ~]# stat /etiantian |sed -n &apos;4p&apos;|sed -r &apos;s#^.*\(0(.*)/-.*$#\1#g&apos;
+ 644
+
+ 方法二：利用awk命令
+ stat /etiantian |awk &apos;NR==4&apos;|awk -F &quot;[0/]&quot; &apos;{print $2}&apos;
+ 644
+ 方法三：运维思想：（了解）
+          一个命令输出的内容有我们想要的结果，就可以利用命令的参数直接把结果显示出来
+ [root@oldgirl ~]# stat -c%a /etiantian
+ 644
+</code></pre><h3 id="linux-下通过-mkdir-命令创建一个新目录-oldboy-ett，它的硬链接数是多少，为什么？"><a href="#linux-下通过-mkdir-命令创建一个新目录-oldboy-ett，它的硬链接数是多少，为什么？" class="headerlink" title="linux 下通过 mkdir 命令创建一个新目录/oldboy/ett，它的硬链接数是多少，为什么？"></a>linux 下通过 mkdir 命令创建一个新目录/oldboy/ett，它的硬链接数是多少，为什么？</h3><pre><code>如果在/oldboy/ett 下面再创建一个目录 test。再问/oldboy/ett 的硬链接数是多少？为什么。 解答   
+  [root@oldgirl ~]# mkdir /oldboy/ett -p
+  [root@oldgirl ~]# ll -di /oldboy/ett
+  1572878 drwxr-xr-x 2 root root 4096 Jul 26 10:19 /oldboy/ett
+  [root@oldgirl ~]# mkdir /oldboy/ett/oldboydir
+  [root@oldgirl ~]# ll -di /oldboy/ett
+  1572878 drwxr-xr-x 3 root root 4096 Jul 26 10:20 /oldboy/ett
+
+  [root@oldgirl ~]# ll -id /oldboy/ett/ /oldboy/ett/. /oldboy/ett/oldboydir/..
+  1572878 drwxr-xr-x 3 root root 4096 Jul 26 10:20 /oldboy/ett/
+  1572878 drwxr-xr-x 3 root root 4096 Jul 26 10:20 /oldboy/ett/.
+  1572878 drwxr-xr-x 3 root root 4096 Jul 26 10:20 /oldboy/ett/oldboydir/..
+  [root@oldgirl ~]# cd /oldboy/ett/
+  [root@oldgirl ett]# pwd
+  /oldboy/ett
+  [root@oldgirl ett]# cd /oldboy/ett/.
+  [root@oldgirl ett]# pwd
+  /oldboy/ett
+  [root@oldgirl ett]# cd /oldboy/ett/oldboydir/..
+  [root@oldgirl ett]# pwd
+  /oldboy/ett
+
+  [root@oldgirl ett]# ll  /etc/|grep &apos;^d&apos;|wc -l
+  76
+</code></pre><h3 id="如何截取文件中的数据信息（正则表达式）"><a href="#如何截取文件中的数据信息（正则表达式）" class="headerlink" title="如何截取文件中的数据信息（正则表达式）"></a>如何截取文件中的数据信息（正则表达式）</h3><pre><code>截取ifconfig eth0命令输出的IP地址信息
+ eth0      Link encap:Ethernet  HWaddr 00:0C:29:B3:36:16  
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+      inet6 addr: fe80::20c:29ff:feb3:3616/64 Scope:Link
+      UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+      RX packets:6429 errors:0 dropped:0 overruns:0 frame:0
+      TX packets:4069 errors:0 dropped:0 overruns:0 carrier:0
+      collisions:0 txqueuelen:1000 
+      RX bytes:601226 (587.1 KiB)  TX bytes:521474 (509.2 KiB)
+
+方法一：利用sed（替换数据信息）
+
+1）定位截取内容所在的行
+ifconfig eth0|sed -n &apos;2p&apos; 
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+
+2）定位截取内容所在列
+三种方法：
+①. 利用替换功能
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*:##g&apos;
+255.255.255.0
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;
+10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;|sed &apos;s#  Bc.*$##g&apos;
+10.0.0.200
+
+②. 利用替换功能
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:|  Bc.*$##g&apos;
+10.0.0.200
+
+扩展：取第二个地址
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*t:|  M.*$##g&apos;
+10.0.0.255
+
+[root@xmy-01 oldboy]# ifconfig eth0|sed -nr &apos;2s#^.*t:(.*) M.*$#\1#gp&apos;
+10.0.0.255
+
+③. 利用后项引用前项的方法
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:(.*)  Bc.*$#\1#g&apos;
+10.0.0.200
+
+扩展：取第三个地址
+[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*:(.*)#\1#g&apos;
+255.255.255.0
+
+终结解法
+sed -n &apos;2     p==条件&apos;  sed -r &apos;s#^.*:(.*)#\1#g==具体做的事情&apos;
+
+
+sed -nr &apos;2s#^.*:(.*)#\1#gp&apos;
+[root@oldgirl oldboy]# ifconfig eth0|sed -nr &apos;2s#^.*:(.*)  Bc.*$#\1#gp&apos;
+10.0.0.200
+
+
+方法二：利用awk
+1）定位截取内容所在的行
+[root@oldgirl oldboy]# ifconfig eth0|awk  &apos;NR==2&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+
+2）定位截取内容所在列
+[root@oldgirl oldboy]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $4}&apos;
+10.0.0.200
+[root@xmy-01 ~]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $6}&apos;
+10.0.0.255
+[root@xmy-01 ~]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $8}&apos;
+255.255.255.0
+
+[root@xmy-01 oldboy]# ifconfig eth0|awk -F &quot;[ :]*&quot; &apos;NR==2{print $4}&apos;
+10.0.0.201    &lt;--- *的结果和+ 一样
+
+终极解法：
+awk &apos;NR==2==条件&apos;   awk -F &quot;[ :]+&quot; &apos;{print $4}==命令&apos;
+
+awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos;     
+
+[root@oldgirl oldboy]# ifconfig eth0|awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos; 
+10.0.0.200
+
+方法三：利用 | 指定分隔符  或者
+[root@xmy-01 oldboy]# ifconfig eth0|awk -F &quot;addr:| Bcast:&quot; &apos;NR==2 {print $2}&apos;
+10.0.0.201     
+
+
+ 方法四：利用grep
+    1）定位截取内容所在的行
+       ifconf g eth0|grep &apos;cast&apos;
+
+    2）定位截取内容所在列
+    方法一：快速定位
+
+    方法二：正则方式取出信息
+
+    [root@xmy-01 oldboy]# ifconfig eth0|grep &apos;Bcas&apos;|egrep &apos;[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+&apos; -o
+    10.0.0.201
+    10.0.0.255
+    255.255.255.0
+    [root@xmy-01 oldboy]# ifconfig eth0|grep &apos;Bcas&apos;|egrep &apos;[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+&apos; -o|head -1
+    10.0.0.201
+
+    [root@xmy-01 oldboy]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.){3}[0-9]+&apos;
+              inet addr:10.0.0.201  Bcast:10.0.0.25  Mask:255.255.255.0
+    [root@xmy-01 oldboy]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.){3}[0-9]+&apos; -o|head -1
+    10.0.0.201
+
+
+    [root@xmy-01 oldboy]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.?){4}&apos;
+              inet addr:10.0.0.201  Bcast:10.0.0.25  Mask:255.255.255.0
+    [root@xmy-01 oldboy]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.?){4}&apos; -o|head -1
+    10.0.0.201
+
+
+补充：在centos7中，获取IP地址信息
+      ip address show eth0
+      ip a s eth0
+      ip a
+</code></pre><h3 id="请给出默认情况-eth0-网卡配置文件的路径及客户端-DNS-的路径。-解答"><a href="#请给出默认情况-eth0-网卡配置文件的路径及客户端-DNS-的路径。-解答" class="headerlink" title="请给出默认情况 eth0 网卡配置文件的路径及客户端 DNS 的路径。 解答"></a>请给出默认情况 eth0 网卡配置文件的路径及客户端 DNS 的路径。 解答</h3><pre><code>网卡配置文件信息
+[root@oldgirl ett]# ll /etc/sysconfig/network-scripts/ifcfg-eth0 
+-rw-r--r--. 3 root root 265 Jul 12 12:21 /etc/sysconfig/network-scripts/ifcfg-eth0 
+
+DNS配置文件信息
+[root@oldgirl ett]# ll /etc/resolv.conf
+-rw-r--r--. 2 root root 49 Jul 13 10:34 /etc/resolv.conf
+[root@oldgirl ett]# cat /etc/resolv.conf
+
+nameserver 114.114.114.114
+nameserver 223.5.5.5
+
+DNS信息配置时，是有两个dns地址需要配置的
+阿里云：223.5.5.5 223.6.6.6
+教室环境：114.114.114.114  8.8.8.8
+
+研究DNS服务知识：（了解）
+</code></pre><h3 id="查找当前目录下所有文件，并把文件中的-www-etiantian-org-字符串替换成-www-oldboy-cc"><a href="#查找当前目录下所有文件，并把文件中的-www-etiantian-org-字符串替换成-www-oldboy-cc" class="headerlink" title="查找当前目录下所有文件，并把文件中的 www.etiantian.org 字符串替换成 www.oldboy.cc"></a>查找当前目录下所有文件，并把文件中的 <a href="http://www.etiantian.org" target="_blank" rel="noopener">www.etiantian.org</a> 字符串替换成 <a href="http://www.oldboy.cc" target="_blank" rel="noopener">www.oldboy.cc</a></h3><pre><code>解答：
+[root@oldgirl ett]# sed -ri &apos;s#(^.*w)..*$#\1.oldboy.cc#g&apos; /oldboy/test.txt
+[root@oldgirl ett]# cat /oldboy/test.txt
+www.oldboy.cc
+
+异常问题情况：有n没i 有i没n
+[root@oldgirl ett]# sed -ri.bak &apos;2s#(^.*w)..*$#\1.oldboy.cc#g&apos; /oldboy/test.txt
+[root@oldgirl ett]# cat /oldboy/test.txt
+ldboysh02
+www.oldboy.cc
+linux jichu
+[root@oldgirl ett]# cat /oldboy/test.txt.bak 
+ldboysh02
+www.etiantian.org
+linux jichu
+
+企业案例：网站页面容易遭到攻击，显示不正确
+政府网站
+第一步：及时告知开发或者运营人员
+
+第二步：和开发人员配合，找出有问题的代码文件，定位异常代码信息
+
+第三步：利用sed命令，可以删除掉异常代码信息
+
+第四步：找出所有有异常代码信息的文件，都进行删除异常代码处理
+find /html/  -type f|sed -ri.bak &apos;s#^.*(google).*$#\1#g&apos;
+
+第五步：检查测试
+</code></pre><h3 id="请问在一个命令上加什么参数可以实现下面命令的内容在同一行输出。"><a href="#请问在一个命令上加什么参数可以实现下面命令的内容在同一行输出。" class="headerlink" title="请问在一个命令上加什么参数可以实现下面命令的内容在同一行输出。"></a>请问在一个命令上加什么参数可以实现下面命令的内容在同一行输出。</h3><pre><code>echo &quot;oldboy&quot;;echo &quot;oldboy&quot;    
+
+echo -n &quot;oldboy&quot;;echo  &quot; oldboy&quot;     &lt;---  -n  取消换行
+
+[root@oldgirl ett]# echo -e &apos;oldboy\noldboy&apos;    
+oldboy
+oldboy
+</code></pre><h3 id="问题：请给出如下格式的-date-命令-例：11-02-26。"><a href="#问题：请给出如下格式的-date-命令-例：11-02-26。" class="headerlink" title="问题：请给出如下格式的 date 命令 例：11-02-26。"></a>问题：请给出如下格式的 date 命令 例：11-02-26。</h3><pre><code>  在给出实现按周输出 比如：周六输出 为 6，请分别给出命令
+
+  属性一个和时间相关的命令 date（时间） -- data（数据）   mkdir /date  find /data 
+
+  命令执行默认输出：
+  [root@oldgirl ett]# date
+  Thu Jul 26 11:25:36 CST 2018  --- 指定日期格式  指定时间格式
+
+
+  命令执行指定输出：
+  日期格式如何指定：
+  date +FORMAT  -- date +%F
+  [root@oldgirl ett]# date +%F
+  2018-07-26
+  %F     full date; same as %Y-%m-%d
+  %Y     -- 表示年份信息 2018  有年份世纪信息显示
+  %y     -- 表示年份信息 18    无年份世纪信息显示
+  %m     -- 表示月份信息
+  %d     -- 表示日期信息
+
+  [root@oldgirl ett]# date +%m-%d-%y
+  07-26-18
+
+  时间格式如何指定：
+  [root@oldgirl ett]# date +%T
+  11:32:12
+  %T     time; same as %H:%M:%S
+  %H     -- 显示小时信息，按照24小时制(00..23)
+  %I     -- 显示小时信息  按照12小时制(00..12)
+  %M     -- 显示分钟信息   
+  %S     -- 显示秒的信息
+
+  %w     -- 显示周的信息 (0..6); 0 is Sunday
+  %u     -- 显示周的信息 (1..7); 1 is Monday
+
+手动修改系统时间信息
+[root@xmy-01 ~]# date -s &apos;20180726 11:45:25&apos;
+Thu Jul 26 11:45:25 CST 2018
+
+自动修改时间信息（同步时间信息）
+[root@xmy-01 ~]# ntpdate ntp1.aliyun.com
+26 Jul 11:47:52 ntpdate[78018]: step time server 120.25.115.20 offset 19.987636 sec
+
+时间服务器：npt1.aliyun.com
+补充说明：如果时间相差太多，是无法进行时间自动同步的
+</code></pre><h3 id="问题：当从-root-用户切到普通用户时，执行-ifconfig-会提示。"><a href="#问题：当从-root-用户切到普通用户时，执行-ifconfig-会提示。" class="headerlink" title="问题：当从 root 用户切到普通用户时，执行 ifconfig 会提示。"></a>问题：当从 root 用户切到普通用户时，执行 ifconfig 会提示。</h3><pre><code>[oldboy@student ~]$ ifconfig 
+-bash: ifconfig: command not found 
+提示：c58 会遇到，c64 没有此问题。 请问这是为什么？
+如何解决，请给出详细解决过程。
+
+模拟测试过程
+[root@oldgirl ett]# which ifconfig
+/sbin/ifconfig
+[root@oldgirl ett]# echo $PATH
+/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[root@oldgirl ett]# export PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/sbin:/usr/bin:/root/bin
+
+命令执行操作过程：
+第一里程：执行一个命令
+# ifconfig
+
+第二里程：找到环境变量信息PATH
+# echo $PATH
+/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+
+第三里程：根据找到目录信息，找寻命令文件
+#find /xxx  -type f -name &apos;ifconfig&apos;   
+
+第四里程：找了ifconfig文件
+会查看别名信息，有没有ifconfig的别名设置
+执行命令文件
+
+第五里程：没有找到ifconfig文件
+报错：cammand not found / no such file or directory
+
+一般问题原因：环境变量信息设置不正确
+临时设置
+export PATH=&apos;/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:~/bin&apos;
+永久设置
+vim /etc/profile
+
+[root@oldgirl ~]# which vi
+/bin/vi
+[root@oldgirl ~]# which vim
+/usr/bin/vim
+</code></pre><h3 id="扩展问题：打印三天前的日期格式如：2011-02-26-解答"><a href="#扩展问题：打印三天前的日期格式如：2011-02-26-解答" class="headerlink" title="扩展问题：打印三天前的日期格式如：2011-02-26 解答"></a>扩展问题：打印三天前的日期格式如：2011-02-26 解答</h3><pre><code>[root@oldgirl ett]# date +%F
+2018-07-26
+[root@oldgirl ett]# date +%F -d &apos;3 day ago&apos;
+2018-07-23
+[root@oldgirl ett]# date +%F -d &apos;3 day&apos;
+2018-07-29
+[root@oldgirl ett]# date +%F -d &apos;-3day&apos;
+2018-07-23
+[root@oldgirl ett]# date +%F -d &apos;-3d&apos;
+date: invalid date `-3d&apos;
+[root@oldgirl ett]# date +%F -d &apos;-3day&apos;
+2018-07-23
+[root@oldgirl ett]# date +%F -d &apos;+3day&apos;
+2018-07-29
+[root@oldgirl ett]# date +%F -d &apos;3day&apos;
+2018-07-29
+
+总结：根据时间信息给文件命名（全网架构数据备份项目）
+</code></pre><h3 id="已知-oldboy-test-txt-文件内容为："><a href="#已知-oldboy-test-txt-文件内容为：" class="headerlink" title="已知/oldboy/test.txt 文件内容为："></a>已知/oldboy/test.txt 文件内容为：</h3><pre><code>oldboy 
+
+xizi 
+
+xiaochao 请问如何把文件中的空格过滤掉（要求命令行实现）。 解答
+
+sed &apos;s/^$/d&apos;
+
+grep -v &apos;^$&apos;
+grep &apos;[a-Z]&apos;
+
+awk &apos;!/^$/&apos;    
+</code></pre><h3 id="已知-oldboy-ett-txt-文件内容为："><a href="#已知-oldboy-ett-txt-文件内容为：" class="headerlink" title="已知/oldboy/ett.txt 文件内容为："></a>已知/oldboy/ett.txt 文件内容为：</h3><pre><code>oldboy 
+olldboooy 
+test 
+请使用 grep 或 egrep 正则匹配的方式过滤出前两行内容 解答
+grep  &apos;ol\+dbo\+y&apos;
+egrep &apos;ol+dbo+y&apos;
+
+source /etc/profile==. /etc/profile
+</code></pre><h3 id="服务部署-2-管理服务（配置文件）"><a href="#服务部署-2-管理服务（配置文件）" class="headerlink" title="服务部署  2.管理服务（配置文件）"></a>服务部署  2.管理服务（配置文件）</h3><h3 id="系统常用文件作用说明"><a href="#系统常用文件作用说明" class="headerlink" title="系统常用文件作用说明"></a>系统常用文件作用说明</h3><pre><code>/var/log/messages            &lt;-- 系统默认的日志信息记录文件
+/var/log/secure                &lt;-- 用户登录信息记录文件
+/etc/fstab                    &lt;-- 开机自动挂载列表 开机设备对应入口
+/etc/hosts                    &lt;-- 用于已知域名或主机名获取IP地址 IP地址与域名对应关系
+/etc/profile                    &lt;-- 设置环境变量或别名信息 source==. /etc/profile
+/etc/spool/cron/root            &lt;-- 定时任务的配置文件
+说明：一些配置文件可以通过man hosts获取帮助信息，但不是所有文件都有
+</code></pre><h3 id="一个命令文件所在路径如何获得"><a href="#一个命令文件所在路径如何获得" class="headerlink" title="一个命令文件所在路径如何获得"></a>一个命令文件所在路径如何获得</h3><pre><code>ifconfig
+1） which ifconfig
+2） whereis ifconfig
+    ifconfig: /sbin/ifconfig /usr/share/man/man8/ifconfig.8.gz
+3） find / -type f -name &quot;ifconfig&quot;    
+4） locate ifconfig（不推荐使用）
+  locate  --- 找寻系统文件信息 所有文件信息记录到了一个数据库中
+  [root@oldgirl ~]# updatedb 
+  [root@oldgirl ~]# locate HQ_123
+  /root/HQ_123
+</code></pre><h3 id="请给出正确的关机和重起服务器的命令。"><a href="#请给出正确的关机和重起服务器的命令。" class="headerlink" title="请给出正确的关机和重起服务器的命令。"></a>请给出正确的关机和重起服务器的命令。</h3><pre><code>重启操作
+[root@oldboyedu ~]# shutdown -r 10
+
+Broadcast message from root@oldboyedu.com
+    (/dev/pts/1) at 5:15 ...
+
+The system is going down for reboot in 10 minutes!
+说明：表示在10分钟后进行重启系统
+
+[root@oldboyedu ~]# shutdown -c
+说明：取消当前的重启操作
+
+[root@oldboyedu ~]# shutdown –r now
+说明：表示立即进行重启操作
+
+[root@oldboyedu ~]# reboot
+说明：表示立即进行重启操作
+
+[root@oldboyedu ~]# init 6
+说明：表示立即进行重启操作
+
+# 关机相关操作
+[root@oldboyedu ~]# shutdown -halt 10
+
+Broadcast message from root@oldboyedu.com
+    (/dev/pts/1) at 5:20 ...
+
+The system is going down for halt in 10 minutes!
+
+[root@oldboyedu ~]# shutdown -h 10
+说明：表示立即进行关机过程
+
+[root@oldboyedu ~]# halt
+说明：表示立即进行关机过程，关闭系统，但不会关闭电源
+
+[root@oldboyedu ~]# poweroff
+说明：表示立即进行关机过程
+
+[root@oldboyedu ~]# init 0
+说明：表示立即进行关机过程，有可能造成数据丢失
+
+# 退出当前用户
+Ctrl+d – logout – exit    
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/27/Linux运维学习-第十八天/">
+    <time datetime="2018-07-27T04:52:13.000Z" class="entry-date">
+        2018-07-27
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/07/25/linux运维学习-第十七天/" rel="next">linux运维学习-第十七天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/27/Linux运维学习-第十八天/">Linux运维学习-第十八天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/25/linux运维学习-第十七天/">linux运维学习-第十七天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/25/ansible-安装二三事/">ansible 安装二三事</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/25/MySQL安装配置/">MySQL安装配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/Linux运维学习-第十六天/">Linux运维学习-第十六天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
