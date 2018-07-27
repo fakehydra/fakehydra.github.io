@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="hhhhhhhhhhhhh">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-27T05:01:19.004Z">
+<meta property="og:updated_time" content="2018-07-27T08:10:16.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第十八天">
 <meta name="twitter:description" content="hhhhhhhhhhhhh">
@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十八天/" data-id="cjk3ivacj002nk8ly320c0gc2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十八天/" data-id="cjk3pp796002z0wlyiycde7b9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -95,41 +95,40 @@
 利用stat命令获取，输出信息中的权限数值信息
 
  方法一：利用sed命令
- [root@oldgirl ~]# stat /etiantian |sed -n &apos;4p&apos;|sed -r &apos;s#^.*\(0|/.*$##g&apos;
+ [root@jinc oldboy]# stat oldboy.txt |sed -n &quot;4p&quot;|sed -r &apos;s#^.*\(0|/.*$##g&apos; 
  644
- [root@oldgirl ~]# stat /etiantian |sed -n &apos;4p&apos;|sed -r &apos;s#^.*\(0(.*)/-.*$#\1#g&apos;
+ [root@jinc oldboy]# stat oldboy.txt |sed -n &quot;4p&quot;|sed -r &apos;s#^.*\(0(.*)/-.*$#\1#g&apos;
  644
 
  方法二：利用awk命令
- stat /etiantian |awk &apos;NR==4&apos;|awk -F &quot;[0/]&quot; &apos;{print $2}&apos;
- 644
+ [root@jinc oldboy]# stat oldboy.txt |awk NR==4 |awk -F &quot;[0/]&quot; &apos;{print $2}&apos; 
+  644
  方法三：运维思想：（了解）
           一个命令输出的内容有我们想要的结果，就可以利用命令的参数直接把结果显示出来
- [root@oldgirl ~]# stat -c%a /etiantian
+ [root@jinc oldboy]# stat -c%a /etiantian
  644
 </code></pre><h3 id="linux-下通过-mkdir-命令创建一个新目录-oldboy-ett，它的硬链接数是多少，为什么？"><a href="#linux-下通过-mkdir-命令创建一个新目录-oldboy-ett，它的硬链接数是多少，为什么？" class="headerlink" title="linux 下通过 mkdir 命令创建一个新目录/oldboy/ett，它的硬链接数是多少，为什么？"></a>linux 下通过 mkdir 命令创建一个新目录/oldboy/ett，它的硬链接数是多少，为什么？</h3><pre><code>如果在/oldboy/ett 下面再创建一个目录 test。再问/oldboy/ett 的硬链接数是多少？为什么。 解答   
-  [root@oldgirl ~]# mkdir /oldboy/ett -p
-  [root@oldgirl ~]# ll -di /oldboy/ett
-  1572878 drwxr-xr-x 2 root root 4096 Jul 26 10:19 /oldboy/ett
-  [root@oldgirl ~]# mkdir /oldboy/ett/oldboydir
-  [root@oldgirl ~]# ll -di /oldboy/ett
-  1572878 drwxr-xr-x 3 root root 4096 Jul 26 10:20 /oldboy/ett
+  [root@jinc oldboy]# mkdir /oldboy/ett -p
+  [root@jinc oldboy]# ll -di /oldboy/ett/
+  1046560 drwxr-xr-x 2 root root 4096 Jul 27 15:03 /oldboy/ett/
+  [root@jinc oldboy]# mkdir /oldboy/ett/old -p
+  [root@jinc oldboy]# ll -di /oldboy/ett/
+  1046560 drwxr-xr-x 3 root root 4096 Jul 27 15:04 /oldboy/ett/
 
-  [root@oldgirl ~]# ll -id /oldboy/ett/ /oldboy/ett/. /oldboy/ett/oldboydir/..
-  1572878 drwxr-xr-x 3 root root 4096 Jul 26 10:20 /oldboy/ett/
-  1572878 drwxr-xr-x 3 root root 4096 Jul 26 10:20 /oldboy/ett/.
-  1572878 drwxr-xr-x 3 root root 4096 Jul 26 10:20 /oldboy/ett/oldboydir/..
-  [root@oldgirl ~]# cd /oldboy/ett/
-  [root@oldgirl ett]# pwd
+
+  [root@jinc oldboy]# cd /oldboy/ett/
+  [root@jinc ett]# pwd
   /oldboy/ett
-  [root@oldgirl ett]# cd /oldboy/ett/.
-  [root@oldgirl ett]# pwd
+  [root@jinc ett]# cd /oldboy/ett/.
+  [root@jinc ett]# pwd
   /oldboy/ett
-  [root@oldgirl ett]# cd /oldboy/ett/oldboydir/..
-  [root@oldgirl ett]# pwd
+  [root@jinc ett]# cd /oldboy/ett/..
+  [root@jinc oldboy]# cd /oldboy/ett/old/..
+  [root@jinc ett]# pwd
   /oldboy/ett
 
-  [root@oldgirl ett]# ll  /etc/|grep &apos;^d&apos;|wc -l
+
+  [root@jinc ett]# ll /etc/|grep &apos;^d&apos;|wc -l
   76
 </code></pre><h3 id="如何截取文件中的数据信息（正则表达式）"><a href="#如何截取文件中的数据信息（正则表达式）" class="headerlink" title="如何截取文件中的数据信息（正则表达式）"></a>如何截取文件中的数据信息（正则表达式）</h3><pre><code>截取ifconfig eth0命令输出的IP地址信息
  eth0      Link encap:Ethernet  HWaddr 00:0C:29:B3:36:16  
@@ -145,40 +144,37 @@
 
 1）定位截取内容所在的行
 ifconfig eth0|sed -n &apos;2p&apos; 
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
+[root@jinc ett]# ifconfig eth0|sed -n &apos;2p&apos;
       inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+
 
 2）定位截取内容所在列
 三种方法：
 ①. 利用替换功能
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
-      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*:##g&apos;
-255.255.255.0
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;
-10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;|sed &apos;s#  Bc.*$##g&apos;
-10.0.0.200
+[root@jinc ett]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;|sed &apos;s#  Bc.*$##g&apos; (最初)
+ 10.0.0.200
+
 
 ②. 利用替换功能
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:|  Bc.*$##g&apos;
+[root@jinc ett]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:|  Bc.*$##g&apos;  （升级）
 10.0.0.200
 
 扩展：取第二个地址
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
+ [root@jinc ett]# ifconfig eth0|sed -n &apos;2p&apos;
       inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*t:|  M.*$##g&apos;
-10.0.0.255
+ [root@jinc ett]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*t:|  M.*$##g&apos;
+ 10.0.0.255
 
-[root@xmy-01 oldboy]# ifconfig eth0|sed -nr &apos;2s#^.*t:(.*) M.*$#\1#gp&apos;
-10.0.0.255
+
+[root@jinc ett]# ifconfig eth0|sed -nr &apos;2s#^.*t:(.*) M.*$#\1#gp&apos;
+10.0.0.255 
 
 ③. 利用后项引用前项的方法
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:(.*)  Bc.*$#\1#g&apos;
-10.0.0.200
+[root@jinc ett]# ifconfig eth0|sed -n &quot;2p&quot;|sed -r &apos;s#^.*r:(.*) B.*$#\1#g&apos;
+10.0.0.200 
 
 扩展：取第三个地址
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*:(.*)#\1#g&apos;
+[root@jinc ett]# ifconfig eth0|sed -n &quot;2p&quot;|sed -r &apos;s#^.*k:(.*)#\1#g&apos;
 255.255.255.0
 
 终结解法
@@ -186,37 +182,38 @@ sed -n &apos;2     p==条件&apos;  sed -r &apos;s#^.*:(.*)#\1#g==具体做的�
 
 
 sed -nr &apos;2s#^.*:(.*)#\1#gp&apos;
-[root@oldgirl oldboy]# ifconfig eth0|sed -nr &apos;2s#^.*:(.*)  Bc.*$#\1#gp&apos;
-10.0.0.200
-
+[root@jinc ett]# ifconfig eth0 |sed -nr &apos;2s#^.*r:(.*) Bc.*$#\1#gp&apos;
+10.0.0.200 
 
 方法二：利用awk
 1）定位截取内容所在的行
-[root@oldgirl oldboy]# ifconfig eth0|awk  &apos;NR==2&apos;
+ [root@jinc ett]# ifconfig eth0|awk NR==2
       inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
 
-2）定位截取内容所在列
-[root@oldgirl oldboy]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $4}&apos;
-10.0.0.200
-[root@xmy-01 ~]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $6}&apos;
-10.0.0.255
-[root@xmy-01 ~]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $8}&apos;
-255.255.255.0
 
-[root@xmy-01 oldboy]# ifconfig eth0|awk -F &quot;[ :]*&quot; &apos;NR==2{print $4}&apos;
-10.0.0.201    &lt;--- *的结果和+ 一样
+2）定位截取内容所在列
+[root@jinc ett]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $4}&apos;
+ 10.0.0.200
+ [root@jinc ett]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $6}&apos;
+ 10.0.0.255
+ [root@jinc ett]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $8}&apos;
+ 255.255.255.0
+
+
+[root@jinc ett]# ifconfig eth0|awk NR==2|awk -F &quot;[ :]*&quot; &apos;{print $4}&apos;
+10.0.0.200    &lt;--- *的结果和+ 一样
 
 终极解法：
 awk &apos;NR==2==条件&apos;   awk -F &quot;[ :]+&quot; &apos;{print $4}==命令&apos;
 
 awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos;     
 
-[root@oldgirl oldboy]# ifconfig eth0|awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos; 
+[root@jinc ett]# ifconfig eth0|awk -F &quot;[ :]*&quot; &apos;NR==2{print $4}&apos;
 10.0.0.200
 
 方法三：利用 | 指定分隔符  或者
-[root@xmy-01 oldboy]# ifconfig eth0|awk -F &quot;addr:| Bcast:&quot; &apos;NR==2 {print $2}&apos;
-10.0.0.201     
+[root@jinc ett]# ifconfig eth0|awk -F &quot;addr:| Bcast&quot; &apos;NR==2&apos;&apos;{print $2}&apos;
+ 10.0.0.200 
 
 
  方法四：利用grep
@@ -228,38 +225,43 @@ awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos;
 
     方法二：正则方式取出信息
 
-    [root@xmy-01 oldboy]# ifconfig eth0|grep &apos;Bcas&apos;|egrep &apos;[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+&apos; -o
-    10.0.0.201
+    [root@jinc ett]# ifconfig eth0|awk -F &quot;addr:| Bcast&quot; &apos;NR==2&apos;&apos;{print $2}&apos;
+    10.0.0.200 
+    [root@jinc ett]# ifconfig eth0|grep &apos;Bcas&apos;|egrep &apos;[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+&apos; -o
+    10.0.0.200
     10.0.0.255
     255.255.255.0
-    [root@xmy-01 oldboy]# ifconfig eth0|grep &apos;Bcas&apos;|egrep &apos;[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+&apos; -o|head -1
-    10.0.0.201
-
-    [root@xmy-01 oldboy]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.){3}[0-9]+&apos;
-              inet addr:10.0.0.201  Bcast:10.0.0.25  Mask:255.255.255.0
-    [root@xmy-01 oldboy]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.){3}[0-9]+&apos; -o|head -1
-    10.0.0.201
+    [root@jinc ett]# ifconfig eth0|grep &apos;Bcas&apos;|egrep &apos;[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+&apos; -o|head -1
+    10.0.0.200
 
 
-    [root@xmy-01 oldboy]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.?){4}&apos;
-              inet addr:10.0.0.201  Bcast:10.0.0.25  Mask:255.255.255.0
-    [root@xmy-01 oldboy]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.?){4}&apos; -o|head -1
-    10.0.0.201
+     [root@jinc ett]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.){3}[0-9]+&apos;
+      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+     [root@jinc ett]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.){3}[0-9]+&apos; -o|head -1
+     10.0.0.200
+
+
+
+     [root@jinc ett]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.?){4}&apos;
+     inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
+     [root@jinc ett]# ifconfig eth0|grep &quot;Bcas&quot;|egrep &apos;([0-9]+\.?){4}&apos; -o|head -1
+     10.0.0.200
+
 
 
 补充：在centos7中，获取IP地址信息
       ip address show eth0
       ip a s eth0
       ip a
-</code></pre><h3 id="请给出默认情况-eth0-网卡配置文件的路径及客户端-DNS-的路径。-解答"><a href="#请给出默认情况-eth0-网卡配置文件的路径及客户端-DNS-的路径。-解答" class="headerlink" title="请给出默认情况 eth0 网卡配置文件的路径及客户端 DNS 的路径。 解答"></a>请给出默认情况 eth0 网卡配置文件的路径及客户端 DNS 的路径。 解答</h3><pre><code>网卡配置文件信息
-[root@oldgirl ett]# ll /etc/sysconfig/network-scripts/ifcfg-eth0 
--rw-r--r--. 3 root root 265 Jul 12 12:21 /etc/sysconfig/network-scripts/ifcfg-eth0 
+</code></pre><h3 id="请给出默认情况-eth0-网卡配置文件的路径及客户端-DNS-的路径。"><a href="#请给出默认情况-eth0-网卡配置文件的路径及客户端-DNS-的路径。" class="headerlink" title="请给出默认情况 eth0 网卡配置文件的路径及客户端 DNS 的路径。"></a>请给出默认情况 eth0 网卡配置文件的路径及客户端 DNS 的路径。</h3><pre><code>解答
+网卡配置文件信息
+[root@jinc ett]# ll /etc/sysconfig/network-scripts/ifcfg-eth0 
+ -rw-r--r--. 3 root root 265 Jul  5 10:53 /etc/sysconfig/network-scripts/ifcfg-eth0
 
 DNS配置文件信息
-[root@oldgirl ett]# ll /etc/resolv.conf
+[root@jinc ett] ett]# ll /etc/resolv.conf
 -rw-r--r--. 2 root root 49 Jul 13 10:34 /etc/resolv.conf
-[root@oldgirl ett]# cat /etc/resolv.conf
-
+[root@jinc ett]# cat /etc/resolv.conf   
 nameserver 114.114.114.114
 nameserver 223.5.5.5
 
@@ -269,17 +271,17 @@ DNS信息配置时，是有两个dns地址需要配置的
 
 研究DNS服务知识：（了解）
 </code></pre><h3 id="查找当前目录下所有文件，并把文件中的-www-etiantian-org-字符串替换成-www-oldboy-cc"><a href="#查找当前目录下所有文件，并把文件中的-www-etiantian-org-字符串替换成-www-oldboy-cc" class="headerlink" title="查找当前目录下所有文件，并把文件中的 www.etiantian.org 字符串替换成 www.oldboy.cc"></a>查找当前目录下所有文件，并把文件中的 <a href="http://www.etiantian.org" target="_blank" rel="noopener">www.etiantian.org</a> 字符串替换成 <a href="http://www.oldboy.cc" target="_blank" rel="noopener">www.oldboy.cc</a></h3><pre><code>解答：
-[root@oldgirl ett]# sed -ri &apos;s#(^.*w)..*$#\1.oldboy.cc#g&apos; /oldboy/test.txt
-[root@oldgirl ett]# cat /oldboy/test.txt
+[root@jinc ett]# sed -ri &apos;s#(^.*w)..*$#\1.oldboy.cc#g&apos; /oldboy/test.txt
+[root@jinc ett]# cat /oldboy/test.txt
 www.oldboy.cc
 
 异常问题情况：有n没i 有i没n
-[root@oldgirl ett]# sed -ri.bak &apos;2s#(^.*w)..*$#\1.oldboy.cc#g&apos; /oldboy/test.txt
-[root@oldgirl ett]# cat /oldboy/test.txt
+[root@jinc ett]# sed -ri.bak &apos;2s#(^.*w)..*$#\1.oldboy.cc#g&apos; /oldboy/test.txt
+[root@jinc ett]# cat /oldboy/test.txt
 ldboysh02
 www.oldboy.cc
 linux jichu
-[root@oldgirl ett]# cat /oldboy/test.txt.bak 
+[root@jinc ett]# cat /oldboy/test.txt.bak 
 ldboysh02
 www.etiantian.org
 linux jichu
@@ -300,7 +302,7 @@ find /html/  -type f|sed -ri.bak &apos;s#^.*(google).*$#\1#g&apos;
 
 echo -n &quot;oldboy&quot;;echo  &quot; oldboy&quot;     &lt;---  -n  取消换行
 
-[root@oldgirl ett]# echo -e &apos;oldboy\noldboy&apos;    
+[root@jinc ett]# echo -e &apos;oldboy\noldboy&apos;    
 oldboy
 oldboy
 </code></pre><h3 id="问题：请给出如下格式的-date-命令-例：11-02-26。"><a href="#问题：请给出如下格式的-date-命令-例：11-02-26。" class="headerlink" title="问题：请给出如下格式的 date 命令 例：11-02-26。"></a>问题：请给出如下格式的 date 命令 例：11-02-26。</h3><pre><code>  在给出实现按周输出 比如：周六输出 为 6，请分别给出命令
@@ -323,11 +325,11 @@ oldboy
   %m     -- 表示月份信息
   %d     -- 表示日期信息
 
-  [root@oldgirl ett]# date +%m-%d-%y
+  [root@jinc ett]# date +%m-%d-%y
   07-26-18
 
   时间格式如何指定：
-  [root@oldgirl ett]# date +%T
+  [root@jinc ett]# date +%T
   11:32:12
   %T     time; same as %H:%M:%S
   %H     -- 显示小时信息，按照24小时制(00..23)
@@ -339,11 +341,11 @@ oldboy
   %u     -- 显示周的信息 (1..7); 1 is Monday
 
 手动修改系统时间信息
-[root@xmy-01 ~]# date -s &apos;20180726 11:45:25&apos;
+[root@jinc ~]# date -s &apos;20180726 11:45:25&apos;
 Thu Jul 26 11:45:25 CST 2018
 
 自动修改时间信息（同步时间信息）
-[root@xmy-01 ~]# ntpdate ntp1.aliyun.com
+[root@jinc ~]# ntpdate ntp1.aliyun.com
 26 Jul 11:47:52 ntpdate[78018]: step time server 120.25.115.20 offset 19.987636 sec
 
 时间服务器：npt1.aliyun.com
@@ -354,11 +356,11 @@ Thu Jul 26 11:45:25 CST 2018
 如何解决，请给出详细解决过程。
 
 模拟测试过程
-[root@oldgirl ett]# which ifconfig
+[root@jinc ~]## which ifconfig
 /sbin/ifconfig
-[root@oldgirl ett]# echo $PATH
+[root@jinc ~]## echo $PATH
 /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
-[root@oldgirl ett]# export PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/sbin:/usr/bin:/root/bin
+[root@jinc ~]## export PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/sbin:/usr/bin:/root/bin
 
 命令执行操作过程：
 第一里程：执行一个命令
@@ -384,25 +386,25 @@ export PATH=&apos;/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:~
 永久设置
 vim /etc/profile
 
-[root@oldgirl ~]# which vi
+[root@jinc ~]# which vi
 /bin/vi
-[root@oldgirl ~]# which vim
+[root@jinc ~]# which vim
 /usr/bin/vim
-</code></pre><h3 id="扩展问题：打印三天前的日期格式如：2011-02-26-解答"><a href="#扩展问题：打印三天前的日期格式如：2011-02-26-解答" class="headerlink" title="扩展问题：打印三天前的日期格式如：2011-02-26 解答"></a>扩展问题：打印三天前的日期格式如：2011-02-26 解答</h3><pre><code>[root@oldgirl ett]# date +%F
+</code></pre><h3 id="扩展问题：打印三天前的日期格式如：2011-02-26-解答"><a href="#扩展问题：打印三天前的日期格式如：2011-02-26-解答" class="headerlink" title="扩展问题：打印三天前的日期格式如：2011-02-26 解答"></a>扩展问题：打印三天前的日期格式如：2011-02-26 解答</h3><pre><code>[root@jinc ~]# date +%F
 2018-07-26
-[root@oldgirl ett]# date +%F -d &apos;3 day ago&apos;
+[root@jinc ~]# date +%F -d &apos;3 day ago&apos;
 2018-07-23
-[root@oldgirl ett]# date +%F -d &apos;3 day&apos;
+[root@jinc ~]# date +%F -d &apos;3 day&apos;
 2018-07-29
-[root@oldgirl ett]# date +%F -d &apos;-3day&apos;
+[root@jinc ~]# date +%F -d &apos;-3day&apos;
 2018-07-23
-[root@oldgirl ett]# date +%F -d &apos;-3d&apos;
+[root@jinc ~]# date +%F -d &apos;-3d&apos;
 date: invalid date `-3d&apos;
-[root@oldgirl ett]# date +%F -d &apos;-3day&apos;
+[root@jinc ~]# date +%F -d &apos;-3day&apos;
 2018-07-23
-[root@oldgirl ett]# date +%F -d &apos;+3day&apos;
+[root@jinc ~]# date +%F -d &apos;+3day&apos;
 2018-07-29
-[root@oldgirl ett]# date +%F -d &apos;3day&apos;
+[root@jinc ~]# date +%F -d &apos;3day&apos;
 2018-07-29
 
 总结：根据时间信息给文件命名（全网架构数据备份项目）
@@ -413,7 +415,6 @@ xizi
 xiaochao 请问如何把文件中的空格过滤掉（要求命令行实现）。 解答
 
 sed &apos;s/^$/d&apos;
-
 grep -v &apos;^$&apos;
 grep &apos;[a-Z]&apos;
 
@@ -424,9 +425,8 @@ test
 请使用 grep 或 egrep 正则匹配的方式过滤出前两行内容 解答
 grep  &apos;ol\+dbo\+y&apos;
 egrep &apos;ol+dbo+y&apos;
-
-source /etc/profile==. /etc/profile
-</code></pre><h3 id="服务部署-2-管理服务（配置文件）"><a href="#服务部署-2-管理服务（配置文件）" class="headerlink" title="服务部署  2.管理服务（配置文件）"></a>服务部署  2.管理服务（配置文件）</h3><h3 id="系统常用文件作用说明"><a href="#系统常用文件作用说明" class="headerlink" title="系统常用文件作用说明"></a>系统常用文件作用说明</h3><pre><code>/var/log/messages            &lt;-- 系统默认的日志信息记录文件
+</code></pre><h3 id="服务部署-2-管理服务（配置文件）"><a href="#服务部署-2-管理服务（配置文件）" class="headerlink" title="服务部署  2.管理服务（配置文件）"></a>服务部署  2.管理服务（配置文件）</h3><pre><code>source /etc/profile==. /etc/profile
+</code></pre><h3 id="系统常用文件作用说明"><a href="#系统常用文件作用说明" class="headerlink" title="系统常用文件作用说明"></a>系统常用文件作用说明</h3><pre><code>/var/log/messages            &lt;-- 系统默认的日志信息记录文件
 /var/log/secure                &lt;-- 用户登录信息记录文件
 /etc/fstab                    &lt;-- 开机自动挂载列表 开机设备对应入口
 /etc/hosts                    &lt;-- 用于已知域名或主机名获取IP地址 IP地址与域名对应关系
@@ -440,11 +440,10 @@ source /etc/profile==. /etc/profile
 3） find / -type f -name &quot;ifconfig&quot;    
 4） locate ifconfig（不推荐使用）
   locate  --- 找寻系统文件信息 所有文件信息记录到了一个数据库中
-  [root@oldgirl ~]# updatedb 
-  [root@oldgirl ~]# locate HQ_123
+  [root@jinc ~]# updatedb 
+  [root@jinc ~]# locate HQ_123
   /root/HQ_123
-</code></pre><h3 id="请给出正确的关机和重起服务器的命令。"><a href="#请给出正确的关机和重起服务器的命令。" class="headerlink" title="请给出正确的关机和重起服务器的命令。"></a>请给出正确的关机和重起服务器的命令。</h3><pre><code>重启操作
-[root@oldboyedu ~]# shutdown -r 10
+</code></pre><h3 id="请给出正确的关机和重起服务器的命令。"><a href="#请给出正确的关机和重起服务器的命令。" class="headerlink" title="请给出正确的关机和重起服务器的命令。"></a>请给出正确的关机和重起服务器的命令。</h3><h4 id="重启操作"><a href="#重启操作" class="headerlink" title="重启操作"></a>重启操作</h4><pre><code>[root@jinc ~]# shutdown -r 10
 
 Broadcast message from root@oldboyedu.com
     (/dev/pts/1) at 5:15 ...
@@ -452,36 +451,34 @@ Broadcast message from root@oldboyedu.com
 The system is going down for reboot in 10 minutes!
 说明：表示在10分钟后进行重启系统
 
-[root@oldboyedu ~]# shutdown -c
+[root@jinc ~]# shutdown -c
 说明：取消当前的重启操作
 
-[root@oldboyedu ~]# shutdown –r now
+[root@jinc ~]# shutdown –r now
 说明：表示立即进行重启操作
 
-[root@oldboyedu ~]# reboot
+[root@jinc ~]# reboot
 说明：表示立即进行重启操作
 
-[root@oldboyedu ~]# init 6
+[root@jinc ~]# init 6
 说明：表示立即进行重启操作
-
-# 关机相关操作
-[root@oldboyedu ~]# shutdown -halt 10
+</code></pre><h4 id="关机相关操作"><a href="#关机相关操作" class="headerlink" title="关机相关操作"></a>关机相关操作</h4><pre><code>[root@jinc ~]# shutdown -halt 10
 
 Broadcast message from root@oldboyedu.com
     (/dev/pts/1) at 5:20 ...
 
 The system is going down for halt in 10 minutes!
 
-[root@oldboyedu ~]# shutdown -h 10
+[root@jinc ~]# shutdown -h 10
 说明：表示立即进行关机过程
 
-[root@oldboyedu ~]# halt
+[root@jinc ~]# halt
 说明：表示立即进行关机过程，关闭系统，但不会关闭电源
 
-[root@oldboyedu ~]# poweroff
+[root@jinc ~]# poweroff
 说明：表示立即进行关机过程
 
-[root@oldboyedu ~]# init 0
+[root@jinc ~]# init 0
 说明：表示立即进行关机过程，有可能造成数据丢失
 
 # 退出当前用户
@@ -508,6 +505,8 @@ Ctrl+d – logout – exit
     
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/27/生如夏花/" rel="prev"><span class="meta-nav">←</span> 生如夏花</a></span>
     
     
         <span class="nav-next"><a href="/2018/07/25/linux运维学习-第十七天/" rel="next">linux运维学习-第十七天 <span class="meta-nav">→</span></a></span>
@@ -551,6 +550,10 @@ Ctrl+d – logout – exit
       <ul>
         
           <li>
+            <a href="/2018/07/27/生如夏花/">生如夏花</a>
+          </li>
+        
+          <li>
             <a href="/2018/07/27/Linux运维学习-第十八天/">Linux运维学习-第十八天</a>
           </li>
         
@@ -566,10 +569,6 @@ Ctrl+d – logout – exit
             <a href="/2018/07/25/MySQL安装配置/">MySQL安装配置</a>
           </li>
         
-          <li>
-            <a href="/2018/07/24/Linux运维学习-第十六天/">Linux运维学习-第十六天</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -579,7 +578,7 @@ Ctrl+d – logout – exit
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -588,7 +587,7 @@ Ctrl+d – logout – exit
   <aside class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 10px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
     </div>
   </aside>
 

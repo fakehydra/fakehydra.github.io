@@ -4,8 +4,6 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="滴滴滴滴" />
-  
 
   
   
@@ -13,20 +11,15 @@
   
   
   
-  <title>每天一个Linux命令06 | 瑾川</title>
+  <title>Tag: 浮生若梦 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="滴滴滴滴">
-<meta name="keywords" content="每天一个Linux命令">
-<meta property="og:type" content="article">
-<meta property="og:title" content="每天一个Linux命令06">
-<meta property="og:url" content="http://yoursite.com/2018/07/19/每天一个Linux命令-06/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="瑾川">
+<meta property="og:url" content="http://yoursite.com/tags/浮生若梦/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="滴滴滴滴">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-19T13:02:27.638Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天一个Linux命令06">
-<meta name="twitter:description" content="滴滴滴滴">
+<meta name="twitter:title" content="瑾川">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -69,106 +62,46 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-每天一个Linux命令-06" class="post-每天一个Linux命令-06 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
+        <div id="primary" class="site-content"><div id="content" role="main">
   
-    <h1 class="entry-title article-title">
-      每天一个Linux命令06
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="post type-post status-publish format-standard hentry archive-type-post">
+  <header class="entry-header">
+      
+  
+    <h1 class="entry-title">
+      <a class="archive-article-title" href="/2018/07/27/生如夏花/">生如夏花</a>
     </h1>
   
 
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令-06/" data-id="cjk3pp77r001n0wlyfpa2mnuf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="滴滴滴滴"><a href="#滴滴滴滴" class="headerlink" title="滴滴滴滴"></a>滴滴滴滴</h3><a id="more"></a>
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><pre><code>dd命令用于复制文件并对原文件的内容进行转换和格式化
-处理。dd命令功能很强大的，对于一些比较底层的问题，
-使用dd命令往往可以得到出人意料的效果。用的比较多的还是
-用dd来备份裸设备。但是不推荐，如果需要备份oracle裸设备，
-可以使用rman备份，或使用第三方软件备份，使用dd的话，管
-理起来不太方便。
-</code></pre><h4 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h4><pre><code>在有需要的时候使用dd 对物理磁盘操作，如果是文件系
-的话还是使用tar backup cpio等其他命令更加方便。另
-外，使用dd对磁盘操作时，最好使用块设备文件。
-</code></pre><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><pre><code>dd(选项)
-
-选项
-
-bs=&lt;字节数&gt;：            将ibs（输入）与欧巴桑（输出）设成指定的字节数；
-cbs=&lt;字节数&gt;：           转换时，每次只转换指定的字节数；
-conv=&lt;关键字&gt;：          指定文件转换的方式；
-count=&lt;区块数&gt;：         仅读取指定的区块数；
-ibs=&lt;字节数&gt;：           每次读取的字节数；
-obs=&lt;字节数&gt;：           每次输出的字节数；
-of=&lt;文件&gt;：              输出到文件；
-seek=&lt;区块数&gt;：          一开始输出时，跳过指定的区块数；
-skip=&lt;区块数&gt;：          一开始读取时，跳过指定的区块数；
---help：                 帮助；
---version：              显示版本信息。
-</code></pre><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><pre><code>[root@localhost text]# dd if=/dev/zero of=sun.txt bs=1M count=1
-1+0 records in
-1+0 records out
-1048576 bytes (1.0 MB) copied, 0.006107 seconds, 172 MB/s
-
-[root@localhost text]# du -sh sun.txt 
-1.1M    sun.txt
-</code></pre><h4 id="该命令创建了一个1M大小的文件sun-txt，其中参数解释："><a href="#该命令创建了一个1M大小的文件sun-txt，其中参数解释：" class="headerlink" title="该命令创建了一个1M大小的文件sun.txt，其中参数解释："></a>该命令创建了一个1M大小的文件sun.txt，其中参数解释：</h4><pre><code>if 代表输入文件。如果不指定if，默认就会从stdin中读取输入。
-of 代表输出文件。如果不指定of，默认就会将stdout作为默认输出。
-bs 代表字节为单位的块大小。
-count 代表被复制的块数。
-/dev/zero 是一个字符设备，会不断返回0值字节（\0）。
-</code></pre><h4 id="块大小可以使用的计量单位表"><a href="#块大小可以使用的计量单位表" class="headerlink" title="块大小可以使用的计量单位表"></a>块大小可以使用的计量单位表</h4><pre><code>单元大小                   代码
-字节（1B）                    c
-字节（2B）                    w
-块（512B）                    b
-千字节（1024B）                k
-兆字节（1024KB）            M
-吉字节（1024MB）            G                                                               
-</code></pre>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2018/07/19/每天一个Linux命令-06/">
-    <time datetime="2018-07-19T06:38:45.000Z" class="entry-date">
-        2018-07-19
+  </header>
+  <footer class="entry-meta">
+    <a href="/2018/07/27/生如夏花/">
+    <time datetime="2018-07-27T08:11:56.000Z" class="entry-date">
+        2018-07-27
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浮生若梦/">浮生若梦</a></li></ul>
 
     </footer>
 </article>
-
-
-    
-<nav class="nav-single">
-    <h3 class="assistive-text">文章导航</h3>
-    
-        <span class="nav-previous"><a href="/2018/07/19/每天一个Linux命令07/" rel="prev"><span class="meta-nav">←</span> 每天一个Linux命令07</a></span>
-    
-    
-        <span class="nav-next"><a href="/2018/07/19/nginx-简单安装-排错/" rel="next">nginx 简单安装&amp;排错 <span class="meta-nav">→</span></a></span>
-    
-</nav><!-- .nav-single -->
-
-
-
-
-
-
+  
+  
+    </div></section>
+  
 
 </div></div>
         <div id="secondary" class="widget-area" role="complementary">
