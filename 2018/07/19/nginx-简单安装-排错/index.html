@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="10.0">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-19T06:50:44.843Z">
+<meta property="og:updated_time" content="2018-07-27T09:30:22.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx 简单安装&amp;排错">
 <meta name="twitter:description" content="10.0">
@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/nginx-简单安装-排错/" data-id="cjk3pp77m001i0wly0fd4987n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/nginx-简单安装-排错/" data-id="cjk3y75bu001fogly2j0f603y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -131,7 +131,27 @@ ln -s /application/nginx-1.15.1 /application/nginx/
 chkconfig iptables off 开机自启关闭
 
 /etc/init.d/iptabes status 查看防火墙当前状态
-</code></pre><h4 id="查看80端口信息-netstat-lnt-grep-80"><a href="#查看80端口信息-netstat-lnt-grep-80" class="headerlink" title="查看80端口信息 netstat -lnt|grep 80"></a>查看80端口信息 netstat -lnt|grep 80</h4><h4 id="查看nginx进程-ps-ef-grep-nginx"><a href="#查看nginx进程-ps-ef-grep-nginx" class="headerlink" title="查看nginx进程 ps-ef|grep nginx"></a>查看nginx进程 ps-ef|grep nginx</h4><h4 id="查看nginx的错误日志-cat-application-nginx-nginx-1-15-1-error-log"><a href="#查看nginx的错误日志-cat-application-nginx-nginx-1-15-1-error-log" class="headerlink" title="查看nginx的错误日志  cat /application/nginx/nginx-1.15.1/error.log"></a>查看nginx的错误日志  cat /application/nginx/nginx-1.15.1/error.log</h4><h4 id="ping-10-0-0-200-看是否连通"><a href="#ping-10-0-0-200-看是否连通" class="headerlink" title="ping 10.0.0.200 看是否连通"></a>ping 10.0.0.200 看是否连通</h4><h4 id="wegt-10-0-0-200-或者curl-I-10-0-0-200-模拟用户"><a href="#wegt-10-0-0-200-或者curl-I-10-0-0-200-模拟用户" class="headerlink" title="wegt 10.0.0.200 或者curl -I 10.0.0.200 模拟用户"></a>wegt 10.0.0.200 或者curl -I 10.0.0.200 模拟用户</h4>
+</code></pre><h4 id="查看80端口信息-netstat-lnt-grep-80"><a href="#查看80端口信息-netstat-lnt-grep-80" class="headerlink" title="查看80端口信息 netstat -lnt|grep 80"></a>查看80端口信息 netstat -lnt|grep 80</h4><h4 id="查看nginx进程-ps-ef-grep-nginx"><a href="#查看nginx进程-ps-ef-grep-nginx" class="headerlink" title="查看nginx进程 ps-ef|grep nginx"></a>查看nginx进程 ps-ef|grep nginx</h4><h4 id="查看nginx的错误日志-cat-application-nginx-nginx-1-15-1-error-log"><a href="#查看nginx的错误日志-cat-application-nginx-nginx-1-15-1-error-log" class="headerlink" title="查看nginx的错误日志  cat /application/nginx/nginx-1.15.1/error.log"></a>查看nginx的错误日志  cat /application/nginx/nginx-1.15.1/error.log</h4><h4 id="ping-10-0-0-200-看是否连通"><a href="#ping-10-0-0-200-看是否连通" class="headerlink" title="ping 10.0.0.200 看是否连通"></a>ping 10.0.0.200 看是否连通</h4><h4 id="wegt-10-0-0-200-或者curl-I-10-0-0-200-模拟用户"><a href="#wegt-10-0-0-200-或者curl-I-10-0-0-200-模拟用户" class="headerlink" title="wegt 10.0.0.200 或者curl -I 10.0.0.200 模拟用户"></a>wegt 10.0.0.200 或者curl -I 10.0.0.200 模拟用户</h4><h4 id="一个小坑"><a href="#一个小坑" class="headerlink" title="一个小坑"></a>一个小坑</h4><pre><code>[root@jinc2 nginx]# ./sbin/nginx -s reload
+ nginx: [error] invalid PID number &quot;&quot; in &quot;/lnmp/nginx-1.15.1//logs/nginx.pid&quot;
+</code></pre><h5 id="今天偶然出现了这个错误，问了一下百度大神，，都说是因为是加载配置文件报的错，所以用-c-选项指定配置文件"><a href="#今天偶然出现了这个错误，问了一下百度大神，，都说是因为是加载配置文件报的错，所以用-c-选项指定配置文件" class="headerlink" title="今天偶然出现了这个错误，问了一下百度大神，，都说是因为是加载配置文件报的错，所以用-c 选项指定配置文件"></a>今天偶然出现了这个错误，问了一下百度大神，，都说是因为是加载配置文件报的错，所以用-c 选项指定配置文件</h5><pre><code>[root@jinc2 nginx]# ./sbin/nginx -c /lnmp/nginx-1.15.1//conf/nginx.conf
+nginx: [emerg] bind() to 10.0.0.100:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 10.0.0.101:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 10.0.0.102:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 10.0.0.100:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 10.0.0.101:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 10.0.0.102:80 failed (98: Address already in use)
+[root@jinc2 nginx]# ./sbin/nginx -s reload
+nginx: [error] invalid PID number &quot;&quot; in &quot;/lnmp/nginx-1.15.1//logs/nginx.pid&quot;
+</code></pre><h5 id="按照网上的思路试了一遍，发现并没有什么用，然后，仔细看了一下错误，大概意思是无效的pid，在lnmp-nginx-1-15-1-logs-nginx-pid-这个文件中，于是，打开这个文件看了一下。。。怎么什么都没有。。有点蒙蔽。继续。。去另一台看了一下"><a href="#按照网上的思路试了一遍，发现并没有什么用，然后，仔细看了一下错误，大概意思是无效的pid，在lnmp-nginx-1-15-1-logs-nginx-pid-这个文件中，于是，打开这个文件看了一下。。。怎么什么都没有。。有点蒙蔽。继续。。去另一台看了一下" class="headerlink" title="按照网上的思路试了一遍，发现并没有什么用，然后，仔细看了一下错误，大概意思是无效的pid，在lnmp/nginx-1.15.1//logs/nginx.pid 这个文件中，于是，打开这个文件看了一下。。。怎么什么都没有。。有点蒙蔽。继续。。去另一台看了一下"></a>按照网上的思路试了一遍，发现并没有什么用，然后，仔细看了一下错误，大概意思是无效的pid，在lnmp/nginx-1.15.1//logs/nginx.pid 这个文件中，于是，打开这个文件看了一下。。。怎么什么都没有。。有点蒙蔽。继续。。去另一台看了一下</h5><pre><code>[root@jinc1 conf]# cat /application/nginx/nginx-1.15.1/logs/nginx.pid 
+7104
+</code></pre><h5 id="原来并不是空的，然后，在另一台继续查了一下他的pid"><a href="#原来并不是空的，然后，在另一台继续查了一下他的pid" class="headerlink" title="原来并不是空的，然后，在另一台继续查了一下他的pid"></a>原来并不是空的，然后，在另一台继续查了一下他的pid</h5><pre><code>[root@jinc1 conf]# ps -ef | grep nginx
+root       7104      1  0 03:30 ?        00:00:00 nginx: master process ../sbin/nginx
+</code></pre><h5 id="哇哇哇，原来如此，，，回到本机，查看pid"><a href="#哇哇哇，原来如此，，，回到本机，查看pid" class="headerlink" title="哇哇哇，原来如此，，，回到本机，查看pid"></a>哇哇哇，原来如此，，，回到本机，查看pid</h5><pre><code>[root@jinc2 nginx]# ps -ef |grep nginx
+root       9862      1  0 03:21 ?        00:00:00 nginx: master process ./sbin/nginx
+</code></pre><h5 id="现在好办了，加进去试试"><a href="#现在好办了，加进去试试" class="headerlink" title="现在好办了，加进去试试"></a>现在好办了，加进去试试</h5><pre><code>[root@jinc2 nginx]# echo 9862 &gt; /lnmp/nginx/logs/nginx.pid 
+[root@jinc2 nginx]# ./sbin/nginx -s reload
+[root@jinc2 nginx]# 
+</code></pre><h4 id="已经ok了，nice"><a href="#已经ok了，nice" class="headerlink" title="已经ok了，nice"></a>已经ok了，nice</h4>
       
     </div><!-- .entry-content -->
 
@@ -198,6 +218,14 @@ chkconfig iptables off 开机自启关闭
       <ul>
         
           <li>
+            <a href="/2018/07/27/Linux运维学习-第十九天/">Linux运维学习-第十九天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/27/醉赤壁/">醉赤壁</a>
+          </li>
+        
+          <li>
             <a href="/2018/07/27/生如夏花/">生如夏花</a>
           </li>
         
@@ -209,14 +237,6 @@ chkconfig iptables off 开机自启关闭
             <a href="/2018/07/25/linux运维学习-第十七天/">linux运维学习-第十七天</a>
           </li>
         
-          <li>
-            <a href="/2018/07/25/ansible-安装二三事/">ansible 安装二三事</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/25/MySQL安装配置/">MySQL安装配置</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -226,7 +246,7 @@ chkconfig iptables off 开机自启关闭
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -235,7 +255,7 @@ chkconfig iptables off 开机自启关闭
   <aside class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 10px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+      <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 12px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
     </div>
   </aside>
 
