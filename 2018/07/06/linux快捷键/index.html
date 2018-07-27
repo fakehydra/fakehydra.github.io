@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="枯燥的学习之路–Linux命令常用快捷键">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-08T09:48:18.927Z">
+<meta property="og:updated_time" content="2018-07-27T01:27:22.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux快捷键">
 <meta name="twitter:description" content="枯燥的学习之路–Linux命令常用快捷键">
@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/linux快捷键/" data-id="cjk164xnd001doolyjreidkp9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/linux快捷键/" data-id="cjk3bafib00185olyz9bqx275" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -138,6 +138,29 @@ Ctrl+q --解除执行Ctrl+s的锁定状态
 </code></pre><h3 id="ESC相关"><a href="#ESC相关" class="headerlink" title="ESC相关"></a>ESC相关</h3><pre><code>ESC+.(点) --获取上一条命令最后的部分 （空格分隔）
 ESC+b --移动到当前单词的开头
 ESC+f --移动到当前单词的结尾
+</code></pre><h3 id="vim相关"><a href="#vim相关" class="headerlink" title="vim相关"></a>vim相关</h3><h4 id="命令行操作模式"><a href="#命令行操作模式" class="headerlink" title="命令行操作模式"></a>命令行操作模式</h4><pre><code> G     --将光标快速切换到行尾
+ gg    --将光标快速切换到行首
+99gg   --将光标快速切换到行到99行
+$      --将光标快速切换到一行的行尾
+ ^     --将光标快速切换到一行的行首
+ i     --在光标所在位置进入编辑模式
+ I     --将光标切换到一行的首部再进入编辑模式
+ A     --切换到行尾进入编辑模式
+ a     --在光标所在位置的下一个字符进入编辑模式
+ o     --新启一行（往下）进入编辑模式
+ O     --新启一行（往上）进入编辑模式
+ C     --将光标所在位置到该行行尾的信息都删除（剪切）并进入编辑模式
+ cc    --删除所在行的内容（留空行），并进入编辑模式
+ dd    --删除（剪切）光标所在行所有内容
+ yy    --复制光标所在位置行的内容
+ p     --将剪切|复制的内容粘贴
+ dG    --将光标所在行往下所有内容删除（剪切）
+ u     --返回上一步，相当于撤销
+</code></pre><h4 id="底行操作"><a href="#底行操作" class="headerlink" title="底行操作"></a>底行操作</h4><pre><code>set nu        --显示行号
+set nonu      --取消显示行号
+：s###g       --替换光标所在行内容
+:%s###g       --替换整个文件中的指定内容
+：%1，5s###g   --替换1到5行指定信息  
 </code></pre><h4 id="以上快捷键适用于secureCRT和Xshell客户端"><a href="#以上快捷键适用于secureCRT和Xshell客户端" class="headerlink" title="以上快捷键适用于secureCRT和Xshell客户端"></a>以上快捷键适用于secureCRT和Xshell客户端</h4><h6 id="多用多用多用（重要的事情说三遍）0-0"><a href="#多用多用多用（重要的事情说三遍）0-0" class="headerlink" title="多用多用多用（重要的事情说三遍）0.0"></a>多用多用多用（重要的事情说三遍）0.0</h6><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=5308028&auto=1&height=66"></iframe>
       
     </div><!-- .entry-content -->
