@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="True love is like ghosts ,which everybody talks about and few have seen.真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T11:39:51.629Z">
+<meta property="og:updated_time" content="2018-07-30T12:44:58.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第二十天">
 <meta name="twitter:description" content="True love is like ghosts ,which everybody talks about and few have seen.真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。">
@@ -84,14 +84,159 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/Linux运维学习-第二十天/" data-id="cjk895e8j000gq4lyd3ixm5hp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/Linux运维学习-第二十天/" data-id="cjk89nhie000jn0ly9zb7bjn5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="True-love-is-like-ghosts-which-everybody-talks-about-and-few-have-seen-真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。"><a href="#True-love-is-like-ghosts-which-everybody-talks-about-and-few-have-seen-真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。" class="headerlink" title="True love is like ghosts ,which everybody talks about and few have seen.真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。"></a>True love is like ghosts ,which everybody talks about and few have seen.真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。</h3><a id="more"></a>
+        <h3 id="True-love-is-like-ghosts-which-everybody-talks-about-and-few-have-seen"><a href="#True-love-is-like-ghosts-which-everybody-talks-about-and-few-have-seen" class="headerlink" title="True love is like ghosts ,which everybody talks about and few have seen."></a>True love is like ghosts ,which everybody talks about and few have seen.</h3><h3 id="真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。"><a href="#真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。" class="headerlink" title="真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。"></a>真正的爱情犹如幽灵，人人都说过，但几乎没谁见过。</h3><a id="more"></a>
+<h4 id="测验练习一：每分钟将自己的名字追加到-oldboy-oldboy-txt中"><a href="#测验练习一：每分钟将自己的名字追加到-oldboy-oldboy-txt中" class="headerlink" title="测验练习一：每分钟将自己的名字追加到/oldboy/oldboy.txt中"></a>测验练习一：每分钟将自己的名字追加到/oldboy/oldboy.txt中</h4><pre><code>第一个里程：在命令行测试定时任务命令
+mkdir -p /oldboy/
+echo &apos;oldboy&apos; &gt;&gt;/oldboy/oldboy.txt
 
+第二个里程：编写定时任务
+crontab -e
+# editer file info
+00 * * * * echo &apos;oldboy&apos; &gt;&gt;/oldboy/oldboy.txt
+
+第三个里程：检查日志输出信息和测试定时任务效果
+确认没有问题，可以最终编写定时任务时间
+</code></pre><h4 id="测验练习二：每分钟显示系统时间（年-月-日-周）追加到-tmp-time-log"><a href="#测验练习二：每分钟显示系统时间（年-月-日-周）追加到-tmp-time-log" class="headerlink" title="测验练习二：每分钟显示系统时间（年-月-日_周）追加到/tmp/time.log"></a>测验练习二：每分钟显示系统时间（年-月-日_周）追加到/tmp/time.log</h4><pre><code>第一个里程：在命令行测试定时任务
+date +%y-%m-%d_%w &gt;&gt;/tmp/time.log
+
+第二个里程：编写定时任务
+# time info input file
+* * * * *  date +\%y-\%m-\%d_\%w &gt;&gt;/tmp/time.log
+说明：定时任务中无法识别一些命令行中的特殊符号，需要进行转译识别
+
+第三个里程：检查定时任务执行效果
+</code></pre><h4 id="PS：建议由特殊符号的命令，或者需要多个命令完成一件任务的时候利用脚本编写定时任务信息"><a href="#PS：建议由特殊符号的命令，或者需要多个命令完成一件任务的时候利用脚本编写定时任务信息" class="headerlink" title="PS：建议由特殊符号的命令，或者需要多个命令完成一件任务的时候利用脚本编写定时任务信息"></a>PS：建议由特殊符号的命令，或者需要多个命令完成一件任务的时候利用脚本编写定时任务信息</h4><h4 id="异常提示信息"><a href="#异常提示信息" class="headerlink" title="异常提示信息"></a>异常提示信息</h4><pre><code>You have new mail in /var/spool/mail/root
+
+
+在一个文件中输入时间信息（年-月-日），并且显示实时的负载信息uptime
+所有操作命令放入脚本中，在定时任务中运行编写好的脚本
+每天的7,8,10整运行脚本
+
+2017-07-27 load average: 0.00, 0.00, 0.00
+
+第一个里程：命令执行测试
+date +%F-%w 
+uptime|awk -F &quot;(s,  )&quot;  &apos;{print $2}&apos;
+echo &quot;`date +%F-%w` `uptime|awk -F &quot;(s,  )&quot;  &apos;{print $2}&apos;`&quot; &gt;&gt;/tmp/oldboy.txt
+
+
+第二个里程：编写脚本文件
+mkdir /server/scripts -p
+vim shell01.sh
+echo &quot;`date +%F-%w` `uptime|awk -F &quot;(s,  )&quot;  &apos;{print $2}&apos;`&quot; &gt;&gt;/tmp/oldboy.txt
+
+第三个里程：测试脚本
+/bin/sh ./shell01.sh 
+说明：尽量用绝对路径进行测试
+
+第四个里程：编写定时任务
+crontab -e 
+# display upload info in /tmp/oldboy.txt
+00 7,8,10 * * * sh ./shell01.sh   错误的
+00 7,8,10 * * * /bin/sh /server/scripts/shell01.sh  正确效果
+
+第五个里程：进行检查测试
+查看日志
+检查结果
+
+说明：
+定时任务中默认的路径为：
+管理用户而言：相对/root家目录
+普通用户而言：相对/home/oldboy家目录
+</code></pre><h3 id="疑问：什么叫把信息追加到一个黑洞中？"><a href="#疑问：什么叫把信息追加到一个黑洞中？" class="headerlink" title="疑问：什么叫把信息追加到一个黑洞中？"></a>疑问：什么叫把信息追加到一个黑洞中？</h3><pre><code>echo 123456 &gt;oldboy.txt     正确
+ech  123456 2&gt;oldboy.txt    错误
+
+1) echo 123456 &gt;&gt;/dev/null  2&gt;&gt;/dev/null  错误和正确信息同时放入一个文件中
+2）echo 123456 &gt;/dev/null  2&gt;&gt;&amp;1
+3）echo 123456 &amp;&gt;/dev/null
+</code></pre><h4 id="如何实现把命令输出的信息放入到一个文件中，但不占用磁盘空间–"><a href="#如何实现把命令输出的信息放入到一个文件中，但不占用磁盘空间–" class="headerlink" title="如何实现把命令输出的信息放入到一个文件中，但不占用磁盘空间–"></a>如何实现把命令输出的信息放入到一个文件中，但不占用磁盘空间–</h4><pre><code>ll /dev/null 
+crw-rw-rw- 1 root root 1, 3 Jul 26 08:30 /dev/null
+</code></pre><h4 id="案例：编写定时任务之后，一段时间后，会出现磁盘不能创建文件的情况？"><a href="#案例：编写定时任务之后，一段时间后，会出现磁盘不能创建文件的情况？" class="headerlink" title="案例：编写定时任务之后，一段时间后，会出现磁盘不能创建文件的情况？"></a>案例：编写定时任务之后，一段时间后，会出现磁盘不能创建文件的情况？</h4><pre><code>为什么要把输出的信息放入到黑洞中？inode（大量小文件）
+异常提示信息
+You have new mail in /var/spool/mail/root
+1）为什么会有这么一个邮件
+定时任务中，将命令执行输出的结果以邮件方式告知
+因为开启了邮件服务
+如果关闭了，/var/spool/mail/root就不会产生邮件信息
+会生成一些没有发出的邮件，会堆积在一个目录中
+/var/spool/postfix/maildrop/
+
+如何删除大量小文件：
+rm -f ./*.txt
+
+find ./ -type f -name &quot;*.txt&quot;|xargs rm
+-bash: /bin/touch: Argument list too long
+解决：分批删除
+ls ./{1..45000}.txt|xargs rm
+</code></pre><h4 id="如何避免出现问题："><a href="#如何避免出现问题：" class="headerlink" title="如何避免出现问题："></a>如何避免出现问题：</h4><pre><code>在编写定时任务是，将命令或脚本输出的结果放入到黑洞中
+[root@oldgirl oldboy]# vim /var/spool/cron/root 
+# info
+* * * * * /usr/sbin/ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1
+</code></pre><h4 id="测验练习：每天01-00，进行打包备份数据（-etc-hosts-etc-selinux）"><a href="#测验练习：每天01-00，进行打包备份数据（-etc-hosts-etc-selinux）" class="headerlink" title="测验练习：每天01:00，进行打包备份数据（/etc/hosts /etc/selinux）"></a>测验练习：每天01:00，进行打包备份数据（/etc/hosts /etc/selinux）</h4><pre><code>          将生成压缩包保存到/tmp目录下，并且打包数据名称不能重复（按照时间打包）
+1）编写脚本实现
+2）定时任务编写信息
+3）定时执行日志信息
+4）定时任务执行结果信息    
+
+第一里程：命令行测试执行命令
+cd / &amp;&amp; tar zcf /tmp/oldboy_$(date +%F-%H:%M).tar.gz ./etc/hosts ./etc/selinux/
+
+第二里程：编写测试脚本
+vim /server/scripts/shell02.sh
+cd / &amp;&amp; tar zcf /tmp/oldboy_$(date +%F-%H:%M).tar.gz ./etc/hosts ./etc/selinux/
+/bin/sh /server/scripts/shell02.sh
+
+第三里程：编写定时任务
+# backup data
+* * * * * /bin/sh /server/scripts/shell02.sh &gt;/dev/null 2&gt;&amp;1
+
+第四里程：测试定时任务
+检查日志信息，查看定时任务执行效果
+</code></pre><h4 id="测验练习：将主机的IP地址（ifconfig）信息追加到-tmp-oldboy-txt文件中"><a href="#测验练习：将主机的IP地址（ifconfig）信息追加到-tmp-oldboy-txt文件中" class="headerlink" title="测验练习：将主机的IP地址（ifconfig）信息追加到/tmp/oldboy.txt文件中"></a>测验练习：将主机的IP地址（ifconfig）信息追加到/tmp/oldboy.txt文件中</h4><pre><code>           按照每隔5五分钟追加一次（不要用脚本实现）
+1）定时任务编写信息
+ifconfig &gt;/tmp/oldboy.txt
+2）定时执行日志信息
+3）定时任务执行结果信息    
+考点说明：对应定时服务，执行定时任务中的命令，是无法识别系统中PATH环境变量信息
+定时任务中执行命令（ifconfig），会到什么位置找这个命令文件？
+/bin /usr/bin
+
+自动化编写定时任务脚本
+
+
+1.9.4 linux定时任务生产java服务无法执行问题群友案例
+ 1.9.4.1    原来问题：
+ 来自网友兄弟 北京@Grady的总结。
+ 1）我写了一个重启resin(java)的脚本，由于业务原因，需要定时在某一个时间重启下resin服务器，于是就在
+ crontab里配置了如下内容：
+ 50 17 * * 01-05 /bin/sh /usr/local/bin/resin_restart.sh &gt;/dev/null 2&gt;&amp;1#系统定时任务的配置文件
+ 其中，resin_restart.sh内容如下：
+ #!/bin/sh
+ /usr/local/bin/xxresin_stop.sh
+ /usr/local/bin/xxresin_start.sh
+ 2）有问题的时刻到来了，服务器虽然定时起来了，但是却报了如下错误：
+ Resin can&apos;t load com.sun.tools.javac.Main.  ####ifconfig command not found 
+ Usually this means that the JDK tools.jar is missing from the classpath(java里面缺少PATH变量      java找不到对应的命令的位置), ###
+ possibly because of using a JRE instead of the JDK.  
+ You can either add tools.jar to the classpath or change the compiler to an external one with &lt;java compiler=&apos;javac&apos;     /&gt; or jikes.
+ 但是，明明已经在/etc/profile里配置了环境变量，为啥还找不到呢。折腾了许久没有搞定。
+
+ 4）然后我在resin重启脚本里重新定义了下环境变量，脚本如下：
+ #!/bin/sh
+ #下面就是环境变量定义
+ export JAVA_HOME=&quot;/opt/jdk1.6.0_18&quot;
+ export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+ export PATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:/opt/nginx-0.7.61/sbin:/opt/jdk1.6.0_18/bin:/opt/     resin-3.0.25/bin:$PATH
+ export JAVA_HOME PATH USER LOGNAME MAIL HOSTNAME HISTSIZE INPUTRC CLASSPATH
+ /usr/local/bin/xxresin_stop.sh
+ /usr/local/bin/xxresin_start.sh
+</code></pre>
       
     </div><!-- .entry-content -->
 
