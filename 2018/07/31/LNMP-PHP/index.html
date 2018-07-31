@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="LNMP 之 PHP" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>LNMP-PHP | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LNMP 之 PHP">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LNMP-PHP">
+<meta property="og:url" content="http://yoursite.com/2018/07/31/LNMP-PHP/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="LNMP 之 PHP">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-31T02:01:55.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LNMP-PHP">
+<meta name="twitter:description" content="LNMP 之 PHP">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-LNMP-PHP" class="post-LNMP-PHP post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      LNMP-PHP
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/LNMP-PHP/" data-id="cjk9nue9000093klyilkqv1vf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="LNMP-之-PHP"><a href="#LNMP-之-PHP" class="headerlink" title="LNMP 之 PHP"></a>LNMP 之 PHP</h3><a id="more"></a>
+<h3 id="安装php-7-0-11"><a href="#安装php-7-0-11" class="headerlink" title="安装php-7.0.11"></a>安装php-7.0.11</h3><pre><code>yum -y install bzip2-devel curl-devel freetype-devel gcc libjpeg-devel libpng-devel libxslt-devel libxml2-devel openssl-devel pcre-devel pcre-devel zlib-devel
+</code></pre><h4 id="如果已经安装了可能会进行升级，版本完全一致则不会进行任何操作。"><a href="#如果已经安装了可能会进行升级，版本完全一致则不会进行任何操作。" class="headerlink" title="如果已经安装了可能会进行升级，版本完全一致则不会进行任何操作。"></a>如果已经安装了可能会进行升级，版本完全一致则不会进行任何操作。</h4><h4 id="下载地址：http-php-net-get-php-7-0-11-tar-gz-from-a-mirror"><a href="#下载地址：http-php-net-get-php-7-0-11-tar-gz-from-a-mirror" class="headerlink" title="下载地址：http://php.net/get/php-7.0.11.tar.gz/from/a/mirror"></a>下载地址：<a href="http://php.net/get/php-7.0.11.tar.gz/from/a/mirror" target="_blank" rel="noopener">http://php.net/get/php-7.0.11.tar.gz/from/a/mirror</a></h4><h4 id="下载“php-7-0-11-tar-gz”后移动到linux服务器的任意目录下，只在编译时指定安装到的目录。"><a href="#下载“php-7-0-11-tar-gz”后移动到linux服务器的任意目录下，只在编译时指定安装到的目录。" class="headerlink" title="下载“php-7.0.11.tar.gz”后移动到linux服务器的任意目录下，只在编译时指定安装到的目录。"></a>下载“php-7.0.11.tar.gz”后移动到linux服务器的任意目录下，只在编译时指定安装到的目录。</h4><h3 id="2、解压安装包"><a href="#2、解压安装包" class="headerlink" title="2、解压安装包"></a>2、解压安装包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf php-7.0.11.tar.gz</span><br><span class="line">cd php-7.0.11</span><br></pre></td></tr></table></figure>
+<h3 id="3、配置安装变量"><a href="#3、配置安装变量" class="headerlink" title="3、配置安装变量"></a>3、配置安装变量</h3><pre><code>./configure --prefix=/application/php --with-curl --with-freetype-dir --with-gd --with-gettext --with-iconv-dir --with-kerberos --with-libdir=lib64 --with-libxml-dir --with-mysqli --with-openssl --with-pcre-regex --with-pdo-mysql --with-pdo-sqlite --with-pear --with-png-dir --with-jpeg-dir --with-xmlrpc --with-xsl --with-zlib --with-bz2 --with-mhash --enable-fpm --enable-bcmath --enable-libxml --enable-inline-optimization --enable-gd-native-ttf --enable-mbregex --enable-mbstring --enable-opcache --enable-pcntl --enable-shmop --enable-soap --enable-sockets --enable-sysvsem --enable-sysvshm --enable-xml --enable-zip
+</code></pre><h5 id="“-application-php”是安装路径，可以改成自己喜欢的安装路径。"><a href="#“-application-php”是安装路径，可以改成自己喜欢的安装路径。" class="headerlink" title="“/application/php”是安装路径，可以改成自己喜欢的安装路径。"></a>“/application/php”是安装路径，可以改成自己喜欢的安装路径。</h5><h3 id="4、编译源码"><a href="#4、编译源码" class="headerlink" title="4、编译源码"></a>4、编译源码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 在解压目录执行编译命令：make</span><br><span class="line">cd php-7.0.11</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>编译会花费一些时间，耐心等待即可。编译完成的最后会提示你执行make test命令。就是对上一步 make 的检查，</p>
+<p>要确保 make 是没有错误的，也就是这一步的 test、check要全部是 OK 的，error 为0。</p>
+<h3 id="5、安装php"><a href="#5、安装php" class="headerlink" title="5、安装php"></a>5、安装php</h3><pre><code>make install
+</code></pre><h3 id="6、配置PHP"><a href="#6、配置PHP" class="headerlink" title="6、配置PHP"></a>6、配置PHP</h3><h4 id="将PHP源码包（-application-php-7-0-11）中的php-ini-development文件复制到-usr-local-php-下，更名为php-ini。"><a href="#将PHP源码包（-application-php-7-0-11）中的php-ini-development文件复制到-usr-local-php-下，更名为php-ini。" class="headerlink" title="将PHP源码包（/application/php-7.0.11）中的php.ini-development文件复制到/usr/local/php/下，更名为php.ini。"></a>将PHP源码包（/application/php-7.0.11）中的php.ini-development文件复制到/usr/local/php/下，更名为php.ini。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /application/php-7.0.11/php.ini-development /application/php/php.ini</span><br><span class="line">cp /application/php/etc/php-fpm.conf.default /application/php/etc/php-fpm.conf</span><br><span class="line">cp /application/php/etc/php-fpm.d/www.conf.default /application/php/etc/php-fpm.d/www.conf</span><br></pre></td></tr></table></figure>
+<h5 id="配置php-ini-“cgi-fix-pathinfo-0”"><a href="#配置php-ini-“cgi-fix-pathinfo-0”" class="headerlink" title="配置php.ini “cgi.fix_pathinfo=0”"></a>配置php.ini “cgi.fix_pathinfo=0”</h5><h5 id="nu-760"><a href="#nu-760" class="headerlink" title="nu=760"></a>nu=760</h5><h5 id="启动php-fpm服务："><a href="#启动php-fpm服务：" class="headerlink" title="启动php-fpm服务："></a>启动php-fpm服务：</h5><pre><code>/application/php/sbin/php-fpm
+</code></pre><h5 id="启动完毕之后，php-fpm服务默认使用9000端口，使用-netstat-tln-grep-9000-可以查看端口使用情况："><a href="#启动完毕之后，php-fpm服务默认使用9000端口，使用-netstat-tln-grep-9000-可以查看端口使用情况：" class="headerlink" title="启动完毕之后，php-fpm服务默认使用9000端口，使用 netstat -tln | grep 9000 可以查看端口使用情况："></a>启动完毕之后，php-fpm服务默认使用9000端口，使用 netstat -tln | grep 9000 可以查看端口使用情况：</h5><h3 id="7、配置nginx"><a href="#7、配置nginx" class="headerlink" title="7、配置nginx"></a>7、配置nginx</h3><h3 id="nginx安装教程：https-fakehydra-github-io-tags-Nginx"><a href="#nginx安装教程：https-fakehydra-github-io-tags-Nginx" class="headerlink" title="nginx安装教程：https://fakehydra.github.io/tags/Nginx/"></a>nginx安装教程：<a href="https://fakehydra.github.io/tags/Nginx/" target="_blank" rel="noopener">https://fakehydra.github.io/tags/Nginx/</a></h3><pre><code>编辑nginx配置文件/usr/local/nginx/conf/nginx.conf，主要修改nginx的server {}配置块中的内容，修改location块，追加index.php让nginx服务器默认支持index.php为首页：
+</code></pre><h4 id="然后配置-php请求被传送到后端的php-fpm模块，默认情况下php配置块是被注释的，此时去掉注释并修改为以下内容："><a href="#然后配置-php请求被传送到后端的php-fpm模块，默认情况下php配置块是被注释的，此时去掉注释并修改为以下内容：" class="headerlink" title="然后配置.php请求被传送到后端的php-fpm模块，默认情况下php配置块是被注释的，此时去掉注释并修改为以下内容："></a>然后配置.php请求被传送到后端的php-fpm模块，默认情况下php配置块是被注释的，此时去掉注释并修改为以下内容：</h4><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>location ~* \.php$ {
+    root           html;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}
+</code></pre><h5 id="这里面很多都是默认的，root是配置php程序放置的根目录，主要修改的就是fastcgi-param中的-scripts为-document-root"><a href="#这里面很多都是默认的，root是配置php程序放置的根目录，主要修改的就是fastcgi-param中的-scripts为-document-root" class="headerlink" title="这里面很多都是默认的，root是配置php程序放置的根目录，主要修改的就是fastcgi_param中的/scripts为$document_root"></a>这里面很多都是默认的，root是配置php程序放置的根目录，主要修改的就是fastcgi_param中的/scripts为$document_root</h5><h5 id="修改完这些保存并退出，然后重启nginx：-application-nginx-sbin-nginx-s-reload"><a href="#修改完这些保存并退出，然后重启nginx：-application-nginx-sbin-nginx-s-reload" class="headerlink" title="修改完这些保存并退出，然后重启nginx：/application/nginx/sbin/nginx -s reload"></a>修改完这些保存并退出，然后重启nginx：/application/nginx/sbin/nginx -s reload</h5><h4 id="接下来编辑一个测试的php程序，在nginx下的html目录下创建test-php文件，打印一下php配置："><a href="#接下来编辑一个测试的php程序，在nginx下的html目录下创建test-php文件，打印一下php配置：" class="headerlink" title="接下来编辑一个测试的php程序，在nginx下的html目录下创建test.php文件，打印一下php配置："></a>接下来编辑一个测试的php程序，在nginx下的html目录下创建test.php文件，打印一下php配置：</h4><pre><code>&lt;?php
+    phpinfo();
+?&gt;
+</code></pre><h4 id="然后打开浏览器输入对应的地址进行访问，看到输出页面，说明nginx和php都配置成功了："><a href="#然后打开浏览器输入对应的地址进行访问，看到输出页面，说明nginx和php都配置成功了：" class="headerlink" title="然后打开浏览器输入对应的地址进行访问，看到输出页面，说明nginx和php都配置成功了："></a>然后打开浏览器输入对应的地址进行访问，看到输出页面，说明nginx和php都配置成功了：</h4>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/07/31/LNMP-PHP/">
+    <time datetime="2018-07-31T01:47:32.000Z" class="entry-date">
+        2018-07-31
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/07/31/wordpress搭建自己博客/" rel="prev"><span class="meta-nav">←</span> wordpress搭建自己博客</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/07/30/N那些你很冒险的梦/" rel="next">那些你很冒险的梦 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/31/Linux运维学习-第二十一天/">Linux运维学习-第二十一天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/31/wordpress搭建自己博客/">wordpress搭建自己博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/31/LNMP-PHP/">LNMP-PHP</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/30/N那些你很冒险的梦/">那些你很冒险的梦</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/30/NFS—-脚本/">NFS—-脚本</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 12px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
