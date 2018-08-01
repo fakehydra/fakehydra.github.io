@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="No words are necessary between two loving hearts.两颗相爱的心之间不需要言语。" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-第二十二天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="No words are necessary between two loving hearts.两颗相爱的心之间不需要言语。">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-第二十二天">
+<meta property="og:url" content="http://yoursite.com/2018/08/01/Linux运维学习-第二十二天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="No words are necessary between two loving hearts.两颗相爱的心之间不需要言语。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-01T10:53:29.208Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-第二十二天">
+<meta name="twitter:description" content="No words are necessary between two loving hearts.两颗相爱的心之间不需要言语。">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第二十二天" class="post-Linux运维学习-第二十二天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-第二十二天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/Linux运维学习-第二十二天/" data-id="cjkb0jwh5000qfclyl4xvbb2j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="No-words-are-necessary-between-two-loving-hearts"><a href="#No-words-are-necessary-between-two-loving-hearts" class="headerlink" title="No words are necessary between two loving hearts."></a>No words are necessary between two loving hearts.</h3><h3 id="两颗相爱的心之间不需要言语。"><a href="#两颗相爱的心之间不需要言语。" class="headerlink" title="两颗相爱的心之间不需要言语。"></a>两颗相爱的心之间不需要言语。</h3><a id="more"></a>
+<h3 id="常见企业面试题说明："><a href="#常见企业面试题说明：" class="headerlink" title="常见企业面试题说明："></a>常见企业面试题说明：</h3><h4 id="1）如何实现脚本开机自动运行"><a href="#1）如何实现脚本开机自动运行" class="headerlink" title="1）如何实现脚本开机自动运行"></a>1）如何实现脚本开机自动运行</h4><pre><code>a 将执行脚本的命令放入到 /etc/rc.local文件中
+
+b 让脚本可以被chkconfig命令所管理
+第一个里程：编写一个脚本文件，并且脚本文件要具有执行权限
+[root@oldgirl scripts]# chmod a+x /server/scripts/get_ip.sh 
+[root@oldgirl scripts]# ll
+total 20
+-rwxr-xr-x 1 root root  91 Jul 31 15:05 get_ip.sh
+
+第二个里程：将脚本文件放入到/etc/init.d目录中，并且让chkconfig命令和管理
+[root@oldgirl scripts]# cp -a /server/scripts/get_ip.sh /etc/init.d/
+[root@oldgirl scripts]# ll /etc/init.d/get_ip.sh 
+-rwxr-xr-x 1 root root 91 Jul 31 15:05 /etc/init.d/get_ip.sh
+[root@oldgirl scripts]# vim /server/scripts/get_ip.sh
+# chkconfig: - 99 99   --- 为了让chkconfig命令可以识别
+脚本文件中信息说明
+# chkconfig: 2345         55        25
+             启动级别  启动顺序  关闭顺序            
+chkconfig --add get_ip.sh
+
+第三个里程：检查测试
+[root@oldgirl scripts]# chkconfig --list|grep get_ip
+get_ip.sh          0:off    1:off    2:off    3:off    4:off    5:off    6:off
+[root@oldgirl scripts]# chkconfig get_ip.sh on
+[root@oldgirl scripts]# chkconfig --list|grep get_ip
+get_ip.sh          0:off    1:off    2:on    3:on    4:on    5:on    6:off
+</code></pre><h3 id="常见企业故障案例："><a href="#常见企业故障案例：" class="headerlink" title="常见企业故障案例："></a>常见企业故障案例：</h3><pre><code>[root@oldgirl oldboy001]# su - oldboy001
+-bash-4.1$ 
+
+原因：因为家目录下面的所有隐藏文件都没了
+</code></pre><h4 id="模拟企业故障："><a href="#模拟企业故障：" class="headerlink" title="模拟企业故障："></a>模拟企业故障：</h4><pre><code>cd /home/oldboy001/
+rm ./.bash* -rf
+
+
+解决：
+[root@oldgirl oldgirl]# ll /etc/skel/    --- 找到样板房
+total 0
+[root@oldgirl oldgirl]# ll /etc/skel/ -a
+total 20
+drwxr-xr-x.  2 root root 4096 Jul  4 12:38 .
+drwxr-xr-x. 78 root root 4096 Jul 31 20:43 ..
+-rw-r--r--.  1 root root   18 Mar 23  2017 .bash_logout
+-rw-r--r--.  1 root root  176 Mar 23  2017 .bash_profile
+-rw-r--r--.  1 root root  124 Mar 23  2017 .bashrc
+
+[root@oldgirl etc]# cp -a /etc/skel/.bash* /home/oldboy001/
+[root@oldgirl etc]# su - oldboy001
+[oldboy001@oldgirl ~]$
+
+错误操作：
+[root@oldgirl oldgirl]# cp -a /etc/skel/* /home/oldboy001/
+cp: cannot stat `/etc/skel/*&apos;: No such file or directory    --- 复制一个*号名称的文件
+
+[root@oldgirl oldgirl]# cp -a /etc/skel/.* /home/oldboy001/ 
+.* --- 并不是表示复制所有内容，复制以.开头的所有数据信息
+
+用户样板房中文件说明
+[oldboy001@oldgirl ~]$ ll /etc/skel/ -a
+total 20
+drwxr-xr-x.  2 root root 4096 Jul  4 12:38 .
+drwxr-xr-x. 78 root root 4096 Jul 31 20:43 ..
+-rw-r--r--.  1 root root   18 Mar 23  2017 .bash_logout  在一个用户注销之前，会加载执行文件中命令 
+-rw-r--r--.  1 root root  176 Mar 23  2017 .bash_profile（家规）    == /etc/profile  设置一些环境变量
+-rw-r--r--.  1 root root  124 Mar 23  2017 .bashrc      （家规）    == /etc/bashrc   设置一些命令别名
+
+
+确认/etc/skel目录就是我们的样板房
+echo &quot;welcome to the gongsi，pls xiaoxin guanli 系统&quot; &gt;/etc/skel/readme.tx
+ll /etc/skel/ -a
+useradd oldboy002
+su - oldboy002
+</code></pre><h3 id="用户管理相关命令"><a href="#用户管理相关命令" class="headerlink" title="用户管理相关命令"></a>用户管理相关命令</h3><pre><code>useradd/adduser  --- 添加用户命令
+useradd 用户名称
+-s    --- 指定用户使用shell信息  /bin/bash /sbin/nologin（傀儡）
+-M    --- 指定创建用户的时候，不要有家目录（傀儡）
+-g    --- 指定一个用户属于哪个用户组（家庭） 主要的家庭
+-G    --- 指定一个用户属于哪个用户组（家庭） 附属于其他的家庭
+-u　  --- 指定用户的uid数值信息（指定身份证号码）
+
+测验：创建一个用户alex999指定uid为888，禁止用户登录系统，不创建家目录（创建虚拟用户）
+useradd -u 888 -s /sbin/nologin -M alex999 
+
+userdel  --- 删除一个用户
+userdel  用户名称   --- 用户家目录和用户邮箱文件是无法删除的    
+-r   --- 表示删除用户家目录和邮箱文件
+
+[root@oldgirl etc]# userdel old01
+userdel: user &apos;old01&apos; does not exist
+[root@oldgirl etc]# ll /home/old01/ -d
+drwx------ 2 508 oldboy 4096 Jul 31 21:29 /home/old01/
+[root@oldgirl etc]# ll /var/mail/old01 -d
+-rw-rw---- 1 508 mail 0 Jul 31 21:29 /var/mail/old01
+[root@oldgirl etc]# ll /var/mail/old01
+-rw-rw---- 1 508 mail 0 Jul 31 21:29 /var/mail/old01
+
+[root@oldgirl etc]# id old02
+uid=509(old02) gid=509(old02) groups=509(old02),500(oldboy)
+[root@oldgirl etc]# userdel -r old02
+[root@oldgirl etc]# userdel -r old02
+userdel: user &apos;old02&apos; does not exist
+[root@oldgirl etc]# userdel -r old02
+userdel: user &apos;old02&apos; does not exist
+[root@oldgirl etc]# id old02
+id: old02: No such user
+[root@oldgirl etc]# ll /home/old02 -d
+ls: cannot access /home/old02: No such file or directory
+[root@oldgirl etc]# ll /var/mail/old02 
+ls: cannot access /var/mail/old02: No such file or directory
+
+usermod    --- 修改用户信息
+-g       --- 修改用户属于哪个主要的家庭
+-G       --- 修改用户可以属于哪个家庭
+-s       --- 修改用户shell信息
+-c       --- 修改用户注释信息
+
+passwd     --- 设置用户密码信息
+交互方式设置密码（只有root用户可以给其他用户设置密码）
+passwd oldboy  --- 给oldboy用户设置密码
+
+非交互设置密码（只有root用户可以实现）
+echo 123456|passwd --stdin oldboy
+
+企业设置密码注意事项：
+01. 密码要复杂12位以上字母数字及特殊符号
+&quot;0ldb0yedu.com&quot;  ******   nideshengri
+
+02. 保存好密码信息(软件保存密码)
+    keepass   本地保存密码
+    lastpass  在线保存密码
+
+04. 大企业用户和密码统一管理（相当于活动目录AD）---openldap（统一管理用户和密码）
+
+05. 动态密码：动态口令，第三方提供自己开发也很简单。
+
+06. 利用指纹方式确保数据安全行
+[root@oldgirl oldboy]# md5sum oldboy.txt &gt;/tmp/figer.txt
+[root@oldgirl oldboy]# md5sum -c /tmp/figer.txt 
+oldboy.txt: OK
+[root@oldgirl oldboy]# # 01. 找到你指定的指纹文件 
+[root@oldgirl oldboy]# cat /tmp/figer.txt 
+de854f7d9707a870417012557768ef4c  oldboy.txt
+[root@oldgirl oldboy]# # 02. 通过MD5sum命令算出指定文件的指纹信息
+[root@oldgirl oldboy]# md5sum oldboy.txt
+de854f7d9707a870417012557768ef4c  oldboy.txt
+[root@oldgirl oldboy]# # 03. 利用得出md5数值信息和指纹文件中md5信息进行比较
+[root@oldgirl oldboy]# # 04. 如果一样显示ok的结果，如果不一样显示失败结果
+[root@oldgirl oldboy]# &gt;oldboy.txt 
+[root@oldgirl oldboy]# md5sum -c /tmp/figer.txt 
+oldboy.txt: FAILED
+md5sum: WARNING: 1 of 1 computed checksum did NOT match
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/01/Linux运维学习-第二十二天/">
+    <time datetime="2018-08-01T10:21:47.000Z" class="entry-date">
+        2018-08-01
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/08/01/每天一个Linux命令10/" rel="next">每天一个Linux命令10 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/01/Linux运维学习-第二十二天/">Linux运维学习-第二十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/每天一个Linux命令10/">每天一个Linux命令10</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/31/Linux运维学习-第二十一天/">Linux运维学习-第二十一天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/31/wordpress搭建自己博客/">wordpress搭建自己博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/31/LNMP-PHP/">LNMP-PHP</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 12.5px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 17.5px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12.5px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 17.5px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 15px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

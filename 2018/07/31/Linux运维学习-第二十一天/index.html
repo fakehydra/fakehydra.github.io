@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="excellent writing">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T12:09:52.767Z">
+<meta property="og:updated_time" content="2018-08-01T10:21:06.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第二十一天">
 <meta name="twitter:description" content="excellent writing">
@@ -84,7 +84,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/Linux运维学习-第二十一天/" data-id="cjk9p6fui000i14lykvc6a0r0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/Linux运维学习-第二十一天/" data-id="cjkb0jwgu000lfcly6p49z4q6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -147,13 +147,10 @@ date +%F_%w;uptime|awk -F &apos;(s( )&apos; &quot;{print $4}&quot;
    chmod 441 oldboy
 </code></pre><h3 id="文件权限概述"><a href="#文件权限概述" class="headerlink" title="文件权限概述"></a>文件权限概述</h3><pre><code>r=4 读  w=2 写  x=1 执行  -=0 没有权限
 文件属主  文件属组  文件其他用户
-
-文件权限：
-r读权限：可以看文件中的内容
+</code></pre><h4 id="文件权限："><a href="#文件权限：" class="headerlink" title="文件权限："></a>文件权限：</h4><pre><code>r读权限：可以看文件中的内容
 文件拥有者：可以看文件内容 可以强行编辑文件内容
 其他用户：只可以看文件内容
 root用户：可以看文件内容，可以强项编辑文件内容
-
 
 w写权限：编辑文件中的内容（删除内容信息 修改 添加）
 文件拥有者：可以编辑文件内容，但是会覆盖原有内容，无法查看文件信息
@@ -164,26 +161,54 @@ root用户：可以看文件内容，可以强项编辑文件内容，不会覆�
 
 结论：想彻底的拥有写的权限，最好要配合 r读权限使用
 
-
 x执行权限：脚本文件可以直接运行（/bin/sh就不用指定了）
 文件拥有者：文件在没有读权限的时候，拥有执行权限，依旧无法执行
 其他用户：  文件在没有读权限的时候，拥有执行权限，依旧无法执行
-root用户：只要拥有了执行权限，就可以直接执行文件
-
-目录权限：
-  r读权限：可以看到目录中数据内容（数据属性信息）
+root用户：只要拥有了执行权限，就可以直接执行文件    
+</code></pre><h4 id="目录权限："><a href="#目录权限：" class="headerlink" title="目录权限："></a>目录权限：</h4><pre><code>  r读权限：可以看到目录中数据内容（数据属性信息）
           PS：目录下文件的名称信息查看和r权限没有关系          
 普通用户：可以查看文件中的数据内容，但是数据内容属性信息无法查看          
 root用户：可以正常查看目录下面文件数据属性信息    
 
-
 w写权限：可以在目录中创建或删除，修改文件名称
 普通用户：依旧无法在目录中创建文件数据
 root用户：已经可以正常查看目录信息，在目录中写入数据
-
 x执行权限：可以进入到目录中 （cd 进入到目录中）
 普通用户：只能进入到目录中，但是无法查看目录中的数据信息，已无法修改目录中的数据信息
 root用户：可以正常查看目录信息，在目录中写入数据，可以正常切换到目录中
+</code></pre><h3 id="特殊权限位说明：r-w-x-setuid-s-4-setgid-s-2-stick-t-1"><a href="#特殊权限位说明：r-w-x-setuid-s-4-setgid-s-2-stick-t-1" class="headerlink" title="特殊权限位说明：r w x -  setuid-s-4 setgid-s-2  stick-t-1"></a>特殊权限位说明：r w x -  setuid-s-4 setgid-s-2  stick-t-1</h3><pre><code>setuid权限位设置：u+s（4）  
+小结：
+1. 用户对应的前三位的x位上如果有s就表示，suid，当x位上没有x的时候，suid就是S
+2. setuid位是让普通用户可以以root（或其他）用户的角色运行只有root（或其他）账号才能运行的程序或命令，
+   或程序命令对应本来没有权限操作的文件等。
+   注意和su及sudo区别：
+   su改变用户
+   sudo时让指定用户获得root部分权限，
+   setuid将某个命令的root权限赋予所有普通用户）
+3. 仅对二进制命令或程序有效，不能用在shell等类似脚本文件上（因为shell脚本仅仅是调用二进制命令程序而已，
+   因此，具体权限还需要看二进制命令本身）
+   suid知识小结：suid修改的执行的命令，而不是处理的目标
+4. 二进制命令程序需要有可执行权限x
+5. suid权限仅在程序执行过程中有效，即普通用户执行指定的setuid文件时有特殊权限，执行其它命令依旧无权限。
+6. 执行命令的任意系统用户都可以获得该命令程序在执行期间拥有者的所有权限
+7. suid是双刃剑，是比较危险的功能，对系统安全有一定的威胁。系统suid的无用的功能建议取消--suid权利（系统安全优化部分）
+8. suid修改的是passwd命令文件，不是/etc/shadow
+
+setgid权限位置设置：g+s（2）
+
+黏贴位sticky Bit（sbit）权限位：o+t（1）
+/tmp目录是最经典的粘滞位目录，特点是谁都有写权限，安全成问题，常常是木马第一手跳板地点
+
+如果一个目录设置了黏贴位，就算目录所有权限都开放777，除非目录的所属用户（属主）和root用户有权限删除它，
+除此之外其它用户不能删除这个目录，并且目录下文件，只能拥有者本身可以编辑，其它用户没有权利编辑。
+用途一般是把一个文件夹权限都打开，然后共享文件。
+</code></pre><h3 id="文件安全性设定"><a href="#文件安全性设定" class="headerlink" title="文件安全性设定"></a>文件安全性设定</h3><pre><code>chattr +i /-i  文件     ---对文件加解密命令，连root用户也无法操作文件（优化系统时讲过）
+lsattr  文件            ---查看文件加密状态信息的
+chattr +a/-a 文件       ---可以对文件进行内容进行追加，但是不能删除和覆盖文件
+lsattr -d /oldboy/      ---在加入了a参数口，查看目录文件属性配置信息
+                          （不能删除 重命名目录里内容，但可以新增文件）
+PS:经常锁定的文件 /etc/passwd /etc/shadow /etc/group /etc/gshadow /etc/inittab
+在ext2，ext3文件系统是有效的，但在reiserfs文件系统是没有任何效果的
 </code></pre>
       
     </div><!-- .entry-content -->
@@ -206,6 +231,8 @@ root用户：可以正常查看目录信息，在目录中写入数据，可以�
     
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/08/01/每天一个Linux命令10/" rel="prev"><span class="meta-nav">←</span> 每天一个Linux命令10</a></span>
     
     
         <span class="nav-next"><a href="/2018/07/31/wordpress搭建自己博客/" rel="next">wordpress搭建自己博客 <span class="meta-nav">→</span></a></span>
@@ -249,6 +276,14 @@ root用户：可以正常查看目录信息，在目录中写入数据，可以�
       <ul>
         
           <li>
+            <a href="/2018/08/01/Linux运维学习-第二十二天/">Linux运维学习-第二十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/每天一个Linux命令10/">每天一个Linux命令10</a>
+          </li>
+        
+          <li>
             <a href="/2018/07/31/Linux运维学习-第二十一天/">Linux运维学习-第二十一天</a>
           </li>
         
@@ -260,14 +295,6 @@ root用户：可以正常查看目录信息，在目录中写入数据，可以�
             <a href="/2018/07/31/LNMP-PHP/">LNMP-PHP</a>
           </li>
         
-          <li>
-            <a href="/2018/07/30/N那些你很冒险的梦/">那些你很冒险的梦</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/30/NFS—-脚本/">NFS—-脚本</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -277,7 +304,7 @@ root用户：可以正常查看目录信息，在目录中写入数据，可以�
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -286,7 +313,7 @@ root用户：可以正常查看目录信息，在目录中写入数据，可以�
   <aside class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/Nginx/" style="font-size: 12px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+      <a href="/tags/Nginx/" style="font-size: 12.5px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 17.5px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12.5px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 17.5px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 15px;">那些年学习的Linux命令</a>
     </div>
   </aside>
 
