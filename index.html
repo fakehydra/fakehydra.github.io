@@ -79,7 +79,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/Linux运维学习-第二十二天/" data-id="cjkb5dhsw000ky8ly96f7c3c4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/Linux运维学习-第二十二天/" data-id="cjkb5ogqq000k94lyi8ltegcw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -129,7 +129,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/每天一个Linux命令10/" data-id="cjkb5dhvi002ty8lylav9338a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/每天一个Linux命令10/" data-id="cjkb5ogur002t94lyv1yjbew7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -149,10 +149,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read -n 2 var</span><br><span class="line">从输入中读取两个字符并存入变量var，不需要按回车读取。</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">read -d &quot;:&quot; var</span><br><span class="line">用定界符“:”结束输入行。</span><br></pre></td></tr></table></figure>
 <h4 id="read命令示例"><a href="#read命令示例" class="headerlink" title="read命令示例"></a>read命令示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">从标准输入读取输入并赋值给变量1987name。</span><br><span class="line"></span><br><span class="line">#read 1987name        #等待读取输入，直到回车后表示输入完毕，并将输入赋值给变量answer</span><br><span class="line">HelloWorld            #控制台输入Hello</span><br><span class="line"></span><br><span class="line">#echo $1987name       #打印变量</span><br><span class="line">HelloWorld</span><br></pre></td></tr></table></figure>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">等待一组输入，每个单词之间使用空格隔开，直到回车结束，并分别将单词依次赋值给这三个读入变量。</span><br><span class="line"></span><br><span class="line">#read one two three</span><br><span class="line">1 2 3                   #在控制台输入1 2 3，它们之间用空格隔开。</span><br><span class="line"></span><br><span class="line">#echo &quot;one = $one, two = $two, three = $three&quot;</span><br><span class="line">one = 1, two = 2, three = 3</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">REPLY示例</span><br><span class="line"></span><br><span class="line">#read                  #等待控制台输入，并将结果赋值给特定内置变量REPLY。</span><br><span class="line">This is REPLY          #在控制台输入该行。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#echo $REPLY           #打印输出特定内置变量REPLY，以确认是否被正确赋值。</span><br><span class="line"></span><br><span class="line">This is REPLY</span><br><span class="line"></span><br><span class="line">-p选项示例</span><br><span class="line"></span><br><span class="line">#read -p &quot;Enter your name: &quot;            #输出文本提示，同时等待输入，并将结果赋值给REPLY。</span><br><span class="line">Enter you name: stephen                 #在提示文本之后输入stephen</span><br><span class="line"></span><br><span class="line">#echo $REPLY</span><br><span class="line">stephen</span><br></pre></td></tr></table></figure>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">     等待控制台输入，并将输入信息视为数组，赋值给数组变量friends，输入信息用空格隔开数组的每个元素。</span><br><span class="line">     </span><br><span class="line">     #read -a friends</span><br><span class="line">     Tim Tom Helen</span><br><span class="line">     </span><br><span class="line">     #echo &quot;They are $&#123;friends[0]&#125;, $&#123;friends[1]&#125; and $&#123;friends[2]&#125;.&quot;</span><br><span class="line">     They are Tim, Tom and Helen.</span><br><span class="line">~~~    </span><br><span class="line">###  补充一个终端输入密码时候，不让密码显示出来的例子。</span><br><span class="line">~~~    </span><br><span class="line">     方法1：</span><br><span class="line">     </span><br><span class="line">     #!/bin/bash</span><br><span class="line">     read -p &quot;输入密码：&quot; -s pwd</span><br><span class="line">     echo</span><br><span class="line">     echo password read, is &quot;$pwd&quot;</span><br></pre></td></tr></table></figure>
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">方法2：</span><br><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line">stty -echo</span><br><span class="line">read -p &quot;输入密码：&quot; pwd</span><br><span class="line">stty echo</span><br><span class="line">echo</span><br><span class="line">echo 输入完毕。</span><br><span class="line"></span><br><span class="line">其中，选项-echo禁止将输出发送到终端，而选项echo则允许发送输出。</span><br><span class="line"></span><br><span class="line">使用read命令从键盘读取变量值，并且将值赋给指定的变量，输入如下命令：</span><br><span class="line"></span><br><span class="line">read v1 v3          #读取变量值</span><br><span class="line"></span><br><span class="line">执行上面的指令以后，要求键入两个数据，如下所示：</span><br><span class="line"></span><br><span class="line">Linux c+            #输入数据</span><br><span class="line"></span><br><span class="line">完成之后，可以使用echo命令将指定的变量值输出查看，输入如下命令：</span><br><span class="line"></span><br><span class="line">echo $v1 $v3       #输出变量的值</span><br><span class="line"></span><br><span class="line">执行输出变量值的命令以后，将显示用户所输入的数据值，如下所示：</span><br><span class="line"></span><br><span class="line">Linux c+           #输出变量值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">等待一组输入，每个单词之间使用空格隔开，直到回车结束，并分别将单词依次赋值给这三个读入变量。</span><br><span class="line"></span><br><span class="line">#read one two three</span><br><span class="line">1 2 3                   #在控制台输入1 2 3，它们之间用空格隔开。</span><br><span class="line"></span><br><span class="line">#echo &quot;one = $one, two = $two, three = $three&quot;</span><br><span class="line">one = 1, two = 2, three = 3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">REPLY示例</span><br><span class="line"></span><br><span class="line">#read                  #等待控制台输入，并将结果赋值给特定内置变量REPLY。</span><br><span class="line">This is REPLY          #在控制台输入该行。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#echo $REPLY           #打印输出特定内置变量REPLY，以确认是否被正确赋值。</span><br><span class="line"></span><br><span class="line">This is REPLY</span><br><span class="line"></span><br><span class="line">-p选项示例</span><br><span class="line"></span><br><span class="line">#read -p &quot;Enter your name: &quot;            #输出文本提示，同时等待输入，并将结果赋值给REPLY。</span><br><span class="line">Enter you name: stephen                 #在提示文本之后输入stephen</span><br><span class="line"></span><br><span class="line">#echo $REPLY</span><br><span class="line">stephen</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">     等待控制台输入，并将输入信息视为数组，赋值给数组变量friends，输入信息用空格隔开数组的每个元素。</span><br><span class="line">     </span><br><span class="line">     #read -a friends</span><br><span class="line">     Tim Tom Helen</span><br><span class="line">     </span><br><span class="line">     #echo &quot;They are $&#123;friends[0]&#125;, $&#123;friends[1]&#125; and $&#123;friends[2]&#125;.&quot;</span><br><span class="line">     They are Tim, Tom and Helen.</span><br><span class="line">~~~    </span><br><span class="line">###  补充一个终端输入密码时候，不让密码显示出来的例子。</span><br><span class="line">~~~    </span><br><span class="line">     方法1：</span><br><span class="line">     </span><br><span class="line">     #!/bin/bash</span><br><span class="line">     read -p &quot;输入密码：&quot; -s pwd</span><br><span class="line">     echo</span><br><span class="line">     echo password read, is &quot;$pwd&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">方法2：</span><br><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line">stty -echo</span><br><span class="line">read -p &quot;输入密码：&quot; pwd</span><br><span class="line">stty echo</span><br><span class="line">echo</span><br><span class="line">echo 输入完毕。</span><br><span class="line"></span><br><span class="line">其中，选项-echo禁止将输出发送到终端，而选项echo则允许发送输出。</span><br><span class="line"></span><br><span class="line">使用read命令从键盘读取变量值，并且将值赋给指定的变量，输入如下命令：</span><br><span class="line"></span><br><span class="line">read v1 v3          #读取变量值</span><br><span class="line"></span><br><span class="line">执行上面的指令以后，要求键入两个数据，如下所示：</span><br><span class="line"></span><br><span class="line">Linux c+            #输入数据</span><br><span class="line"></span><br><span class="line">完成之后，可以使用echo命令将指定的变量值输出查看，输入如下命令：</span><br><span class="line"></span><br><span class="line">echo $v1 $v3       #输出变量的值</span><br><span class="line"></span><br><span class="line">执行输出变量值的命令以后，将显示用户所输入的数据值，如下所示：</span><br><span class="line"></span><br><span class="line">Linux c+           #输出变量值</span><br></pre></td></tr></table></figure>
 <h3 id="注意：使用echo命令输出变量值时，必须在变量名前添加符号-。否则，echo将直接输出变量名。"><a href="#注意：使用echo命令输出变量值时，必须在变量名前添加符号-。否则，echo将直接输出变量名。" class="headerlink" title="注意：使用echo命令输出变量值时，必须在变量名前添加符号$。否则，echo将直接输出变量名。"></a>注意：使用echo命令输出变量值时，必须在变量名前添加符号$。否则，echo将直接输出变量名。</h3>
       
     </div><!-- .entry-content -->
@@ -192,7 +192,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/Linux运维学习-第二十一天/" data-id="cjkb5dhsu000iy8ly4wluays3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/Linux运维学习-第二十一天/" data-id="cjkb5ogqm000i94lybrab9avm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -242,7 +242,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/wordpress搭建自己博客/" data-id="cjkb5dhus0025y8ly1t1eyneb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/wordpress搭建自己博客/" data-id="cjkb5ogtj002594lyh1bnj8pz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -284,7 +284,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/LNMP-PHP/" data-id="cjkb5dhry0004y8ly2im8p3ls" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/LNMP-PHP/" data-id="cjkb5ogp4000294lylyzbfnhy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -334,7 +334,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/N那些你很冒险的梦/" data-id="cjkb5dhu2001iy8lyqv33stzl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/N那些你很冒险的梦/" data-id="cjkb5ogsg001i94lyep696t9t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -384,7 +384,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/NFS—-脚本/" data-id="cjkb5dhu0001gy8lylwydrelf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/NFS—-脚本/" data-id="cjkb5ogsc001g94ly0rsnby6h" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -434,7 +434,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/Linux运维学习-第二十天/" data-id="cjkb5dhsy000my8lyjjd93i7v" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/Linux运维学习-第二十天/" data-id="cjkb5ogqt000m94ly855to9l1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -484,7 +484,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十九天/" data-id="cjkb5dhtf0011y8ly77bk6hso" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十九天/" data-id="cjkb5ogrl001194lyw2zan6qd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -598,7 +598,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/醉赤壁/" data-id="cjkb5dhvv0033y8lyizc4o4m0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/醉赤壁/" data-id="cjkb5ogvb003394lye7ntpx9v" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
