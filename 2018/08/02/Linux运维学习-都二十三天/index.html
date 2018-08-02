@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="Your present circumstances don’t determine where you can go; they merely determine where you start.你目前的处境并不决定你的未来，它只决定你的起点。" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-都二十三天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Your present circumstances don’t determine where you can go; they merely determine where you start.你目前的处境并不决定你的未来，它只决定你的起点。">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-都二十三天">
+<meta property="og:url" content="http://yoursite.com/2018/08/02/Linux运维学习-都二十三天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Your present circumstances don’t determine where you can go; they merely determine where you start.你目前的处境并不决定你的未来，它只决定你的起点。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-02T12:55:17.976Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-都二十三天">
+<meta name="twitter:description" content="Your present circumstances don’t determine where you can go; they merely determine where you start.你目前的处境并不决定你的未来，它只决定你的起点。">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-都二十三天" class="post-Linux运维学习-都二十三天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-都二十三天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/02/Linux运维学习-都二十三天/" data-id="cjkckdsi00035tolyavs83pry" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="Your-present-circumstances-don’t-determine-where-you-can-go-they-merely-determine-where-you-start"><a href="#Your-present-circumstances-don’t-determine-where-you-can-go-they-merely-determine-where-you-start" class="headerlink" title="Your present circumstances don’t determine where you can go; they merely determine where you start."></a>Your present circumstances don’t determine where you can go; they merely determine where you start.</h3><h3 id="你目前的处境并不决定你的未来，它只决定你的起点。"><a href="#你目前的处境并不决定你的未来，它只决定你的起点。" class="headerlink" title="你目前的处境并不决定你的未来，它只决定你的起点。"></a>你目前的处境并不决定你的未来，它只决定你的起点。</h3><a id="more"></a>
+<h2 id="chown-修改文件或目录的用户和用户组"><a href="#chown-修改文件或目录的用户和用户组" class="headerlink" title="chown  修改文件或目录的用户和用户组"></a>chown  修改文件或目录的用户和用户组</h2><pre><code>[xmy@xmy-01 ~]$ ll /tmp/1.txt 
+-rw-rw-r--. 1 xmy xmy 0 Aug  2 09:10 /tmp/1.txt
+[root@xmy-01 ~]# chown oldboy /tmp/1.txt     ---修改属主
+[root@xmy-01 ~]# ll /tmp/1.txt
+-rw-rw-r--. 1 oldboy xmy 0 Aug  2 09:10 /tmp/1.txt
+
+[root@xmy-01 ~]# chown .oldgirl /tmp/1.txt     ---修改属组  . == :
+[root@xmy-01 ~]# ll /tmp/1.txt     
+-rw-rw-r--. 1 oldboy oldgirl 0 Aug  2 09:10 /tmp/1.txt
+
+[root@xmy-01 ~]# chown oldboy.oldgirl /tmp/1.txt    ---修改属主和属组
+[root@xmy-01 ~]# ll /tmp/1.txt
+-rw-rw-r--. 1 oldboy oldgirl 0 Aug  2 09:10 /tmp/1.txt
+
+[root@xmy-01 ~]# chown oldgirl. /tmp/1.txt
+[root@xmy-01 ~]# ll /tmp/1.txt      ---同时修改属主和属组都为oldgirl
+-rw-rw-r--. 1 oldgirl oldgirl 0 Aug  2 09:10 /tmp/1.txt
+</code></pre><h2 id="扩展命令操作-R-递归更改目录的用户和用户组"><a href="#扩展命令操作-R-递归更改目录的用户和用户组" class="headerlink" title="扩展命令操作   -R   递归更改目录的用户和用户组"></a>扩展命令操作   -R   递归更改目录的用户和用户组</h2><pre><code>[root@xmy-01 alex]# touch {1..6}.txt
+[root@xmy-01 alex]# ll
+total 0
+-rw-r--r--. 1 root root 0 Aug  2 09:24 1.txt
+-rw-r--r--. 1 root root 0 Aug  2 09:24 2.txt
+-rw-r--r--. 1 root root 0 Aug  2 09:24 3.txt
+-rw-r--r--. 1 root root 0 Aug  2 09:24 4.txt
+-rw-r--r--. 1 root root 0 Aug  2 09:24 5.txt
+-rw-r--r--. 1 root root 0 Aug  2 09:24 6.txt
+[root@xmy-01 alex]# ll /tmp/alex/ -d
+drwxr-xr-x. 2 root root 4096 Aug  2 09:24 /tmp/alex/
+[root@xmy-01 alex]# chown oldboy. -R /tmp/alex
+[root@xmy-01 alex]# ll /tmp/alex
+total 0
+-rw-r--r--. 1 oldboy oldboy 0 Aug  2 09:24 1.txt
+-rw-r--r--. 1 oldboy oldboy 0 Aug  2 09:24 2.txt
+-rw-r--r--. 1 oldboy oldboy 0 Aug  2 09:24 3.txt
+-rw-r--r--. 1 oldboy oldboy 0 Aug  2 09:24 4.txt
+-rw-r--r--. 1 oldboy oldboy 0 Aug  2 09:24 5.txt
+-rw-r--r--. 1 oldboy oldboy 0 Aug  2 09:24 6.txt
+[root@xmy-01 alex]# ll /tmp/alex -d
+drwxr-xr-x. 2 oldboy oldboy 4096 Aug  2 09:24 /tmp/alex
+</code></pre><h3 id="用户组管理相关命令"><a href="#用户组管理相关命令" class="headerlink" title="用户组管理相关命令"></a>用户组管理相关命令</h3><pre><code>groupadd  -- 创建用户组的命令
+</code></pre><pre><code>[root@oldgirl ~]# groupadd oldboy_HQ
+[root@oldgirl ~]# useradd oldboy_HQ -g oldboy_HQ
+[root@oldgirl ~]# id oldboy_HQ
+uid=507(oldboy_HQ) gid=508(oldboy_HQ) groups=508(oldboy_HQ)
+[root@oldgirl ~]# userdel -r oldboy_HQ
+[root@oldgirl ~]# userdel -r oldboy_HQ
+userdel: user &apos;oldboy_HQ&apos; does not exist
+[root@oldgirl ~]# useradd oldboy_HQ
+[root@oldgirl ~]# id oldboy_HQ
+uid=507(oldboy_HQ) gid=508(oldboy_HQ) groups=508(oldboy_HQ)
+</code></pre><h3 id="企业工作中：尽量要让用户和用户组的信息保持一致（uid-gid-用户名称-用户组的名称）"><a href="#企业工作中：尽量要让用户和用户组的信息保持一致（uid-gid-用户名称-用户组的名称）" class="headerlink" title="企业工作中：尽量要让用户和用户组的信息保持一致（uid==gid  用户名称==用户组的名称）"></a>企业工作中：尽量要让用户和用户组的信息保持一致（uid==gid  用户名称==用户组的名称）</h3><pre><code>反面教材
+[root@oldgirl ~]# groupadd oldboy100
+[root@oldgirl ~]# useradd oldgirl100 -g oldboy100
+[root@oldgirl ~]# id oldboy100
+id: oldboy100: No such user
+[root@oldgirl ~]# id oldgirl100
+uid=508(oldgirl100) gid=509(oldboy100) groups=509(oldboy100)
+</code></pre><h3 id="添加一个虚拟用户mysql指定用户的uid-gid-都是999"><a href="#添加一个虚拟用户mysql指定用户的uid-gid-都是999" class="headerlink" title="添加一个虚拟用户mysql指定用户的uid gid 都是999"></a>添加一个虚拟用户mysql指定用户的uid gid 都是999</h3><pre><code>方法一:
+[root@xmy-01 alex]# useradd mysql -u 999 -s /sbin/nologin -M
+[root@xmy-01 alex]# id mysql
+uid=999(mysql) gid=999(mysql) groups=999(mysql)
+
+方法二：
+[root@xmy-01 alex]# groupadd mysql -g 999
+[root@xmy-01 alex]# useradd mysql -u 999 -g mysql -s /sbin/nologin -M
+[root@xmy-01 alex]# id mysql
+uid=999(mysql) gid=999(mysql) groups=999(mysql)
+</code></pre><h3 id="企业设置密码注意事项："><a href="#企业设置密码注意事项：" class="headerlink" title="企业设置密码注意事项："></a>企业设置密码注意事项：</h3><pre><code>1） 密码要复杂12位以上字母数字及特殊符号
+&quot;0ldb0yedu.com&quot;  ******   nideshengri
+
+2) 保存好密码信息(软件保存密码)
+    keepass   本地保存密码
+    lastpass  在线保存密码
+
+3)大企业用户和密码统一管理（相当于活动目录AD）---openldap（统一管理用户和密码）
+
+4) 动态密码：动态口令，第三方提供自己开发也很简单。
+
+5) 利用指纹方式确保数据安全性
+   [root@oldgirl oldboy]# md5sum oldboy.txt &gt;/tmp/figer.txt
+   [root@oldgirl oldboy]# md5sum -c /tmp/figer.txt 
+   oldboy.txt: OK
+
+   # 01. 找到你指定的指纹文件 
+   [root@oldgirl oldboy]# cat /tmp/figer.txt 
+   de854f7d9707a870417012557768ef4c  oldboy.txt
+
+   # 02. 通过MD5sum命令算出指定文件的指纹信息   MD5sum---计算并检查MD5消息摘要
+   [root@oldgirl oldboy]# md5sum oldboy.txt
+   de854f7d9707a870417012557768ef4c  oldboy.txt
+
+   # 03. 利用得出md5数值信息和指纹文件中md5信息进行比较
+
+   # 04. 如果一样显示ok的结果，如果不一样显示失败结果
+   [root@oldgirl oldboy]# &gt;oldboy.txt 
+   [root@oldgirl oldboy]# md5sum -c /tmp/figer.txt 
+   oldboy.txt: FAILED
+   md5sum: WARNING: 1 of 1 computed checksum did NOT match
+
+     -c , --check    从文件中读取MD5和并检查它们
+</code></pre><h3 id="查看系统性能相关命令"><a href="#查看系统性能相关命令" class="headerlink" title="查看系统性能相关命令"></a>查看系统性能相关命令</h3><h3 id="1）w-显示已经登陆系统的用户列表，并显示用户正在执行的指令"><a href="#1）w-显示已经登陆系统的用户列表，并显示用户正在执行的指令" class="headerlink" title="1）w    显示已经登陆系统的用户列表，并显示用户正在执行的指令"></a>1）w    显示已经登陆系统的用户列表，并显示用户正在执行的指令</h3><pre><code>[root@xmy-01 ~]# w
+10:17:35 up 6 days, 23:25,  5 users,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+root     tty1     -                05Jul18 1288days  0.28s  0.28s -bash
+root     pts/0    10.0.0.1         Wed15   18:24m  0.06s  0.06s -bash
+root     pts/1    10.0.0.1         Wed15   16:57m  0.19s  0.19s -bash
+root     pts/2    10.0.0.1         Wed17   16:54m  0.06s  0.06s -bash
+root     pts/3    10.0.0.1         Wed17    0.00s  0.27s  0.00s w
+</code></pre><h3 id="2）uptime-打印系统总共运行了多长时间和系统的平均负载"><a href="#2）uptime-打印系统总共运行了多长时间和系统的平均负载" class="headerlink" title="2）uptime          打印系统总共运行了多长时间和系统的平均负载"></a>2）uptime          打印系统总共运行了多长时间和系统的平均负载</h3><pre><code>uptime命令可以显示的信息显示依次为：现在时间、系统已经运行了多长时间、目前有多少登陆用户、系统在过去的1分钟、5分钟和15分钟内的平均负载。
+</code></pre><h3 id="3）top"><a href="#3）top" class="headerlink" title="3）top"></a>3）top</h3><pre><code>相关交互命令，输出信息
+P    根据CPU使用百分比大小进行排序
+M    根据驻留内存（MEM）大小进行排序 
+
+#扩展：
+htop      增强版本的top命令
+iotop     显示系统中每个进程使用的磁盘io
+iftop     显示系统网络流量
+
+#安装这三个命令的步骤
+ a.启用epe版本
+   yum -y install epel-release
+
+  b. 使用yum install 命令安装 htop  iotop iftop 
+   yum -y install htop iotop iftop 
+</code></pre><h3 id="4）ps-报告当前系统的进程状态"><a href="#4）ps-报告当前系统的进程状态" class="headerlink" title="4）ps   报告当前系统的进程状态"></a>4）ps   报告当前系统的进程状态</h3><pre><code>ps aux   显示详细信息   
+</code></pre><h3 id="5）sort-对列的信息进行排序"><a href="#5）sort-对列的信息进行排序" class="headerlink" title="5）sort  对列的信息进行排序"></a>5）sort  对列的信息进行排序</h3><pre><code> -n  按照数值大小排序，由小到大
+ -r  以相反的顺序进行排序
+ -nr 按照数值大小排序，由大到小  
+ -k  将某列进行排序
+ -nrk3  表示将第三列信息由大到小进行排序
+
+
+[root@oldgirl ~]# ps aux|sort -nrk3
+root       5156 74.6  0.0 105196   672 pts/1    R+   00:55   0:03 dd if=/dev/zero of=/tmp/100 bs=1k count=10000000
+root       5089  0.2  8.7 194164 87668 pts/1    Ss   00:44   0:01 -bash
+
+
+[root@oldgirl ~]# du -sh /* --exclude=/proc|sort -hr
+5.0G    /tmp
+2.1G    /mnt
+1.1G    /usr
+214M    /lib
+103M    /root
+</code></pre><h3 id="6）系统黑洞概念总结："><a href="#6）系统黑洞概念总结：" class="headerlink" title="6）系统黑洞概念总结："></a>6）系统黑洞概念总结：</h3><pre><code>01. 想把放入到黑洞中，不要占用磁盘空间
+&amp;&gt;/dev/null
+
+02. 想把黑洞中的东西取出来，占用本地磁盘空间
+dd if=/dev/zero of=/tmp/100  bs=1k count=1000000
+---利用另一个出口/dev/zero将黑洞/dev/null/中的内容拿出来，放入/tmp/
+</code></pre><h3 id="7）last-显示用户最近登录信息"><a href="#7）last-显示用户最近登录信息" class="headerlink" title="7）last     显示用户最近登录信息"></a>7）last     显示用户最近登录信息</h3><h3 id="8）lastlog-显示系统中所有用户最近一次登录信息"><a href="#8）lastlog-显示系统中所有用户最近一次登录信息" class="headerlink" title="8）lastlog  显示系统中所有用户最近一次登录信息"></a>8）lastlog  显示系统中所有用户最近一次登录信息</h3><h2 id="查看命令大全-http-man-linuxde-net-top"><a href="#查看命令大全-http-man-linuxde-net-top" class="headerlink" title="查看命令大全 http://man.linuxde.net/top"></a>查看命令大全 <a href="http://man.linuxde.net/top" target="_blank" rel="noopener">http://man.linuxde.net/top</a></h2><h3 id="如何让普通用户拥有root用户的权限"><a href="#如何让普通用户拥有root用户的权限" class="headerlink" title="如何让普通用户拥有root用户的权限"></a>如何让普通用户拥有root用户的权限</h3><h4 id="1）修改文件的权限"><a href="#1）修改文件的权限" class="headerlink" title="1）修改文件的权限"></a>1）修改文件的权限</h4><pre><code>chmod o+w oldboy
+</code></pre><h4 id="2）修改文件的权限"><a href="#2）修改文件的权限" class="headerlink" title="2）修改文件的权限"></a>2）修改文件的权限</h4><pre><code>chmod u+s /bin/ls   ---让普通用户也有root用户的能力
+</code></pre><h4 id="3）指定某个普通用户，拥有皇帝的部分能力-尚方宝剑-sudo"><a href="#3）指定某个普通用户，拥有皇帝的部分能力-尚方宝剑-sudo" class="headerlink" title="3）指定某个普通用户，拥有皇帝的部分能力(尚方宝剑  sudo)"></a>3）指定某个普通用户，拥有皇帝的部分能力(尚方宝剑  sudo)</h4><pre><code>配置sudo权限 
+</code></pre><h4 id="4）指定某个普通用户，彻底拥有皇帝的所有能力"><a href="#4）指定某个普通用户，彻底拥有皇帝的所有能力" class="headerlink" title="4）指定某个普通用户，彻底拥有皇帝的所有能力"></a>4）指定某个普通用户，彻底拥有皇帝的所有能力</h4><pre><code>su - root / su -
+</code></pre><h3 id="sudo-权限配置说明"><a href="#sudo-权限配置说明" class="headerlink" title="sudo 权限配置说明"></a>sudo 权限配置说明</h3><pre><code>sudo -l    查看当前用户特权信息
+sudo -k    清除念过的咒语  
+</code></pre><h4 id="1-掌握一个命令：sudo-visudo"><a href="#1-掌握一个命令：sudo-visudo" class="headerlink" title="1)掌握一个命令：sudo visudo"></a>1)掌握一个命令：sudo visudo</h4><pre><code>visudo     ---进行配置编写sudo权限文件    == crontab -e (因为有语法检查功能)
+掌握一个文件： /etc/sudoers  (sudo权限配置文件)    
+</code></pre><h4 id="2-如何编辑sudo权限文件"><a href="#2-如何编辑sudo权限文件" class="headerlink" title="2)如何编辑sudo权限文件"></a>2)如何编辑sudo权限文件</h4><pre><code>## Allow root to run any commands anywhere 
+root    ALL=(ALL)       ALL
+oldboy  ALL=(ALL)       /bin/ls    
+第一列：定义可以拥有上方宝剑用户的信息
+第三列：上方宝剑具有呢些特权
+</code></pre><h4 id="3-使用方法："><a href="#3-使用方法：" class="headerlink" title="3)使用方法："></a>3)使用方法：</h4><pre><code>[oldboy@oldgirl tmp]$ sudo ls /root/
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for oldboy:      ---输入oldboy的密码
+！     change_hostname.sh  HQ_123     oldboy  oldboy.rpm    oldgirl.txt
+1文档.txt     data         install.log     Oldboy  oldboy.rpm.0  secure-20161219
+anaconda-ks.cfg  data.tar.gz         install.log.syslog  OLDBOY  oldboy.txt    secure-20161219.zip
+[oldboy@oldgirl tmp]$ sudo ls /root/
+！     change_hostname.sh  HQ_123     oldboy  oldboy.rpm    oldgirl.txt
+1文档.txt     data         install.log     Oldboy  oldboy.rpm.0  secure-20161219
+anaconda-ks.cfg  data.tar.gz         install.log.syslog  OLDBOY  oldboy.txt    secure-20161219.zip
+</code></pre><h3 id="总结：使用尚方宝剑的注意事项："><a href="#总结：使用尚方宝剑的注意事项：" class="headerlink" title="总结：使用尚方宝剑的注意事项："></a>总结：使用尚方宝剑的注意事项：</h3><pre><code>1）在使用尚方宝剑时，必须加上sudo命令
+2）默认在使用宝剑时，需要念个咒语，要输入一个sudo用户的密码（普通用户密码）
+3）使用尚方宝剑的时候，一定要斩杀对人，sudo配置中命令必须是绝对路径
+    sudo后面接的命令，不识别别名信息
+4）刚拿到宝剑，最好查看一下宝剑的使用说明，sudo -l 查看普通用户有哪些皇帝权限
+</code></pre><h3 id="扩展说明："><a href="#扩展说明：" class="headerlink" title="扩展说明："></a>扩展说明：</h3><pre><code>1）如何让sudo拥有多个权利（有多个命令权限 ）
+   在visudo文件中写入：
+   oldboy  ALL=(ALL)       /bin/ls, /bin/touch  
+
+2）如何不念咒语，依旧可以使用sudo
+   sudo -k   ---清除念过的咒语
+   在visudo文件中写入：
+   oldboy  ALL=(ALL)       NOPASSWD: /bin/ls, /bin/touch
+
+ 3）普通用户如何获得大量权限（慎用）
+    oldboy  ALL=(ALL)       /bin/*, /usr/bin/*
+
+ 4）当普通用户权限过大时，要做出一定限制
+    oldboy  ALL=(ALL)       /usr/bin/*, ! /usr/bin/vim
+
+ 5）如果想给一个用户组特权
+    %oldboy  ALL=(ALL)      /usr/bin/*, ! /usr/bin/vim 
+</code></pre><h3 id="su-和-su-的区别"><a href="#su-和-su-的区别" class="headerlink" title="su 和 su - 的区别"></a>su 和 su - 的区别</h3><pre><code>su root    --- 环境变量信息不会发生改变，还是普通用户的环境变量
+su - root  --- 环境变量信息会发生改变，变为root用户环境变量
+
+[oldboy@oldgirl ~]$ su - root
+Password: 
+[root@oldgirl ~]# exit
+logout
+[oldboy@oldgirl ~]$ su  root
+Password: 
+[root@oldgirl oldboy]# exit
+exit
+[oldboy@oldgirl ~]$ su - root
+Password: 
+[root@oldgirl ~]# env|grep root
+USER=root
+MAIL=/var/spool/mail/root
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+PWD=/root
+HOME=/root
+LOGNAME=root
+[root@oldgirl ~]# exit
+logout
+[oldboy@oldgirl ~]$ su root
+Password: 
+[root@oldgirl oldboy]# env|grep oldboy
+USER=oldboy
+PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/oldboy/bin
+MAIL=/var/spool/mail/oldboy
+PWD=/home/oldboy
+LOGNAME=oldboy
+</code></pre><h3 id="用户操作行为审计"><a href="#用户操作行为审计" class="headerlink" title="用户操作行为审计"></a>用户操作行为审计</h3><h4 id="利用堡垒机或者跳板机"><a href="#利用堡垒机或者跳板机" class="headerlink" title="利用堡垒机或者跳板机"></a>利用堡垒机或者跳板机</h4><pre><code>1）齐治堡垒机（花钱）
+2）jumpserver（Python）
+官网：http://docs.jumpserver.org/zh/docs/
+3）crazyEYE---alex(Python)
+4）shell脚本
+</code></pre><h3 id="该笔记来源于肖美予https-lemonsu9-github-io"><a href="#该笔记来源于肖美予https-lemonsu9-github-io" class="headerlink" title="-该笔记来源于肖美予https://lemonsu9.github.io/"></a>-该笔记来源于肖美予<a href="https://lemonsu9.github.io/" target="_blank" rel="noopener">https://lemonsu9.github.io/</a></h3>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/02/Linux运维学习-都二十三天/">
+    <time datetime="2018-08-02T12:36:56.000Z" class="entry-date">
+        2018-08-02
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/08/01/Linux运维学习-第二十二天/" rel="next">Linux运维学习-第二十二天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/02/Linux运维学习-都二十三天/">Linux运维学习-都二十三天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/Linux运维学习-第二十二天/">Linux运维学习-第二十二天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/每天一个Linux命令10/">每天一个Linux命令10</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/31/Linux运维学习-第二十一天/">Linux运维学习-第二十一天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/31/wordpress搭建自己博客/">wordpress搭建自己博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 12.5px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 17.5px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12.5px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 17.5px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 15px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
