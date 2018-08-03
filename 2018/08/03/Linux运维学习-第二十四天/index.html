@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="Don’t forget, a person’s greatest emotional need is to feel appreciated.莫忘记，人类情感上最大的需要是感恩。" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-第二十四天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Don’t forget, a person’s greatest emotional need is to feel appreciated.莫忘记，人类情感上最大的需要是感恩。">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-第二十四天">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/Linux运维学习-第二十四天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Don’t forget, a person’s greatest emotional need is to feel appreciated.莫忘记，人类情感上最大的需要是感恩。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-03T12:35:17.621Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-第二十四天">
+<meta name="twitter:description" content="Don’t forget, a person’s greatest emotional need is to feel appreciated.莫忘记，人类情感上最大的需要是感恩。">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第二十四天" class="post-Linux运维学习-第二十四天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-第二十四天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/Linux运维学习-第二十四天/" data-id="cjkdz7str000hvoly6d11gl9z" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="Don’t-forget-a-person’s-greatest-emotional-need-is-to-feel-appreciated"><a href="#Don’t-forget-a-person’s-greatest-emotional-need-is-to-feel-appreciated" class="headerlink" title="Don’t forget, a person’s greatest emotional need is to feel appreciated."></a>Don’t forget, a person’s greatest emotional need is to feel appreciated.</h3><h3 id="莫忘记，人类情感上最大的需要是感恩。"><a href="#莫忘记，人类情感上最大的需要是感恩。" class="headerlink" title="莫忘记，人类情感上最大的需要是感恩。"></a>莫忘记，人类情感上最大的需要是感恩。</h3><a id="more"></a>
+<h2 id="磁盘管理-–原理"><a href="#磁盘管理-–原理" class="headerlink" title="磁盘管理 –原理"></a>磁盘管理 –原理</h2><pre><code>五个层次
+</code></pre><h2 id="磁盘第一层：物理知识"><a href="#磁盘第一层：物理知识" class="headerlink" title="磁盘第一层：物理知识"></a>磁盘第一层：物理知识</h2><pre><code>外部结构
+</code></pre><h3 id="1）工作原理："><a href="#1）工作原理：" class="headerlink" title="1）工作原理："></a>1）工作原理：</h3><pre><code>  IDE (并行)
+  sata(串行)       scsi
+  ————————结合——————————
+           |
+          sas
+
+[root@jinc ~]# fdisk -l
+ Disk /dev/sda: 21.5 GB, 21474836480 bytes
+ 255 heads, 63 sectors/track,   2610 cylinders
+ 磁头数     每个磁道上扇区数量  柱面数量
+ Units = cylinders of 16065 * 512 = 8225280 bytes
+ Sector size (logical/physical): 512 bytes / 512 bytes
+ I/O size (minimum/optimal): 512 bytes / 512 bytes
+ Disk identifier: 0x000060dc
+
+    Device Boot      Start         End      Blocks   Id  System
+ /dev/sda1   *           1          26      204800   83  Linux
+ Partition 1 does not end on cylinder boundary.
+ /dev/sda2              26         217     1536000   82  Linux swap / Solaris
+ Partition 2 does not end on cylinder boundary.
+ /dev/sda3             217        2611    19229696   83  Linux
+</code></pre><h3 id="磁盘容量大小-柱面存储容量-磁道数量"><a href="#磁盘容量大小-柱面存储容量-磁道数量" class="headerlink" title="磁盘容量大小=柱面存储容量*磁道数量"></a>磁盘容量大小=柱面存储容量*磁道数量</h3><pre><code>[root@jinc ~]# echo 8225280*2610|bc
+21467980800
+[root@jinc ~]# echo 8225280*2610/1000/1000/1000|bc
+21
+最终实际大小  21（取整）
+
+利用python计算小数
+python
+&gt;&gt;&gt; 8225280.0*2610/1000/1000/1000
+21.467980799999999~~约等于21.5
+这就是我们的实际大小
+</code></pre><h3 id="磁盘第二层：-raid-LVM"><a href="#磁盘第二层：-raid-LVM" class="headerlink" title="磁盘第二层： raid LVM"></a>磁盘第二层： raid LVM</h3><pre><code>阵列--raid  将多块物理硬盘进行逻辑组合--提高容量、性能、安全。
+</code></pre><h3 id="今天内容主要以理论知识为主，所以还有一些截图没放233333"><a href="#今天内容主要以理论知识为主，所以还有一些截图没放233333" class="headerlink" title="今天内容主要以理论知识为主，所以还有一些截图没放233333"></a>今天内容主要以理论知识为主，所以还有一些截图没放233333</h3><p>   作业：LVM是什么，如何实现？</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/03/Linux运维学习-第二十四天/">
+    <time datetime="2018-08-03T12:19:53.000Z" class="entry-date">
+        2018-08-03
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/08/03/eth0-网卡问题解决小方法/" rel="prev"><span class="meta-nav">←</span> eth0 网卡问题解决小方法</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/08/02/Linux运维学习-都二十三天/" rel="next">Linux运维学习-都二十三天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/03/centOS-7-py2升级py3/">centOS 7 py2升级py3</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/eth0-网卡问题解决小方法/">eth0 网卡问题解决小方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/Linux运维学习-第二十四天/">Linux运维学习-第二十四天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/02/Linux运维学习-都二十三天/">Linux运维学习-都二十三天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/Linux运维学习-第二十二天/">Linux运维学习-第二十二天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 12px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

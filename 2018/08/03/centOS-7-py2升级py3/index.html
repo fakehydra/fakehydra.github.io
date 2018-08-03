@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="centos 7 python2升级为python3" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>centOS 7 py2升级py3 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="centos 7 python2升级为python3">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centOS 7 py2升级py3">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="centos 7 python2升级为python3">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-03T12:39:27.162Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centOS 7 py2升级py3">
+<meta name="twitter:description" content="centos 7 python2升级为python3">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-centOS-7-py2升级py3" class="post-centOS-7-py2升级py3 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      centOS 7 py2升级py3
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/" data-id="cjkdz7svu002evolyram8ed3n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="centos-7-python2升级为python3"><a href="#centos-7-python2升级为python3" class="headerlink" title="centos 7 python2升级为python3"></a>centos 7 python2升级为python3</h3><a id="more"></a>
+<h3 id="centos-7-下升级python2到3"><a href="#centos-7-下升级python2到3" class="headerlink" title="centos 7 下升级python2到3"></a>centos 7 下升级python2到3</h3><h3 id="centos-7下python自带版本为2-7，但是今天需要用到3，所以看了一下升级的教程"><a href="#centos-7下python自带版本为2-7，但是今天需要用到3，所以看了一下升级的教程" class="headerlink" title="centos 7下python自带版本为2.7，但是今天需要用到3，所以看了一下升级的教程"></a>centos 7下python自带版本为2.7，但是今天需要用到3，所以看了一下升级的教程</h3><h3 id="首先安装依赖包"><a href="#首先安装依赖包" class="headerlink" title="首先安装依赖包"></a>首先安装依赖包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</span><br></pre></td></tr></table></figure>
+<h3 id="然后根据需求选择自己需要的python3版本"><a href="#然后根据需求选择自己需要的python3版本" class="headerlink" title="然后根据需求选择自己需要的python3版本"></a>然后根据需求选择自己需要的python3版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tar.xz</span><br></pre></td></tr></table></figure>
+<h4 id="小提示-如果你的服务器显示找不到wget这个命令的话用yum安装一下就好"><a href="#小提示-如果你的服务器显示找不到wget这个命令的话用yum安装一下就好" class="headerlink" title="小提示:如果你的服务器显示找不到wget这个命令的话用yum安装一下就好"></a>小提示:如果你的服务器显示找不到wget这个命令的话用yum安装一下就好</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget</span><br></pre></td></tr></table></figure>
+<h3 id="建立一个空文件夹"><a href="#建立一个空文件夹" class="headerlink" title="建立一个空文件夹"></a>建立一个空文件夹</h3><h3 id="然后解压压缩包，进入该目录，安装Python3"><a href="#然后解压压缩包，进入该目录，安装Python3" class="headerlink" title="然后解压压缩包，进入该目录，安装Python3"></a>然后解压压缩包，进入该目录，安装Python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/python3 </span><br><span class="line">tar -xvJf  Python-3.6.2.tar.xz</span><br><span class="line">cd Python-3.6.2</span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h3 id="然后创建一下软链接就好了"><a href="#然后创建一下软链接就好了" class="headerlink" title="然后创建一下软链接就好了"></a>然后创建一下软链接就好了</h3><pre><code>[root@jinch Python-3.6.2]# ln -s /usr/local/python3/bin/python3 /usr/bin/python3
+[root@jinch Python-3.6.2]# ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
+[root@jinch Python-3.6.2]# python3
+Python 3.6.2 (default, Aug  3 2018, 15:15:12) 
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; 
+</code></pre><h3 id="over"><a href="#over" class="headerlink" title="-over-"></a>-over-</h3>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/03/centOS-7-py2升级py3/">
+    <time datetime="2018-08-03T12:29:17.000Z" class="entry-date">
+        2018-08-03
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/08/03/eth0-网卡问题解决小方法/" rel="next">eth0 网卡问题解决小方法 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/03/centOS-7-py2升级py3/">centOS 7 py2升级py3</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/eth0-网卡问题解决小方法/">eth0 网卡问题解决小方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/Linux运维学习-第二十四天/">Linux运维学习-第二十四天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/02/Linux运维学习-都二十三天/">Linux运维学习-都二十三天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/Linux运维学习-第二十二天/">Linux运维学习-第二十二天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 12px;">Nginx</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
