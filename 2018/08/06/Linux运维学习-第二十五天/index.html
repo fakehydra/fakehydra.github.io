@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="He is rich that has few wants.寡欲者富。" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-第二十五天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="He is rich that has few wants.寡欲者富。">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-第二十五天">
+<meta property="og:url" content="http://yoursite.com/2018/08/06/Linux运维学习-第二十五天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="He is rich that has few wants.寡欲者富。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-06T11:56:46.712Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-第二十五天">
+<meta name="twitter:description" content="He is rich that has few wants.寡欲者富。">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第二十五天" class="post-Linux运维学习-第二十五天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-第二十五天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/Linux运维学习-第二十五天/" data-id="cjki8hfrv000fc0ly2emkquqq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="He-is-rich-that-has-few-wants"><a href="#He-is-rich-that-has-few-wants" class="headerlink" title="He is rich that has few wants."></a>He is rich that has few wants.</h3><h3 id="寡欲者富。"><a href="#寡欲者富。" class="headerlink" title="寡欲者富。"></a>寡欲者富。</h3><a id="more"></a>
+<h3 id="第二十五天–磁盘管理（下）"><a href="#第二十五天–磁盘管理（下）" class="headerlink" title="第二十五天–磁盘管理（下）"></a>第二十五天–磁盘管理（下）</h3><h4 id="MBR引导-—分区概念知识相关"><a href="#MBR引导-—分区概念知识相关" class="headerlink" title="MBR引导 —分区概念知识相关"></a>MBR引导 —分区概念知识相关</h4><pre><code>引导系统启动记录；系统磁盘一些分区信息
+记录在磁盘的0磁头、0磁道、1扇区
+</code></pre><h4 id="企业案例：系统引导启动不了？"><a href="#企业案例：系统引导启动不了？" class="headerlink" title="企业案例：系统引导启动不了？"></a>企业案例：系统引导启动不了？</h4><pre><code>1.保存好引导记录：0磁头、0磁道、1扇区的数据
+2.恢复。
+</code></pre><h4 id="磁盘分区类型："><a href="#磁盘分区类型：" class="headerlink" title="磁盘分区类型："></a>磁盘分区类型：</h4><pre><code>主分区（primary）:总共最多四个（MBR）；每个16字节，共64字节
+扩展分区（extended）：可以划分多个逻辑分区，一个分区表中只能有一个扩展分区；扩展分区不能直接使用
+逻辑分区（logical）：细化扩展分区，用于存储数据
+</code></pre><h3 id="磁盘分区实践："><a href="#磁盘分区实践：" class="headerlink" title="磁盘分区实践："></a>磁盘分区实践：</h3><h3 id="创建磁盘分区的模拟环境（添加多块虚拟硬盘）"><a href="#创建磁盘分区的模拟环境（添加多块虚拟硬盘）" class="headerlink" title="创建磁盘分区的模拟环境（添加多块虚拟硬盘）"></a>创建磁盘分区的模拟环境（添加多块虚拟硬盘）</h3><pre><code>[root@jinc ~]# fdisk -l|grep -E &apos;sd[abc]&apos;
+Disk /dev/sda: 21.5 GB, 21474836480 bytes
+/dev/sda1   *           1          26      204800   83  Linux
+/dev/sda2              26         217     1536000   82  Linux swap / Solaris
+/dev/sda3             217        2611    19229696   83  Linux
+Disk /dev/sdb: 106 MB, 106954752 bytes
+Disk /dev/sdc: 106 MB, 106954752 bytes
+</code></pre><h3 id="进行磁盘分区"><a href="#进行磁盘分区" class="headerlink" title="进行磁盘分区"></a>进行磁盘分区</h3><h4 id="a：磁盘容量小于2TB"><a href="#a：磁盘容量小于2TB" class="headerlink" title="a：磁盘容量小于2TB"></a>a：磁盘容量小于2TB</h4><pre><code>利用fdisk 命令进程分区，分区的引导记录---MBR
+[root@jinc ~]# fdisk -cu /dev/sdb 
+分区参数命令说明
+Command (m for help): m
+Command action
+d   delete a partition--删除分区
+l   list known partition types--显示分区类型
+m   print this menu--显示菜单
+n   add a new partition--创建新分区
+p   print the partition table--输出分区表
+q   quit without saving changes--不保存退出
+w   write table to disk and exit--保存退出
+</code></pre><h4 id="开始分区"><a href="#开始分区" class="headerlink" title="开始分区"></a>开始分区</h4><h5 id="第一步：创建分区（主-amp-扩展）"><a href="#第一步：创建分区（主-amp-扩展）" class="headerlink" title="第一步：创建分区（主&amp;扩展）"></a>第一步：创建分区（主&amp;扩展）</h5><pre><code>Command (m for help): n         
+Command action
+   e   extended --扩展分区
+   p   primary partition (1-4) --主分区
+p
+Partition number (1-4): 1
+First sector (2048-208895, default 2048): 
+Using default value 2048
+Last sector, +sectors or +size{K,M,G} (2048-208895, default 208895): +40M
+
+Command (m for help): p
+
+Disk /dev/sdb: 106 MB, 106954752 bytes
+64 heads, 32 sectors/track, 102 cylinders, total 208896 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0xc91dd8ad
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            2048       83967       40960   83  Linux
+
+Command (m for help): n
+Command action
+   e   extended 扩展分区
+   p   primary partition (1-4) 主分区
+e
+Partition number (1-4): 2
+First sector (83968-208895, default 83968): 
+Using default value 83968
+Last sector, +sectors or +size{K,M,G} (83968-208895, default 208895): 
+Using default value 208895
+
+Command (m for help): n
+Command action
+   l   logical (5 or over) --逻辑分区
+   p   primary partition (1-4)
+l
+First sector (86016-208895, default 86016): 
+Using default value 86016
+Last sector, +sectors or +size{K,M,G} (86016-208895, default 208895): +10M      
+Command (m for help): p
+
+Disk /dev/sdb: 106 MB, 106954752 bytes
+64 heads, 32 sectors/track, 102 cylinders, total 208896 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0xc91dd8ad
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            2048       83967       40960   83  Linux
+/dev/sdb2           83968      208895       62464    5  Extended
+/dev/sdb5           86016      106495       10240   83  Linux
+</code></pre><h4 id="第二步：让系统识别加载生成的分区表信息："><a href="#第二步：让系统识别加载生成的分区表信息：" class="headerlink" title="第二步：让系统识别加载生成的分区表信息："></a>第二步：让系统识别加载生成的分区表信息：</h4><pre><code>[root@jinc ~]# partprobe /dev/sdb
+</code></pre><h4 id="第三步：对分区进行格式化"><a href="#第三步：对分区进行格式化" class="headerlink" title="第三步：对分区进行格式化"></a>第三步：对分区进行格式化</h4><pre><code>[root@jinc ~]# mkfs.ext4 /dev/sdb5
+</code></pre><h3 id="说明：扩展分区无法进行格式化操作"><a href="#说明：扩展分区无法进行格式化操作" class="headerlink" title="说明：扩展分区无法进行格式化操作"></a>说明：扩展分区无法进行格式化操作</h3><h4 id="第四步：禁止磁盘自检操作"><a href="#第四步：禁止磁盘自检操作" class="headerlink" title="第四步：禁止磁盘自检操作"></a>第四步：禁止磁盘自检操作</h4><pre><code>[root@jinc ~]# tune2fs -c 0 -i 0 /dev/sdb5 
+tune2fs 1.41.12 (17-May-2010)
+Setting maximal mount count to -1
+Setting interval between checks to 0 seconds
+</code></pre><h4 id="第五步：挂载"><a href="#第五步：挂载" class="headerlink" title="第五步：挂载"></a>第五步：挂载</h4><pre><code>[root@jinc ~]# mount /dev/sdb5 /mnt/
+</code></pre><h4 id="第六步：检查"><a href="#第六步：检查" class="headerlink" title="第六步：检查"></a>第六步：检查</h4><pre><code>[root@jinc ~]# df -h
+ Filesystem      Size  Used Avail Use% Mounted on
+ /dev/sda3        18G  4.0G   14G  24% /
+ tmpfs           491M     0  491M   0% /dev/shm
+ /dev/sda1       190M   35M  146M  19% /boot
+ /dev/sdb5       8.7M   92K  8.1M   2% /mnt
+</code></pre><h4 id="实现开机自动挂载"><a href="#实现开机自动挂载" class="headerlink" title="实现开机自动挂载"></a>实现开机自动挂载</h4><pre><code>方法一：/etc/rc.local
+方法二：fatab  
+        /dev/sdb5               /mnt                    ext4    defaults        0 0
+</code></pre><h4 id="b：磁盘容量大于等于2TB"><a href="#b：磁盘容量大于等于2TB" class="headerlink" title="b：磁盘容量大于等于2TB"></a>b：磁盘容量大于等于2TB</h4><pre><code>利用parted命令进行分区，分区的引导记录---GPT   
+</code></pre><h3 id="系统分区引导记录分类："><a href="#系统分区引导记录分类：" class="headerlink" title="系统分区引导记录分类："></a>系统分区引导记录分类：</h3><pre><code>MBR：引导磁盘大小小于2TB --msdos
+GPT：引导磁盘大小大于2TB
+</code></pre><h3 id="创建大于2TB的磁盘"><a href="#创建大于2TB的磁盘" class="headerlink" title="创建大于2TB的磁盘"></a>创建大于2TB的磁盘</h3><h4 id="parted命令分区参数说明"><a href="#parted命令分区参数说明" class="headerlink" title="parted命令分区参数说明"></a>parted命令分区参数说明</h4><pre><code>mklabel,mktable LABEL-TYPE               create a new disklabel (partition table)
+                                         指定分区的引导记录信息
+mklabel msdos
+mklabel gpt
+mkpart PART-TYPE [FS-TYPE] START END     make a partition
+                                         制造一个分区                                       
+print [devices|free|list,all|NUMBER]     display the partition table, available devices, free space, all found
+                                         partitions, or a particular partition
+                                         显示出分区信息
+rm NUMBER                                delete partition NUMBER
+                                         删除分区                                       
+quit                                     exit program
+                                         退出分区操作（默认保存）
+</code></pre><h2 id="总结：fdisk命令和parted命令区别"><a href="#总结：fdisk命令和parted命令区别" class="headerlink" title="总结：fdisk命令和parted命令区别"></a>总结：fdisk命令和parted命令区别</h2><pre><code>01.分区的磁盘大小限定（2TB）
+02.分区方式上（分区过程放在内存中-fdisk；分区过程实时生效）
+    （fdisk只能在分区界面进行分区--parted可以在命令行完成）
+</code></pre><h2 id="企业案例-01"><a href="#企业案例-01" class="headerlink" title="企业案例-01"></a>企业案例-01</h2><h3 id="Java环境内存不够用了，大量使用swap分区"><a href="#Java环境内存不够用了，大量使用swap分区" class="headerlink" title="Java环境内存不够用了，大量使用swap分区"></a>Java环境内存不够用了，大量使用swap分区</h3><h4 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h4><h5 id="01-创建一个用于给swap分区的文件"><a href="#01-创建一个用于给swap分区的文件" class="headerlink" title="01.创建一个用于给swap分区的文件"></a>01.创建一个用于给swap分区的文件</h5><pre><code>dd if=/dev/zero of=/tmp/100m bs=1M count=100
+</code></pre><h5 id="02-标记创建好的文件作为swap分区使用"><a href="#02-标记创建好的文件作为swap分区使用" class="headerlink" title="02.标记创建好的文件作为swap分区使用"></a>02.标记创建好的文件作为swap分区使用</h5><pre><code>[root@jinc1 ~]# mkswap /tmp/100m 
+mkswap: /tmp/100m: warning: don&apos;t erase bootbits sectors
+        on whole disk. Use -f to force.
+Setting up swapspace version 1, size = 73724 KiB
+no label, UUID=041f19e5-ad77-405e-88a6-7a3bb172c446
+[root@jinc1 ~]# file /tmp/100m 
+/tmp/100m: Linux/i386 swap file (new style) 1 (4K pages) size 18431 pages
+[root@jinc1 ~]#
+03.进行加载文件被swap分区使用
+[root@jinc1 ~]# swapon /tmp/100m 
+04.查看swap交换分区信息
+[root@jinc1 ~]# swapon -s
+Filename                Type        Size    Used    Priority
+/dev/sda2                               partition    1535996    25276    -1
+/tmp/100m                               file        73724    0    -2
+</code></pre><h4 id="取消掉不需要的"><a href="#取消掉不需要的" class="headerlink" title="取消掉不需要的"></a>取消掉不需要的</h4><pre><code>[root@jinc1 ~]# swapoff /tmp/100m 
+[root@jinc1 ~]# free -h
+             total       used       free     shared    buffers     cached
+Mem:          980M       912M        68M       3.2M        99M       422M
+-/+ buffers/cache:       390M       589M
+Swap:         1.5G        24M       1.4G
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/06/Linux运维学习-第二十五天/">
+    <time datetime="2018-08-06T11:52:32.000Z" class="entry-date">
+        2018-08-06
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/08/06/shell之运算符/" rel="prev"><span class="meta-nav">←</span> shell之运算符</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/08/03/centOS-7-py2升级py3/" rel="next">centOS 7 py2升级py3 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/06/shell之运算符/">shell之运算符</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/06/Linux运维学习-第二十五天/">Linux运维学习-第二十五天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/centOS-7-py2升级py3/">centOS 7 py2升级py3</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/eth0-网卡问题解决小方法/">eth0 网卡问题解决小方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/Linux运维学习-第二十四天/">Linux运维学习-第二十四天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 12px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 10px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

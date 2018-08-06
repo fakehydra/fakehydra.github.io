@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="+ - * %  shell 运算符" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>shell之运算符 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="+ - * %  shell 运算符">
+<meta name="keywords" content="shell二三事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell之运算符">
+<meta property="og:url" content="http://yoursite.com/2018/08/06/shell之运算符/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="+ - * %  shell 运算符">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-06T12:09:55.204Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell之运算符">
+<meta name="twitter:description" content="+ - * %  shell 运算符">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-shell之运算符" class="post-shell之运算符 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      shell之运算符
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/shell之运算符/" data-id="cjki8hfxt003hc0ly0c00zxit" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="shell-运算符"><a href="#shell-运算符" class="headerlink" title="+ - * %  shell 运算符"></a>+ - * %  shell 运算符</h3><a id="more"></a>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><pre><code>Bash 支持很多运算符，包括算数运算符、关系运算符、布尔运算符、字符串运算符和文件测试运算符。
+
+原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。
+
+expr 是一款表达式计算工具，使用它能完成表达式的求值操作。
+</code></pre><h4 id="例如，两个数相加："><a href="#例如，两个数相加：" class="headerlink" title="例如，两个数相加："></a>例如，两个数相加：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    #!/bin/bash</span><br><span class="line">    val=`expr 2 + 2`</span><br><span class="line">    echo &quot;Total value : $val&quot;</span><br><span class="line">运行脚本输出：</span><br><span class="line">Total value : 4</span><br></pre></td></tr></table></figure>
+<h3 id="两点注意："><a href="#两点注意：" class="headerlink" title="两点注意："></a>两点注意：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">表达式和运算符之间要有空格，例如 2+2 是不对的，必须写成 2 + 这与我们熟悉的大多数编程语言不一样。</span><br><span class="line">完整的表达式要被 ` ` 包含，注意这个字符不是常用的单引号，在 Esc 键下边。</span><br></pre></td></tr></table></figure>
+<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><h4 id="先来看一个使用算术运算符的例子："><a href="#先来看一个使用算术运算符的例子：" class="headerlink" title="先来看一个使用算术运算符的例子："></a>先来看一个使用算术运算符的例子：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">a=10</span><br><span class="line">b=20</span><br><span class="line">val=`expr $a + $b`</span><br><span class="line">echo &quot;a + b : $val&quot;</span><br><span class="line">val=`expr $a - $b`</span><br><span class="line">echo &quot;a - b : $val&quot;</span><br><span class="line">val=`expr $a \* $b`</span><br><span class="line">echo &quot;a * b : $val&quot;</span><br><span class="line">val=`expr $b / $a`</span><br><span class="line">echo &quot;b / a : $val&quot;</span><br><span class="line">val=`expr $b % $a`</span><br><span class="line">echo &quot;b % a : $val&quot;</span><br><span class="line">if [ $a == $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;a is equal to b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a != $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;a is not equal to b&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a + b : 30</span><br><span class="line">a - b : -10</span><br><span class="line">a * b : 200</span><br><span class="line">b / a : 2</span><br><span class="line">b % a : 0</span><br><span class="line">a is not equal to b</span><br></pre></td></tr></table></figure>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><pre><code>乘号(*)前边必须加反斜杠(\)才能实现乘法运算；
+if...then...fi 是条件语句，后续将会讲解。
+</code></pre><h4 id="算术运算符列表"><a href="#算术运算符列表" class="headerlink" title="算术运算符列表"></a>算术运算符列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">运算符	说明	     举例</span><br><span class="line"></span><br><span class="line"> + 	加法 	`expr $a + $b` 结果为 30。</span><br><span class="line"> - 	减法 	`expr $a - $b` 结果为 10。</span><br><span class="line"> * 	乘法 	`expr $a \* $b` 结果为  200。</span><br><span class="line"> / 	除法 	`expr $b / $a` 结果为 2。</span><br><span class="line"> % 	取余 	`expr $b % $a` 结果为 0。</span><br><span class="line"> = 	赋值 	a=$b 将把变量 b 的值赋给 a。</span><br><span class="line"> == 	相等。用于比较两个数字，相同则返回 true。 [ $a == $b ] 返回 false。</span><br><span class="line"> != 	不相等。用于比较两个数字，不相同则返回 true。 [ $a != $b ] 返回 true。</span><br></pre></td></tr></table></figure>
+<h3 id="注意：条件表达式要放在方括号之间，并且要有空格，例如-a-b-是错误的，必须写成-a-b-。"><a href="#注意：条件表达式要放在方括号之间，并且要有空格，例如-a-b-是错误的，必须写成-a-b-。" class="headerlink" title="注意：条件表达式要放在方括号之间，并且要有空格，例如 [$a==$b] 是错误的，必须写成 [ $a == $b ]。"></a>注意：条件表达式要放在方括号之间，并且要有空格，例如 [$a==$b] 是错误的，必须写成 [ $a == $b ]。</h3><h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><h4 id="关系运算符只支持数字，不支持字符串，除非字符串的值是数字。"><a href="#关系运算符只支持数字，不支持字符串，除非字符串的值是数字。" class="headerlink" title="关系运算符只支持数字，不支持字符串，除非字符串的值是数字。"></a>关系运算符只支持数字，不支持字符串，除非字符串的值是数字。</h4><h5 id="先来看一个关系运算符的例子："><a href="#先来看一个关系运算符的例子：" class="headerlink" title="先来看一个关系运算符的例子："></a>先来看一个关系运算符的例子：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">a=10</span><br><span class="line">b=20</span><br><span class="line">if [ $a -eq $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -eq $b : a is equal to b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -eq $b: a is not equal to b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a -ne $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -ne $b: a is not equal to b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -ne $b : a is equal to b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a -gt $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -gt $b: a is greater than b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -gt $b: a is not greater than b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a -lt $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -lt $b: a is less than b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -lt $b: a is not less than b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a -ge $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -ge $b: a is greater or equal to b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -ge $b: a is not greater or equal to b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a -le $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -le $b: a is less or equal to b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -le $b: a is not less or equal to b&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h4 id="运行结果：-1"><a href="#运行结果：-1" class="headerlink" title="运行结果："></a>运行结果：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">10 -eq 20: a is not equal to b</span><br><span class="line">10 -ne 20: a is not equal to b</span><br><span class="line">10 -gt 20: a is not greater than b</span><br><span class="line">10 -lt 20: a is less than b</span><br><span class="line">10 -ge 20: a is not greater or equal to b</span><br><span class="line">10 -le 20: a is less or  equal to b</span><br></pre></td></tr></table></figure>
+<h4 id="关系运算符列表"><a href="#关系运算符列表" class="headerlink" title="关系运算符列表"></a>关系运算符列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">运算符	         说明                      举例</span><br><span class="line">  -eq 	检测两个数是否相等，相等返回 true。 	            [ $a -eq $b ] 返回 true。</span><br><span class="line">  -ne 	检测两个数是否相等，不相等返回 true。 	            [ $a -ne $b ] 返回 true。</span><br><span class="line">  -gt 	检测左边的数是否大于右边的，如果是，则返回 true。 	[ $a -gt $b ] 返回 false。</span><br><span class="line">  -lt 	检测左边的数是否小于右边的，如果是，则返回 true。 	[ $a -lt $b ] 返回 true。</span><br><span class="line">  -ge 	检测左边的数是否大等于右边的，如果是，则返回 true。 	[ $a -ge $b ] 返回 false。</span><br><span class="line">  -le 	检测左边的数是否小于等于右边的，如果是，则返回 true。 	[ $a -le $b ] 返回 true。</span><br></pre></td></tr></table></figure>
+<h3 id="布尔运算符"><a href="#布尔运算符" class="headerlink" title="布尔运算符"></a>布尔运算符</h3><h4 id="先来看一个布尔运算符的例子："><a href="#先来看一个布尔运算符的例子：" class="headerlink" title="先来看一个布尔运算符的例子："></a>先来看一个布尔运算符的例子：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">a=10</span><br><span class="line">b=20</span><br><span class="line">if [ $a != $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a != $b : a is not equal to b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a != $b: a is equal to b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a -lt 100 -a $b -gt 15 ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -lt 100 -a $b -gt 15 : returns true&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -lt 100 -a $b -gt 15 : returns false&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a -lt 100 -o $b -gt 100 ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -lt 100 -o $b -gt 100 : returns true&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -lt 100 -o $b -gt 100 : returns false&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a -lt 5 -o $b -gt 100 ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a -lt 100 -o $b -gt 100 : returns true&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a -lt 100 -o $b -gt 100 : returns false&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h4 id="运行结果：-2"><a href="#运行结果：-2" class="headerlink" title="运行结果："></a>运行结果：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10 != 20 : a is not equal to b</span><br><span class="line">10 -lt 100 -a 20 -gt 15 : returns true</span><br><span class="line">10 -lt 100 -o 20 -gt 100 : returns true</span><br><span class="line">10 -lt 5 -o 20 -gt 100 : returns false</span><br></pre></td></tr></table></figure>
+<h3 id="布尔运算符列表"><a href="#布尔运算符列表" class="headerlink" title="布尔运算符列表"></a>布尔运算符列表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">运算符	                     说明	                         举例</span><br><span class="line">! 	    非运算，表达式为 true 则返回 false，否则返回 true。    [ ! false ] 返回 true。</span><br><span class="line">-o 	    或运算，有一个表达式为 true 则返回 true。              [ $a -lt 20 -o $b -gt 100 ] 返回 true。</span><br><span class="line">-a 	    与运算，两个表达式都为 true 才返回 true。              [ $a -lt 20 -a $b -gt 100 ] 返回 false。</span><br></pre></td></tr></table></figure>
+<h3 id="字符串运算符"><a href="#字符串运算符" class="headerlink" title="字符串运算符"></a>字符串运算符</h3><h4 id="先来看一个例子："><a href="#先来看一个例子：" class="headerlink" title="先来看一个例子："></a>先来看一个例子：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">a=&quot;abc&quot;</span><br><span class="line">b=&quot;efg&quot;</span><br><span class="line">if [ $a = $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a = $b : a is equal to b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a = $b: a is not equal to b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a != $b ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a != $b : a is not equal to b&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a != $b: a is equal to b&quot;</span><br><span class="line">fi</span><br><span class="line">if [ -z $a ]</span><br><span class="line">then</span><br><span class="line">echo &quot;-z $a : string length is zero&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;-z $a : string length is not zero&quot;</span><br><span class="line">fi</span><br><span class="line">if [ -n $a ]</span><br><span class="line">then</span><br><span class="line">echo &quot;-n $a : string length is not zero&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;-n $a : string length is zero&quot;</span><br><span class="line">fi</span><br><span class="line">if [ $a ]</span><br><span class="line">then</span><br><span class="line">echo &quot;$a : string is not empty&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$a : string is empty&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h4 id="运行结果：-3"><a href="#运行结果：-3" class="headerlink" title="运行结果："></a>运行结果：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">abc = efg: a is not equal to b</span><br><span class="line">abc != efg : a is not equal to b</span><br><span class="line">-z abc : string length is not zero</span><br><span class="line">-n abc : string length is not zero</span><br><span class="line">abc : string is not empty</span><br></pre></td></tr></table></figure>
+<h4 id="字符串运算符列表"><a href="#字符串运算符列表" class="headerlink" title="字符串运算符列表"></a>字符串运算符列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">运算符	         说明	                                  举例</span><br><span class="line">= 	    检测两个字符串是否相等，相等返回 true。 	[ $a = $b ] 返回 false。</span><br><span class="line">!= 	    检测两个字符串是否相等，不相等返回 true。 	[ $a != $b ] 返回 true。</span><br><span class="line">-z 	    检测字符串长度是否为0，为0返回 true。    	[ -z $a ] 返回 false。</span><br><span class="line">-n 	    检测字符串长度是否为0，不为0返回 true。 	[ -z $a ] 返回 true。</span><br><span class="line">str 	检测字符串是否为空，不为空返回 true。   	[ $a ] 返回 true。</span><br></pre></td></tr></table></figure>
+<h4 id="文件测试运算符"><a href="#文件测试运算符" class="headerlink" title="文件测试运算符"></a>文件测试运算符</h4><h4 id="文件测试运算符用于检测-Unix-文件的各种属性。"><a href="#文件测试运算符用于检测-Unix-文件的各种属性。" class="headerlink" title="文件测试运算符用于检测 Unix 文件的各种属性。"></a>文件测试运算符用于检测 Unix 文件的各种属性。</h4><pre><code>例如，变量 file 表示文件“/var/www/tutorialspoint/unix/test.sh”，它的大小为100字节，具有 rwx 权限。下面的代码，将检测该文件的各种属性：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">file=&quot;/var/www/tutorialspoint/unix/test.sh&quot;</span><br><span class="line">if [ -r $file ]</span><br><span class="line">then</span><br><span class="line">echo &quot;File has read access&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;File does not have read access&quot;</span><br><span class="line">fi</span><br><span class="line">if [ -w $file ]</span><br><span class="line">then</span><br><span class="line">echo &quot;File has write permission&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;File does not have write permission&quot;</span><br><span class="line">fi</span><br><span class="line">if [ -x $file ]</span><br><span class="line">then</span><br><span class="line">echo &quot;File has execute permission&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;File does not have execute permission&quot;</span><br><span class="line">fi</span><br><span class="line">if [ -f $file ]</span><br><span class="line">then</span><br><span class="line">echo &quot;File is an ordinary file&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;This is sepcial file&quot;</span><br><span class="line">fi</span><br><span class="line">if [ -d $file ]</span><br><span class="line">then</span><br><span class="line">echo &quot;File is a directory&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;This is not a directory&quot;</span><br><span class="line">fi</span><br><span class="line">if [ -s $file ]</span><br><span class="line">then</span><br><span class="line">echo &quot;File size is zero&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;File size is not zero&quot;</span><br><span class="line">fi</span><br><span class="line">if [ -e $file ]</span><br><span class="line">then</span><br><span class="line">echo &quot;File exists&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;File does not exist&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果：-4"><a href="#运行结果：-4" class="headerlink" title="运行结果："></a>运行结果：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">File has read access</span><br><span class="line">File has write permission</span><br><span class="line">File has execute permission</span><br><span class="line">File is an ordinary file</span><br><span class="line">This is not a directory</span><br><span class="line">File size is zero</span><br><span class="line">File exists</span><br></pre></td></tr></table></figure>
+<h3 id="文件测试运算符列表"><a href="#文件测试运算符列表" class="headerlink" title="文件测试运算符列表"></a>文件测试运算符列表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">操作符	        说明	                                           举例</span><br><span class="line">-b file 	检测文件是否是块设备文件，如果是，则返回 true。   	[ -b $file ] 返回 false。</span><br><span class="line">-c file 	检测文件是否是字符设备文件，如果是，则返回 true。 	[ -b $file ] 返回 false。</span><br><span class="line">-d file 	检测文件是否是目录，如果是，则返回 true。 	        [ -d $file ] 返回 false。</span><br><span class="line">-f file 	检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。 	[ -f $file ] 返回 true。</span><br><span class="line">-g file 	检测文件是否设置了 SGID 位，如果是，则返回 true。 	[ -g $file ] 返回 false。</span><br><span class="line">-k file 	检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。 	[ -k $file ] 返回 false。</span><br><span class="line">-p file 	检测文件是否是具名管道，如果是，则返回 true。     	[ -p $file ] 返回 false。</span><br><span class="line">-u file 	检测文件是否设置了 SUID 位，如果是，则返回 true。 	[ -u $file ] 返回 false。</span><br><span class="line">-r file 	检测文件是否可读，如果是，则返回 true。 	        [ -r $file ] 返回 true。</span><br><span class="line">-w file 	检测文件是否可写，如果是，则返回 true。 	        [ -w $file ] 返回 true。</span><br><span class="line">-x file 	检测文件是否可执行，如果是，则返回 true。 	        [ -x $file ] 返回 true。</span><br><span class="line">-s file 	检测文件是否为空（文件大小是否大于0），不为空返回 true。 	[ -s $file ] 返回 true。</span><br><span class="line">-e file 	检测文件（包括目录）是否存在，如果是，则返回 true。 	[ -e $file ] 返回 true</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/06/shell之运算符/">
+    <time datetime="2018-08-06T11:52:53.000Z" class="entry-date">
+        2018-08-06
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell二三事/">shell二三事</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/08/06/Linux运维学习-第二十五天/" rel="next">Linux运维学习-第二十五天 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/06/shell之运算符/">shell之运算符</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/06/Linux运维学习-第二十五天/">Linux运维学习-第二十五天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/centOS-7-py2升级py3/">centOS 7 py2升级py3</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/eth0-网卡问题解决小方法/">eth0 网卡问题解决小方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/03/Linux运维学习-第二十四天/">Linux运维学习-第二十四天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 12px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 10px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18px;">小东西</a> <a href="/tags/小测试/" style="font-size: 12px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 14px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
