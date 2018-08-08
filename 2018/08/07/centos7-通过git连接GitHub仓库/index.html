@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="centos7 &amp;amp;&amp;amp; GitHub">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-08T00:38:28.022Z">
+<meta property="og:updated_time" content="2018-08-08T00:41:38.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos7 通过git连接GitHub仓库">
 <meta name="twitter:description" content="centos7 &amp;amp;&amp;amp; GitHub">
@@ -86,7 +86,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/centos7-通过git连接GitHub仓库/" data-id="cjkkenukb00250wlydn3l1ugm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/centos7-通过git连接GitHub仓库/" data-id="cjkkery3l0025eslyrmsw7wj4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -105,9 +105,7 @@
 在github网站新建一个仓库，命名为linux-
 </code></pre><h3 id="回到linux"><a href="#回到linux" class="headerlink" title="回到linux"></a>回到linux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/nginx/html</span><br><span class="line">mkdir linux-</span><br><span class="line">cd linux-</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git初始化，然后做第一个基本的git操作</span><br><span class="line">git init</span><br><span class="line">touch README</span><br><span class="line">git add README</span><br><span class="line">git commit -m &apos;first commit&apos;</span><br><span class="line">git remote add origin git@github.com:fakehydra/linux-.git</span><br></pre></td></tr></table></figure>
-<pre><code>结果还是报了点小错，一看是因为这个remote origin已经存在，所以查了查，将这个origin删除，输入git remote rm origin命令--该错误不一定有，我是之前操作有误
-
-[root@jinch2 linux-]# git remote rm origin
+<h3 id="若出现origin已经存在的错误，删除origin"><a href="#若出现origin已经存在的错误，删除origin" class="headerlink" title="若出现origin已经存在的错误，删除origin"></a>若出现origin已经存在的错误，删除origin</h3><pre><code>[root@jinch2 linux-]# git remote rm origin
 </code></pre><h3 id="现在继续执行push到远端"><a href="#现在继续执行push到远端" class="headerlink" title="现在继续执行push到远端"></a>现在继续执行push到远端</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@jinch2 linux-]# git remote add origin git@github.com:fakehydra/linux-.git</span><br><span class="line">[root@jinch2 linux-]# git push -u origin master</span><br><span class="line">Counting objects: 3, done.</span><br><span class="line">Writing objects: 100% (3/3), 205 bytes | 0 bytes/s, done.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">To git@github.com:fakehydra/linux-.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">分支 master 设置为跟踪来自 origin 的远程分支 master。</span><br></pre></td></tr></table></figure>
 
       
