@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="Linux三剑客之一">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T11:42:20.501Z">
+<meta property="og:updated_time" content="2018-08-07T04:55:05.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux三剑客之 sed">
 <meta name="twitter:description" content="Linux三剑客之一">
@@ -86,7 +86,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjkib9mdc0001k8ly49d6ojbr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjkjqox2u000e90lyc9jd19h2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -97,7 +97,8 @@
 <h4 id="Linux三剑客命令之-sed"><a href="#Linux三剑客命令之-sed" class="headerlink" title="Linux三剑客命令之 sed"></a>Linux三剑客命令之 sed</h4><h3 id="1-sed-命令详解"><a href="#1-sed-命令详解" class="headerlink" title="1.sed 命令详解"></a>1.sed 命令详解</h3><pre><code>sed是Stream Editor（字符流编辑器）的缩写，简称流编辑器
 sed是操作、过滤和转换文本内容的强大工具。常用功能包括对文件实现快速增删改查，
 其中查询的功能中最常用的两大功能是过滤（过滤指定字符串），取行（取出指定行）。
-</code></pre><h3 id="2-语法格式"><a href="#2-语法格式" class="headerlink" title="2.语法格式"></a>2.语法格式</h3><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><pre><code>1）sed以及后面的选项、命令和输入文件，每个元素之间都至少要一个空格。
+</code></pre><h3 id="2-语法格式"><a href="#2-语法格式" class="headerlink" title="2.语法格式"></a>2.语法格式</h3><pre><code>sed [选项] &apos;[sed 指令]&apos; [文件信息]
+</code></pre><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><pre><code>1）sed以及后面的选项、命令和输入文件，每个元素之间都至少要一个空格。
 2）sed内置命令行字符，既可以是单个命令，也可以是多个命令参数的组合
 3）输入文件是sed需要处理的文件，这是可选项；sed还能够从标准输入如管道中获取输入。
 </code></pre><h3 id="3-选项说明"><a href="#3-选项说明" class="headerlink" title="3.选项说明"></a>3.选项说明</h3><h2 id="sed命令的参数选项及说明"><a href="#sed命令的参数选项及说明" class="headerlink" title="sed命令的参数选项及说明"></a>sed命令的参数选项及说明</h2><pre><code>参数选项    |     解释说明
@@ -148,6 +149,16 @@ d(delete)           |    只在输出时删除指定行的文本
  3,alex,CFO
  4,yy,CFO
  5,feixue,CIO
+
+ 打印多行内容（连续的行）
+ [root@jinc ~]# sed -n &apos;2,4p&apos; person.txt 
+ 2,zhangyao,CTO
+ 3,alex,CFO
+ 4,yy,CFO
+ 打印多行内容（不连续的行）
+ [root@jinc ~]# sed -n &apos;2p;4p&apos; person.txt 
+  2,zhangyao,CTO
+  4,yy,CFO
 </code></pre><h2 id="当我们只使用-p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），"><a href="#当我们只使用-p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），" class="headerlink" title="当我们只使用 p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），"></a>当我们只使用 p的时候不只是输出第二行，其他内容也输出出来了（sed的默认输出功能），</h2><p>所以，我们一般使用-n来取消默认输出，只输出匹配行文本</p>
 <pre><code>[root@jinc1 test]# sed -n &apos;2p&apos; persons.txt 
 2,zhangyao,CTO
@@ -162,7 +173,12 @@ d(delete)           |    只在输出时删除指定行的文本
  3,alex,CFO
  4,yy,CFO
  5,feixue,CIO
-</code></pre><h3 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h3><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=28762749&auto=1&height=66"></iframe>
+</code></pre><h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><pre><code>-i 参数 （慎用）
+最好：-i.bak  添加备份
+sed -i &apos;s#要替换的#要替换成的#g&apos; filename
+s---
+g---全局
+</code></pre><h3 id="说明：当使用变量时，要把’’-变成-“”"><a href="#说明：当使用变量时，要把’’-变成-“”" class="headerlink" title="说明：当使用变量时，要把’’ 变成 “”"></a>说明：当使用变量时，要把’’ 变成 “”</h3><h3 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h3><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="0" height="0" src="//music.163.com/outchain/player?type=2&id=28762749&auto=1&height=66"></iframe>
 
 
 
@@ -233,23 +249,23 @@ d(delete)           |    只在输出时删除指定行的文本
       <ul>
         
           <li>
+            <a href="/2018/08/07/centos7-通过git连接GitHub仓库/">centos7 通过git连接GitHub仓库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/07/shell之11292-0-0/">shell之11292,0,0</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/07/Linux运维学习-第二十六天/">Linux运维学习-第二十六天</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/06/不染/">不染</a>
           </li>
         
           <li>
             <a href="/2018/08/06/centos7下安装docker/">centos7下安装docker</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/06/shell之运算符/">shell之运算符</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/06/Linux运维学习-第二十五天/">Linux运维学习-第二十五天</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/03/centOS-7-py2升级py3/">centOS 7 py2升级py3</a>
           </li>
         
       </ul>
@@ -261,7 +277,7 @@ d(delete)           |    只在输出时删除指定行的文本
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -270,7 +286,7 @@ d(delete)           |    只在输出时删除指定行的文本
   <aside class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 10px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.33px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.67px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.67px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 13.33px;">那些年学习的Linux命令</a>
+      <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 11.67px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.33px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.67px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.67px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 13.33px;">那些年学习的Linux命令</a>
     </div>
   </aside>
 
