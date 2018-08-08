@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="eth0 启动不了解决小方法" />
+  <meta name="description" content="A winner is a dreamer who never gives up.成功者是坚持梦想不放弃的人。" />
   
 
   
@@ -13,20 +13,20 @@
   
   
   
-  <title>eth0 网卡问题解决小方法 | 瑾川</title>
+  <title>Linux运维学习-第二十七天 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="eth0 启动不了解决小方法">
-<meta name="keywords" content="小东西">
+  <meta name="description" content="A winner is a dreamer who never gives up.成功者是坚持梦想不放弃的人。">
+<meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="eth0 网卡问题解决小方法">
-<meta property="og:url" content="http://yoursite.com/2018/08/03/eth0-网卡问题解决小方法/index.html">
+<meta property="og:title" content="Linux运维学习-第二十七天">
+<meta property="og:url" content="http://yoursite.com/2018/08/08/Linux运维学习-第二十七天/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="eth0 启动不了解决小方法">
+<meta property="og:description" content="A winner is a dreamer who never gives up.成功者是坚持梦想不放弃的人。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-03T12:36:55.053Z">
+<meta property="og:updated_time" content="2018-08-08T11:24:36.906Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="eth0 网卡问题解决小方法">
-<meta name="twitter:description" content="eth0 启动不了解决小方法">
+<meta name="twitter:title" content="Linux运维学习-第二十七天">
+<meta name="twitter:description" content="A winner is a dreamer who never gives up.成功者是坚持梦想不放弃的人。">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-eth0-网卡问题解决小方法" class="post-eth0-网卡问题解决小方法 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第二十七天" class="post-Linux运维学习-第二十七天 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,35 +79,69 @@
         
   
     <h1 class="entry-title article-title">
-      eth0 网卡问题解决小方法
+      Linux运维学习-第二十七天
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/eth0-网卡问题解决小方法/" data-id="cjkl1rrpq002d5klybswfulqx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/08/Linux运维学习-第二十七天/" data-id="cjkl1rrjz00065kly29rncevl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="eth0-启动不了解决小方法"><a href="#eth0-启动不了解决小方法" class="headerlink" title="eth0 启动不了解决小方法"></a>eth0 启动不了解决小方法</h3><a id="more"></a>
-<h3 id="eth0-网卡启动不了解决2333"><a href="#eth0-网卡启动不了解决2333" class="headerlink" title="eth0 网卡启动不了解决2333"></a>eth0 网卡启动不了解决2333</h3><h3 id="今天早上一来，发现我的xshell连接不上我的虚拟机了，然后，进虚拟机看了一下虚拟机中的配置文件，"><a href="#今天早上一来，发现我的xshell连接不上我的虚拟机了，然后，进虚拟机看了一下虚拟机中的配置文件，" class="headerlink" title="今天早上一来，发现我的xshell连接不上我的虚拟机了，然后，进虚拟机看了一下虚拟机中的配置文件，"></a>今天早上一来，发现我的xshell连接不上我的虚拟机了，然后，进虚拟机看了一下虚拟机中的配置文件，</h3><h3 id="也没啥问题啊0-0，可就是起不来什么鬼。。。233333"><a href="#也没啥问题啊0-0，可就是起不来什么鬼。。。233333" class="headerlink" title="也没啥问题啊0.0，可就是起不来什么鬼。。。233333"></a>也没啥问题啊0.0，可就是起不来什么鬼。。。233333</h3><h3 id="既然起不来那就算了，百度了一下，找到一个方法，话不多说，看代码"><a href="#既然起不来那就算了，百度了一下，找到一个方法，话不多说，看代码" class="headerlink" title="既然起不来那就算了，百度了一下，找到一个方法，话不多说，看代码"></a>既然起不来那就算了，百度了一下，找到一个方法，话不多说，看代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">chkocnfig NetworkManager off </span><br><span class="line"></span><br><span class="line">chkocnfig network on</span><br><span class="line"></span><br><span class="line">service NetworkManager stop</span><br><span class="line"></span><br><span class="line">service network start</span><br><span class="line"></span><br><span class="line">service network restart</span><br></pre></td></tr></table></figure>
-<h3 id="就这几行代码，解决问题"><a href="#就这几行代码，解决问题" class="headerlink" title="就这几行代码，解决问题"></a>就这几行代码，解决问题</h3><h3 id="233333"><a href="#233333" class="headerlink" title="233333"></a>233333</h3><h3 id="原文来源：https-www-cnblogs-com-braveym-p-6546013-html"><a href="#原文来源：https-www-cnblogs-com-braveym-p-6546013-html" class="headerlink" title="原文来源：https://www.cnblogs.com/braveym/p/6546013.html"></a>原文来源：<a href="https://www.cnblogs.com/braveym/p/6546013.html" target="_blank" rel="noopener">https://www.cnblogs.com/braveym/p/6546013.html</a></h3>
+        <h3 id="A-winner-is-a-dreamer-who-never-gives-up"><a href="#A-winner-is-a-dreamer-who-never-gives-up" class="headerlink" title="A winner is a dreamer who never gives up."></a>A winner is a dreamer who never gives up.</h3><h3 id="成功者是坚持梦想不放弃的人。"><a href="#成功者是坚持梦想不放弃的人。" class="headerlink" title="成功者是坚持梦想不放弃的人。"></a>成功者是坚持梦想不放弃的人。</h3><a id="more"></a>
+<h3 id="shell脚本知识说明"><a href="#shell脚本知识说明" class="headerlink" title="shell脚本知识说明"></a>shell脚本知识说明</h3><pre><code>01.为什么学习shell？（了解；铺垫）
+02.基本命令
+03.shell的变量
+04.shell脚本逻辑语句，if判断；for循环
+05.练习编写一些小脚本
+</code></pre><h3 id="系统变量说明"><a href="#系统变量说明" class="headerlink" title="系统变量说明"></a>系统变量说明</h3><pre><code> export命令说明（环境变量）
+[root@jinch2 scripts]# export oldboy=123
+[root@jinch2 scripts]# env |grep oldboy
+oldboy=123
+[root@jinch2 scripts]# echo $oldboy
+123
+[root@jinch2 scripts]# sh 1.sh 
+123
+</code></pre><h4 id="定义一个变量为环境变量之后，在命令行可以识别，在脚本也可以识别"><a href="#定义一个变量为环境变量之后，在命令行可以识别，在脚本也可以识别" class="headerlink" title="定义一个变量为环境变量之后，在命令行可以识别，在脚本也可以识别"></a>定义一个变量为环境变量之后，在命令行可以识别，在脚本也可以识别</h4><h4 id="source命令说明"><a href="#source命令说明" class="headerlink" title="source命令说明"></a>source命令说明</h4><pre><code>[root@jinch2 scripts]# tail -1 /etc/profile
+girl=beautiful
+[root@jinch2 scripts]# source /etc/profile
+[root@jinch2 scripts]# echo $girl
+beautiful
+[root@jinch2 scripts]# sh 1.sh 
+</code></pre><pre><code>可以加载文件中的变量配置，使之当前环境生效
+想要在脚本里也识别，则需要在脚本文件里也加载文件
+添加一行：source /etc/profile
+ps: . == source
+</code></pre><h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h3><h4 id="位置变量"><a href="#位置变量" class="headerlink" title="位置变量"></a>位置变量</h4><pre><code>[root@jinch2 scripts]# vim test_awk.sh
+#!/bin/bash
+
+num1=$1
+num2=$2
+
+awk -vn1=$num1 -vn2=$num2 &apos;BEGIN{print n1 + n2}&apos;
+awk -vn1=$num1 -vn2=$num2 &apos;BEGIN{print n1 - n2}&apos;
+awk -vn1=$num1 -vn2=$num2 &apos;BEGIN{print n1 * n2}&apos;
+awk -vn1=$num1 -vn2=$num2 &apos;BEGIN{print n1 / n2}&apos;
+</code></pre><h3 id="vim批量操作说明"><a href="#vim批量操作说明" class="headerlink" title="vim批量操作说明"></a>vim批量操作说明</h3><h5 id="1-进入批量操作模式（命令行模式）"><a href="#1-进入批量操作模式（命令行模式）" class="headerlink" title="1.进入批量操作模式（命令行模式）"></a>1.进入批量操作模式（命令行模式）</h5><pre><code>ctrl + v --进入视图化模式
+</code></pre><h5 id="2-选中内容-–方向键选择"><a href="#2-选中内容-–方向键选择" class="headerlink" title="2.选中内容 –方向键选择"></a>2.选中内容 –方向键选择</h5><h5 id="删除选中内容-–delete键-d-x"><a href="#删除选中内容-–delete键-d-x" class="headerlink" title="删除选中内容 –delete键 | d | x"></a>删除选中内容 –delete键 | d | x</h5><pre><code>x  --删除光标选中内容
+</code></pre><h5 id="4-批量添加信息：将光标移动到需要添加内容的位置"><a href="#4-批量添加信息：将光标移动到需要添加内容的位置" class="headerlink" title="4.批量添加信息：将光标移动到需要添加内容的位置"></a>4.批量添加信息：将光标移动到需要添加内容的位置</h5><h5 id="5-进入到编辑模式进行编辑-–shift-i"><a href="#5-进入到编辑模式进行编辑-–shift-i" class="headerlink" title="5.进入到编辑模式进行编辑 –shift i"></a>5.进入到编辑模式进行编辑 –shift i</h5><h5 id="6-实现批量编辑效果-–esc键"><a href="#6-实现批量编辑效果-–esc键" class="headerlink" title="6.实现批量编辑效果 –esc键"></a>6.实现批量编辑效果 –esc键</h5>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/08/03/eth0-网卡问题解决小方法/">
-    <time datetime="2018-08-03T12:28:31.000Z" class="entry-date">
-        2018-08-03
+    <a href="/2018/08/08/Linux运维学习-第二十七天/">
+    <time datetime="2018-08-08T11:18:56.000Z" class="entry-date">
+        2018-08-08
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
 
     </footer>
 </article>
@@ -117,10 +151,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/08/03/centOS-7-py2升级py3/" rel="prev"><span class="meta-nav">←</span> centOS 7 py2升级py3</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/08/03/Linux运维学习-第二十四天/" rel="next">Linux运维学习-第二十四天 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/07/centos7-通过git连接GitHub仓库/" rel="next">centos7 通过git连接GitHub仓库 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
