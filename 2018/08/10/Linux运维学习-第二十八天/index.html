@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Linux运维学习-第二十八 &amp;&amp; 二十九天 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Innovation distinguishes between a leader and a follower.领袖和跟风者的区别就在于创新。">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维学习-第二十八 &amp;&amp; 二十九天">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/Linux运维学习-第二十八天/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Innovation distinguishes between a leader and a follower.领袖和跟风者的区别就在于创新。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-10T12:54:47.658Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维学习-第二十八 &amp;&amp; 二十九天">
+<meta name="twitter:description" content="Innovation distinguishes between a leader and a follower.领袖和跟风者的区别就在于创新。">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第二十八天" class="post-Linux运维学习-第二十八天 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Linux运维学习-第二十八 &amp;&amp; 二十九天
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/10/Linux运维学习-第二十八天/" data-id="cjknzv1q8000ifglyloe64bp5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="Innovation-distinguishes-between-a-leader-and-a-follower"><a href="#Innovation-distinguishes-between-a-leader-and-a-follower" class="headerlink" title="Innovation distinguishes between a leader and a follower."></a>Innovation distinguishes between a leader and a follower.</h3><h3 id="领袖和跟风者的区别就在于创新。"><a href="#领袖和跟风者的区别就在于创新。" class="headerlink" title="领袖和跟风者的区别就在于创新。"></a>领袖和跟风者的区别就在于创新。</h3><a id="more"></a>
+<h3 id="循环语句说明"><a href="#循环语句说明" class="headerlink" title="循环语句说明"></a>循环语句说明</h3><pre><code>变量名称规范：字母、数字、下划线；尽量不要和环境变量名称冲突
+</code></pre><h3 id="三剑客命令之首–awk"><a href="#三剑客命令之首–awk" class="headerlink" title="三剑客命令之首–awk"></a>三剑客命令之首–awk</h3><p>第二十八天</p>
+<h3 id="循环语句说明-1"><a href="#循环语句说明-1" class="headerlink" title="循环语句说明"></a>循环语句说明</h3><pre><code>变量名称规范：字母、数字、下划线；尽量不要和环境变量名称冲突
+</code></pre><h3 id="三剑客命令之首–awk-1"><a href="#三剑客命令之首–awk-1" class="headerlink" title="三剑客命令之首–awk"></a>三剑客命令之首–awk</h3><h4 id="数组说明："><a href="#数组说明：" class="headerlink" title="数组说明："></a>数组说明：</h4><pre><code>用于统计文件信息，出现的数量
+</code></pre><h3 id="awk语法格式"><a href="#awk语法格式" class="headerlink" title="awk语法格式"></a>awk语法格式</h3><pre><code>awk [选项] &apos;模式{动作}&apos; file
+</code></pre><h3 id="awk正则匹配说明"><a href="#awk正则匹配说明" class="headerlink" title="awk正则匹配说明"></a>awk正则匹配说明</h3><pre><code>[root@jinc files]# awk &apos;$2~/^X/&apos; reg.txt 
+ Zhang Xiaoyu    390320151  :155:90:201
+ Wang  Xiaoai    3515064655 :50:95:135
+ [root@jinc files]# awk &apos;$2~/a$/&apos; reg.txt 
+ [root@jinc files]# awk &apos;$2~/i$/&apos; reg.txt 
+ Wu    Waiwai    70271111   :250:80:75
+ Wang  Xiaoai    3515064655 :50:95:135
+ Lao   Nanhai    918391635  :250:100:175
+ [root@jinc files]# 
+ Zhang Dandan    41117397   :250:100:175
+ Zhang Xiaoyu    390320151  :155:90:201
+ Meng  Feixue    80042789   :250:60:50
+ Liu   Bingbing  41117483   :250:100:175
+ Zi    Gege      1986787350 :250:168:200
+ Li    Youjiu    918391635  :175:75:300
+</code></pre><h5 id="说明：awk可以直接识别正则"><a href="#说明：awk可以直接识别正则" class="headerlink" title="说明：awk可以直接识别正则"></a>说明：awk可以直接识别正则</h5><h3 id="特殊模式说明"><a href="#特殊模式说明" class="headerlink" title="特殊模式说明"></a>特殊模式说明</h3><pre><code>awk &apos;BEGIN{print 3+1}&apos; 
+BEGIN{}  --awk 特殊模式；先执行
+</code></pre><h4 id="说明：awk命令在使用print输出指定信息的时候，自定义字符信息需要用双引号括起来；默认awk会将没有双引号括起来的信息识别为变量；因为在awk中-xx-理解为取相应列"><a href="#说明：awk命令在使用print输出指定信息的时候，自定义字符信息需要用双引号括起来；默认awk会将没有双引号括起来的信息识别为变量；因为在awk中-xx-理解为取相应列" class="headerlink" title="说明：awk命令在使用print输出指定信息的时候，自定义字符信息需要用双引号括起来；默认awk会将没有双引号括起来的信息识别为变量；因为在awk中$xx 理解为取相应列"></a>说明：awk命令在使用print输出指定信息的时候，自定义字符信息需要用双引号括起来；默认awk会将没有双引号括起来的信息识别为变量；因为在awk中$xx 理解为取相应列</h4><h4 id="BEGIN作用说明"><a href="#BEGIN作用说明" class="headerlink" title="BEGIN作用说明"></a>BEGIN作用说明</h4><pre><code>1.用于测试
+2.用于计算
+3.修改内置变量
+</code></pre><h4 id="END-–结束补充；求和"><a href="#END-–结束补充；求和" class="headerlink" title="END –结束补充；求和"></a>END –结束补充；求和</h4><pre><code>[root@jinc files]# awk &apos;{i=i+$NF} END{print i}&apos; test_sum.txt 
+55
+</code></pre><h4 id="awk指定分隔符"><a href="#awk指定分隔符" class="headerlink" title="awk指定分隔符"></a>awk指定分隔符</h4><pre><code>awk -F &quot;[:]&quot;  --以 : 作为分隔符
+ awk &apos;BEGIN{FS=&quot;:&quot;}&apos;  --以 : 作为分隔符 
+awk -vFS=&quot;:&quot; &apos;BEGIN{FS}&apos;  -- -v 指定，后面调用
+</code></pre><h4 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h4><pre><code>统计    /etc/service 空行
+</code></pre><h5 id="方法一：grep"><a href="#方法一：grep" class="headerlink" title="方法一：grep"></a>方法一：grep</h5><pre><code>[root@jinc files]# grep &apos;^$&apos; service.txt |wc -l
+ 4
+ [root@jinc files]# grep -c &apos;^$&apos; service.txt 
+ 4
+</code></pre><h4 id="方法二-：利用awk（模式-动作-）"><a href="#方法二-：利用awk（模式-动作-）" class="headerlink" title="方法二 ：利用awk（模式{动作}）"></a>方法二 ：利用awk（模式{动作}）</h4><pre><code>01.定义awk的条件信息（模式）
+[root@jinc files]# awk &apos;/^$/&apos; service.txt 
+02.定义统计数据信息的的动作
+i=i+1  &lt;&lt;默认最开始i为0，
+[root@jinc files]# awk &apos;/^$/{i=i+1;print i}&apos; service.txt 
+1
+2
+3
+4
+[root@jinc files]# awk &apos;/^$/{i=i+1}END{print i}&apos; service.txt 
+4
+[root@jinc files]# awk &apos;/^$/{i++}END{print i}&apos; service.txt 
+4
+</code></pre><h3 id="数组说明：-1"><a href="#数组说明：-1" class="headerlink" title="数组说明："></a>数组说明：</h3><pre><code>[root@jinc files]# awk &apos;BEGIN{i[1]=&quot;www&quot;;i[2]=&quot;post&quot;;i[3]=&quot;mp3&quot;; print i[1];i[2]}&apos;
+
+@jinc files]# awk &apos;BEGIN{i[1]=&quot;www&quot;;i[2]=&quot;post&quot;;i[3]=&quot;mp3&quot;; print i[1],i[2]}&apos;
+ost
+@jinc files]# awk &apos;BEGIN{i[1]=&quot;www&quot;;i[2]=&quot;post&quot;;i[3]=&quot;mp3&quot;; print i[1],i[2],i[3]}&apos;
+ost mp3
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/10/Linux运维学习-第二十八天/">
+    <time datetime="2018-08-10T02:30:04.000Z" class="entry-date">
+        2018-08-10
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/08/09/往后余生/" rel="next">往后余生 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/10/Linux运维学习-第二十八天/">Linux运维学习-第二十八 &amp;&amp; 二十九天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/09/往后余生/">往后余生</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/08/Linux运维学习-第二十七天/">Linux运维学习-第二十七天</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/07/centos7-通过git连接GitHub仓库/">centos7 通过git连接GitHub仓库</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/07/shell之11292-0-0/">shell之11292,0,0</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 11.67px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.33px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.67px;">小测试</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.67px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 13.33px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
