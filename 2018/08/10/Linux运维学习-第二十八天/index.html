@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="Innovation distinguishes between a leader and a follower.领袖和跟风者的区别就在于创新。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-10T12:54:47.658Z">
+<meta property="og:updated_time" content="2018-08-12T05:25:18.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux运维学习-第二十八 &amp;&amp; 二十九天">
 <meta name="twitter:description" content="Innovation distinguishes between a leader and a follower.领袖和跟风者的区别就在于创新。">
@@ -86,7 +86,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/10/Linux运维学习-第二十八天/" data-id="cjknzzkf1000st0ly81pylidy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/10/Linux运维学习-第二十八天/" data-id="cjkqeoppz000ss4ly2ujud65x" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -94,9 +94,7 @@
       
         <h3 id="Innovation-distinguishes-between-a-leader-and-a-follower"><a href="#Innovation-distinguishes-between-a-leader-and-a-follower" class="headerlink" title="Innovation distinguishes between a leader and a follower."></a>Innovation distinguishes between a leader and a follower.</h3><h3 id="领袖和跟风者的区别就在于创新。"><a href="#领袖和跟风者的区别就在于创新。" class="headerlink" title="领袖和跟风者的区别就在于创新。"></a>领袖和跟风者的区别就在于创新。</h3><a id="more"></a>
 <h3 id="循环语句说明"><a href="#循环语句说明" class="headerlink" title="循环语句说明"></a>循环语句说明</h3><pre><code>变量名称规范：字母、数字、下划线；尽量不要和环境变量名称冲突
-</code></pre><h3 id="三剑客命令之首–awk"><a href="#三剑客命令之首–awk" class="headerlink" title="三剑客命令之首–awk"></a>三剑客命令之首–awk</h3><p>第二十八天</p>
-<h3 id="循环语句说明-1"><a href="#循环语句说明-1" class="headerlink" title="循环语句说明"></a>循环语句说明</h3><pre><code>变量名称规范：字母、数字、下划线；尽量不要和环境变量名称冲突
-</code></pre><h3 id="三剑客命令之首–awk-1"><a href="#三剑客命令之首–awk-1" class="headerlink" title="三剑客命令之首–awk"></a>三剑客命令之首–awk</h3><h4 id="数组说明："><a href="#数组说明：" class="headerlink" title="数组说明："></a>数组说明：</h4><pre><code>用于统计文件信息，出现的数量
+</code></pre><h3 id="三剑客命令之首–awk"><a href="#三剑客命令之首–awk" class="headerlink" title="三剑客命令之首–awk"></a>三剑客命令之首–awk</h3><h4 id="数组说明："><a href="#数组说明：" class="headerlink" title="数组说明："></a>数组说明：</h4><pre><code>用于统计文件信息，出现的数量
 </code></pre><h3 id="awk语法格式"><a href="#awk语法格式" class="headerlink" title="awk语法格式"></a>awk语法格式</h3><pre><code>awk [选项] &apos;模式{动作}&apos; file
 </code></pre><h3 id="awk正则匹配说明"><a href="#awk正则匹配说明" class="headerlink" title="awk正则匹配说明"></a>awk正则匹配说明</h3><pre><code>[root@jinc files]# awk &apos;$2~/^X/&apos; reg.txt 
  Zhang Xiaoyu    390320151  :155:90:201
@@ -143,10 +141,10 @@ i=i+1  &lt;&lt;默认最开始i为0，
 4
 </code></pre><h3 id="数组说明：-1"><a href="#数组说明：-1" class="headerlink" title="数组说明："></a>数组说明：</h3><pre><code>[root@jinc files]# awk &apos;BEGIN{i[1]=&quot;www&quot;;i[2]=&quot;post&quot;;i[3]=&quot;mp3&quot;; print i[1];i[2]}&apos;
 
-@jinc files]# awk &apos;BEGIN{i[1]=&quot;www&quot;;i[2]=&quot;post&quot;;i[3]=&quot;mp3&quot;; print i[1],i[2]}&apos;
-ost
-@jinc files]# awk &apos;BEGIN{i[1]=&quot;www&quot;;i[2]=&quot;post&quot;;i[3]=&quot;mp3&quot;; print i[1],i[2],i[3]}&apos;
-ost mp3
+[root@jinc files]# awk &apos;BEGIN{i[1]=&quot;www&quot;;i[2]=&quot;post&quot;;i[3]=&quot;mp3&quot;; print i[1],i[2]}&apos;
+post
+[root@jinc files]# awk &apos;BEGIN{i[1]=&quot;www&quot;;i[2]=&quot;post&quot;;i[3]=&quot;mp3&quot;; print i[1],i[2],i[3]}&apos;
+post mp3
 </code></pre>
       
     </div><!-- .entry-content -->
