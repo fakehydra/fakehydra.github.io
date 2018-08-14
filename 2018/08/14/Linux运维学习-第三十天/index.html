@@ -13,20 +13,20 @@
   
   
   
-  <title>这是一个命令 | 瑾川</title>
+  <title>Linux运维学习-第三十天 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初识Linux权限">
-<meta name="keywords" content="小东西">
+  <meta name="description" content="Go as far as you can see; when you get there, you’ll be able to see farther.走到你能看到的最远处，当走到那，将能看得更远。">
+<meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="这是一个命令">
-<meta property="og:url" content="http://yoursite.com/2018/07/12/这是一个命令/index.html">
+<meta property="og:title" content="Linux运维学习-第三十天">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/Linux运维学习-第三十天/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="初识Linux权限">
+<meta property="og:description" content="Go as far as you can see; when you get there, you’ll be able to see farther.走到你能看到的最远处，当走到那，将能看得更远。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T12:23:35.828Z">
+<meta property="og:updated_time" content="2018-08-14T14:38:33.806Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="这是一个命令">
-<meta name="twitter:description" content="初识Linux权限">
+<meta name="twitter:title" content="Linux运维学习-第三十天">
+<meta name="twitter:description" content="Go as far as you can see; when you get there, you’ll be able to see farther.走到你能看到的最远处，当走到那，将能看得更远。">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-这是一个命令" class="post-这是一个命令 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第三十天" class="post-Linux运维学习-第三十天 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,70 +79,67 @@
         
   
     <h1 class="entry-title article-title">
-      这是一个命令
+      Linux运维学习-第三十天
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjkttbdba004b0wlyug4e2x34" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/14/Linux运维学习-第三十天/" data-id="cjkttbd4l00060wly1u4m2usx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>初识Linux权限</p>
-<a id="more"></a>
-<h2 id="linux-权限初体验"><a href="#linux-权限初体验" class="headerlink" title="linux 权限初体验"></a>linux 权限初体验</h2><pre><code>r(read,读取）：对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权限。
-w(write,写入）：对文件而言，具有新增，修改，删除文件内容的权限；对目录来说，具有新建，删除，修改，移动目录内文件的权限。
-x(execute,执行）：对文件而言，具有执行文件的权限；对目录来说该用户具有进入目录的权限
-
-1.目录的只读访问不允许使用cd进入目录，必须要有执行的权限
-2.只有执行权限只能进入目录，不能看到目录下的内容，要看的话需要可读权限
-3.一个文件能否删除，主要看该文件所在目录对用户是否具有写权限，若没有，则该目录下文件只能被文件所有者删除
-4.目录的w位不设置，即使你拥有目录中某文件的w权限也不能该文件
-</code></pre><h2 id="数字模式解读"><a href="#数字模式解读" class="headerlink" title="数字模式解读"></a>数字模式解读</h2><pre><code>rwx     7  
-rw      6
-r-w     5
-r--     4
--wx     3
--w-     2
---x     1
----     0
-</code></pre><h2 id="权限属性列表为10个字符："><a href="#权限属性列表为10个字符：" class="headerlink" title="权限属性列表为10个字符："></a>权限属性列表为10个字符：</h2><pre><code>[root@jinc1 oldboy]# ls -al
-total 24
-drwx------. 2 oldboy oldboy 4096 Jul  8 18:05 .
-drwxr-xr-x. 4 root   root   4096 Jul  9 02:24 ..
--rw-------. 1 oldboy oldboy  146 Jul  9 09:39 .bash_history
--rw-r--r--. 1 oldboy oldboy   18 Mar 23  2017 .bash_logout
--rw-r--r--. 1 oldboy oldboy  176 Mar 23  2017 .bash_profile
--rw-r--r--. 1 oldboy oldboy  124 Mar 23  2017 .bashrc
-</code></pre><h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><pre><code>第一个字符表示文件类型，d为目录 -为普通文件 l为连接      b为可存储的接口设备 c为键盘鼠标等输入设备
-2、3、4个字符表示所有者权限，5、6、7个字符表示所有者同组用户权限，     8、9、10为其他用户权限
-第二个字符表示所有者读权限，如果有权限则为r，没有权限则为-
-第三个字符表示所有者写权限，如果有权限则为w，没有权限则为-
-第四个字符表示所有者执行权限，如果有权限则为x，没有权限则为-
-第五个字符表示所有者同组用户读权限，如果有权限则为r，没有权限则     为-
-第六个字符表示所有者同组用户写权限，如果有权限则为w，没有权限则     为-
-第七个字符表示所有者同组用户执行权限，如果有权限则为x，没有权限     则为-
-第八个字符表示其他非同组读权限，如果有权限则为r，没有权限则为-
-第九个字符表示其他非同组写权限，如果有权限则为w，没有权限则为-
-第十个字符表示其他非同组执行权限，如果有权限则为x，没有权限则为-
-</code></pre><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h2>
+        <h3 id="Go-as-far-as-you-can-see-when-you-get-there-you’ll-be-able-to-see-farther"><a href="#Go-as-far-as-you-can-see-when-you-get-there-you’ll-be-able-to-see-farther" class="headerlink" title="Go as far as you can see; when you get there, you’ll be able to see farther."></a>Go as far as you can see; when you get there, you’ll be able to see farther.</h3><h3 id="走到你能看到的最远处，当走到那，将能看得更远。"><a href="#走到你能看到的最远处，当走到那，将能看得更远。" class="headerlink" title="走到你能看到的最远处，当走到那，将能看得更远。"></a>走到你能看到的最远处，当走到那，将能看得更远。</h3><a id="more"></a>
+<h3 id="网络基础"><a href="#网络基础" class="headerlink" title="网络基础"></a>网络基础</h3><h3 id="为什么要学习网络？"><a href="#为什么要学习网络？" class="headerlink" title="为什么要学习网络？"></a>为什么要学习网络？</h3><pre><code>数据库技术     --通过网络进行同步备份
+开发           --网络编程
+架构           --网络
+</code></pre><h3 id="网络知识体系"><a href="#网络知识体系" class="headerlink" title="网络知识体系"></a>网络知识体系</h3><pre><code>路由交换       --思科|华为
+网络安全       --
+运营商网络     --国外
+无线网络       --
+网络语音       --
+网络架构师     --
+</code></pre><h3 id="网络的作用"><a href="#网络的作用" class="headerlink" title="网络的作用"></a>网络的作用</h3><pre><code>意义：实现数据的通讯交流
+实现：
+    满足的条件：
+      01.传输数据双方要有传输介质
+      02.传输数据双方必须有硬件网卡设备
+          网卡--将二进制数转换成电信号--网卡的调制过程
+                将电信号转换成二进制数--网卡的解调过程
+       03.传输数据之前网卡之间需要协商传输数率
+           前两个方面：网络数率由传输数据双方网卡速率决定
+           第三个方面：参考传输介质的速率
+</code></pre><h3 id="网络硬件设备介绍"><a href="#网络硬件设备介绍" class="headerlink" title="网络硬件设备介绍"></a>网络硬件设备介绍</h3><pre><code>交换机：实现网络中多台主机设备通讯交流的需求
+MAC地址：在一个网络中标识每台终端设备身份信息--全球唯一 由16进制数组成 --- 0-9 a b c d f 
+PS:网络之间的通讯必须有去有回--网络安全性
+交换网络中：最初实现多台主机进行通讯识别时，需要借助广播通讯
+路由器：实现不同局域网之间的主机通讯需求，在一定程度上可以隔离广播风暴
+路由器识别主机身份信息：利用IP地址（逻辑地址--可以随意改变），可以有选路过程
+IP地址：在一个局域网中，IP地址唯一
+路由表生成方式：
+  01.静态--手动配置 ---静态路由
+  缺点：配置复杂
+  优点：通讯效率较高
+  02.动态--自动产生 ---动态路由（需要路由收敛过程，路由表信息统一一致）
+  缺点：通讯效率不高
+  优点：配置比较简单
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/12/这是一个命令/">
-    <time datetime="2018-07-12T09:01:30.000Z" class="entry-date">
-        2018-07-12
+    <a href="/2018/08/14/Linux运维学习-第三十天/">
+    <time datetime="2018-08-14T14:34:38.000Z" class="entry-date">
+        2018-08-14
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
 
     </footer>
 </article>
@@ -152,10 +149,8 @@ drwxr-xr-x. 4 root   root   4096 Jul  9 02:24 ..
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/12/Linux运维学习-第八天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第八天</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/11/每天一个Linux命令03/" rel="next">每天一个Linux命令03 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/12/curl-error-7/" rel="next">curl: error-(7) <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
