@@ -13,20 +13,20 @@
   
   
   
-  <title>centOS 7 py2升级py3 | 瑾川</title>
+  <title>Linux运维学习-第三十二天 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="centos 7 python2升级为python3">
-<meta name="keywords" content="小东西">
+  <meta name="description" content="You will never have what you like until you learn to like what you have.要得到你喜欢的东西，应先学会喜欢你已有的东西。">
+<meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centOS 7 py2升级py3">
-<meta property="og:url" content="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/index.html">
+<meta property="og:title" content="Linux运维学习-第三十二天">
+<meta property="og:url" content="http://yoursite.com/2018/08/16/Linux运维学习-第三十二天/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="centos 7 python2升级为python3">
+<meta property="og:description" content="You will never have what you like until you learn to like what you have.要得到你喜欢的东西，应先学会喜欢你已有的东西。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-03T12:39:27.162Z">
+<meta property="og:updated_time" content="2018-08-16T13:11:51.437Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centOS 7 py2升级py3">
-<meta name="twitter:description" content="centos 7 python2升级为python3">
+<meta name="twitter:title" content="Linux运维学习-第三十二天">
+<meta name="twitter:description" content="You will never have what you like until you learn to like what you have.要得到你喜欢的东西，应先学会喜欢你已有的东西。">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-centOS-7-py2升级py3" class="post-centOS-7-py2升级py3 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第三十二天" class="post-Linux运维学习-第三十二天 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,45 +79,86 @@
         
   
     <h1 class="entry-title article-title">
-      centOS 7 py2升级py3
+      Linux运维学习-第三十二天
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/" data-id="cjkwldmt8001yz4lynn0ekym7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/Linux运维学习-第三十二天/" data-id="cjkwldmqj0009z4lyglrj7hf4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="centos-7-python2升级为python3"><a href="#centos-7-python2升级为python3" class="headerlink" title="centos 7 python2升级为python3"></a>centos 7 python2升级为python3</h3><a id="more"></a>
-<h3 id="centos-7-下升级python2到3"><a href="#centos-7-下升级python2到3" class="headerlink" title="centos 7 下升级python2到3"></a>centos 7 下升级python2到3</h3><h3 id="centos-7下python自带版本为2-7，但是今天需要用到3，所以看了一下升级的教程"><a href="#centos-7下python自带版本为2-7，但是今天需要用到3，所以看了一下升级的教程" class="headerlink" title="centos 7下python自带版本为2.7，但是今天需要用到3，所以看了一下升级的教程"></a>centos 7下python自带版本为2.7，但是今天需要用到3，所以看了一下升级的教程</h3><h3 id="首先安装依赖包"><a href="#首先安装依赖包" class="headerlink" title="首先安装依赖包"></a>首先安装依赖包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</span><br></pre></td></tr></table></figure>
-<h3 id="然后根据需求选择自己需要的python3版本"><a href="#然后根据需求选择自己需要的python3版本" class="headerlink" title="然后根据需求选择自己需要的python3版本"></a>然后根据需求选择自己需要的python3版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tar.xz</span><br></pre></td></tr></table></figure>
-<h4 id="小提示-如果你的服务器显示找不到wget这个命令的话用yum安装一下就好"><a href="#小提示-如果你的服务器显示找不到wget这个命令的话用yum安装一下就好" class="headerlink" title="小提示:如果你的服务器显示找不到wget这个命令的话用yum安装一下就好"></a>小提示:如果你的服务器显示找不到wget这个命令的话用yum安装一下就好</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget</span><br></pre></td></tr></table></figure>
-<h3 id="建立一个空文件夹"><a href="#建立一个空文件夹" class="headerlink" title="建立一个空文件夹"></a>建立一个空文件夹</h3><h3 id="然后解压压缩包，进入该目录，安装Python3"><a href="#然后解压压缩包，进入该目录，安装Python3" class="headerlink" title="然后解压压缩包，进入该目录，安装Python3"></a>然后解压压缩包，进入该目录，安装Python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/python3 </span><br><span class="line">tar -xvJf  Python-3.6.2.tar.xz</span><br><span class="line">cd Python-3.6.2</span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<h3 id="然后创建一下软链接就好了"><a href="#然后创建一下软链接就好了" class="headerlink" title="然后创建一下软链接就好了"></a>然后创建一下软链接就好了</h3><pre><code>[root@jinch Python-3.6.2]# ln -s /usr/local/python3/bin/python3 /usr/bin/python3
-[root@jinch Python-3.6.2]# ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
-[root@jinch Python-3.6.2]# python3
-Python 3.6.2 (default, Aug  3 2018, 15:15:12) 
-[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt; 
-</code></pre><h3 id="over"><a href="#over" class="headerlink" title="-over-"></a>-over-</h3>
+        <h3 id="You-will-never-have-what-you-like-until-you-learn-to-like-what-you-have"><a href="#You-will-never-have-what-you-like-until-you-learn-to-like-what-you-have" class="headerlink" title="You will never have what you like until you learn to like what you have."></a>You will never have what you like until you learn to like what you have.</h3><h3 id="要得到你喜欢的东西，应先学会喜欢你已有的东西。"><a href="#要得到你喜欢的东西，应先学会喜欢你已有的东西。" class="headerlink" title="要得到你喜欢的东西，应先学会喜欢你已有的东西。"></a>要得到你喜欢的东西，应先学会喜欢你已有的东西。</h3><a id="more"></a>
+<h3 id="TCP11种状态集转换"><a href="#TCP11种状态集转换" class="headerlink" title="TCP11种状态集转换"></a>TCP11种状态集转换</h3><h4 id="服务端状态变化"><a href="#服务端状态变化" class="headerlink" title="服务端状态变化"></a>服务端状态变化</h4><pre><code>1.由 closed --&gt; listen ；需要开启网络服务（创建socket条目）
+socket条目：
+01.协议 TCP/UDP
+02.recv
+03.sent
+04.源IP 端口
+05.目标IP 端口
+2.由 listen--&gt;syn_rcvd接收到syn信息，并响应（第二次握手）
+3.由syn_rcvd--&gt;established，接收ack信息（第三次握手）
+</code></pre><h4 id="客户端状态变化"><a href="#客户端状态变化" class="headerlink" title="客户端状态变化"></a>客户端状态变化</h4><pre><code>1.由closed --&gt;syn_sent，需要客户端发送syn信息（第一次握手）
+2.由syn_sent变为established ，接收到syn和ack信息，进行回复ack（第三次握手）
+</code></pre><h3 id="四次挥手状态转换"><a href="#四次挥手状态转换" class="headerlink" title="四次挥手状态转换"></a>四次挥手状态转换</h3><pre><code>客户端状态变化
+1) established --- fin_wait1, 发出fin信息(第一次挥手过程)
+2) fin_wait1 --- fin_wait2, 接收到ack信息(第二次挥手过程)
+3) fin_wait2 --- time_wait, 接收到fin信息, 并回复ack信息(第四次挥手过程)
+4) time_wait --- closed, 等待一会儿(120 90 60)
+
+服务端状态变化 
+1) established --- close_wait, 接收到fin信息, 并且发出ack信息(第二次挥手过程)
+2) close_wait  --- last_ack, 发出fin信息之后(第三次挥手过程)
+3) last_ack --- closed, 接收到ack信息(第四次挥手过程)
+</code></pre><h4 id="TCP11种状态集转换问题"><a href="#TCP11种状态集转换问题" class="headerlink" title="TCP11种状态集转换问题"></a>TCP11种状态集转换问题</h4><h5 id="1-为什么挥手过程是四次-有没有可能挥手过程是三次挥手"><a href="#1-为什么挥手过程是四次-有没有可能挥手过程是三次挥手" class="headerlink" title="1. 为什么挥手过程是四次?有没有可能挥手过程是三次挥手?"></a>1. 为什么挥手过程是四次?有没有可能挥手过程是三次挥手?</h5><pre><code>在传输层接收到断开请求之后,需要向会话层进行汇报
+ 确认没有数据传输之后,再发送fin断开请求
+
+ 有的, 
+ 主动端发送fin之后,没有接收到被动端发出的ack信息,但直接接收到了fin信息
+</code></pre><h5 id="2-为什么要有time-wait状态"><a href="#2-为什么要有time-wait状态" class="headerlink" title="2. 为什么要有time_wait状态"></a>2. 为什么要有time_wait状态</h5><pre><code>避免对端服务器长期处于last_ack状态, 严重占用socket条目信息, 影响网络连接
+yum install -y iptstate
+iptstate -t  --- 查看网络连接信息,需要开启防火墙服务
+</code></pre><h3 id="DNS协议原理"><a href="#DNS协议原理" class="headerlink" title="DNS协议原理"></a>DNS协议原理</h3><pre><code>作用: 域名 --- IP地址
+[图片]www.baidu.com
+第一步: 找寻域名对应的IP地址, 在本地查找域名对应ip地址
+     1) 本地缓存中进行查找
+     cmd -- ipconfig/displaydns
+     2)本地dns解析文件中查找
+     C:\Windows\System32\drivers\etc\hosts文件 
+第二步: 询问本地dns服务(LDNS),是否有域名对应IP地址信息
+第三步: 本地dns服务器向一台根域名服务器进行询问, 根域名服务告知LDNS服务器顶级域名信息
+第四步: 本地dns服务器向顶级域名服务器进行询问, 顶级域名服务器告知LDNS服务器二级域名信息
+第五步: 本地dns服务器向二级域名服务器进行询问, 二级域名服务器告知LDNS服务器A记录信息
+ www.baidu.com --- 10.0.0.10  ---&gt; A记录
+ 第六步: 本地dns服务器会先进行保存, 保存A记录信息, 然后再将A记录信息发送给客户端主机
+ 第七步: 本地客户端主机接收到LDNS服务器回复的A记录信息, 默认也会进行缓存
+       利用得到IP地址信息, 访问相应网站的web服务器
+</code></pre><h3 id="ARP协议原理"><a href="#ARP协议原理" class="headerlink" title="ARP协议原理"></a>ARP协议原理</h3><pre><code>作用: IP地址 --- mac地址
+第一步: 利用广播信息, 找寻目标主机
+第二步: 目标主机接收到广播信息, 生成arp表记录,进行回复响应
+第三步: 源主机接收到回复信息, 生成arp表记录, 从而避免下一次访问时再次产生广播
+第四步: 其余非目标主机也会受到响应广播通讯记录, 生成源主机arp表记录信息
+
+总结arp原理:
+在一定程度减少局域网产生的广播包数量
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/08/03/centOS-7-py2升级py3/">
-    <time datetime="2018-08-03T12:29:17.000Z" class="entry-date">
-        2018-08-03
+    <a href="/2018/08/16/Linux运维学习-第三十二天/">
+    <time datetime="2018-08-16T13:09:55.000Z" class="entry-date">
+        2018-08-16
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
 
     </footer>
 </article>
@@ -127,10 +168,10 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/08/06/Linux运维学习-第二十五天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第二十五天</a></span>
+        <span class="nav-previous"><a href="/2018/08/16/kali-linux-学习笔记/" rel="prev"><span class="meta-nav">←</span> kali linux 学习笔记</a></span>
     
     
-        <span class="nav-next"><a href="/2018/08/03/eth0-网卡问题解决小方法/" rel="next">eth0 网卡问题解决小方法 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/14/Linux运维学习-第三十天/" rel="next">Linux运维学习-第三十天 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

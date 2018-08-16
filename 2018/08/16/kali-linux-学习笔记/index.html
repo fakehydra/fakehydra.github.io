@@ -13,20 +13,20 @@
   
   
   
-  <title>centOS 7 py2升级py3 | 瑾川</title>
+  <title>kali linux 学习笔记 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="centos 7 python2升级为python3">
+  <meta name="description" content="开启新世界的大门">
 <meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centOS 7 py2升级py3">
-<meta property="og:url" content="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/index.html">
+<meta property="og:title" content="kali linux 学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/08/16/kali-linux-学习笔记/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="centos 7 python2升级为python3">
+<meta property="og:description" content="开启新世界的大门">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-03T12:39:27.162Z">
+<meta property="og:updated_time" content="2018-08-16T13:19:41.289Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centOS 7 py2升级py3">
-<meta name="twitter:description" content="centos 7 python2升级为python3">
+<meta name="twitter:title" content="kali linux 学习笔记">
+<meta name="twitter:description" content="开启新世界的大门">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-centOS-7-py2升级py3" class="post-centOS-7-py2升级py3 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-kali-linux-学习笔记" class="post-kali-linux-学习笔记 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,39 +79,48 @@
         
   
     <h1 class="entry-title article-title">
-      centOS 7 py2升级py3
+      kali linux 学习笔记
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/" data-id="cjkwldmt8001yz4lynn0ekym7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/kali-linux-学习笔记/" data-id="cjkwldmtx002fz4lycwms0uhw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="centos-7-python2升级为python3"><a href="#centos-7-python2升级为python3" class="headerlink" title="centos 7 python2升级为python3"></a>centos 7 python2升级为python3</h3><a id="more"></a>
-<h3 id="centos-7-下升级python2到3"><a href="#centos-7-下升级python2到3" class="headerlink" title="centos 7 下升级python2到3"></a>centos 7 下升级python2到3</h3><h3 id="centos-7下python自带版本为2-7，但是今天需要用到3，所以看了一下升级的教程"><a href="#centos-7下python自带版本为2-7，但是今天需要用到3，所以看了一下升级的教程" class="headerlink" title="centos 7下python自带版本为2.7，但是今天需要用到3，所以看了一下升级的教程"></a>centos 7下python自带版本为2.7，但是今天需要用到3，所以看了一下升级的教程</h3><h3 id="首先安装依赖包"><a href="#首先安装依赖包" class="headerlink" title="首先安装依赖包"></a>首先安装依赖包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</span><br></pre></td></tr></table></figure>
-<h3 id="然后根据需求选择自己需要的python3版本"><a href="#然后根据需求选择自己需要的python3版本" class="headerlink" title="然后根据需求选择自己需要的python3版本"></a>然后根据需求选择自己需要的python3版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tar.xz</span><br></pre></td></tr></table></figure>
-<h4 id="小提示-如果你的服务器显示找不到wget这个命令的话用yum安装一下就好"><a href="#小提示-如果你的服务器显示找不到wget这个命令的话用yum安装一下就好" class="headerlink" title="小提示:如果你的服务器显示找不到wget这个命令的话用yum安装一下就好"></a>小提示:如果你的服务器显示找不到wget这个命令的话用yum安装一下就好</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget</span><br></pre></td></tr></table></figure>
-<h3 id="建立一个空文件夹"><a href="#建立一个空文件夹" class="headerlink" title="建立一个空文件夹"></a>建立一个空文件夹</h3><h3 id="然后解压压缩包，进入该目录，安装Python3"><a href="#然后解压压缩包，进入该目录，安装Python3" class="headerlink" title="然后解压压缩包，进入该目录，安装Python3"></a>然后解压压缩包，进入该目录，安装Python3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/python3 </span><br><span class="line">tar -xvJf  Python-3.6.2.tar.xz</span><br><span class="line">cd Python-3.6.2</span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<h3 id="然后创建一下软链接就好了"><a href="#然后创建一下软链接就好了" class="headerlink" title="然后创建一下软链接就好了"></a>然后创建一下软链接就好了</h3><pre><code>[root@jinch Python-3.6.2]# ln -s /usr/local/python3/bin/python3 /usr/bin/python3
-[root@jinch Python-3.6.2]# ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
-[root@jinch Python-3.6.2]# python3
-Python 3.6.2 (default, Aug  3 2018, 15:15:12) 
-[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt; 
-</code></pre><h3 id="over"><a href="#over" class="headerlink" title="-over-"></a>-over-</h3>
+        <h3 id="开启新世界的大门"><a href="#开启新世界的大门" class="headerlink" title="开启新世界的大门"></a>开启新世界的大门</h3><a id="more"></a>
+<h3 id="xshell-连接不上"><a href="#xshell-连接不上" class="headerlink" title="xshell 连接不上"></a>xshell 连接不上</h3><pre><code>看ssh 服务是不是开启了
+service ssh start  --开启
+
+修改 /etc/ssh/sshd.conf 配置文件
+vim /etc/ssh/sshd.conf
+PermitRootLogin yes
+保存退出
+再重启ssh服务即可
+</code></pre><h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><h4 id="替换sources-list里面的内容"><a href="#替换sources-list里面的内容" class="headerlink" title="替换sources.list里面的内容"></a>替换sources.list里面的内容</h4><h4 id="可以使用以下三个源（使用一个即可）"><a href="#可以使用以下三个源（使用一个即可）" class="headerlink" title="可以使用以下三个源（使用一个即可）"></a>可以使用以下三个源（使用一个即可）</h4><pre><code>#kali官方源
+ deb http://http.kali.org/kali kali-rolling main non-free contrib    
+#阿里云源
+ deb http://mirrors.aliyun.com/kali sana main non-free contrib
+ deb http://mirrors.aliyun.com/kali-security/ sana/updates main contrib non-free
+ deb-src http://mirrors.aliyun.com/kali-security/ sana/updates main contrib non-free
+#清华大学源
+ deb http://mirrors.tuna.tsinghua.edu.cn/kali  kali-rolling main contrib non-free
+</code></pre><p>　      eb-src <a href="https://mirrors.tuna.tsinghua.edu.cn/kali" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/kali</a> kali-rolling main contrib non-free</p>
+<h4 id="然后执行"><a href="#然后执行" class="headerlink" title="然后执行"></a>然后执行</h4><pre><code>apt-get update 命令即可更新源
+apt-get upgrade 更新软件
+</code></pre><h4 id="然后安装下载更新，使用如下命令"><a href="#然后安装下载更新，使用如下命令" class="headerlink" title="然后安装下载更新，使用如下命令"></a>然后安装下载更新，使用如下命令</h4><pre><code>apt-get dist-upgrade
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/08/03/centOS-7-py2升级py3/">
-    <time datetime="2018-08-03T12:29:17.000Z" class="entry-date">
-        2018-08-03
+    <a href="/2018/08/16/kali-linux-学习笔记/">
+    <time datetime="2018-08-16T13:10:16.000Z" class="entry-date">
+        2018-08-16
     </time>
 </a>
     
@@ -127,10 +136,8 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/08/06/Linux运维学习-第二十五天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第二十五天</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/08/03/eth0-网卡问题解决小方法/" rel="next">eth0 网卡问题解决小方法 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/16/Linux运维学习-第三十二天/" rel="next">Linux运维学习-第三十二天 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
