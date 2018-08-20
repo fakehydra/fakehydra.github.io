@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux运维学习-第六天 | 瑾川</title>
+  <title>Linux基础优化 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="。。。。。。。。。。。">
-<meta name="keywords" content="学习笔记">
+  <meta name="description" content="Linux一些基础优化">
+<meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux运维学习-第六天">
-<meta property="og:url" content="http://yoursite.com/2018/07/10/Linux运维学习-第六天/index.html">
+<meta property="og:title" content="Linux基础优化">
+<meta property="og:url" content="http://yoursite.com/2018/08/20/Linux基础优化/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="。。。。。。。。。。。">
+<meta property="og:description" content="Linux一些基础优化">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-10T11:10:35.800Z">
+<meta property="og:updated_time" content="2018-08-20T13:13:35.752Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维学习-第六天">
-<meta name="twitter:description" content="。。。。。。。。。。。">
+<meta name="twitter:title" content="Linux基础优化">
+<meta name="twitter:description" content="Linux一些基础优化">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第六天" class="post-Linux运维学习-第六天 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux基础优化" class="post-Linux基础优化 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,40 +79,54 @@
         
   
     <h1 class="entry-title article-title">
-      Linux运维学习-第六天
+      Linux基础优化
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/Linux运维学习-第六天/" data-id="cjl2b13g3001c0wg17jvolqza" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/Linux基础优化/" data-id="cjl2b13de00080wg17kk0hi5t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>。。。。。。。。。。。</p>
+        <p>Linux一些基础优化</p>
 <a id="more"></a>
-<h6 id="内容都在小测验里"><a href="#内容都在小测验里" class="headerlink" title="内容都在小测验里"></a>内容都在小测验里</h6><pre><code>传送门        
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>#yum源优化<br>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup &amp;&amp;\<br>wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-6.repo</a><br>mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup &amp;&amp;\<br>wget -O /etc/yum.repos.d/epel.repo <a href="http://mirrors.aliyun.com/repo/epel-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/epel-6.repo</a></p>
+<p>#1、关闭selinux<br>sed -i ‘s/SELINUX=enforcing/SELINUX=disabled/‘ /etc/selinux/config<br>grep SELINUX=disabled /etc/selinux/config<br>setenforce 0<br>getenforce</p>
+<p>#2、关闭iptables<br>/etc/init.d/iptables stop<br>/etc/init.d/iptables stop<br>chkconfig iptables off</p>
+<p>#3、精简开机自启动服务<br>chkconfig|egrep -v “crond|sshd|network|rsyslog|sysstat”|awk ‘{print “chkconfig”,$1,”off”}’|bash<br>export LANG=en<br>chkconfig –list|grep 3:on</p>
+<p>#4、提权oldboy可以sudo (可选项)<br>useradd oldboy<br>echo 123456|passwd –stdin oldboy<br>\cp /etc/sudoers /etc/sudoers.ori<br>echo “oldboy  ALL=(ALL) NOPASSWD: ALL “ &gt;&gt;/etc/sudoers<br>tail -1 /etc/sudoers<br>visudo -c</p>
+<p>#5、中文字符集<br>cp /etc/sysconfig/i18n /etc/sysconfig/i18n.ori<br>echo ‘LANG=”zh_CN.UTF-8”‘  &gt;/etc/sysconfig/i18n<br>source /etc/sysconfig/i18n<br>echo $LANG</p>
+<p>#6、时间同步<br>echo ‘#time sync by oldboy at 2010-2-1’ &gt;&gt;/var/spool/cron/root<br>echo ‘<em>/5 </em> <em> </em> * /usr/sbin/ntpdate time.nist.gov &gt;/dev/null 2&gt;&amp;1’ &gt;&gt;/var/spool/cron/root<br>crontab -l</p>
+<p>#7、命令行安全  (一定不要优化)</p>
+<p>#echo ‘export TMOUT=300’ &gt;&gt;/etc/profile</p>
+<p>#echo ‘export HISTSIZE=5’ &gt;&gt;/etc/profile</p>
+<p>#echo ‘export HISTFILESIZE=5’ &gt;&gt;/etc/profile</p>
+<p>#tail -3 /etc/profile</p>
+<p>#. /etc/profile</p>
+<p>#8、加大文件描述<br>echo ‘*               -       nofile          65535 ‘ &gt;&gt;/etc/security/limits.conf<br>tail -1 /etc/security/limits.conf </p>
+<h1 id="确保服务程序可以正常运行"><a href="#确保服务程序可以正常运行" class="headerlink" title="确保服务程序可以正常运行"></a>确保服务程序可以正常运行</h1><p>#9、内核优化<br>cat &gt;&gt;/etc/sysctl.conf&lt;&lt;EOF<br>net.ipv4.tcp_fin_timeout = 2<br>net.ipv4.tcp_tw_reuse = 1<br>net.ipv4.tcp_tw_recycle = 1<br>net.ipv4.tcp_syncookies = 1<br>net.ipv4.tcp_keepalive_time = 600<br>net.ipv4.ip_local_port_range = 4000    65000<br>net.ipv4.tcp_max_syn_backlog = 16384<br>net.ipv4.tcp_max_tw_buckets = 36000<br>net.ipv4.route.gc_timeout = 100<br>net.ipv4.tcp_syn_retries = 1<br>net.ipv4.tcp_synack_retries = 1<br>net.core.somaxconn = 16384<br>net.core.netdev_max_backlog = 16384<br>net.ipv4.tcp_max_orphans = 16384</p>
+<p>#以下参数是对iptables防火墙的优化，防火墙不开会提示，可以忽略不理。<br>net.nf_conntrack_max = 25000000<br>net.netfilter.nf_conntrack_max = 25000000<br>net.netfilter.nf_conntrack_tcp_timeout_established = 180<br>net.netfilter.nf_conntrack_tcp_timeout_time_wait = 120<br>net.netfilter.nf_conntrack_tcp_timeout_close_wait = 60<br>net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 120<br>EOF</p>
+<p>#10. 下载安装系统基础软件<br>yum install lrzsz nmap tree dos2unix nc -y</p>
+<p>B、模板机解析配置</p>
+<p>a./etc/hosts<br>hosts解析<br>cat &gt;/etc/hosts&lt;&lt;EOF<br>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4<br>::1         localhost localhost.localdomain localhost6 localhost6.localdomain6<br>172.16.1.5      lb01<br>172.16.1.6      lb02<br>172.16.1.7      web01<br>172.16.1.8      web02<br>172.16.1.9      web03<br>172.16.1.51     db01 db01.etiantian.org<br>172.16.1.31     nfs01<br>172.16.1.41     backup<br>172.16.1.61     m01<br>EOF</p>
 
-
-
-over
-</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/10/Linux运维学习-第六天/">
-    <time datetime="2018-07-10T11:08:40.000Z" class="entry-date">
-        2018-07-10
+    <a href="/2018/08/20/Linux基础优化/">
+    <time datetime="2018-08-20T13:10:51.000Z" class="entry-date">
+        2018-08-20
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
 
     </footer>
 </article>
@@ -122,10 +136,10 @@ over
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/10/每天一个Linux命令02/" rel="prev"><span class="meta-nav">←</span> 每天一个Linux命令02</a></span>
+        <span class="nav-previous"><a href="/2018/08/20/期中架构-01/" rel="prev"><span class="meta-nav">←</span> 期中架构-01</a></span>
     
     
-        <span class="nav-next"><a href="/2018/07/10/第一次测验题目汇总/" rel="next">第一次测验题目汇总 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/16/kali-linux-学习笔记/" rel="next">kali linux 学习笔记 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux运维学习-第六天 | 瑾川</title>
+  <title>期中架构-01 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="。。。。。。。。。。。">
-<meta name="keywords" content="学习笔记">
+  <meta name="description" content="期中开场">
+<meta name="keywords" content="期中架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux运维学习-第六天">
-<meta property="og:url" content="http://yoursite.com/2018/07/10/Linux运维学习-第六天/index.html">
+<meta property="og:title" content="期中架构-01">
+<meta property="og:url" content="http://yoursite.com/2018/08/20/期中架构-01/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="。。。。。。。。。。。">
+<meta property="og:description" content="期中开场">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-10T11:10:35.800Z">
+<meta property="og:updated_time" content="2018-08-20T13:16:31.123Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维学习-第六天">
-<meta name="twitter:description" content="。。。。。。。。。。。">
+<meta name="twitter:title" content="期中架构-01">
+<meta name="twitter:description" content="期中开场">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第六天" class="post-Linux运维学习-第六天 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-01" class="post-期中架构-01 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,40 +79,69 @@
         
   
     <h1 class="entry-title article-title">
-      Linux运维学习-第六天
+      期中架构-01
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/Linux运维学习-第六天/" data-id="cjl2b13g3001c0wg17jvolqza" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/期中架构-01/" data-id="cjl2b13hv002v0wg12v54tmdn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>。。。。。。。。。。。</p>
-<a id="more"></a>
-<h6 id="内容都在小测验里"><a href="#内容都在小测验里" class="headerlink" title="内容都在小测验里"></a>内容都在小测验里</h6><pre><code>传送门        
-
-
-
-over
+        <h3 id="期中开场"><a href="#期中开场" class="headerlink" title="期中开场"></a>期中开场</h3><a id="more"></a>
+<h3 id="网站的架构组成（中型网站架构）"><a href="#网站的架构组成（中型网站架构）" class="headerlink" title="网站的架构组成（中型网站架构）"></a>网站的架构组成（中型网站架构）</h3><h4 id="前端组成："><a href="#前端组成：" class="headerlink" title="前端组成："></a>前端组成：</h4><pre><code>1) 防火墙
+  作用: 提供网站的安全性
+  实现方式: 硬件实现  软件实现(iptables(centos6) firewall(centos7))
+2) 负载均衡服务器
+  作用: 对访问流量进行调度处理
+  实现方式: 硬件实现 软件实现(nginx反向代理服务 LVS haproxy)
+  解决负载均衡单点故障：高可用集群（keepalived）
+3) web服务器(网站页面服务)
+  作用: 处理用户访问请求
+  实现方式: 软件实现(nginx apache tomcat)
+  补充说明:  一般web服务器会有多台,多台服务器进行协同工作,组建成为一个集群
+  集群概念: 多台完成相同工作的服务器,就可以成为是一个集群
+</code></pre><h4 id="后端组成部分"><a href="#后端组成部分" class="headerlink" title="后端组成部分:"></a>后端组成部分:</h4><pre><code>1) 数据库服务器:
+   作用: 主要用于存储文本数据信息
+   实现方式: mysql
+2) 存储服务器:
+   作用: 主要用于存储图片 音频 视频 附件等数据信息
+   实现方式: nfs ftp samba
+3) 备份服务器:
+   实现方式: rsync    
+4) 缓存服务器:(数据库阶段)
+   作用: 将数据存储到内存中, 提升数据存储与读取效率, 最终提升用户感受
+   实现方式: memcache redis mongodb
+</code></pre><h3 id="架构补充说明"><a href="#架构补充说明" class="headerlink" title="架构补充说明"></a>架构补充说明</h3><pre><code>1) VPN服务器(员工通道)
+  作用: 可以提供运维(技术人员)进行远程管理
+  实现方式: pptp vpn/ ipsec vpn(虚拟专用网络)       
+2) 跳板机服务器
+  作用: 主要用于审计运维人员的操作信息
+  实现方式: jumpserver
+3) 监控服务器:
+  作用: 监控网站架构中所有服务器的状态信息
+  实现方式: zabbix
+4) 批量管理服务器:
+  作用: 实现批量以及自动化管理服务器
+  实现方式: ansible saltstack
 </code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/10/Linux运维学习-第六天/">
-    <time datetime="2018-07-10T11:08:40.000Z" class="entry-date">
-        2018-07-10
+    <a href="/2018/08/20/期中架构-01/">
+    <time datetime="2018-08-20T13:12:09.000Z" class="entry-date">
+        2018-08-20
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
 
     </footer>
 </article>
@@ -122,10 +151,8 @@ over
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/10/每天一个Linux命令02/" rel="prev"><span class="meta-nav">←</span> 每天一个Linux命令02</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/10/第一次测验题目汇总/" rel="next">第一次测验题目汇总 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/20/Linux基础优化/" rel="next">Linux基础优化 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
