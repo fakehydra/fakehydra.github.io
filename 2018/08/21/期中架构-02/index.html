@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>期中架构-02 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Write it on your heart that every day is the best day in the year.请记住：现在的每一天都是一年中最美好的一天。">
+<meta name="keywords" content="期中架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="期中架构-02">
+<meta property="og:url" content="http://yoursite.com/2018/08/21/期中架构-02/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Write it on your heart that every day is the best day in the year.请记住：现在的每一天都是一年中最美好的一天。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-21T11:52:08.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="期中架构-02">
+<meta name="twitter:description" content="Write it on your heart that every day is the best day in the year.请记住：现在的每一天都是一年中最美好的一天。">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-02" class="post-期中架构-02 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      期中架构-02
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/期中架构-02/" data-id="cjl3nivfz0037g4g16vwfwp1w" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="Write-it-on-your-heart-that-every-day-is-the-best-day-in-the-year"><a href="#Write-it-on-your-heart-that-every-day-is-the-best-day-in-the-year" class="headerlink" title="Write it on your heart that every day is the best day in the year."></a>Write it on your heart that every day is the best day in the year.</h4><h4 id="请记住：现在的每一天都是一年中最美好的一天。"><a href="#请记住：现在的每一天都是一年中最美好的一天。" class="headerlink" title="请记住：现在的每一天都是一年中最美好的一天。"></a>请记住：现在的每一天都是一年中最美好的一天。</h4><a id="more"></a>
+<h4 id="期中架构-02-rsync"><a href="#期中架构-02-rsync" class="headerlink" title="期中架构-02 rsync"></a>期中架构-02 rsync</h4><h3 id="rsync备份服务软件介绍"><a href="#rsync备份服务软件介绍" class="headerlink" title="rsync备份服务软件介绍"></a>rsync备份服务软件介绍</h3><pre><code>rsync是一款开源的、快速的、多功能、多功能的、可实现全量及增量的本地或远程数据备份
+增量备份：只同步变化的数据信息，主要利用了quick check算法
+同步原理：
+ 1) 建立好网络连接
+ 2) 先进行数据信息比对
+ 3) 只将变化的数据进行增量备份
+</code></pre><h3 id="rsync软件作用说明：（1v4）"><a href="#rsync软件作用说明：（1v4）" class="headerlink" title="rsync软件作用说明：（1v4）"></a>rsync软件作用说明：（1v4）</h3><h4 id="本地数据备份：cp"><a href="#本地数据备份：cp" class="headerlink" title="本地数据备份：cp"></a>本地数据备份：cp</h4><pre><code>[root@backup ~]# cp -a /etc/hosts /tmp/hosts_cp
+[root@backup ~]# ll /tmp/hosts_cp
+-rw-r--r--. 1 root root 405 Aug 20 15:28 /tmp/hosts_cp
+[root@backup ~]# rsync -a /etc/hosts /tmp/hosts_rsync
+[root@backup ~]# ll /tmp/hosts_rsync
+-rw-r--r-- 1 root root 405 Aug 20 15:28 /tmp/hosts_rsync
+</code></pre><p>PS：同步目录的时候目录后面有/（null/）,表示同步目录下的文件；没有/（/root/null）表示同步目录以及目录下的文件</p>
+<pre><code>[root@backup ~]# rsync -a null/ /tmp/
+[root@backup ~]# ll /tmp/
+total 16
+-rw-r--r--  1 root root   0 Aug 21 09:30 1.txt
+-rw-r--r--. 1 root root 405 Aug 20 15:28 hosts_cp
+-rw-r--r--  1 root root 405 Aug 20 15:28 hosts_rsync
+-rw-r--r--  1 root root  28 Aug 21 09:27 network_rsync1
+-rw-r--r--  1 root root  28 Aug 20 15:46 network_scp
+-rw-------. 1 root root   0 Aug 18 15:08 yum.log
+[root@backup ~]# rsync -a /root/null /tmp/
+[root@backup ~]# ll /tmp/
+total 20
+-rw-r--r--  1 root root    0 Aug 21 09:30 1.txt
+-rw-r--r--. 1 root root  405 Aug 20 15:28 hosts_cp
+-rw-r--r--  1 root root  405 Aug 20 15:28 hosts_rsync
+-rw-r--r--  1 root root   28 Aug 21 09:27 network_rsync1
+-rw-r--r--  1 root root   28 Aug 20 15:46 network_scp
+drwxr-xr-x  2 root root 4096 Aug 21 09:30 null
+
+远程数据备份：scp
+[root@nfs ~]# scp -rp /etc/sysconfig/network backup:/tmp/network_scp
+[root@nfs ~]# rsync -rp /etc/sysconfig/network backup:/tmp/network_rsync1
+
+[root@backup ~]# ll /tmp/
+total 16
+-rw-r--r--. 1 root root 405 Aug 20 15:28 hosts_cp
+-rw-r--r--  1 root root 405 Aug 20 15:28 hosts_rsync
+-rw-r--r--  1 root root  28 Aug 21 09:27 network_rsync1
+-rw-r--r--  1 root root  28 Aug 20 15:46 network_scp
+
+数据删除操作：rm
+[root@backup ~]# rsync -a --delete /root/null/ /tmp/
+[root@backup ~]# ll /tmp/
+total 0
+-rw-r--r-- 1 root root 0 Aug 21 09:30 1.txt
+[root@backup ~]# 
+
+查看数据信息：ls
+[root@backup ~]# rsync /etc/hosts
+-rw-r--r--         405 2018/08/20 15:28:00 hosts
+</code></pre><h3 id="rsync特点说明："><a href="#rsync特点说明：" class="headerlink" title="rsync特点说明："></a>rsync特点说明：</h3><pre><code>1) 支持拷贝普通文件与特殊文件如链接文件，设备等。
+2) 可以有排除指定文件或目录同步的功能，相当于打包命令tar的排除功能。
+  #tar zcvf backup_1.tar.gz  /opt/data  -exclude=oldboy    
+  说明：在打包/opt/data时就排除了oldboy命名的目录和文件。
+3) 可以做到保持原文件或目录的权限、时间、软硬链接、属主、组等所有属性均不改变-p。
+4) 可实现增量同步，既只同步发生变化的数据，因此数据传输效率很高（tar -N）。
+  # 将备份/home 目录自 2008-01-29 以来修改过的文件
+  # tar -N 2008-01-29 -zcvf /backups/inc-backup_$(date +%F).tar.gz /home
+  # 将备份 /home 目录昨天以来修改过的文件
+  # tar -N $(date -d yesterday &quot;+%F&quot;) -zcvf /backups/inc-backup_$(date +%F).tar.g home
+
+  # 添加文件到已经打包的文件
+  # tar -rf all.tar *.gif
+  说明：这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。
+5) 可以使用rcp,rsh,ssh等方式来配合进行隧道加密传输文件（rsync本身不对数据加密）
+6) 可以通过socket(进程方式)传输文件和数据（服务端和客户端）*****。重点掌握
+7) 支持匿名的或认证（无需系统用户）的进程模式传输，可实现方便安全的进行数据备份及镜像。
+</code></pre><h3 id="rsync软件的工作方式（如何应用）"><a href="#rsync软件的工作方式（如何应用）" class="headerlink" title="rsync软件的工作方式（如何应用）"></a>rsync软件的工作方式（如何应用）</h3><h4 id="本地备份数据方式"><a href="#本地备份数据方式" class="headerlink" title="本地备份数据方式"></a>本地备份数据方式</h4><pre><code>     1) 本地备份数据方式(cp命令)
+Local:  rsync [OPTION...] SRC... [DEST]
+rsync              --- 数据备份命令
+[OPTION...]        --- 命令参数信息
+src                --- 要进行同步备份的源文件或目录信息
+[DEST]             --- 将数据备份同步到本地系统中的什么路径下
+
+2) 远程备份数据方式
+Access via remote shell:
+Pull: rsync [OPTION...] [USER@]HOST:SRC... [DEST]
+rsync              --- 数据备份命令
+[OPTION...]        --- 命令参数信息
+[USER@]            --- 以什么用户身份进行数据的拉去    
+HOST:SRC           --- 从哪个远程主机上,将指定的数据进行备份同步
+[DEST]            --- 将远程主机拉去过来的数据保存到本地什么路径中
+
+Push: rsync [OPTION...] SRC... [USER@]HOST:DEST
+rsync              --- 数据备份命令
+[OPTION...]        --- 命令参数信息
+[USER@]            --- 以什么用户身份进行数据的拉去    
+SRC                --- 指定本地要推送备份的数据信息
+[USER@]HOST:DEST   --- 以什么用户身份,将数据信息推送到指定主机的相应目录中    
+
+参照服务器: 在什么服务器执行操作命令,对应的服务器就是参照服务器
+推: 在参照服务器上执行命令, 将本地数据怼到远程主机上
+拉: 在参照服务器上执行命令, 将远程数据恏到本地主机上
+</code></pre><h3 id="rsync守护进程服务部署方式"><a href="#rsync守护进程服务部署方式" class="headerlink" title="rsync守护进程服务部署方式"></a>rsync守护进程服务部署方式</h3><pre><code>服务端：
+1）确认rsync是否安装
+[root@backup ~]# rpm -qa rsync
+rsync-3.0.6-12.el6.x86_64
+2）编写配置文件
+
+
+3）创建用户
+[root@backup ~]# useradd -M -s /sbin/nologin rsync 
+[root@backup ~]# id rsync
+uid=501(rsync) gid=501(rsync) groups=501(rsync)
+4）创建目录
+[root@backup ~]# mkdir /backup -p
+[root@backup ~]# chown -R rsync.rsync /backup
+5）创建认证用户密码文件
+[root@backup ~]# echo &quot;rsync_backup:123456&quot; &gt;&gt;/etc/rsyncd.password
+[root@backup ~]# cat /etc/rsyncd.password
+rsync_backup:123456
+[root@backup ~]# chmod 600 /etc/rsyncd.password
+6）启动服务的守护进程
+[root@backup ~]# rsync --daemon
+[root@backup ~]# ps -ef |grep rsync
+root      26024      1  0 11:34 ?        00:00:00 rsync --daemon
+root      26026  25304  0 11:34 pts/0    00:00:00 grep rsync
+</code></pre><h4 id="PS：rsync服务端口号为873"><a href="#PS：rsync服务端口号为873" class="headerlink" title="PS：rsync服务端口号为873"></a>PS：rsync服务端口号为873</h4><pre><code>客户端：
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/21/期中架构-02/">
+    <time datetime="2018-08-21T11:49:16.000Z" class="entry-date">
+        2018-08-21
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/08/21/zabbix简单安装部署/" rel="prev"><span class="meta-nav">←</span> zabbix简单安装部署</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/08/20/期中架构-01/" rel="next">期中架构-01 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/21/zabbix简单安装部署/">zabbix简单安装部署</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/21/期中架构-02/">期中架构-02</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/20/期中架构-01/">期中架构-01</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/20/Linux基础优化/">Linux基础优化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/16/kali-linux-学习笔记/">kali linux 学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 11.67px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.33px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.67px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 11.67px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.67px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 13.33px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
