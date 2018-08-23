@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux同步网络时间 | 瑾川</title>
+  <title>期中架构-04 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个小东西">
-<meta name="keywords" content="小东西">
+  <meta name="description" content="nfs">
+<meta name="keywords" content="期中架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux同步网络时间">
-<meta property="og:url" content="http://yoursite.com/2018/07/17/Linux同步网络时间/index.html">
+<meta property="og:title" content="期中架构-04">
+<meta property="og:url" content="http://yoursite.com/2018/08/23/期中架构-04/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="这是一个小东西">
+<meta property="og:description" content="nfs">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-17T08:10:21.366Z">
+<meta property="og:updated_time" content="2018-08-23T10:36:31.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux同步网络时间">
-<meta name="twitter:description" content="这是一个小东西">
+<meta name="twitter:title" content="期中架构-04">
+<meta name="twitter:description" content="nfs">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux同步网络时间" class="post-Linux同步网络时间 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-04" class="post-期中架构-04 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,51 +79,117 @@
         
   
     <h1 class="entry-title article-title">
-      Linux同步网络时间
+      期中架构-04
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux同步网络时间/" data-id="cjl6fnlrc000leog1cl7930gt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-04/" data-id="cjl6fnlun003ceog10vymgm6t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="这是一个小东西"><a href="#这是一个小东西" class="headerlink" title="这是一个小东西"></a>这是一个小东西</h3><a id="more"></a>
-<h4 id="很多时候，我们回因为各种不痛的需求而修改自己Linux的时间，而之后，又要自己设置回来，那样会有点小小的麻烦，所以，这时候，我们只要会这么一个小小的命令，就不用再为此而烦恼了"><a href="#很多时候，我们回因为各种不痛的需求而修改自己Linux的时间，而之后，又要自己设置回来，那样会有点小小的麻烦，所以，这时候，我们只要会这么一个小小的命令，就不用再为此而烦恼了" class="headerlink" title="很多时候，我们回因为各种不痛的需求而修改自己Linux的时间，而之后，又要自己设置回来，那样会有点小小的麻烦，所以，这时候，我们只要会这么一个小小的命令，就不用再为此而烦恼了~"></a>很多时候，我们回因为各种不痛的需求而修改自己Linux的时间，而之后，又要自己设置回来，那样会有点小小的麻烦，所以，这时候，我们只要会这么一个小小的命令，就不用再为此而烦恼了~</h4><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>yum install ntpdate
-</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><pre><code>#  用法很简单，直接ntpdate IP 就好
-#  ntpdate 210.72.145.44
-</code></pre><h4 id="date-命令"><a href="#date-命令" class="headerlink" title="date 命令"></a>date 命令</h4><pre><code>date 查看当前时间
-date -s  设置时间
-</code></pre><h4 id="ntpdate-命令"><a href="#ntpdate-命令" class="headerlink" title="ntpdate 命令"></a>ntpdate 命令</h4><pre><code>ntpdate -u 210.72.145.44  --同步网络时间
-</code></pre><h5 id="注意：若不加上-u-参数，会出现-no-server-found"><a href="#注意：若不加上-u-参数，会出现-no-server-found" class="headerlink" title="注意：若不加上 -u 参数，会出现 no server found"></a>注意：若不加上 -u 参数，会出现 no server found</h5><pre><code>-u :通过man ntpdate 可知 -u 参数可以越过防火墙与主机同步
-210.72.145.44 ：中国国家授时中心的官方服务器
-</code></pre><h4 id="ntp常用服务器"><a href="#ntp常用服务器" class="headerlink" title="ntp常用服务器"></a>ntp常用服务器</h4><pre><code>中国国家授时中心：210.72.145.44
-NTP服务器(上海) ：ntp.api.bz
+        <h4 id="nfs"><a href="#nfs" class="headerlink" title="nfs"></a>nfs</h4><a id="more"></a>
+<p>期中架构-04</p>
+<h3 id="NFS-存储服务介绍"><a href="#NFS-存储服务介绍" class="headerlink" title="NFS 存储服务介绍"></a>NFS 存储服务介绍</h3><h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><h4 id="服务端部署流程"><a href="#服务端部署流程" class="headerlink" title="服务端部署流程:"></a>服务端部署流程:</h4><pre><code>第一个里程: 检查相应存储服务软件是否安装, 进行软件安装
+nfs-utils rpcbind(centos6) portmap(centos5)
+rpm -qa|grep -E &apos;nfs|rpc&apos;
+yum install nfs-utils rpcbind -y
 
-美国：time.nist.gov 
-复旦：ntp.fudan.edu.cn 
-微软公司授时主机(美国) ：time.windows.com 
-台警大授时中心(台湾)：asia.pool.ntp.org     
+rpm -ql nfs-utils
+/etc/rc.d/init.d/nfs
+/usr/sbin/showmount
 
-我在上海，所以用了一下上海的，可以正常使用
-</code></pre><h4 id="一些可用的NTP服务器地址（是不是真的有用就看你们自己的了、、、、、以下来源于网络）："><a href="#一些可用的NTP服务器地址（是不是真的有用就看你们自己的了、、、、、以下来源于网络）：" class="headerlink" title="一些可用的NTP服务器地址（是不是真的有用就看你们自己的了、、、、、以下来源于网络）："></a>一些可用的NTP服务器地址（是不是真的有用就看你们自己的了、、、、、以下来源于网络）：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">              </span><br><span class="line">Name           	                      IP 	                                  Location</span><br><span class="line"></span><br><span class="line">210.72.145.44 	                 210.72.145.44 	     中国（国家授时中心）</span><br><span class="line">133.100.11.8 	                 133.100.11.8 	     日本（福冈大学）</span><br><span class="line">time-a.nist.gov                  129.6.15.28         NIST,Gaithersburg,Maryland</span><br><span class="line">time-b.nist.gov 	             129.6.15.29 	     NIST,Gaithersburg,Maryland</span><br><span class="line">time-a.timefreq.bldrdoc.gov 	 132.163.4.101       NIST,Boulder,Colorado</span><br><span class="line">time-b.timefreq.bldrdoc.gov 	 132.163.4.102       NIST,Boulder,Colorado</span><br><span class="line">time-c.timefreq.bldrdoc.gov 	 132.163.4.103       NIST,Boulder,Colorado</span><br><span class="line">utcnist.colorado.edu 	         128.138.140.44 	 UniversityofColorado,Boulder</span><br><span class="line">time.nist.gov 	                 192.43.244.18 	     NCAR,Boulder,Colorado</span><br><span class="line">time-nw.nist.gov 	             131.107.1.10  	     Microsoft,Redmond,Washington</span><br><span class="line">nist1.symmetricom.com 	         69.25.96.13     	 Symmetricom,SanJose,California</span><br><span class="line">nist1-dc.glassey.com 	         216.200.93.8  	     Abovenet,Virginia</span><br><span class="line">nist1-ny.glassey.com 	         208.184.49.9   	 Abovenet,NewYorkCity</span><br><span class="line">nist1-sj.glassey.com 	         207.126.98.204 	 Abovenet,SanJose,California</span><br><span class="line">nist1.aol-ca.truetime.com 	     207.200.81.113 	 TrueTime,AOLfacility,Sunnyvale,California</span><br><span class="line">nist1.aol-va.truetime.com 	     64.236.96.53 	     TrueTime,AOLfacility,Virginia</span><br><span class="line">~~</span><br></pre></td></tr></table></figure>
+rpm -ql rpcbind
+/etc/rc.d/init.d/rpcbind
+/usr/sbin/rpcinfo    --- 查看nfs服务是否已经进行了注册
+
+第二个里程: 编写配置文件
+vim /etc/exports
+#share /data by oldboy for share at 20170220
+/data 172.16.1.0/24(rw,sync)
+  ①       ②          ③
+第一列: 定义nfs服务的共享目录信息
+第二列: 定义哪些网段的主机可以访问共享目录
+第三列: 配置共享目录的一些权限或功能信息
+
+第三个里程: 创建共享目录信息, 目录授权
+mkdir /data -p 
+[root@nfs01 ~]# id nfsnobody   --- 共享目录管理用户
+uid=65534(nfsnobody) gid=65534(nfsnobody) groups=65534(nfsnobody)
+chown -R nfsnobody.nfsnobody /data/
+
+第四个里程: 启动nfs相关服务
+先启动rpc服务
+/etc/init.d/rpcbind start
+[root@nfs01 ~]# ps -ef|grep rpcbind
+rpc        8050      1  0 10:19 ?        00:00:00 rpcbind
+root       8066   7980  0 10:20 pts/1    00:00:00 grep --color=auto rpcbind
+[root@nfs01 ~]# netstat -lntup|grep rpc
+tcp        0      0 0.0.0.0:111                 0.0.0.0:*                   LISTEN      8050/rpcbind        
+tcp        0      0 :::111                      :::*                        LISTEN      8050/rpcbind
+
+再启动nfs服务
+/etc/init.d/nfs start
+[root@nfs01 ~]# ps -ef|grep nfs
+root       8128      2  0 10:21 ?        00:00:00 [nfsd4]
+root       8129      2  0 10:21 ?        00:00:00 [nfsd4_callbacks]
+root       8130      2  0 10:21 ?        00:00:00 [nfsd]
+root       8131      2  0 10:21 ?        00:00:00 [nfsd]
+root       8132      2  0 10:21 ?        00:00:00 [nfsd]
+root       8133      2  0 10:21 ?        00:00:00 [nfsd]
+root       8134      2  0 10:21 ?        00:00:00 [nfsd]
+root       8135      2  0 10:21 ?        00:00:00 [nfsd]
+root       8136      2  0 10:21 ?        00:00:00 [nfsd]
+root       8137      2  0 10:21 ?        00:00:00 [nfsd]
+
+rpcinfo -p localhost  --- 检查本地nfs服务是否想rpc服务进行注册
+</code></pre><h4 id="客户端部署流程"><a href="#客户端部署流程" class="headerlink" title="客户端部署流程:"></a>客户端部署流程:</h4><pre><code> 第一个里程: 检查安装软件服务
+ nfs-utils rpcbind
+ yum install -y nfs-utils rpcbind
+
+ 第二个里程: 进行共享目录挂载使用
+ mount -t nfs 172.16.1.31:/data /mnt
+ [root@backup ~]# df -h
+ Filesystem         Size  Used Avail Use% Mounted on
+ /dev/sda3           48G  1.9G   44G   5% /
+ tmpfs              238M     0  238M   0% /dev/shm
+ /dev/sda1          190M   35M  146M  19% /boot
+ 172.16.1.31:/data   48G  1.8G   44G   4% /mnt
+
+第三个里程: 进行存储数据测试
+
+
+/etc/exports文件配置格式为：
+NFS共享目录 NFS客户端地址1（参数1，参数2，...） 客户端地址2（参数1，参数2，...）
+或
+NFS 共享目录 NFS客户端地址（参数1，参数2，...）
+</code></pre><h3 id="配置文件三个重要组成部分"><a href="#配置文件三个重要组成部分" class="headerlink" title="配置文件三个重要组成部分"></a>配置文件三个重要组成部分</h3><h4 id="NFS共享目录："><a href="#NFS共享目录：" class="headerlink" title="NFS共享目录："></a>NFS共享目录：</h4><pre><code>为NFS服务器端要共享的实际目录，要用绝对路径，如（/data）。注意共享目录的本地权限，如果需要读写共享，一定要让本地目录可以被NFS客户端的用户（nfsnobody）读写。
+</code></pre><h4 id="NFS客户端地址："><a href="#NFS客户端地址：" class="headerlink" title="NFS客户端地址："></a>NFS客户端地址：</h4><pre><code>为NFS服务器端授权的可访问共享目录的NFS客户端地址，可以为单独的IP地址或主机名、域名等，也可以为整个网段地址。还可以用“*”来匹配所有客户端服务器，这里所谓的客户端一般来说是前端的业务的业务服务器，例如：web服务。具体说明见表10-3
+</code></pre><h4 id="权限参数集"><a href="#权限参数集" class="headerlink" title="权限参数集"></a>权限参数集</h4><pre><code>对授权的NFS客户端的访问权限设置。参数具体说明见后文。
+1) nfs权限（共享目录【借给你手机】） nfs配置的/etc/exports /data 172.16.1.0/24(rw)
+2) 本地文件系统权限（【手机密码不告诉你】） 挂载目录的权限rwxr-xr-x root root /data
+</code></pre><h4 id="配置文件中权限信息说明"><a href="#配置文件中权限信息说明" class="headerlink" title="配置文件中权限信息说明"></a>配置文件中权限信息说明</h4><pre><code>no_root_squash   --- 当用root用户向存储服务器存储数据,root用户身份不会发生改变
+root_squash      --- 当用root用户向存储服务器存储数据,root用户身份会发生改变
+all_squash       --- 当用普通用户向存储服务器存储数据,普通用户身份会发生改变
+no_all_squash    --- 当用普通用户向存储服务器存储数据,普通用户身份会不会发生改变
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/17/Linux同步网络时间/">
-    <time datetime="2018-07-17T07:49:16.000Z" class="entry-date">
-        2018-07-17
+    <a href="/2018/08/23/期中架构-04/">
+    <time datetime="2018-08-23T10:30:24.000Z" class="entry-date">
+        2018-08-23
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
 
     </footer>
 </article>
@@ -133,10 +199,8 @@ NTP服务器(上海) ：ntp.api.bz
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/18/Linux运维学习-第十二天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第十二天</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/17/Linux运维学习-第十一天/" rel="next">Linux运维学习-第十一天 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/23/期中架构-03/" rel="next">期中架构-03 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

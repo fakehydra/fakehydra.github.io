@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux同步网络时间 | 瑾川</title>
+  <title>期中架构-03 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个小东西">
-<meta name="keywords" content="小东西">
+  <meta name="description" content="Don’t forget, a person’s greatest emotional need is to feel appreciated.莫忘记，人类情感上最大的需要是感恩。">
+<meta name="keywords" content="期中架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux同步网络时间">
-<meta property="og:url" content="http://yoursite.com/2018/07/17/Linux同步网络时间/index.html">
+<meta property="og:title" content="期中架构-03">
+<meta property="og:url" content="http://yoursite.com/2018/08/23/期中架构-03/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="这是一个小东西">
+<meta property="og:description" content="Don’t forget, a person’s greatest emotional need is to feel appreciated.莫忘记，人类情感上最大的需要是感恩。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-17T08:10:21.366Z">
+<meta property="og:updated_time" content="2018-08-23T10:36:34.378Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux同步网络时间">
-<meta name="twitter:description" content="这是一个小东西">
+<meta name="twitter:title" content="期中架构-03">
+<meta name="twitter:description" content="Don’t forget, a person’s greatest emotional need is to feel appreciated.莫忘记，人类情感上最大的需要是感恩。">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux同步网络时间" class="post-Linux同步网络时间 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-03" class="post-期中架构-03 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,51 +79,135 @@
         
   
     <h1 class="entry-title article-title">
-      Linux同步网络时间
+      期中架构-03
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux同步网络时间/" data-id="cjl6fnlrc000leog1cl7930gt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-03/" data-id="cjl6fnluj0037eog18g4fua4h" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="这是一个小东西"><a href="#这是一个小东西" class="headerlink" title="这是一个小东西"></a>这是一个小东西</h3><a id="more"></a>
-<h4 id="很多时候，我们回因为各种不痛的需求而修改自己Linux的时间，而之后，又要自己设置回来，那样会有点小小的麻烦，所以，这时候，我们只要会这么一个小小的命令，就不用再为此而烦恼了"><a href="#很多时候，我们回因为各种不痛的需求而修改自己Linux的时间，而之后，又要自己设置回来，那样会有点小小的麻烦，所以，这时候，我们只要会这么一个小小的命令，就不用再为此而烦恼了" class="headerlink" title="很多时候，我们回因为各种不痛的需求而修改自己Linux的时间，而之后，又要自己设置回来，那样会有点小小的麻烦，所以，这时候，我们只要会这么一个小小的命令，就不用再为此而烦恼了~"></a>很多时候，我们回因为各种不痛的需求而修改自己Linux的时间，而之后，又要自己设置回来，那样会有点小小的麻烦，所以，这时候，我们只要会这么一个小小的命令，就不用再为此而烦恼了~</h4><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>yum install ntpdate
-</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><pre><code>#  用法很简单，直接ntpdate IP 就好
-#  ntpdate 210.72.145.44
-</code></pre><h4 id="date-命令"><a href="#date-命令" class="headerlink" title="date 命令"></a>date 命令</h4><pre><code>date 查看当前时间
-date -s  设置时间
-</code></pre><h4 id="ntpdate-命令"><a href="#ntpdate-命令" class="headerlink" title="ntpdate 命令"></a>ntpdate 命令</h4><pre><code>ntpdate -u 210.72.145.44  --同步网络时间
-</code></pre><h5 id="注意：若不加上-u-参数，会出现-no-server-found"><a href="#注意：若不加上-u-参数，会出现-no-server-found" class="headerlink" title="注意：若不加上 -u 参数，会出现 no server found"></a>注意：若不加上 -u 参数，会出现 no server found</h5><pre><code>-u :通过man ntpdate 可知 -u 参数可以越过防火墙与主机同步
-210.72.145.44 ：中国国家授时中心的官方服务器
-</code></pre><h4 id="ntp常用服务器"><a href="#ntp常用服务器" class="headerlink" title="ntp常用服务器"></a>ntp常用服务器</h4><pre><code>中国国家授时中心：210.72.145.44
-NTP服务器(上海) ：ntp.api.bz
+        <h3 id="Don’t-forget-a-person’s-greatest-emotional-need-is-to-feel-appreciated"><a href="#Don’t-forget-a-person’s-greatest-emotional-need-is-to-feel-appreciated" class="headerlink" title="Don’t forget, a person’s greatest emotional need is to feel appreciated."></a>Don’t forget, a person’s greatest emotional need is to feel appreciated.</h3><h3 id="莫忘记，人类情感上最大的需要是感恩。"><a href="#莫忘记，人类情感上最大的需要是感恩。" class="headerlink" title="莫忘记，人类情感上最大的需要是感恩。"></a>莫忘记，人类情感上最大的需要是感恩。</h3><a id="more"></a>
+<h4 id="rsync守护进程应用场景"><a href="#rsync守护进程应用场景" class="headerlink" title="rsync守护进程应用场景"></a>rsync守护进程应用场景</h4><pre><code>1）定时任务方式+rsync进行数据备份
+备份的数据：内部人员产生的数据
+2）实时同步方式+rsync进行数据备份
+备份的数据：外部人员产生的数据
+</code></pre><h4 id="rsync守护进程企业实际应用"><a href="#rsync守护进程企业实际应用" class="headerlink" title="rsync守护进程企业实际应用"></a>rsync守护进程企业实际应用</h4><pre><code>全局配置：所有模块以上配置的信息
+局部配置：在相应模块下的配置
+</code></pre><h4 id="守护进程的排除功能实践"><a href="#守护进程的排除功能实践" class="headerlink" title="守护进程的排除功能实践"></a>守护进程的排除功能实践</h4><pre><code>在客户端创建模拟环境
+[root@nfs01 ~]# mkdir /oldboy_dir
+[root@nfs01 ~]# mkdir /oldboy_dir/{a..d}
+[root@nfs01 ~]# touch /oldboy_dir/a/{1..3}.txt
+[root@nfs01 ~]# touch /oldboy_dir/b/{1..3}.txt
+[root@nfs01 ~]# touch /oldboy_dir/c/{1..3}.txt
+[root@nfs01 ~]# touch /oldboy_dir/d/{1..3}.txt
+[root@nfs01 ~]# tree /oldboy_dir/
+/oldboy_dir/
+├── a
+│   ├── 1.txt
+│   ├── 2.txt
+│   └── 3.txt
+├── b
+│   ├── 1.txt
+│   ├── 2.txt
+│   └── 3.txt
+├── c
+│   ├── 1.txt
+│   ├── 2.txt
+│   └── 3.txt
+└── d
+    ├── 1.txt
+    ├── 2.txt
+    └── 3.txt
 
-美国：time.nist.gov 
-复旦：ntp.fudan.edu.cn 
-微软公司授时主机(美国) ：time.windows.com 
-台警大授时中心(台湾)：asia.pool.ntp.org     
+4 directories, 12 files
 
-我在上海，所以用了一下上海的，可以正常使用
-</code></pre><h4 id="一些可用的NTP服务器地址（是不是真的有用就看你们自己的了、、、、、以下来源于网络）："><a href="#一些可用的NTP服务器地址（是不是真的有用就看你们自己的了、、、、、以下来源于网络）：" class="headerlink" title="一些可用的NTP服务器地址（是不是真的有用就看你们自己的了、、、、、以下来源于网络）："></a>一些可用的NTP服务器地址（是不是真的有用就看你们自己的了、、、、、以下来源于网络）：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">              </span><br><span class="line">Name           	                      IP 	                                  Location</span><br><span class="line"></span><br><span class="line">210.72.145.44 	                 210.72.145.44 	     中国（国家授时中心）</span><br><span class="line">133.100.11.8 	                 133.100.11.8 	     日本（福冈大学）</span><br><span class="line">time-a.nist.gov                  129.6.15.28         NIST,Gaithersburg,Maryland</span><br><span class="line">time-b.nist.gov 	             129.6.15.29 	     NIST,Gaithersburg,Maryland</span><br><span class="line">time-a.timefreq.bldrdoc.gov 	 132.163.4.101       NIST,Boulder,Colorado</span><br><span class="line">time-b.timefreq.bldrdoc.gov 	 132.163.4.102       NIST,Boulder,Colorado</span><br><span class="line">time-c.timefreq.bldrdoc.gov 	 132.163.4.103       NIST,Boulder,Colorado</span><br><span class="line">utcnist.colorado.edu 	         128.138.140.44 	 UniversityofColorado,Boulder</span><br><span class="line">time.nist.gov 	                 192.43.244.18 	     NCAR,Boulder,Colorado</span><br><span class="line">time-nw.nist.gov 	             131.107.1.10  	     Microsoft,Redmond,Washington</span><br><span class="line">nist1.symmetricom.com 	         69.25.96.13     	 Symmetricom,SanJose,California</span><br><span class="line">nist1-dc.glassey.com 	         216.200.93.8  	     Abovenet,Virginia</span><br><span class="line">nist1-ny.glassey.com 	         208.184.49.9   	 Abovenet,NewYorkCity</span><br><span class="line">nist1-sj.glassey.com 	         207.126.98.204 	 Abovenet,SanJose,California</span><br><span class="line">nist1.aol-ca.truetime.com 	     207.200.81.113 	 TrueTime,AOLfacility,Sunnyvale,California</span><br><span class="line">nist1.aol-va.truetime.com 	     64.236.96.53 	     TrueTime,AOLfacility,Virginia</span><br><span class="line">~~</span><br></pre></td></tr></table></figure>
+--exclude=xxx
+测验需求: 要同步备份/oldboy_dir目录数据到备份服务器的/backup目录中
+          但是a,b目录不需要同步, d目录中2.txt文件不需要同步
+[root@nfs01 ~]# rsync -avz --exclude=a --exclude=b --exclude=d/2.txt /oldboy_dir/  oldgirl@172.16.1.41::backup --password-file=/etc/rsync.password 
+sending incremental file list
+./
+c/
+c/1.txt
+c/2.txt
+c/3.txt
+d/
+d/1.txt
+d/3.txt
+
+sent 312 bytes  received 114 bytes  852.00 bytes/sec
+total size is 0  speedup is 0.00
+
+测验需求: 要同步备份/oldboy_dir目录数据到备份服务器的/backup目录中
+          但是a,b,c目录不需要同步, d目录中1.txt文件不需要同步
+rsync -avz --exclude=a --exclude=b --exclude=c --exclude=d/1.txt /oldboy_dir/  oldgirl@172.16.1.41::backup --password-file=/etc/rsync.password
+rsync -avz --exclude={a..c} --exclude=d/1.txt /oldboy_dir/  oldgirl@172.16.1.41::backup --password-file=/etc/rsync.password
+rsync -avz --exclude={a,c,e} --exclude=d/1.txt /oldboy_dir/  oldgirl@172.16.1.41::backup --password-file=/etc/rsync.password
+
+--exclude-from=xxxfile
+编写排除文件信息
+# cat exclude.txt 
+a
+b
+c
+d/1.txt
+
+rsync -avz --exclude-from=/oldboy_dir/exclude.txt /oldboy_dir/  oldgirl@172.16.1.41::backup --password-file=/etc/rsync.password
+</code></pre><h4 id="守护进程来创建备份目录"><a href="#守护进程来创建备份目录" class="headerlink" title="守护进程来创建备份目录"></a>守护进程来创建备份目录</h4><pre><code>rsync -avz  /etc/hosts  oldgirl@172.16.1.41::backup/dev/ --password-file=/etc/rsync.password
+ps: 无法一次性创建多级目录(没有mkdir -p功能)
+</code></pre><h4 id="守护进程无差异同步配置-在企业中慎用"><a href="#守护进程无差异同步配置-在企业中慎用" class="headerlink" title="守护进程无差异同步配置(在企业中慎用)"></a>守护进程无差异同步配置(在企业中慎用)</h4><pre><code>说明: 我有的你也有,我没有的你也不能拥有
+# rsync -avz --delete /oldboy_dir/  oldgirl@172.16.1.41::backup --password-file=/etc/rsync.password
+sending incremental file list
+deleting a/3.txt
+deleting a/2.txt
+deleting a/1.txt
+deleting a/
+
+sent 218 bytes  received 11 bytes  152.67 bytes/sec
+total size is 14  speedup is 0.06
+说明: 实现存储服务器和备份服务器数据信息高度一致
+补充: 无差异同步,可以更加快速的清空目录数据信息或者文件内容信息
+</code></pre><h3 id="守护进程的列表功能配置"><a href="#守护进程的列表功能配置" class="headerlink" title="守护进程的列表功能配置"></a>守护进程的列表功能配置</h3><pre><code>list = true
+作用: 让客户端可以通过命令获知服务端的全部模块信息
+[root@nfs01 ~]# rsync oldgirl@172.16.1.41::
+backup             &quot;backup dir by oldboy&quot;
+mysql 
+建议: 将list参数指定为false, 提升架构安全性
+</code></pre><h4 id="补充-杀进程的方法-三个杀手"><a href="#补充-杀进程的方法-三个杀手" class="headerlink" title="补充: 杀进程的方法: 三个杀手"></a>补充: 杀进程的方法: 三个杀手</h4><pre><code>kill:
+kill 进程号    
+进程杀死后会有提示信息
+kill -9 进程号   -- 强制杀死进程
+
+killall(建议)
+killall 进程名
+进程杀死后会有提示信息
+
+pkill(模糊的杀手-慎用)    
+pkill 进程名
+进程杀死后不会有提示信息
+</code></pre><h4 id="vim使用方法"><a href="#vim使用方法" class="headerlink" title="vim使用方法"></a>vim使用方法</h4><pre><code>快速复制：11copy22 --把第十一行复制的22行
+快速移动：11move22 --把
+第十一行移动到22行
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/17/Linux同步网络时间/">
-    <time datetime="2018-07-17T07:49:16.000Z" class="entry-date">
-        2018-07-17
+    <a href="/2018/08/23/期中架构-03/">
+    <time datetime="2018-08-23T10:30:07.000Z" class="entry-date">
+        2018-08-23
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
 
     </footer>
 </article>
@@ -133,10 +217,10 @@ NTP服务器(上海) ：ntp.api.bz
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/18/Linux运维学习-第十二天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第十二天</a></span>
+        <span class="nav-previous"><a href="/2018/08/23/期中架构-04/" rel="prev"><span class="meta-nav">←</span> 期中架构-04</a></span>
     
     
-        <span class="nav-next"><a href="/2018/07/17/Linux运维学习-第十一天/" rel="next">Linux运维学习-第十一天 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/21/zabbix简单安装部署/" rel="next">zabbix简单安装部署 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
