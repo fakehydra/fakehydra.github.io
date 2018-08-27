@@ -13,20 +13,20 @@
   
   
   
-  <title>期中架构-04 | 瑾川</title>
+  <title>期中架构-05 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="nfs">
+  <meta name="description" content="愿我们都不会输给青春">
 <meta name="keywords" content="期中架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="期中架构-04">
-<meta property="og:url" content="http://yoursite.com/2018/08/23/期中架构-04/index.html">
+<meta property="og:title" content="期中架构-05">
+<meta property="og:url" content="http://yoursite.com/2018/08/27/期中架构-05/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="nfs">
+<meta property="og:description" content="愿我们都不会输给青春">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-23T10:36:31.883Z">
+<meta property="og:updated_time" content="2018-08-27T11:03:49.288Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="期中架构-04">
-<meta name="twitter:description" content="nfs">
+<meta name="twitter:title" content="期中架构-05">
+<meta name="twitter:description" content="愿我们都不会输给青春">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-04" class="post-期中架构-04 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-05" class="post-期中架构-05 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,111 +79,131 @@
         
   
     <h1 class="entry-title article-title">
-      期中架构-04
+      期中架构-05
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-04/" data-id="cjlc7wsw8004tcsg1tnhh1ga8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-05/" data-id="cjlc7wstq003bcsg1h95sfjx8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h4 id="nfs"><a href="#nfs" class="headerlink" title="nfs"></a>nfs</h4><a id="more"></a>
-<p>期中架构-04</p>
-<h3 id="NFS-存储服务介绍"><a href="#NFS-存储服务介绍" class="headerlink" title="NFS 存储服务介绍"></a>NFS 存储服务介绍</h3><h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><h4 id="服务端部署流程"><a href="#服务端部署流程" class="headerlink" title="服务端部署流程:"></a>服务端部署流程:</h4><pre><code>第一个里程: 检查相应存储服务软件是否安装, 进行软件安装
-nfs-utils rpcbind(centos6) portmap(centos5)
-rpm -qa|grep -E &apos;nfs|rpc&apos;
-yum install nfs-utils rpcbind -y
+        <h4 id="愿我们都不会输给青春"><a href="#愿我们都不会输给青春" class="headerlink" title="愿我们都不会输给青春"></a>愿我们都不会输给青春</h4><a id="more"></a>
+<h3 id="期中架构-nfs续"><a href="#期中架构-nfs续" class="headerlink" title="期中架构-nfs续"></a>期中架构-nfs续</h3><h3 id="在nfs服务端如何配置映射信息比较合理"><a href="#在nfs服务端如何配置映射信息比较合理" class="headerlink" title="在nfs服务端如何配置映射信息比较合理"></a>在nfs服务端如何配置映射信息比较合理</h3><pre><code>-希望www用户来管理存储共享目录
+-希望root用户做了映射之后，也能向共享目录进行操作
+--将默认的nfsbody转为www
+</code></pre><h4 id="企业案例：修改nfs默认映射用户"><a href="#企业案例：修改nfs默认映射用户" class="headerlink" title="企业案例：修改nfs默认映射用户"></a>企业案例：修改nfs默认映射用户</h4><pre><code> 服务器操作
+1.创建用户
+[root@nfs scripts]# useradd www -u 666 -M -s /sbin/nologin
+[root@nfs scripts]# id www
+ uid=666(www) gid=666(www) groups=666(www)
+ 2.修改nfs配置文件
+ [root@nfs scripts]# vim /etc/exports 
+ /nfs 172.16.1.0/24(insecure,rw,sync,no_all_squash,root_squash,anonuid=666.anongid=666)
+ 3.修改目录权限信息
+ [root@nfs scripts]# chown -R www.www /nfs/
+ 4.重启
+ [root@nfs scripts]# /etc/init.d/nfs reload
 
-rpm -ql nfs-utils
-/etc/rc.d/init.d/nfs
-/usr/sbin/showmount
+  客户端操作
+  1.创建用户
+  [root@backup scripts]# useradd www -u 666
+ [root@backup scripts]# id www
+  uid=666(www) gid=666(www) groups=666(www)
+ 2.挂载：
+ [root@backup scripts]# mount -t nfs 172.16.1.31:/nfs /mnt/
+ [root@backup scripts]# df -h
+ Filesystem        Size  Used Avail Use% Mounted on
+ /dev/sda3          18G  1.5G   16G   9% /
+ tmpfs             491M     0  491M   0% /dev/shm
+ /dev/sda1         190M   35M  146M  19% /boot
+ 172.16.1.31:/nfs   18G  1.5G   16G   9% /mnt
 
-rpm -ql rpcbind
-/etc/rc.d/init.d/rpcbind
-/usr/sbin/rpcinfo    --- 查看nfs服务是否已经进行了注册
+ 测试
+ [root@backup mnt]# touch test.txt
+ [root@backup mnt]# ll test.txt 
+ -rw-r--r-- 1 www www 0 Aug 24  2018 test.txt
+ [root@backup mnt]# su - www
+ [www@backup ~]$ touch /mnt/test1.txt
+ [www@backup ~]$ ll /mnt/test1.txt
+ -rw-rw-r-- 1 www www 0 Aug 24  2018 /mnt/test1.txt
+ [www@backup ~]$ su - oldboy
+ Password: 
+ [oldboy@backup ~]$ touch /mnt/test2.txt
+ touch: cannot touch `/mnt/test2.txt&apos;: Permission denied
+</code></pre><h3 id="服务端重要文件-命令总结"><a href="#服务端重要文件-命令总结" class="headerlink" title="服务端重要文件/命令总结"></a>服务端重要文件/命令总结</h3><pre><code>exportfs -o rw,sync 172.16.1.0/24:/data  --在命令行创建共享目录，相当于在/etc/exports 里面设置的参数（临时）；可以用于管理nfs服务（进行平滑重启）
+showmount --查看共享信息
+/var/lib/nfs/etab  --记录nfs服务的一些默认参数信息；不能作为配置文件使用
 
-第二个里程: 编写配置文件
-vim /etc/exports
-#share /data by oldboy for share at 20170220
-/data 172.16.1.0/24(rw,sync)
-  ①       ②          ③
-第一列: 定义nfs服务的共享目录信息
-第二列: 定义哪些网段的主机可以访问共享目录
-第三列: 配置共享目录的一些权限或功能信息
+/proc/mounts (客户端) --记录客户默认挂载的信息
+</code></pre><h4 id="共享目录权限信息总结："><a href="#共享目录权限信息总结：" class="headerlink" title="共享目录权限信息总结："></a>共享目录权限信息总结：</h4><pre><code>1.共享目录的配置文件信息有关
+2.共享目录的本身权限有关
+3.和共享目录映射信息配置有关
+4.和客户端挂载参数有关
+5.和共享目录配置文件中目录继承关系
+</code></pre><h4 id="PS：在配置nfs文件时，尽量让共享目录之间没有继承关系"><a href="#PS：在配置nfs文件时，尽量让共享目录之间没有继承关系" class="headerlink" title="PS：在配置nfs文件时，尽量让共享目录之间没有继承关系"></a>PS：在配置nfs文件时，尽量让共享目录之间没有继承关系</h4><h3 id="扩展：常见出错"><a href="#扩展：常见出错" class="headerlink" title="扩展：常见出错"></a>扩展：常见出错</h3><h4 id="出现句柄错误：stale-file-handle"><a href="#出现句柄错误：stale-file-handle" class="headerlink" title="出现句柄错误：stale file handle"></a>出现句柄错误：stale file handle</h4><pre><code> 原因：nfs服务端对共享目录进行了调整，但是调整时客户端还在使用相应的目录
+ 解决方法：将和相应目录相关的所有挂载点进行卸载，然后重新进行挂载
+ ps:查看/proc/mounts 文件确认挂载点；df -h 不一定显示全
+ 2. [root@nfs-client1 ~]# showmount -e 10.0.0.7        &lt;- 恭喜·各位，这里遇到了故障
+ clnt_create: RPC: Port mapper failure - Unable to receive: errno 113 (No route to host)
+ 原因: 
+ 防火墙iptables服务开启了
+ 解决: 
+ 关闭防火墙即可
 
-第三个里程: 创建共享目录信息, 目录授权
-mkdir /data -p 
-[root@nfs01 ~]# id nfsnobody   --- 共享目录管理用户
-uid=65534(nfsnobody) gid=65534(nfsnobody) groups=65534(nfsnobody)
-chown -R nfsnobody.nfsnobody /data/
+3. 第二个错误：
+   “RPC: Program not registered” 
+   原因: 
+   提示很清楚了，是服务器端RPC服务和NFS服务存在启动顺序问题。
 
-第四个里程: 启动nfs相关服务
-先启动rpc服务
-/etc/init.d/rpcbind start
-[root@nfs01 ~]# ps -ef|grep rpcbind
-rpc        8050      1  0 10:19 ?        00:00:00 rpcbind
-root       8066   7980  0 10:20 pts/1    00:00:00 grep --color=auto rpcbind
-[root@nfs01 ~]# netstat -lntup|grep rpc
-tcp        0      0 0.0.0.0:111                 0.0.0.0:*                   LISTEN      8050/rpcbind        
-tcp        0      0 :::111                      :::*                        LISTEN      8050/rpcbind
+4. 客户端挂载报错“No such file or directory”
+   [root@nfs-client ~]# showmount -e 172.16.1.31
+   Export list for 172.16.1.31:
+   /data    172.16.1.0/24
+   [root@nfs-client ~]# mount -t nfs 172.16.1.31:/data /mnt
+   mount.nfs: mounting 172.16.1.31:/data failed, reason given by server: No such file or directory
+   解答：原因是NFS服务器端没有共享目录/data，创建即可。命令如下：
+   [root@nfs-server ~]# mkdir /data
 
-再启动nfs服务
-/etc/init.d/nfs start
-[root@nfs01 ~]# ps -ef|grep nfs
-root       8128      2  0 10:21 ?        00:00:00 [nfsd4]
-root       8129      2  0 10:21 ?        00:00:00 [nfsd4_callbacks]
-root       8130      2  0 10:21 ?        00:00:00 [nfsd]
-root       8131      2  0 10:21 ?        00:00:00 [nfsd]
-root       8132      2  0 10:21 ?        00:00:00 [nfsd]
-root       8133      2  0 10:21 ?        00:00:00 [nfsd]
-root       8134      2  0 10:21 ?        00:00:00 [nfsd]
-root       8135      2  0 10:21 ?        00:00:00 [nfsd]
-root       8136      2  0 10:21 ?        00:00:00 [nfsd]
-root       8137      2  0 10:21 ?        00:00:00 [nfsd]
+5. 卸载挂载设备时显示device is busy。
+   [root@nfs-client mnt]# umount /mnt
+   umount.nfs: /mnt: device is busy
+   umount.nfs: /mnt: device is busy
+   解决方式: 
+   umount -lf /read/
+   -l   Lazy  unmount  -- 懒惰的进行卸载 
+   -f   Force unmount (in case of an unreachable NFS system)  --- 实现强制卸载
 
-rpcinfo -p localhost  --- 检查本地nfs服务是否想rpc服务进行注册
-</code></pre><h4 id="客户端部署流程"><a href="#客户端部署流程" class="headerlink" title="客户端部署流程:"></a>客户端部署流程:</h4><pre><code> 第一个里程: 检查安装软件服务
- nfs-utils rpcbind
- yum install -y nfs-utils rpcbind
-
- 第二个里程: 进行共享目录挂载使用
- mount -t nfs 172.16.1.31:/data /mnt
- [root@backup ~]# df -h
- Filesystem         Size  Used Avail Use% Mounted on
- /dev/sda3           48G  1.9G   44G   5% /
- tmpfs              238M     0  238M   0% /dev/shm
- /dev/sda1          190M   35M  146M  19% /boot
- 172.16.1.31:/data   48G  1.8G   44G   4% /mnt
-
-第三个里程: 进行存储数据测试
-
-
-/etc/exports文件配置格式为：
-NFS共享目录 NFS客户端地址1（参数1，参数2，...） 客户端地址2（参数1，参数2，...）
-或
-NFS 共享目录 NFS客户端地址（参数1，参数2，...）
-</code></pre><h3 id="配置文件三个重要组成部分"><a href="#配置文件三个重要组成部分" class="headerlink" title="配置文件三个重要组成部分"></a>配置文件三个重要组成部分</h3><h4 id="NFS共享目录："><a href="#NFS共享目录：" class="headerlink" title="NFS共享目录："></a>NFS共享目录：</h4><pre><code>为NFS服务器端要共享的实际目录，要用绝对路径，如（/data）。注意共享目录的本地权限，如果需要读写共享，一定要让本地目录可以被NFS客户端的用户（nfsnobody）读写。
-</code></pre><h4 id="NFS客户端地址："><a href="#NFS客户端地址：" class="headerlink" title="NFS客户端地址："></a>NFS客户端地址：</h4><pre><code>为NFS服务器端授权的可访问共享目录的NFS客户端地址，可以为单独的IP地址或主机名、域名等，也可以为整个网段地址。还可以用“*”来匹配所有客户端服务器，这里所谓的客户端一般来说是前端的业务的业务服务器，例如：web服务。具体说明见表10-3
-</code></pre><h4 id="权限参数集"><a href="#权限参数集" class="headerlink" title="权限参数集"></a>权限参数集</h4><pre><code>对授权的NFS客户端的访问权限设置。参数具体说明见后文。
-1) nfs权限（共享目录【借给你手机】） nfs配置的/etc/exports /data 172.16.1.0/24(rw)
-2) 本地文件系统权限（【手机密码不告诉你】） 挂载目录的权限rwxr-xr-x root root /data
-</code></pre><h4 id="配置文件中权限信息说明"><a href="#配置文件中权限信息说明" class="headerlink" title="配置文件中权限信息说明"></a>配置文件中权限信息说明</h4><pre><code>no_root_squash   --- 当用root用户向存储服务器存储数据,root用户身份不会发生改变
-root_squash      --- 当用root用户向存储服务器存储数据,root用户身份会发生改变
-all_squash       --- 当用普通用户向存储服务器存储数据,普通用户身份会发生改变
-no_all_squash    --- 当用普通用户向存储服务器存储数据,普通用户身份会不会发生改变
+6. 共享目录挂载后,创建文件很慢
+   mount -t nfs 172.16.1.31:/data /mnt
+   cd /mnt
+   time touch test.txt
+   原因分析：
+NFS服务端重启之后。立刻进行挂载会出现此问题，因为NFS自身重启的时候，拥有无敌的时间，默认是90秒；在无敌时间内，是不能对共享目录进行更改的操作；
+在系统配置中/etc/sysconfig/nfs中指定了无敌时间的配置参数
+   NFSD_V4_GRACE=90
+   NFSD_V4_LEASE=90
+   NLM_GRACE_PERI0D=90
+</code></pre><h3 id="nfs客户端"><a href="#nfs客户端" class="headerlink" title="nfs客户端"></a>nfs客户端</h3><pre><code>1.如何在nfs服务端和客户端服务重启后，依旧可以正常使用
+服务端：设置rpcind nfs 开机自启
+客户端：01.echo &apos;mount -t nfs 172.16.1.31:/nfs /mnt&apos; &gt;&gt;/etc/rc.local
+        02.修改/etc/fastab
+        vim /etc/fastab
+        172.16.1.31:/nfs     /mnt    nfs  defaults   0 0
+        保存退出
+        &amp;&amp; chkconfig netfs on 
 </code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/08/23/期中架构-04/">
-    <time datetime="2018-08-23T10:30:24.000Z" class="entry-date">
-        2018-08-23
+    <a href="/2018/08/27/期中架构-05/">
+    <time datetime="2018-08-27T10:59:32.000Z" class="entry-date">
+        2018-08-27
     </time>
 </a>
     
@@ -199,10 +219,10 @@ no_all_squash    --- 当用普通用户向存储服务器存储数据,普通用�
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/08/27/期中架构-05/" rel="prev"><span class="meta-nav">←</span> 期中架构-05</a></span>
+        <span class="nav-previous"><a href="/2018/08/27/期中架构-06/" rel="prev"><span class="meta-nav">←</span> 期中架构-06</a></span>
     
     
-        <span class="nav-next"><a href="/2018/08/23/期中架构-03/" rel="next">期中架构-03 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/23/期中架构-04/" rel="next">期中架构-04 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
