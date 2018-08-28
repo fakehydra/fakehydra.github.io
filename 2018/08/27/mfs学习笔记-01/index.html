@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux运维学习-第十二天 | 瑾川</title>
+  <title>mfs学习笔记-01 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第十二天了~">
+  <meta name="description" content="metasploit 基础">
 <meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux运维学习-第十二天">
-<meta property="og:url" content="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/index.html">
+<meta property="og:title" content="mfs学习笔记-01">
+<meta property="og:url" content="http://yoursite.com/2018/08/27/mfs学习笔记-01/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="第十二天了~">
+<meta property="og:description" content="metasploit 基础">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-19T08:58:19.695Z">
+<meta property="og:updated_time" content="2018-08-27T13:30:33.536Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维学习-第十二天">
-<meta name="twitter:description" content="第十二天了~">
+<meta name="twitter:title" content="mfs学习笔记-01">
+<meta name="twitter:description" content="metasploit 基础">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第十二天" class="post-Linux运维学习-第十二天 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-mfs学习笔记-01" class="post-mfs学习笔记-01 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,60 +79,36 @@
         
   
     <h1 class="entry-title article-title">
-      Linux运维学习-第十二天
+      mfs学习笔记-01
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/" data-id="cjldp5l96001tvog1f83km27d" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/mfs学习笔记-01/" data-id="cjldp5ld6002svog1hb8a8380" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="第十二天了"><a href="#第十二天了" class="headerlink" title="第十二天了~"></a>第十二天了~</h3><a id="more"></a>
-<h2 id="第二关测验练习题——续"><a href="#第二关测验练习题——续" class="headerlink" title="第二关测验练习题——续"></a>第二关测验练习题——续</h2><h2 id="11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录"><a href="#11-如何进行系统数据-压缩-打包-etc-目录为linux系统的默认的配置文件及服务启动命令的目录" class="headerlink" title="11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录"></a>11.如何进行系统数据 压缩  打包/etc/目录为linux系统的默认的配置文件及服务启动命令的目录</h2><h4 id="a-请用tar打包-etc整个目录（打包及压缩）。"><a href="#a-请用tar打包-etc整个目录（打包及压缩）。" class="headerlink" title="a.请用tar打包/etc整个目录（打包及压缩）。"></a>a.请用tar打包/etc整个目录（打包及压缩）。</h4><pre><code>tar zcvf 箱子  要打包的数据信息/cattar
-
-tar zcvf /tmp/oldboy.tar.gz /etc/
-
-    z   --表示压缩数据的方式  gzip
-    c   --创建需要压缩的数据包 create
-    v   --详细显示压缩过程（可不用）
-    f   --指定生成压缩文件路径信息
-
-检查压缩包数据信息方法：tar tf  压缩包
-                          t :检查压缩包数据信息
-</code></pre><h4 id="b-请用tar打包-etc整个目录（打包及压缩，但需要排除-etc-services文件）。"><a href="#b-请用tar打包-etc整个目录（打包及压缩，但需要排除-etc-services文件）。" class="headerlink" title="b.请用tar打包/etc整个目录（打包及压缩，但需要排除/etc/services文件）。"></a>b.请用tar打包/etc整个目录（打包及压缩，但需要排除/etc/services文件）。</h4><pre><code>[root@jinc etc]# tar zcf /tmp/oldgirl.tar.gz /etc/ --exclude=/etc/services 
-
- --exclude=要排除的数据信息    排除=后面的数据信息
-</code></pre><h4 id="c-请把a点命令的压缩包，解压到-tmp指定目录下（最好只用tar命令实现）。"><a href="#c-请把a点命令的压缩包，解压到-tmp指定目录下（最好只用tar命令实现）。" class="headerlink" title="c.请把a点命令的压缩包，解压到/tmp指定目录下（最好只用tar命令实现）。"></a>c.请把a点命令的压缩包，解压到/tmp指定目录下（最好只用tar命令实现）。</h4><pre><code> tar zxvf oldboy.tar.gz -C /tmp
-x   --解压提取数据信息
-说明：解压时，如果解压的数据时间信息不准确会有报错
-</code></pre><h3 id="第十二题：如何进行文件字符信息过滤"><a href="#第十二题：如何进行文件字符信息过滤" class="headerlink" title="第十二题：如何进行文件字符信息过滤"></a>第十二题：如何进行文件字符信息过滤</h3><h4 id="环境创建"><a href="#环境创建" class="headerlink" title="环境创建"></a>环境创建</h4><pre><code>mkdir /oldboy -p ;echo &quot;i am oldboy,myqq is 664341340&quot; &gt;/oldboy/oldboy.txt
-</code></pre><h4 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h4><h5 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h5><pre><code>sed &apos;s#i am ##g&apos; oldboy/oldboy.txt|sed &quot;s#myqq is##g&quot;
-</code></pre><h5 id="第二种方法：利用awk-命令"><a href="#第二种方法：利用awk-命令" class="headerlink" title="第二种方法：利用awk 命令"></a>第二种方法：利用awk 命令</h5><pre><code>awk -F &quot;，&quot; &apos;print $3,$6&apos; /oldboy/oldboy.txt
-
-awk -F &quot;[ ,]&quot; &apos;print $3,NF&apos; /oldboy/oldboy.txt
-
-awk &apos;BEGIN{FS=&quot;[ ,]&quot;}{print $3,$6}&apos; oldboy.txt
-</code></pre><h5 id="第三种方法：利用cut命令"><a href="#第三种方法：利用cut命令" class="headerlink" title="第三种方法：利用cut命令"></a>第三种方法：利用cut命令</h5><pre><code>sed &apos;s#,# #g&apos; /oldboy/oldboy.txt|cut -d &quot; &quot; -f3,6
-</code></pre><h3 id="第十四题：过滤出-etc-services-文件包含3306或1521两数字所在的行的内容。"><a href="#第十四题：过滤出-etc-services-文件包含3306或1521两数字所在的行的内容。" class="headerlink" title="第十四题：过滤出/etc/services 文件包含3306或1521两数字所在的行的内容。"></a>第十四题：过滤出/etc/services 文件包含3306或1521两数字所在的行的内容。</h3><h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><pre><code>grep -E &quot;3306|1521&quot; /etc/services
-
-或者 egrep &quot;3306|1521&quot; /etc/services
-</code></pre><h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><pre><code>sed -n &quot;/3306\|1521/p&quot; /etc/services
-
-或者 sed -rn &quot;/3306|1521/p&quot; /etc/services
-</code></pre><h4 id="方法三："><a href="#方法三：" class="headerlink" title="方法三："></a>方法三：</h4><pre><code>awk &quot;/3306|1521/&quot; /etc/services
-</code></pre><h5 id="特殊正则-或"><a href="#特殊正则-或" class="headerlink" title="| 特殊正则 或"></a>| 特殊正则 或</h5>
+        <h3 id="metasploit-基础"><a href="#metasploit-基础" class="headerlink" title="metasploit 基础"></a>metasploit 基础</h3><a id="more"></a>
+<h3 id="metasploit"><a href="#metasploit" class="headerlink" title="metasploit"></a>metasploit</h3><pre><code>metasploit 是一种安全框架，为渗透测试工程师提供了大量的渗透模块和扫描模块；自2003年H.D Moore创建了metasploit之后，便迅速发展起来，如今已公认为是最流行的渗透测试工具之一。
+metasploit是一个完全的ruby驱动项目，提供了大量的漏洞攻击、攻击载荷（payload）、编码技术以及后渗透模块。
+</code></pre><h4 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h4><h5 id="Metasploit-Pro版："><a href="#Metasploit-Pro版：" class="headerlink" title="Metasploit Pro版："></a>Metasploit Pro版：</h5><pre><code>这是metasploit的一个商业化版本，提供了大量的功能，例如Web应用程序扫描工具、杀软绕过、自动化渗透等工具，适合专业渗透测试工程师以及团队使用--Pro版一般用来实现高级渗透测试和企业安全项目。
+</code></pre><h5 id="Metasploit-Express版："><a href="#Metasploit-Express版：" class="headerlink" title="Metasploit Express版："></a>Metasploit Express版：</h5><pre><code>这是一个为初级渗透测试工程师设计的版本。包含智能化渗透、密码的自动化暴力破解等功能，十分适合中小型企业的IT安全团队使用
+</code></pre><h5 id="Metasploit-Community版："><a href="#Metasploit-Community版：" class="headerlink" title="Metasploit Community版："></a>Metasploit Community版：</h5><pre><code>这是Express版本的精简免费版，十分适合小型企业以及学生使用
+</code></pre><h5 id="Metasploit-Framework版："><a href="#Metasploit-Framework版：" class="headerlink" title="Metasploit Framework版："></a>Metasploit Framework版：</h5><pre><code>这是一个完全在命令行的版本。该版本的所有任务都是在命令行完成，适合开发人员和安全研究人员
+</code></pre><h3 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">渗透模块（exploit）：这是一段程序，运行时会利用目标的安全漏洞进行攻击</span><br><span class="line">攻击载荷模块（payload）：在成功对目标进行一次渗透之后，开始在目标计算机运行。能帮助我们在目标系统中获得需要的访问和行动权限</span><br><span class="line">辅助模块（auxiliary）：包含了一系列的辅助支持模块，包括扫描模块、fuzz测试漏洞模块、网络协议欺骗和一些其他的模块</span><br><span class="line">编码器模块（encoder）：具有代码混淆功能，逃过目标机的安全保护机制的保护。</span><br><span class="line">Meterpreter:一种使用内存技术的攻击载荷，可以注入到进程。提供了各种可以在目标机上执行的功能</span><br></pre></td></tr></table></figure>
+<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use     --选择一个指定的模块开始运行</span><br><span class="line">show    --显示可用的功能及需要的配置</span><br><span class="line">set     --给某个特定对象赋值</span><br><span class="line">setg    --全局赋值</span><br><span class="line">run     --启动设置好的辅助模块</span><br><span class="line">exploit --启动一个渗透模块</span><br><span class="line">back    --取消当前选择的模块并退回上一层</span><br><span class="line">info    --列出相关模块信息</span><br><span class="line">search  --搜索</span><br><span class="line">check   --检查某个特定目标是否易受攻击</span><br><span class="line">sessions--列出当前可用会话</span><br></pre></td></tr></table></figure>
+<h3 id="Meterpreter-部分命令"><a href="#Meterpreter-部分命令" class="headerlink" title="Meterpreter 部分命令"></a>Meterpreter 部分命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sysinfo    --列出被渗透的主机系统信息</span><br><span class="line">ifconfig   --网络接口</span><br><span class="line">ARP        --列出目标的ARP缓存地址的ip和Mac地址</span><br><span class="line">background --后台运行</span><br><span class="line">shell      --获取目标机的一个cmd shell</span><br><span class="line">getuid     --获取当前用户信息</span><br><span class="line">getsystem  --提升权限</span><br><span class="line">getpid     --获取在目标机注入进程的进程号</span><br><span class="line">pa         --列出目标机的所有进程</span><br></pre></td></tr></table></figure>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/18/Linux运维学习-第十二天/">
-    <time datetime="2018-07-18T06:25:45.000Z" class="entry-date">
-        2018-07-18
+    <a href="/2018/08/27/mfs学习笔记-01/">
+    <time datetime="2018-08-27T12:24:39.000Z" class="entry-date">
+        2018-08-27
     </time>
 </a>
     
@@ -148,10 +124,10 @@ awk &apos;BEGIN{FS=&quot;[ ,]&quot;}{print $3,$6}&apos; oldboy.txt
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/18/第二次测验题目汇总/" rel="prev"><span class="meta-nav">←</span> 第二次测验题目汇总</a></span>
+        <span class="nav-previous"><a href="/2018/08/28/期中架构-07/" rel="prev"><span class="meta-nav">←</span> 期中架构-07</a></span>
     
     
-        <span class="nav-next"><a href="/2018/07/17/Linux同步网络时间/" rel="next">Linux同步网络时间 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/08/27/肆式青春/" rel="next">肆式青春 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

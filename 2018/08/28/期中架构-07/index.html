@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>期中架构-07 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The biggest adventure you can take is to live the life of your dreams.你能经历的最大冒险，就是过你梦想的生活。">
+<meta name="keywords" content="期中架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="期中架构-07">
+<meta property="og:url" content="http://yoursite.com/2018/08/28/期中架构-07/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="The biggest adventure you can take is to live the life of your dreams.你能经历的最大冒险，就是过你梦想的生活。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-28T10:52:18.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="期中架构-07">
+<meta name="twitter:description" content="The biggest adventure you can take is to live the life of your dreams.你能经历的最大冒险，就是过你梦想的生活。">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-07" class="post-期中架构-07 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      期中架构-07
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/28/期中架构-07/" data-id="cjldp5ljj0050vog1azdelduh" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="The-biggest-adventure-you-can-take-is-to-live-the-life-of-your-dreams"><a href="#The-biggest-adventure-you-can-take-is-to-live-the-life-of-your-dreams" class="headerlink" title="The biggest adventure you can take is to live the life of your dreams."></a>The biggest adventure you can take is to live the life of your dreams.</h3><h3 id="你能经历的最大冒险，就是过你梦想的生活。"><a href="#你能经历的最大冒险，就是过你梦想的生活。" class="headerlink" title="你能经历的最大冒险，就是过你梦想的生活。"></a>你能经历的最大冒险，就是过你梦想的生活。</h3><a id="more"></a>
+<h3 id="实时同步服务回顾"><a href="#实时同步服务回顾" class="headerlink" title="实时同步服务回顾"></a>实时同步服务回顾</h3><pre><code>   inotify软件
+inotifywait命令常见参数:
+-r   --- 实现监控目录中子目录里面数据变化
+-m   --- 实现持续监控
+-q   --- 让输出的信息显示的少一些
+--timefmt  -- 指定时间格式信息
+--format   -- 指定输出信息的格式
+-e   --- 指定监控的事件信息,默认如果不进行指定,表示监控所有事件
+
+inotify软件部署条件
+max_user_watches:    设置inotifywait或inotifywatch命令可以监视的文件数量（单进程）
+cat /proc/sys/fs/inotify/max_user_watches 
+50000000
+
+max_user_instances:    设置每个用户可以运行的inotifywait或inotifywatch命令的进程数
+说明: 指定可以监控多少个目录
+# cat /proc/sys/fs/inotify/max_user_instances 
+128
+
+max_queued_events:    设置inotify实例事件（event）队列可容纳的事件数量
+cat /proc/sys/fs/inotify/max_queued_events 
+327679
+</code></pre><h4 id="永久优化inotify软件方法"><a href="#永久优化inotify软件方法" class="headerlink" title="永久优化inotify软件方法"></a>永久优化inotify软件方法</h4><pre><code>echo &apos;echo 6000000000 &gt;/proc/sys/fs/inotify/max_user_watches&apos; &gt;&gt;/etc/rc.local 
+echo &apos;echo 218 &gt;/proc/sys/fs/inotify/max_user_instances&apos; &gt;&gt;/etc/rc.local 
+echo &apos;echo 6500000000 &gt;/proc/sys/fs/inotify/max_queued_events&apos; &gt;&gt;/etc/rc.local 
+说明: 以上三个文件也是inotify软件优化点
+</code></pre><h4 id="高并发数据实时同步方案小结："><a href="#高并发数据实时同步方案小结：" class="headerlink" title="高并发数据实时同步方案小结："></a>高并发数据实时同步方案小结：</h4><pre><code>1)    inotify（sersync）+rsync，是文件级别的。
+2)    drbd存储底层级别，基于block块同步，但是备节点数据不可用
+3)    第三方软件的同步功能：mysql同步(主从同步)，oracle(集群)，mongodb。
+4)    程序双写，直接写两台服务器
+5)    NFS集群（1、4、5方案整合）（双写主存储，备存储用inotify/sersync+rsync），备没有找主解决延迟问题
+</code></pre><h3 id="远程管理服务说明"><a href="#远程管理服务说明" class="headerlink" title="远程管理服务说明"></a>远程管理服务说明</h3><pre><code>ssh      远程管理软件,可以实现数据加密传输,22
+         默认允许root用户远程登录管理
+telnet   远程管理软件,可以实现数据明文传输,23
+         默认不允许使用root用户远程登录管理
+</code></pre><h3 id="部署telnet远程连接服务"><a href="#部署telnet远程连接服务" class="headerlink" title="部署telnet远程连接服务"></a>部署telnet远程连接服务</h3><h4 id="服务端部署"><a href="#服务端部署" class="headerlink" title="服务端部署"></a>服务端部署</h4><h5 id="安装服务程序"><a href="#安装服务程序" class="headerlink" title="安装服务程序"></a>安装服务程序</h5><pre><code>yum install -y telnet-server telnet
+
+补充说明: xinetd软件程序(超级守护进程服务)
+xinetd服务主要用于管理一些守护进程服务 rsync telnet tftp (没有启动脚本文件)
+/etc/init.d/xinetd stop
+</code></pre><h5 id="编写telnet服务启动的配置文件"><a href="#编写telnet服务启动的配置文件" class="headerlink" title="编写telnet服务启动的配置文件"></a>编写telnet服务启动的配置文件</h5><pre><code>vim /etc/xinetd.d/telnet
+ disable         = no     --- 允许xinetd服务管理telnet服务
+</code></pre><h5 id="启动telnet服务"><a href="#启动telnet服务" class="headerlink" title="启动telnet服务"></a>启动telnet服务</h5><pre><code>[root@nfs01 tmp]# /etc/init.d/xinetd start
+Starting xinetd:                                           [  OK  ]
+[root@nfs01 tmp]# ps -ef|grep telnet
+root      20880  20135  0 22:55 pts/0    00:00:00 grep --color=auto telnet
+[root@nfs01 tmp]# ps -ef|grep xinetd
+root      20877      1  0 22:55 ?        00:00:00 xinetd -stayalive -pidfile /var/run/xinetd.pid
+root      20887  20135  0 22:56 pts/0    00:00:00 grep --color=auto xinetd
+[root@nfs01 tmp]# netstat -lntup|grep 23
+tcp        0      0 :::23                       :::*                        LISTEN      20877/xinetd  
+</code></pre><h4 id="客户端部署"><a href="#客户端部署" class="headerlink" title="客户端部署"></a>客户端部署</h4><h5 id="需要有telnet客户端软件"><a href="#需要有telnet客户端软件" class="headerlink" title="需要有telnet客户端软件"></a>需要有telnet客户端软件</h5><pre><code>yum install -y telnet
+</code></pre><h5 id="利用客户端软件进行远程连接"><a href="#利用客户端软件进行远程连接" class="headerlink" title="利用客户端软件进行远程连接"></a>利用客户端软件进行远程连接</h5><pre><code>telnet 10.0.0.31
+</code></pre><h3 id="总结说明-SSH服务主要提供两个服务功能："><a href="#总结说明-SSH服务主要提供两个服务功能：" class="headerlink" title="总结说明: SSH服务主要提供两个服务功能："></a>总结说明: SSH服务主要提供两个服务功能：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一是提供类似telnet远程联机服务器的服务，即上面提到的SSH服务；</span><br><span class="line">另一个是类似FTP服务的sftp-server，借助SSH协议来传输数据的，提供更安全的SFTP服务(vsftp,proftp)。</span><br></pre></td></tr></table></figure>
+<h3 id="远程连接排错思路"><a href="#远程连接排错思路" class="headerlink" title="远程连接排错思路"></a>远程连接排错思路</h3><pre><code>01. 确保链路是否正常
+    ping 远程主机地址
+02. 确保是否有安全策略阻止
+    /etc/init.d/iptables status
+    telnet 远程主机 22   --- 网站公司会开放访问哪些端口 80 443
+    nmap -p 1-1024 10.0.0.31
+    nc 远程主机 22
+03. 确认网络服务是否启动
+    telnet 远程主机 22    
+    /etc/init.d/sshd status
+</code></pre><h3 id="ssh名称所属软件大礼包"><a href="#ssh名称所属软件大礼包" class="headerlink" title="ssh名称所属软件大礼包"></a>ssh名称所属软件大礼包</h3><pre><code>openssh-clients-5.3p1-122.el6.x86_64
+/etc/ssh/ssh_config     --- ssh客户端配置文件
+/usr/bin/scp            --- 实现远程传输数据
+/usr/bin/sftp           --- 实现文件共享传输
+/usr/bin/slogin         --- 实现远程登录连接
+/usr/bin/ssh            --- 实现远程登录连接(连接功能更加全面)
+/usr/bin/ssh-copy-id    --- 分发公钥命令???
+
+openssh-server-5.3p1-122.el6.x86_64
+/etc/rc.d/init.d/sshd   --- ssh服务端启动脚本
+/etc/ssh/sshd_config    --- ssh服务端配置文件
+/usr/sbin/sshd  
+
+[root@nfs01 tmp]# ps -ef|grep sshd
+root       1124      1  0 Aug27 ?        00:00:00 /usr/sbin/sshd    --- 负责建立远程连接
+root      20133   1124  0 08:50 ?        00:00:00 sshd: root@pts/0  --- 负责维持远程连接
+</code></pre><h3 id="ssh远程连接原理"><a href="#ssh远程连接原理" class="headerlink" title="ssh远程连接原理"></a>ssh远程连接原理</h3><pre><code>1) 执行命令发出远程连接请求       客户端---服务端
+   ssh 10.0.0.31
+2) 回复请求信息,发送连接确认请求  服务端---客户端
+   The authenticity of host &apos;10.0.0.31 (10.0.0.31)&apos; can&apos;t be established.
+   RSA key fingerprint is 0e:49:3c:b7:5f:4c:45:43:b8:de:f3:0b:0c:2a:e7:d1.
+   Are you sure you want to continue connecting (yes/no)? 
+3) 进行确认,表示想进行远程登录    客户端---服务端
+   Are you sure you want to continue connecting (yes/no)? yes
+   ll ~/.ssh/known_hosts 
+   -rw-r--r-- 1 root root 391 Dec 12 07:37 /root/.ssh/known_hosts   --- 输入yes后,文件内容增加
+   说明: 此文件中保存公钥信息
+4) 发送公钥信息(锁头),询问登录密码信息          服务端---客户端
+    cat /etc/ssh/ssh_host_rsa_key.pub
+5) 客户端接收公钥,并进行保存,输入登录密码信息   客户端---服务端
+   ~/.ssh/known_hosts
+6) 服务端确认密码信息,建立远程连接               服务端---客户端   
+</code></pre><h3 id="SSH服务远程连接认证类型"><a href="#SSH服务远程连接认证类型" class="headerlink" title="SSH服务远程连接认证类型"></a>SSH服务远程连接认证类型</h3><pre><code>基于密码的认证方式
+基于秘钥的认证方式
+1. 管理端: 创建私钥和公钥(创建秘钥对)
+2. 管理端: 分发公钥信息(第一次分发公钥的时,仍旧采用基于密码建立连接)
+3. 受控端: 接收到公钥文件信息,进行保存
+4. 管理端: 发送建立连接请求
+5. 受控端: 发送公钥质询信息
+6. 管理端: 响应公钥质询信息
+7. 受控端: 接收响应信息,确认无误,建立连接
+</code></pre><h3 id="SSH服务基于秘钥方式远程登录-ssh-key—免交互远程管理"><a href="#SSH服务基于秘钥方式远程登录-ssh-key—免交互远程管理" class="headerlink" title="SSH服务基于秘钥方式远程登录(ssh key—免交互远程管理)"></a>SSH服务基于秘钥方式远程登录(ssh key—免交互远程管理)</h3><h4 id="管理端进行部署"><a href="#管理端进行部署" class="headerlink" title="管理端进行部署"></a>管理端进行部署</h4><pre><code>1. 创建秘钥对信息
+[root@nfs01 ssh]# ssh-keygen -t dsa   --- 创建秘钥对命令
+Generating public/private dsa key pair.
+Enter file in which to save the key (/root/.ssh/id_dsa):  ---确认私钥保存路径 
+Enter passphrase (empty for no passphrase):               ---设定私钥密码信息(默认密码为空)
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/id_dsa.
+Your public key has been saved in /root/.ssh/id_dsa.pub.
+The key fingerprint is:
+40:f5:31:7e:d2:7f:16:4f:5f:b9:a3:f3:9a:51:c7:bc root@nfs01
+The key&apos;s randomart image is:
++--[ DSA 1024]----+
+|      ... o      |
+|     .   o +    .|
+|      .   + o  oo|
+|       .   o . +*|
+|        S     .+O|
+|              oo+|
+|             + E |
+|              =  |
+|             o.. |
++-----------------+
+
+2. 分发公钥信息
+[root@nfs01 ssh]# ssh-copy-id -i /root/.ssh/id_dsa.pub 172.16.1.41
+root@172.16.1.41&apos;s password: 
+Now try logging into the machine, with &quot;ssh &apos;172.16.1.41&apos;&quot;, and check in:
+
+  .ssh/authorized_keys
+
+to make sure we haven&apos;t added extra keys that you weren&apos;t expecting.
+</code></pre><h4 id="受控端进行测试"><a href="#受控端进行测试" class="headerlink" title="受控端进行测试"></a>受控端进行测试</h4><pre><code># ll /root/.ssh/
+total 8
+-rw------- 1 root root 600 Dec 12 08:32 authorized_keys
+</code></pre><h3 id="ssh服务配置文件说明"><a href="#ssh服务配置文件说明" class="headerlink" title="ssh服务配置文件说明"></a>ssh服务配置文件说明</h3><pre><code>vim /etc/ssh/sshd_config
+#Port 22                 --- 定义默认端口号信息
+#ListenAddress 0.0.0.0     --- 修改监听地址信息
+ 补充: 指定的监听地址必须是本地服务网卡上有的地址
+ [root@backup ~]# ssh 10.0.0.31 -p52113
+ ssh: connect to host 10.0.0.31 port 52113: Connection refused
+
+122 #UseDNS yes                --- 接收客户端连接请求后,会做反向解析处理
+    UseDNS no
+81 GSSAPIAuthentication yes    --- GSSAPI认证功能
+   UseDNS no
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/08/28/期中架构-07/">
+    <time datetime="2018-08-28T10:44:04.000Z" class="entry-date">
+        2018-08-28
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/08/27/mfs学习笔记-01/" rel="next">mfs学习笔记-01 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/28/期中架构-07/">期中架构-07</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/mfs学习笔记-01/">mfs学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/肆式青春/">肆式青春</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/期中架构-06/">期中架构-06</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/期中架构-05/">期中架构-05</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 11.43px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.57px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.43px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 15.71px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 17.14px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14.29px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.86px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
