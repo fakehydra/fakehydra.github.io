@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="ansible">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-25T13:09:34.757Z">
+<meta property="og:updated_time" content="2018-08-29T04:35:04.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ansible 安装二三事">
 <meta name="twitter:description" content="ansible">
@@ -86,7 +86,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/ansible-安装二三事/" data-id="cjldp5lbs002cvog11sx7vzpa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/ansible-安装二三事/" data-id="cjlm6d4ak0027aog1p2h0ln7q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -156,7 +156,15 @@ ceshi  hgfs  oldboy
 2.txt  Linux常用命令全集.chw
 ceshi  
 file3
-</code></pre><h5 id="在此我们发现都有了ceshi-这个文件，到此，告一段落。"><a href="#在此我们发现都有了ceshi-这个文件，到此，告一段落。" class="headerlink" title="在此我们发现都有了ceshi 这个文件，到此，告一段落。"></a>在此我们发现都有了ceshi 这个文件，到此，告一段落。</h5><p>未完待续-           </p>
+</code></pre><h5 id="在此我们发现都有了ceshi-这个文件，到此，告一段落。"><a href="#在此我们发现都有了ceshi-这个文件，到此，告一段落。" class="headerlink" title="在此我们发现都有了ceshi 这个文件，到此，告一段落。"></a>在此我们发现都有了ceshi 这个文件，到此，告一段落。</h5><h5 id="补充：不让分发公钥如何管理"><a href="#补充：不让分发公钥如何管理" class="headerlink" title="补充：不让分发公钥如何管理"></a>补充：不让分发公钥如何管理</h5><pre><code>在hosts中的主机里添加用户密码以及端口
+[m]
+172.16.1.66 ansible_ssh_user=root ansible_ssh_pass=123456 ansible_port=521
+官方文档：https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+这样的话会有点不安全，毕竟密码都写出来了
+临时管理
+ansible m -m command -a &quot;hostname&quot; -k
+使用-k 参数，会提示输入密码，这样会比较安全一点，但是比较麻烦了==
+</code></pre><p>未完待续-           </p>
 
       
     </div><!-- .entry-content -->
@@ -224,6 +232,14 @@ file3
       <ul>
         
           <li>
+            <a href="/2018/09/03/期中架构-08/">期中架构-08</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/03/期中架构-09/">期中架构-09</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/28/期中架构-07/">期中架构-07</a>
           </li>
         
@@ -235,14 +251,6 @@ file3
             <a href="/2018/08/27/肆式青春/">肆式青春</a>
           </li>
         
-          <li>
-            <a href="/2018/08/27/期中架构-06/">期中架构-06</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/27/期中架构-05/">期中架构-05</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -252,7 +260,7 @@ file3
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 

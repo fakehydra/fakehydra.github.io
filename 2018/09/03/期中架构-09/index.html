@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>期中架构-09 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="期中-09 ansible批量管理软件的模块command 模块–命令模块功能说明参数chdir--先切换目录再执行操作 eg: [root@m01 scripts]# ansible nfs -m command -a &amp;quot;chdir=/tmp ls&amp;quot;  172.16.1.31 | SUCCESS | rc=0 &amp;gt;&amp;gt;  ansible__b5sgw  ansibl">
+<meta name="keywords" content="期中架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="期中架构-09">
+<meta property="og:url" content="http://yoursite.com/2018/09/03/期中架构-09/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="期中-09 ansible批量管理软件的模块command 模块–命令模块功能说明参数chdir--先切换目录再执行操作 eg: [root@m01 scripts]# ansible nfs -m command -a &amp;quot;chdir=/tmp ls&amp;quot;  172.16.1.31 | SUCCESS | rc=0 &amp;gt;&amp;gt;  ansible__b5sgw  ansibl">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-03T11:00:47.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="期中架构-09">
+<meta name="twitter:description" content="期中-09 ansible批量管理软件的模块command 模块–命令模块功能说明参数chdir--先切换目录再执行操作 eg: [root@m01 scripts]# ansible nfs -m command -a &amp;quot;chdir=/tmp ls&amp;quot;  172.16.1.31 | SUCCESS | rc=0 &amp;gt;&amp;gt;  ansible__b5sgw  ansibl">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-09" class="post-期中架构-09 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      期中架构-09
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-09/" data-id="cjlm6d4gx0058aog1h2sx5hu9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <a id="more"></a>
+<p>期中-09</p>
+<h3 id="ansible批量管理软件的模块"><a href="#ansible批量管理软件的模块" class="headerlink" title="ansible批量管理软件的模块"></a>ansible批量管理软件的模块</h3><h4 id="command-模块–命令模块"><a href="#command-模块–命令模块" class="headerlink" title="command 模块–命令模块"></a>command 模块–命令模块</h4><h5 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h5><h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><pre><code>chdir--先切换目录再执行操作
+eg:
+[root@m01 scripts]# ansible nfs -m command -a &quot;chdir=/tmp ls&quot;
+ 172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+ ansible__b5sgw
+ ansible_GUKNgk
+ backup.sh
+creates--先确定当前文件是否存在，再执行操作
+eg:
+[root@m01 scripts]# ansible nfs -m command -a &quot;creates=/etc/hosts ls&quot;
+ 172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+ skipped, since /etc/hosts exists
+
+ [root@m01 scripts]# ansible nfs -m command -a &quot;creates=/etc/hos ls&quot;
+ 172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+ anaconda-ks.cfg
+ backup
+ install.log
+ install.log.syslog
+ sshpass.tar.gz
+free_form(required)--使用command模块里面必须添加一个有效的参数
+eg：
+[root@m01 scripts]# ansible nfs -m command -a &quot;df -h&quot;
+172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+Filesystem        Size  Used Avail Use% Mounted on
+/dev/sda3          18G  1.5G   16G   9% /
+tmpfs             491M     0  491M   0% /dev/shm
+/dev/sda1         190M   35M  146M  19% /boot
+172.16.1.31:/nfs   18G  1.5G   16G   9% /mnt
+removes--判断文件是否存在，若存在则执行后面的命令
+eg：
+[root@m01 scripts]# ansible nfs -m command -a &quot;removes=/etc/hosts pwd&quot;
+172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+/root
+
+[root@m01 scripts]# ansible nfs -m command -a &quot;removes=/etc/h pwd&quot;
+172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+skipped, since /etc/h does not exist
+</code></pre><h4 id="shell模块"><a href="#shell模块" class="headerlink" title="shell模块"></a>shell模块</h4><pre><code>功能说明：更加像在远程主机shell上执行命令（万能模块）
+说明：shell模块识别一些特殊符号信息。例如变量$HOME 或者&quot;&lt;&quot; &quot;&gt;&quot; &quot;|&quot; 等
+[root@m01 scripts]# ansible 172.16.1.31 -m shell -a &quot;/bin/sh /server/scripts/ansible_test.sh&quot;
+172.16.1.31 | FAILED | rc=127 &gt;&gt;
+/bin/sh: /server/scripts/ansible_test.sh: No such file or directorynon-zero return code
+
+[root@m01 scripts]# scp -rp /server/scripts/ansible_test.sh 172.16.1.31:/server/scripts/
+ansible_test.sh                                                                        100%   44     0.0KB/s   00:00    
+[root@m01 scripts]# ansible 172.16.1.31 -m shell -a &quot;/bin/sh /server/scripts/ansible_test.sh&quot;
+172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+</code></pre><h4 id="scripts模块"><a href="#scripts模块" class="headerlink" title="scripts模块"></a>scripts模块</h4><pre><code>功能说明：执行一个脚本
+[root@m01 scripts]# ansible 172.16.1.31 -m script -a &quot;/server/scripts/ansible_test.sh&quot;
+172.16.1.31 | SUCCESS =&gt; {
+&quot;changed&quot;: true, 
+&quot;rc&quot;: 0, 
+&quot;stderr&quot;: &quot;Shared connection to 172.16.1.31 closed.\r\n&quot;, 
+&quot;stderr_lines&quot;: [
+    &quot;Shared connection to 172.16.1.31 closed.&quot;
+], 
+&quot;stdout&quot;: &quot;&quot;, 
+&quot;stdout_lines&quot;: []
+}
+</code></pre><h4 id="ansible模块–文件模块"><a href="#ansible模块–文件模块" class="headerlink" title="ansible模块–文件模块"></a>ansible模块–文件模块</h4><h5 id="copy模块"><a href="#copy模块" class="headerlink" title="copy模块"></a>copy模块</h5><h5 id="copy模块功能说明："><a href="#copy模块功能说明：" class="headerlink" title="copy模块功能说明："></a>copy模块功能说明：</h5><pre><code>功能说明：复制文件到远程主机
+官方链接：http://docs.ansible.com/ansible/latest/copy_module.html
+参数说明：
+
+dest/src
+功能说明: 执行要复制的数据源信息和目标信息
+[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;checksum&quot;: &quot;080ff42e45402331e84c439195cc0bdd8612dab2&quot;, 
+    &quot;dest&quot;: &quot;/etc/hosts&quot;, 
+    &quot;gid&quot;: 0, 
+    &quot;group&quot;: &quot;root&quot;, 
+    &quot;md5sum&quot;: &quot;d7f371dbf1a0c9b5ff429b9d64eb44a0&quot;, 
+    &quot;mode&quot;: &quot;0644&quot;, 
+    &quot;owner&quot;: &quot;root&quot;, 
+    &quot;size&quot;: 381, 
+    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535941545.77-24280459730276/source&quot;, 
+    &quot;state&quot;: &quot;file&quot;, 
+    &quot;uid&quot;: 0
+}
+[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: false, 
+    &quot;checksum&quot;: &quot;080ff42e45402331e84c439195cc0bdd8612dab2&quot;, 
+    &quot;dest&quot;: &quot;/etc/hosts&quot;, 
+    &quot;gid&quot;: 0, 
+    &quot;group&quot;: &quot;root&quot;, 
+    &quot;mode&quot;: &quot;0644&quot;, 
+    &quot;owner&quot;: &quot;root&quot;, 
+    &quot;path&quot;: &quot;/etc/hosts&quot;, 
+    &quot;size&quot;: 381, 
+    &quot;state&quot;: &quot;file&quot;, 
+    &quot;uid&quot;: 0
+}
+
+owner/group:
+功能说明: 表示定义数据信息属主或属组
+[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/hosts01.txt owner=oldboy group=oldboy&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;checksum&quot;: &quot;080ff42e45402331e84c439195cc0bdd8612dab2&quot;, 
+    &quot;dest&quot;: &quot;/etc/hosts01.txt&quot;, 
+    &quot;gid&quot;: 500, 
+    &quot;group&quot;: &quot;oldboy&quot;, 
+    &quot;md5sum&quot;: &quot;d7f371dbf1a0c9b5ff429b9d64eb44a0&quot;, 
+    &quot;mode&quot;: &quot;0644&quot;, 
+    &quot;owner&quot;: &quot;oldboy&quot;, 
+    &quot;size&quot;: 381, 
+    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535941799.51-3452448680975/source&quot;, 
+    &quot;state&quot;: &quot;file&quot;, 
+    &quot;uid&quot;: 500
+}
+
+mode:
+功能说明: 表示定义文件权限信息
+[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/hosts02.txt owner=oldboy group=oldboy mode=600&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;checksum&quot;: &quot;080ff42e45402331e84c439195cc0bdd8612dab2&quot;, 
+    &quot;dest&quot;: &quot;/etc/hosts02.txt&quot;, 
+    &quot;gid&quot;: 500, 
+    &quot;group&quot;: &quot;oldboy&quot;, 
+    &quot;mode&quot;: &quot;0600&quot;, 
+    &quot;owner&quot;: &quot;oldboy&quot;, 
+    &quot;path&quot;: &quot;/etc/hosts02.txt&quot;, 
+    &quot;size&quot;: 381, 
+    &quot;state&quot;: &quot;file&quot;, 
+    &quot;uid&quot;: 500
+}
+
+backup
+功能说明: 备份文件参数
+[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/ backup=yes&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;backup_file&quot;: &quot;/etc/hosts.27356.2018-08-29@14:49:24~&quot;, 
+    &quot;changed&quot;: true, 
+    &quot;checksum&quot;: &quot;ecb1141795156de5c9e8dd8d6110664967bd5c2c&quot;, 
+    &quot;dest&quot;: &quot;/etc/hosts&quot;, 
+    &quot;gid&quot;: 0, 
+    &quot;group&quot;: &quot;root&quot;, 
+    &quot;md5sum&quot;: &quot;d549b184f3047f0f7d339b54b49cd7fa&quot;, 
+    &quot;mode&quot;: &quot;0644&quot;, 
+    &quot;owner&quot;: &quot;root&quot;, 
+    &quot;size&quot;: 391, 
+    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535942238.19-73156608014775/source&quot;, 
+    &quot;state&quot;: &quot;file&quot;, 
+    &quot;uid&quot;: 0
+}
+
+content
+功能说明: 编辑定义文件中的内容信息
+[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;content=oldboy123 dest=/etc/rsync.password mode=600&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;checksum&quot;: &quot;3f8922898e4b39c87b50ac500daa3cca511852e6&quot;, 
+    &quot;dest&quot;: &quot;/etc/rsync.password&quot;, 
+    &quot;gid&quot;: 0, 
+    &quot;group&quot;: &quot;root&quot;, 
+    &quot;md5sum&quot;: &quot;484d81f3893c04df63dc6bd2aedc917c&quot;, 
+    &quot;mode&quot;: &quot;0600&quot;, 
+    &quot;owner&quot;: &quot;root&quot;, 
+    &quot;size&quot;: 9, 
+    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535942489.52-110515874860286/source&quot;, 
+    &quot;state&quot;: &quot;file&quot;, 
+    &quot;uid&quot;: 0
+}
+remote_src
+功能说明: 实现远程主机数据手工备份
+[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/opt/h01.txt remote_src=no&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;checksum&quot;: &quot;ecb1141795156de5c9e8dd8d6110664967bd5c2c&quot;, 
+    &quot;dest&quot;: &quot;/opt/h01.txt&quot;, 
+    &quot;gid&quot;: 0, 
+    &quot;group&quot;: &quot;root&quot;, 
+    &quot;md5sum&quot;: &quot;d549b184f3047f0f7d339b54b49cd7fa&quot;, 
+    &quot;mode&quot;: &quot;0644&quot;, 
+    &quot;owner&quot;: &quot;root&quot;, 
+    &quot;size&quot;: 391, 
+    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535942742.61-251519694289367/source&quot;, 
+    &quot;state&quot;: &quot;file&quot;, 
+    &quot;uid&quot;: 0
+}
+[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/opt/h02.txt remote_src=yes&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;checksum&quot;: &quot;4fe93330a67ebc6aead89e9408b88b2eb6052406&quot;, 
+    &quot;dest&quot;: &quot;/opt/h02.txt&quot;, 
+    &quot;gid&quot;: 0, 
+    &quot;group&quot;: &quot;root&quot;, 
+    &quot;md5sum&quot;: &quot;0e91dad6dc1a1b210963dbb5ca12adbc&quot;, 
+    &quot;mode&quot;: &quot;0644&quot;, 
+    &quot;owner&quot;: &quot;root&quot;, 
+    &quot;size&quot;: 371, 
+    &quot;src&quot;: &quot;/etc/hosts&quot;, 
+    &quot;state&quot;: &quot;file&quot;, 
+    &quot;uid&quot;: 0
+}
+</code></pre><h5 id="file模块"><a href="#file模块" class="headerlink" title="file模块"></a>file模块</h5><h5 id="功能说明：功能说明：修改文件属性；创建文件信息、目录信息或者连接文件信息；删除"><a href="#功能说明：功能说明：修改文件属性；创建文件信息、目录信息或者连接文件信息；删除" class="headerlink" title="功能说明：功能说明：修改文件属性；创建文件信息、目录信息或者连接文件信息；删除"></a>功能说明：功能说明：修改文件属性；创建文件信息、目录信息或者连接文件信息；删除</h5><pre><code> state：创建目录
+ [root@m01 scripts]# ansible nfs -m file -a &quot;dest=/tmp/test/ state=touch&quot;
+ 172.16.1.31 | SUCCESS =&gt; {
+     &quot;changed&quot;: true, 
+     &quot;dest&quot;: &quot;/tmp/test&quot;, 
+     &quot;gid&quot;: 0, 
+     &quot;group&quot;: &quot;root&quot;, 
+     &quot;mode&quot;: &quot;0644&quot;, 
+     &quot;owner&quot;: &quot;root&quot;, 
+     &quot;size&quot;: 0, 
+     &quot;state&quot;: &quot;file&quot;, 
+     &quot;uid&quot;: 0
+ }
+ 删除目录：
+ [root@m01 scripts]# ansible nfs -m file -a &quot;dest=/tmp/test/ state=absent&quot;
+ 172.16.1.31 | SUCCESS =&gt; {
+     &quot;changed&quot;: true, 
+     &quot;path&quot;: &quot;/tmp/test&quot;, 
+     &quot;state&quot;: &quot;absent&quot;
+ }
+
+ recurse --递归
+ [root@m01 scripts]# ansible 172.16.1.31 -m file -a &quot;dest=/tmp/01/ owner=oldboy recurse=yes&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;gid&quot;: 0, 
+    &quot;group&quot;: &quot;root&quot;, 
+    &quot;mode&quot;: &quot;0755&quot;, 
+    &quot;owner&quot;: &quot;oldboy&quot;, 
+    &quot;path&quot;: &quot;/tmp/01/&quot;, 
+    &quot;size&quot;: 4096, 
+    &quot;state&quot;: &quot;directory&quot;, 
+    &quot;uid&quot;: 500
+}
+</code></pre><h3 id="cron模块功能说明："><a href="#cron模块功能说明：" class="headerlink" title="cron模块功能说明："></a>cron模块功能说明：</h3><pre><code>功能说明：可以变量编辑定时任务信息
+官方链接：https://docs.ansible.com/ansible/latest/modules/file_module.html#file-module
+参数说明：
+</code></pre><h3 id="测验-批量设置时间同步定时任务-每五分钟进行时间同步"><a href="#测验-批量设置时间同步定时任务-每五分钟进行时间同步" class="headerlink" title="测验: 批量设置时间同步定时任务(每五分钟进行时间同步)"></a>测验: 批量设置时间同步定时任务(每五分钟进行时间同步)</h3><pre><code>*/5 * * * *  ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1 
+minute:                # Minute when the job should run ( 0-59, *, */2, etc )
+hour:                  # Hour when the job should run ( 0-23, *, */2, etc )
+day:                   # Day of the month the job should run ( 1-31, *, */2, etc )
+month:                 # Month of the year the job should run ( 1-12, *, */2, etc )
+weekday:               # Day of the week that the job should run ( 0-6 for Sunday-Saturday, *, etc )
+
+job:                   # The command to execute or, if env is set, the value of environment variable. The command
+                         should not contain line breaks. Required if state=present.
+
+# ansible 172.16.1.31 -m cron -a &quot;minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos;&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;None&quot;
+    ]
+}
+
+[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos;&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: false, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;time ntpdate&quot;, 
+        &quot;None&quot;
+    ]
+}
+[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate01&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos;&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;time ntpdate&quot;, 
+        &quot;time ntpdate01&quot;
+    ]
+}
+说明: 以上是设置定时任务方法
+
+[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate01&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos; state=absent&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;time ntpdate&quot;
+    ]
+}
+说明: 以上是删除定时任务方法
+
+[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos; disabled=yes&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;time ntpdate&quot;
+    ]
+}
+[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos; disabled=no&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;time ntpdate&quot;
+    ]
+}
+</code></pre><h4 id="定时任务编写-命令精简后操作信息"><a href="#定时任务编写-命令精简后操作信息" class="headerlink" title="定时任务编写(命令精简后操作信息)"></a>定时任务编写(命令精简后操作信息)</h4><pre><code>[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate02&apos; minute=*/5 job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos;&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;time ntpdate&quot;, 
+        &quot;time ntpdate02&quot;
+    ]
+}
+[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate02&apos; state=absent&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;time ntpdate&quot;
+    ]
+}
+[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; disabled=yes&quot;
+172.16.1.31 | FAILED! =&gt; {
+    &quot;changed&quot;: false, 
+    &quot;msg&quot;: &quot;You must specify &apos;job&apos; to install a new cron job or variable&quot;
+}
+[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos; disabled=yes&quot;
+172.16.1.31 | SUCCESS =&gt; {
+    &quot;changed&quot;: true, 
+    &quot;envs&quot;: [], 
+    &quot;jobs&quot;: [
+        &quot;time ntpdate&quot;
+    ]
+}
+</code></pre><h3 id="ansible剧本编写方法"><a href="#ansible剧本编写方法" class="headerlink" title="ansible剧本编写方法"></a>ansible剧本编写方法</h3><pre><code> ansible -m 模块 -a 参数 &gt;&gt;ansible_playbook.yml  === linux 命令 参数 &gt;&gt;shell.sh
+
+ 让一个定时任务执行脚本
+ 1) 分发一个脚本文件到远程主机
+ 2) 编写定时任务
+
+ ansible剧本核心知识:
+ 1. ansible剧本编写规范
+ 2. paramiko远程连接与数据传输    
+ 3. Jinjia2用于编写ansible的模板信息
+  ======================================================================================
+ 扩展说明：jinja2模板作用：
+【 for循环语句jinja模板】
+ 为远程主机生成服务器列表，加入该列表info从192.168.13.201 web01.test.com 到192.168.13.211 web11.test.com 结束，
+ 如果手动添加就很不科学了，这里需要使用jinja2语法的for循环通过模板批量生成对应的配置文件，如下：
+
+ ansible目录结构：
+ #cd /etc/ansible/roles/test_hosts
+ .
+ ├── meta
+ │   └── main.yml
+ ├── tasks
+ │   ├── file1.yml
+ │   └── main.yml
+ ├── templates
+ │   └── test1.j2
+ └── vars
+     └── main.yml
+
+各个目录下yml文件内容：
+# cat tasks/main.yml 
+- include: file1.yml
+
+# cat tasks/file1.yml 
+- name: ansible jinja2 template for hosts config
+  template: src=test1.j2 dest=/etc/httpd/conf/httpd.conf.test
+
+# cat templates/test1.j2 
+  {% for id in range(201,212) %}
+      192.168.13.{{ id }} web{{ "%02d" |format(id-200) }}.test.com
+      {% endfor %}
+  解释：
+  {{ id }} 提取for循环中对应的变量id值
+  &quot;%02d&quot;   调用的是python内置的字符串格式化输出（%d格式化整数）因为是01,02这种格式，所以是保留2位，故用02
+  然后将结果通过管道符 “|” 传递给format 函数做二次处理。
+
+  执行结果：    
+  #cat httpd.conf.test
+  192.168.13.201 web01.test.com
+  192.168.13.202 web02.test.com
+  192.168.13.203 web03.test.com
+  192.168.13.204 web04.test.com
+  192.168.13.205 web05.test.com
+  192.168.13.206 web06.test.com
+  192.168.13.207 web07.test.com
+  192.168.13.208 web08.test.com
+  192.168.13.209 web09.test.com
+  192.168.13.210 web10.test.com
+  192.168.13.211 web11.test.com
+
+ 参考资料：http://linuxg.blog.51cto.com/4410110/1788574
+ ======================================================================================    
+  说明：很多ansible的报错都是和python有关，因为ansible的底层开发是利用python编写的
+</code></pre><h3 id="ansible剧本编写规范"><a href="#ansible剧本编写规范" class="headerlink" title="ansible剧本编写规范:"></a>ansible剧本编写规范:</h3><pre><code>pyYAML-----用于ansible编写剧本所使用的语言格式
+     xml---&lt;sersync xxx&gt;xxx&lt;/sersync&gt;
+     ini---rsyncd.conf  [backup] path=xxx list=&quot;&quot;
+     shell--- #!/bin/bash
+1) 缩进规范 两个空格代表一个缩进
+  找人
+  做事
+  01.
+      02.
+
+  找人
+    做事
+  特别重点强调: 一定不要使用tab按键进行缩进
+2) 冒号使用
+  oldboy=123456
+  hosts:空格172.16.1.31 172.16.1.41
+  hosts:
+  172.16.1.31
+  注释信息中的:,不要后面接上空格
+  name: cond-01:ntpdate time
+
+3) 短横线用法
+  用于指定列表信息
+
+  01  oldboy   22   大学
+  02  oldgirl  23   大专
+  03  sholdboy 21   高中    
+
+  - hosts: 172.16.1.31
+
+  - hosts: 172.16.1.1 172.16.1.2      
+
+  - hosts: 192.16.1.1       
+</code></pre><h3 id="编写剧本实践"><a href="#编写剧本实践" class="headerlink" title="编写剧本实践"></a>编写剧本实践</h3><h4 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h4><pre><code>01. 将一个脚本分发给多台主机
+02. 利用定时任务,定时执行脚本
+</code></pre><h4 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h4><pre><code>cat ansible_test.sh    
+#!/bin/bash
+echo 123456 &gt;&gt;/tmp/oldboy_test.txt
+
+没分钟执行一次这个脚本 
+</code></pre><h4 id="编写剧本"><a href="#编写剧本" class="headerlink" title="编写剧本:"></a>编写剧本:</h4><pre><code>- hosts: 172.16.1.31
+   tasks:
+   - name: copy shell scripts file
+      copy: src=/server/scripts/ansible_test.sh dest=/server/scripts/ mode=755
+    - name: set crond
+      cron: name=&apos;ntp time&apos; minute=*/5 job=&apos;/bin/sh /server/scripts/ansible_test.sh &amp;&gt;/dev/null&apos;
+</code></pre><h4 id="剧本编写完"><a href="#剧本编写完" class="headerlink" title="剧本编写完:"></a>剧本编写完:</h4><pre><code>1) 进行语法检查
+ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
+
+2) 进行模拟执行剧本测试
+</code></pre><h3 id="ansible命令执行颜色说明"><a href="#ansible命令执行颜色说明" class="headerlink" title="ansible命令执行颜色说明"></a>ansible命令执行颜色说明</h3><pre><code>绿色：查询或命令执行成功，显示绿色信息；不会对远程主机系统环境做任何改变
+红色：执行命令失败
+黄色：执行命令成功，但是对远程主机做了相应修改
+粉色：建议信息
+蓝色：显示命令执行过程信息
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/09/03/期中架构-09/">
+    <time datetime="2018-09-03T10:47:06.000Z" class="entry-date">
+        2018-09-03
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/09/03/期中架构-08/" rel="prev"><span class="meta-nav">←</span> 期中架构-08</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/08/28/期中架构-07/" rel="next">期中架构-07 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/03/期中架构-08/">期中架构-08</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/03/期中架构-09/">期中架构-09</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/28/期中架构-07/">期中架构-07</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/mfs学习笔记-01/">mfs学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/肆式青春/">肆式青春</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 11.43px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.57px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.43px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 15.71px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 17.14px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14.29px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.86px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

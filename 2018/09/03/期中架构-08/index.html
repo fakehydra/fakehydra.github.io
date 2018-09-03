@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>期中架构-08 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在vim编辑器中搜索内容忽略大小写:set ic 取消忽略大小写 :set noic 免交互分发秘钥123sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &amp;quot;-o StrictHostKeyChecking=no root@172.16.1.31&amp;quot;sshpass -p123456 ssh-copy-id -i /roo">
+<meta name="keywords" content="期中架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="期中架构-08">
+<meta property="og:url" content="http://yoursite.com/2018/09/03/期中架构-08/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="在vim编辑器中搜索内容忽略大小写:set ic 取消忽略大小写 :set noic 免交互分发秘钥123sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &amp;quot;-o StrictHostKeyChecking=no root@172.16.1.31&amp;quot;sshpass -p123456 ssh-copy-id -i /roo">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-03T11:00:50.941Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="期中架构-08">
+<meta name="twitter:description" content="在vim编辑器中搜索内容忽略大小写:set ic 取消忽略大小写 :set noic 免交互分发秘钥123sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &amp;quot;-o StrictHostKeyChecking=no root@172.16.1.31&amp;quot;sshpass -p123456 ssh-copy-id -i /roo">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">friends</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-08" class="post-期中架构-08 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      期中架构-08
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-08/" data-id="cjlm6d4gd004yaog1vg5atcig" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <a id="more"></a>
+<h3 id="在vim编辑器中搜索内容忽略大小写"><a href="#在vim编辑器中搜索内容忽略大小写" class="headerlink" title="在vim编辑器中搜索内容忽略大小写"></a>在vim编辑器中搜索内容忽略大小写</h3><pre><code>:set ic
+取消忽略大小写
+:set noic
+</code></pre><h3 id="免交互分发秘钥"><a href="#免交互分发秘钥" class="headerlink" title="免交互分发秘钥"></a>免交互分发秘钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no root@172.16.1.31&quot;</span><br><span class="line"></span><br><span class="line">sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no root@172.16.1.41&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="批量分发秘钥实现脚本"><a href="#批量分发秘钥实现脚本" class="headerlink" title="批量分发秘钥实现脚本"></a>批量分发秘钥实现脚本</h3><pre><code>vim batch_fenfa.sh
+#!/bin/bash
+#create key pair
+
+rm -f /root/.ssh/id_dsa*
+ssh-keygen -t dsa -f /root/.ssh/id_dsa -P &quot;&quot; -q
+
+#fenfa key file
+for ip in 8 31 41
+do
+  echo &quot;============ fenfa key to host 172.16.1.$ip ============&quot;
+  sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no root@172.16.1.$ip&quot;
+  echo &quot;==================== fenfa key end =====================&quot;
+  echo &quot;&quot;
+done
+</code></pre><h3 id="批量管理脚本"><a href="#批量管理脚本" class="headerlink" title="批量管理脚本"></a>批量管理脚本</h3><pre><code>vim piliang_guanli.sh
+#!/bin/bash
+CMD=&quot;$1&quot;
+if [ $# -ne 1 ]
+then
+  echo &quot;pls input 1 args!!!&quot;
+  exit
+fi
+
+for ip in 8 31 41
+do
+  echo &quot;====host 172.16.1.$ip info====&quot;
+  ssh 172.16.1.$ip &quot;$CMD&quot;
+  echo &quot;==============================&quot;
+  echo &quot;&quot;
+done
+</code></pre><h4 id="补充说明-运行出现很难的问题-需要放大招"><a href="#补充说明-运行出现很难的问题-需要放大招" class="headerlink" title="补充说明:运行出现很难的问题,需要放大招"></a>补充说明:运行出现很难的问题,需要放大招</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">服务重启</span><br><span class="line">系统重启</span><br><span class="line">系统重装</span><br></pre></td></tr></table></figure>
+<h4 id="sftp-远程连接"><a href="#sftp-远程连接" class="headerlink" title="sftp 远程连接"></a>sftp 远程连接</h4><pre><code>sftp -oPort=22 172.16.1.41
+</code></pre><h4 id="远程主机操作命令"><a href="#远程主机操作命令" class="headerlink" title="远程主机操作命令:"></a>远程主机操作命令:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd pwd ls</span><br><span class="line">sftp&gt; cd /tmp</span><br><span class="line">sftp&gt; ls</span><br><span class="line">check.txt  ckeck.txt  </span><br><span class="line">sftp&gt; pwd</span><br><span class="line">Remote working directory: /tmp</span><br><span class="line">sftp&gt; bye</span><br><span class="line">[root@m01 ~]#</span><br></pre></td></tr></table></figure>
+<h4 id="本地主机操作命令"><a href="#本地主机操作命令" class="headerlink" title="本地主机操作命令:"></a>本地主机操作命令:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lcd lpwd lls</span><br><span class="line">sftp&gt; lcd /tmp</span><br><span class="line">sftp&gt; lpwd</span><br><span class="line">Local working directory: /tmp</span><br></pre></td></tr></table></figure>
+<h4 id="上传数据方法"><a href="#上传数据方法" class="headerlink" title="上传数据方法:"></a>上传数据方法:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">put  mput</span><br><span class="line">sftp&gt; put /etc/hosts to /tmp/hosts</span><br><span class="line">Uploading /etc/hosts to /root/to</span><br><span class="line">/etc/hosts                                              100%  371     0.4KB/s   00:00</span><br></pre></td></tr></table></figure>
+<h4 id="下载数据方法"><a href="#下载数据方法" class="headerlink" title="下载数据方法:"></a>下载数据方法:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get  mget</span><br><span class="line">sftp&gt; get check.txt</span><br><span class="line">Fetching /tmp/check.txt to check.txt</span><br></pre></td></tr></table></figure>
+<h3 id="总结-以上命令为sftp控制界面-常用命令信息"><a href="#总结-以上命令为sftp控制界面-常用命令信息" class="headerlink" title="总结: 以上命令为sftp控制界面,常用命令信息"></a>总结: 以上命令为sftp控制界面,常用命令信息</h3><h3 id="给50台主机分发公钥-实现基于秘钥远程管理"><a href="#给50台主机分发公钥-实现基于秘钥远程管理" class="headerlink" title="给50台主机分发公钥,实现基于秘钥远程管理?"></a>给50台主机分发公钥,实现基于秘钥远程管理?</h3><pre><code>1. 分发公钥时需要输入密码信息        sshpass
+2. 分发公钥时总有确认信息(yes/no)  需要查看ssh-copy-id
+3. 远程主机ssh服务端口号,如果不是22端口如何分发
+
+1) 需要进行密码交互
+[root@m01 ~]# sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub 172.16.1.41
+Now try logging into the machine, with &quot;ssh &apos;172.16.1.41&apos;&quot;, and check in:
+
+  .ssh/authorized_keys
+
+to make sure we haven&apos;t added extra keys that you weren&apos;t expecting.
+
+2) 需要输入确认信息(yes/no)
+ssh-copy-id脚本中内容说明
+ssh $1 &quot;exec sh -c &apos;cd; umask 077; test -d .ssh || mkdir .ssh ; cat &gt;&gt; .ssh/authorized_keys &amp;&amp; \
+(test -x /sbin/restorecon &amp;&amp; /sbin/restorecon .ssh .ssh/authorized_keys &gt;/dev/null 2&gt;&amp;1
+1) 利用ssh进行远程连接,对远程主机进行操作($1 表示是一个远程主机IP地址信息)
+2) 先进入远程主机家目录中,并设置umask值为077
+3) 判断是否存在.ssh目录,如果没有.ssh目录进行创建
+4) 让远程主机生成公钥文件authorized_keys,并设置权限为600
+
+[root@m01 ~]# sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;172.16.1.41 -o StrictHostKeyChecking=no&quot;
+Warning: Permanently added &apos;172.16.1.41&apos; (RSA) to the list of known hosts.
+Now try logging into the machine, with &quot;ssh &apos;172.16.1.41 -o StrictHostKeyChecking=no&apos;&quot;, and check in:
+
+  .ssh/authorized_keys
+
+to make sure we haven&apos;t added extra keys that you weren&apos;t expecting.
+
+3)远程主机ssh服务端口号,如果不是22端口如何分发
+[root@m01 ~]# sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;172.16.1.31 -p52113 -o  StrictHostKeyChecking=no&quot;
+</code></pre><h3 id="脚本实现批量分发和管理"><a href="#脚本实现批量分发和管理" class="headerlink" title="脚本实现批量分发和管理"></a>脚本实现批量分发和管理</h3><p>  1)批量分发秘钥实现脚本</p>
+<pre><code>vim batch_fenfa.sh
+#!/bin/bash
+#create key pair
+
+rm -f /root/.ssh/id_dsa*
+ssh-keygen -t dsa -f /root/.ssh/id_dsa -P &quot;&quot; -q
+
+#fenfa key file
+for ip in 8 31 41
+do
+  echo &quot;============ fenfa key to host 172.16.1.$ip ============&quot;
+  sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no root@172.16.1.$ip&quot;
+  echo &quot;==================== fenfa key end =====================&quot;
+  echo &quot;&quot;
+done
+
+
+2)批量管理脚本
+vim piliang_guanli.sh
+#!/bin/bash
+CMD=&quot;$1&quot;
+if [ $# -ne 1 ]
+then
+  echo &quot;pls input 1 args!!!&quot;
+  exit
+fi
+
+for ip in 8 31 41
+do
+  echo &quot;====host 172.16.1.$ip info====&quot;
+  ssh 172.16.1.$ip &quot;$CMD&quot;
+  echo &quot;==============================&quot;
+  echo &quot;&quot;
+done
+</code></pre><p>  脚本完善补充:实现免交互创建秘钥对<br>    1)不要再问我私钥保存到什么位置了?<br>    ssh-keygen -t dsa -f “/root/.ssh/id_dsa”</p>
+<pre><code>2) 私钥密码信息不要再问我了?
+rm -f /root/.ssh/id_dsa*
+ssh-keygen -t dsa -f &quot;/root/.ssh/id_dsa&quot; -N &quot;&quot; -q
+echo &quot;key pair create ok!!!&quot;
+
+-N new_passphrase
+   Provides the new passphrase.
+-P passphrase
+   Provides the (old) passphrase.
+</code></pre><h3 id="ansible-批量管理软件介绍-运维开发"><a href="#ansible-批量管理软件介绍-运维开发" class="headerlink" title="ansible 批量管理软件介绍(运维开发)"></a>ansible 批量管理软件介绍(运维开发)</h3><pre><code>1) Python语言是运维人员必会的语言!
+   ansible是一个基于Python开发的自动化运维工具!
+2) 其功能实现基于ssh远程连接服务
+3) ansible 可以实现批量系统配置,批量软件部署,批量文件拷贝,批量运行命令等功能
+</code></pre><h3 id="说明信息："><a href="#说明信息：" class="headerlink" title="说明信息："></a>说明信息：</h3><pre><code>ansible软件相关参考链接信息
+http://docs.ansible.com/ansible/intro_installation.html
+http://www.ansible.com.cn/
+http://docs.ansible.com/modules_by_category.html
+http://www.ansible.cn/docs/
+</code></pre><h3 id="ansible-软件特点概述-saltstack-puppet"><a href="#ansible-软件特点概述-saltstack-puppet" class="headerlink" title="ansible 软件特点概述(saltstack puppet)"></a>ansible 软件特点概述(saltstack puppet)</h3><pre><code>1)不需要单独安装客户端(no agents),基于系统自带的sshd服务,sshd就相当于ansible的客户端
+2)不需要服务端(no server)
+3)需要依靠大量的模块实现批量管理
+4)配置文件/etc/ansible/ansible.cfg
+</code></pre><h3 id="ansible软件的安装部署过程"><a href="#ansible软件的安装部署过程" class="headerlink" title="ansible软件的安装部署过程"></a>ansible软件的安装部署过程</h3><pre><code>管理端部署
+第一个里程:    部署ssh+key 远程连接主机环境
+
+第二个里程: 安装ansible软件程序
+说明: ansible软件安装需要有epel源
+yum install -y ansible
+补充:将一个jobs能查看到的进程杀死,并扔掉
+ yum install -y keepalived  --- ctrl+z 暂停 --- kill % 
+
+/etc/ansible              --- ansible程序目录
+/etc/ansible/ansible.cfg  --- ansible默认配置文件
+/etc/ansible/hosts        --- ansible主机管理文件
+/etc/ansible/roles        --- ansible角色目录
+/usr/bin/ansible          --- ansible程序命令(执行一个模块)
+/usr/bin/ansible-playbook --- ansible程序命令(执行一个剧本)
+
+第三里程:配置编写主机管理文件
+[root@m01 ansible]# tail -5 /etc/ansible/hosts 
+
+172.16.1.31
+172.16.1.41
+
+至此,管理端基本部署流程完毕
+
+
+受控端部署
+yum install -y libselinux-python
+</code></pre><h3 id="利用ansible实现批量管理方法"><a href="#利用ansible实现批量管理方法" class="headerlink" title="利用ansible实现批量管理方法"></a>利用ansible实现批量管理方法</h3><pre><code>ansible批量管理命令语法
+ansible 主机信息或模块信息  -m 模块名(命令)  -a &quot;模块参数(参数信息)&quot;
+</code></pre><h4 id="管理单个主机"><a href="#管理单个主机" class="headerlink" title="管理单个主机"></a>管理单个主机</h4><pre><code>[root@m01 ansible]# ansible 172.16.1.31 -m command -a &apos;hostname&apos;
+172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+nfs01
+
+[root@m01 ansible]# ansible 172.16.1.31 -m command -a &apos;hostnam&apos;
+172.16.1.31 | FAILED | rc=2 &gt;&gt;
+[Errno 2] No such file or directory
+</code></pre><h4 id="管理多个主机"><a href="#管理多个主机" class="headerlink" title="管理多个主机"></a>管理多个主机</h4><pre><code>[root@m01 ansible]# ansible 172.16.1.31,172.16.1.41 -m command -a &apos;hostname&apos;
+172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+nfs01
+
+172.16.1.41 | SUCCESS | rc=0 &gt;&gt;
+backup
+</code></pre><h4 id="管理所有主机"><a href="#管理所有主机" class="headerlink" title="管理所有主机"></a>管理所有主机</h4><pre><code>[root@m01 ansible]# ansible all -m command -a &apos;hostname&apos;
+172.16.1.41 | SUCCESS | rc=0 &gt;&gt;
+backup
+
+172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+nfs01
+</code></pre><h4 id="进行分组管理"><a href="#进行分组管理" class="headerlink" title="进行分组管理"></a>进行分组管理</h4><pre><code>[root@m01 ansible]# tail -10 hosts
+[oldboy01]
+172.16.1.31
+172.16.1.41
+
+[oldboy02]
+172.16.1.7
+
+[root@m01 ansible]# ansible oldboy01 -m command -a &apos;hostname&apos;
+172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
+nfs01
+
+172.16.1.41 | SUCCESS | rc=0 &gt;&gt;
+backup
+
+[root@m01 ansible]# ansible oldboy02 -m command -a &apos;df -h&apos;
+172.16.1.7 | SUCCESS | rc=0 &gt;&gt;
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3        48G  1.9G   44G   5% /
+tmpfs           238M     0  238M   0% /dev/shm
+/dev/sda1       190M   35M  146M  19% /boot
+</code></pre><h4 id="补充说明-不让分发公钥如何远程管理"><a href="#补充说明-不让分发公钥如何远程管理" class="headerlink" title="补充说明: 不让分发公钥如何远程管理"></a>补充说明: 不让分发公钥如何远程管理</h4><pre><code>1) 编写hosts文件,添加用户名称和密码信息
+[oldboy02]
+172.16.1.7 ansible_ssh_user=root ansible_ssh_pass=123456 ansible_port=52113
+
+2) 执行ansible命令进行测试    
+ansible oldboy02 -m command -a &apos;df -h&apos;
+172.16.1.7 | SUCCESS | rc=0 &gt;&gt;
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3        48G  1.9G   44G   5% /
+tmpfs           238M     0  238M   0% /dev/shm
+/dev/sda1       190M   35M  146M  19% /boot
+
+3)不将密码写入配置文件,临时远程管理  
+[oldboy02]
+172.16.1.7 ansible_ssh_user=root ansible_port=52113
+
+在执行ansible远程连接管理命令后面加上一个 -k 参数,再输入密码即可实现
+[root@m01 ansible]# ansible oldboy02 -m command -a &apos;df -h&apos; -k
+SSH password: 
+172.16.1.7 | SUCCESS | rc=0 &gt;&gt;
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3        48G  1.9G   44G   5% /
+tmpfs           238M     0  238M   0% /dev/shm
+/dev/sda1       190M   35M  146M  19% /boot
+</code></pre><h3 id="ansible-软件官网"><a href="#ansible-软件官网" class="headerlink" title="ansible 软件官网"></a>ansible 软件官网</h3><p><a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html" target="_blank" rel="noopener">https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html</a></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/09/03/期中架构-08/">
+    <time datetime="2018-09-03T10:47:25.000Z" class="entry-date">
+        2018-09-03
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/09/03/期中架构-09/" rel="next">期中架构-09 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/03/期中架构-08/">期中架构-08</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/03/期中架构-09/">期中架构-09</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/28/期中架构-07/">期中架构-07</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/mfs学习笔记-01/">mfs学习笔记-01</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/肆式青春/">肆式青春</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 11.43px;">Nginx</a> <a href="/tags/shell二三事/" style="font-size: 11.43px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.57px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.43px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 15.71px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 17.14px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14.29px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.86px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
