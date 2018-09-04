@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux运维学习-第三十二天 | 瑾川</title>
+  <title>rose | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="You will never have what you like until you learn to like what you have.要得到你喜欢的东西，应先学会喜欢你已有的东西。">
-<meta name="keywords" content="学习笔记">
+  <meta name="description" content="用代码写出一朵玫瑰花">
+<meta name="keywords" content="shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux运维学习-第三十二天">
-<meta property="og:url" content="http://yoursite.com/2018/08/16/Linux运维学习-第三十二天/index.html">
+<meta property="og:title" content="rose">
+<meta property="og:url" content="http://yoursite.com/2018/09/04/rose/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="You will never have what you like until you learn to like what you have.要得到你喜欢的东西，应先学会喜欢你已有的东西。">
+<meta property="og:description" content="用代码写出一朵玫瑰花">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-16T13:11:51.437Z">
+<meta property="og:updated_time" content="2018-09-04T12:56:19.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux运维学习-第三十二天">
-<meta name="twitter:description" content="You will never have what you like until you learn to like what you have.要得到你喜欢的东西，应先学会喜欢你已有的东西。">
+<meta name="twitter:title" content="rose">
+<meta name="twitter:description" content="用代码写出一朵玫瑰花">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux运维学习-第三十二天" class="post-Linux运维学习-第三十二天 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-rose" class="post-rose post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,86 +79,35 @@
         
   
     <h1 class="entry-title article-title">
-      Linux运维学习-第三十二天
+      rose
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/Linux运维学习-第三十二天/" data-id="cjlnpx1m2000k94g19dp2b0jj" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/04/rose/" data-id="cjlnpx1s7003294g1dir6wbgs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="You-will-never-have-what-you-like-until-you-learn-to-like-what-you-have"><a href="#You-will-never-have-what-you-like-until-you-learn-to-like-what-you-have" class="headerlink" title="You will never have what you like until you learn to like what you have."></a>You will never have what you like until you learn to like what you have.</h3><h3 id="要得到你喜欢的东西，应先学会喜欢你已有的东西。"><a href="#要得到你喜欢的东西，应先学会喜欢你已有的东西。" class="headerlink" title="要得到你喜欢的东西，应先学会喜欢你已有的东西。"></a>要得到你喜欢的东西，应先学会喜欢你已有的东西。</h3><a id="more"></a>
-<h3 id="TCP11种状态集转换"><a href="#TCP11种状态集转换" class="headerlink" title="TCP11种状态集转换"></a>TCP11种状态集转换</h3><h4 id="服务端状态变化"><a href="#服务端状态变化" class="headerlink" title="服务端状态变化"></a>服务端状态变化</h4><pre><code>1.由 closed --&gt; listen ；需要开启网络服务（创建socket条目）
-socket条目：
-01.协议 TCP/UDP
-02.recv
-03.sent
-04.源IP 端口
-05.目标IP 端口
-2.由 listen--&gt;syn_rcvd接收到syn信息，并响应（第二次握手）
-3.由syn_rcvd--&gt;established，接收ack信息（第三次握手）
-</code></pre><h4 id="客户端状态变化"><a href="#客户端状态变化" class="headerlink" title="客户端状态变化"></a>客户端状态变化</h4><pre><code>1.由closed --&gt;syn_sent，需要客户端发送syn信息（第一次握手）
-2.由syn_sent变为established ，接收到syn和ack信息，进行回复ack（第三次握手）
-</code></pre><h3 id="四次挥手状态转换"><a href="#四次挥手状态转换" class="headerlink" title="四次挥手状态转换"></a>四次挥手状态转换</h3><pre><code>客户端状态变化
-1) established --- fin_wait1, 发出fin信息(第一次挥手过程)
-2) fin_wait1 --- fin_wait2, 接收到ack信息(第二次挥手过程)
-3) fin_wait2 --- time_wait, 接收到fin信息, 并回复ack信息(第四次挥手过程)
-4) time_wait --- closed, 等待一会儿(120 90 60)
-
-服务端状态变化 
-1) established --- close_wait, 接收到fin信息, 并且发出ack信息(第二次挥手过程)
-2) close_wait  --- last_ack, 发出fin信息之后(第三次挥手过程)
-3) last_ack --- closed, 接收到ack信息(第四次挥手过程)
-</code></pre><h4 id="TCP11种状态集转换问题"><a href="#TCP11种状态集转换问题" class="headerlink" title="TCP11种状态集转换问题"></a>TCP11种状态集转换问题</h4><h5 id="1-为什么挥手过程是四次-有没有可能挥手过程是三次挥手"><a href="#1-为什么挥手过程是四次-有没有可能挥手过程是三次挥手" class="headerlink" title="1. 为什么挥手过程是四次?有没有可能挥手过程是三次挥手?"></a>1. 为什么挥手过程是四次?有没有可能挥手过程是三次挥手?</h5><pre><code>在传输层接收到断开请求之后,需要向会话层进行汇报
- 确认没有数据传输之后,再发送fin断开请求
-
- 有的, 
- 主动端发送fin之后,没有接收到被动端发出的ack信息,但直接接收到了fin信息
-</code></pre><h5 id="2-为什么要有time-wait状态"><a href="#2-为什么要有time-wait状态" class="headerlink" title="2. 为什么要有time_wait状态"></a>2. 为什么要有time_wait状态</h5><pre><code>避免对端服务器长期处于last_ack状态, 严重占用socket条目信息, 影响网络连接
-yum install -y iptstate
-iptstate -t  --- 查看网络连接信息,需要开启防火墙服务
-</code></pre><h3 id="DNS协议原理"><a href="#DNS协议原理" class="headerlink" title="DNS协议原理"></a>DNS协议原理</h3><pre><code>作用: 域名 --- IP地址
-[图片]www.baidu.com
-第一步: 找寻域名对应的IP地址, 在本地查找域名对应ip地址
-     1) 本地缓存中进行查找
-     cmd -- ipconfig/displaydns
-     2)本地dns解析文件中查找
-     C:\Windows\System32\drivers\etc\hosts文件 
-第二步: 询问本地dns服务(LDNS),是否有域名对应IP地址信息
-第三步: 本地dns服务器向一台根域名服务器进行询问, 根域名服务告知LDNS服务器顶级域名信息
-第四步: 本地dns服务器向顶级域名服务器进行询问, 顶级域名服务器告知LDNS服务器二级域名信息
-第五步: 本地dns服务器向二级域名服务器进行询问, 二级域名服务器告知LDNS服务器A记录信息
- www.baidu.com --- 10.0.0.10  ---&gt; A记录
- 第六步: 本地dns服务器会先进行保存, 保存A记录信息, 然后再将A记录信息发送给客户端主机
- 第七步: 本地客户端主机接收到LDNS服务器回复的A记录信息, 默认也会进行缓存
-       利用得到IP地址信息, 访问相应网站的web服务器
-</code></pre><h3 id="ARP协议原理"><a href="#ARP协议原理" class="headerlink" title="ARP协议原理"></a>ARP协议原理</h3><pre><code>作用: IP地址 --- mac地址
-第一步: 利用广播信息, 找寻目标主机
-第二步: 目标主机接收到广播信息, 生成arp表记录,进行回复响应
-第三步: 源主机接收到回复信息, 生成arp表记录, 从而避免下一次访问时再次产生广播
-第四步: 其余非目标主机也会受到响应广播通讯记录, 生成源主机arp表记录信息
-
-总结arp原理:
-在一定程度减少局域网产生的广播包数量
-</code></pre>
+        <h3 id="用代码写出一朵玫瑰花"><a href="#用代码写出一朵玫瑰花" class="headerlink" title="用代码写出一朵玫瑰花"></a>用代码写出一朵玫瑰花</h3><a id="more"></a>
+<h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><p>&lt;!DOCTYPE HTML&gt;</p>
+<html><br><head><br><title>Rose</title><br><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><br></head><br><body style="margin-left:200px"><br><div style="text-align: center"><br>    <canvas id="c"></canvas><br></div><br><br><script type="text/javascript"><br>    var canvas = document.getElementsByTagName(‘canvas’)[0];<br>    var context = canvas.getContext(‘2d’);<br><br>    var a = context;<br>    var b = document.body;<br>    var c = canvas;<br><br>    document.body.clientWidth;<br>    var zBuffer = [];<br>    var SIZE = 777;<br>    canvas.width = canvas.height = SIZE;<br>    var h = -350;<br><br>    function surface(a, b, c) {<br>        if (c &gt; 60) {<br>            return {<br>                x : Math.sin(a <em> 7) </em> (13 + 5 / (.2 + Math.pow(b <em> 4, 4)))  - Math.sin(b) </em> 50,<br>                y : b <em> SIZE + 50,<br>                z : 625 + Math.cos(a </em> 7)   <em> (13 + 5 / (.2 + Math.pow(b </em> 4, 4))) + b <em> 400,<br>                r : a </em> 1 - b / 2,  g : a  };<br>            }<br><br>        var A = a <em> 2 - 1;<br>        var B = b </em> 2 - 1;<br><br>        if (A <em> A + B </em> B &lt; 1) {<br>        if (c &gt; 37) {<br>            var j = c &amp; 1;<br>            var n = j ? 6 : 4;<br>            var o = .5 / (a + .01) + Math.cos(b <em> 125) </em> 3 - a <em> 300;<br>            var w = b </em> h;<br>            return {<br>                x : o <em> Math.cos(n) + w </em> Math.sin(n) + j <em> 610 - 390,<br>                y : o </em> Math.sin(n) - w <em> Math.cos(n) + 550 - j </em> 350,<br>                z : 1180 + Math.cos(B + A) <em> 99 - j </em> 300,<br>                r : .4  - a  <em> .1   + Math.pow(1 - B </em> B, -h <em> 6)  </em> .15  - a  <em> b  </em> .4   + Math.cos(a + b)  / 5   + Math.pow(Math.cos((o <em> (a + 1) + (B &gt; 0 ? w  : -w)) / 25), 30) </em> .1 <em> (1 - B </em> B),  g : o / 1e3 + .7 - o <em> w </em> 3e-6<br>            };<br>        }<br><br>        if (c &gt; 32) {<br>            c = c <em> 1.16 - .15;<br>            var o = a </em> 45 - 20;<br>            var w = b <em> b </em> h;<br>            var z = o <em> Math.sin(c) + w </em> Math.cos(c) + 620;<br>            return {<br>                x : o <em> Math.cos(c) - w </em> Math.sin(c),<br>                y : 28 + Math.cos(B <em> .5) </em> 99 - b <em> b </em> b <em> 60 - z / 2  - h,<br>                z : z,<br>                r : (b </em> b <em> .3 + Math.pow((1 - (A </em> A)), 7) <em> .15 + .3)  </em> b,<br>                g : b <em> .7<br>            };<br>        }<br><br>        var o = A </em> (2 - b) <em> (80 - c </em> 2);<br>        var w = 99 - Math.cos(A) <em> 120 - Math.cos(b) </em> (-h - c <em> 4.9)  + Math.cos(Math.pow(1 - b, 7)) </em> 50 + c <em> 2;<br>        var z = o </em> Math.sin(c) + w <em> Math.cos(c) + 700;<br>        return {<br>            x : o </em> Math.cos(c) - w <em> Math.sin(c),<br>            y : B </em> 99 - Math.cos(Math.pow(b, 7)) <em> 50 - c / 3 - z  / 1.35 + 450,  z : z,<br>            r : (1 - b / 1.2) </em> .9 + a <em> .1,<br>            g : Math.pow((1 - b), 20) / 4 + .05<br>        };<br>        }<br>    }<br><br><br><br>    setInterval(function() {<br>        for ( var i = 0; i &lt; 10000; i++) {<br>            var part = i % 46;<br>            var c = part / .74;<br>            var point = surface(Math.random(), Math.random(), c);<br>            if (point) {<br>                var z = point.z;<br>                var x = parseInt(point.x </em> SIZE / z - h);<br>                var y = parseInt(point.y <em> SIZE / z - h);<br>                var zBufferIndex = y </em> SIZE + x;<br>                if ((typeof zBuffer[zBufferIndex] === “undefined”)  || (zBuffer[zBufferIndex] &gt; z)) {<br>                    zBuffer[zBufferIndex] = z;<br>                    var r = -parseInt(point.r <em> h);  var g = -parseInt(point.g </em> h);<br>                    var b = -parseInt(point.r <em> point.r </em> -80);<br>                    context.fillStyle = “rgb(“ + r + “,” + g + “,” + b  + “)”;<br>                    context.fillRect(x, y, 1, 1);<br>                }<br>            }<br>        }<br>    }, 0);<br><br></script><br><br></body><br></html>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/08/16/Linux运维学习-第三十二天/">
-    <time datetime="2018-08-16T13:09:55.000Z" class="entry-date">
-        2018-08-16
+    <a href="/2018/09/04/rose/">
+    <time datetime="2018-09-04T12:53:55.000Z" class="entry-date">
+        2018-09-04
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 
     </footer>
 </article>
@@ -168,10 +117,8 @@ iptstate -t  --- 查看网络连接信息,需要开启防火墙服务
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/08/16/kali-linux-学习笔记/" rel="prev"><span class="meta-nav">←</span> kali linux 学习笔记</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/08/14/Linux运维学习-第三十天/" rel="next">Linux运维学习-第三十天 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/09/04/期中架构-10/" rel="next">期中架构-10 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
