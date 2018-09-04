@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="用代码写出一朵玫瑰花">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-04T12:56:19.966Z">
+<meta property="og:updated_time" content="2018-09-04T13:04:30.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rose">
 <meta name="twitter:description" content="用代码写出一朵玫瑰花">
@@ -86,15 +86,118 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/04/rose/" data-id="cjlnpx1s7003294g1dir6wbgs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/04/rose/" data-id="cjlnq7ci60033tkg159s5rjmi" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
         <h3 id="用代码写出一朵玫瑰花"><a href="#用代码写出一朵玫瑰花" class="headerlink" title="用代码写出一朵玫瑰花"></a>用代码写出一朵玫瑰花</h3><a id="more"></a>
-<h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><p>&lt;!DOCTYPE HTML&gt;</p>
-<html><br><head><br><title>Rose</title><br><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><br></head><br><body style="margin-left:200px"><br><div style="text-align: center"><br>    <canvas id="c"></canvas><br></div><br><br><script type="text/javascript"><br>    var canvas = document.getElementsByTagName(‘canvas’)[0];<br>    var context = canvas.getContext(‘2d’);<br><br>    var a = context;<br>    var b = document.body;<br>    var c = canvas;<br><br>    document.body.clientWidth;<br>    var zBuffer = [];<br>    var SIZE = 777;<br>    canvas.width = canvas.height = SIZE;<br>    var h = -350;<br><br>    function surface(a, b, c) {<br>        if (c &gt; 60) {<br>            return {<br>                x : Math.sin(a <em> 7) </em> (13 + 5 / (.2 + Math.pow(b <em> 4, 4)))  - Math.sin(b) </em> 50,<br>                y : b <em> SIZE + 50,<br>                z : 625 + Math.cos(a </em> 7)   <em> (13 + 5 / (.2 + Math.pow(b </em> 4, 4))) + b <em> 400,<br>                r : a </em> 1 - b / 2,  g : a  };<br>            }<br><br>        var A = a <em> 2 - 1;<br>        var B = b </em> 2 - 1;<br><br>        if (A <em> A + B </em> B &lt; 1) {<br>        if (c &gt; 37) {<br>            var j = c &amp; 1;<br>            var n = j ? 6 : 4;<br>            var o = .5 / (a + .01) + Math.cos(b <em> 125) </em> 3 - a <em> 300;<br>            var w = b </em> h;<br>            return {<br>                x : o <em> Math.cos(n) + w </em> Math.sin(n) + j <em> 610 - 390,<br>                y : o </em> Math.sin(n) - w <em> Math.cos(n) + 550 - j </em> 350,<br>                z : 1180 + Math.cos(B + A) <em> 99 - j </em> 300,<br>                r : .4  - a  <em> .1   + Math.pow(1 - B </em> B, -h <em> 6)  </em> .15  - a  <em> b  </em> .4   + Math.cos(a + b)  / 5   + Math.pow(Math.cos((o <em> (a + 1) + (B &gt; 0 ? w  : -w)) / 25), 30) </em> .1 <em> (1 - B </em> B),  g : o / 1e3 + .7 - o <em> w </em> 3e-6<br>            };<br>        }<br><br>        if (c &gt; 32) {<br>            c = c <em> 1.16 - .15;<br>            var o = a </em> 45 - 20;<br>            var w = b <em> b </em> h;<br>            var z = o <em> Math.sin(c) + w </em> Math.cos(c) + 620;<br>            return {<br>                x : o <em> Math.cos(c) - w </em> Math.sin(c),<br>                y : 28 + Math.cos(B <em> .5) </em> 99 - b <em> b </em> b <em> 60 - z / 2  - h,<br>                z : z,<br>                r : (b </em> b <em> .3 + Math.pow((1 - (A </em> A)), 7) <em> .15 + .3)  </em> b,<br>                g : b <em> .7<br>            };<br>        }<br><br>        var o = A </em> (2 - b) <em> (80 - c </em> 2);<br>        var w = 99 - Math.cos(A) <em> 120 - Math.cos(b) </em> (-h - c <em> 4.9)  + Math.cos(Math.pow(1 - b, 7)) </em> 50 + c <em> 2;<br>        var z = o </em> Math.sin(c) + w <em> Math.cos(c) + 700;<br>        return {<br>            x : o </em> Math.cos(c) - w <em> Math.sin(c),<br>            y : B </em> 99 - Math.cos(Math.pow(b, 7)) <em> 50 - c / 3 - z  / 1.35 + 450,  z : z,<br>            r : (1 - b / 1.2) </em> .9 + a <em> .1,<br>            g : Math.pow((1 - b), 20) / 4 + .05<br>        };<br>        }<br>    }<br><br><br><br>    setInterval(function() {<br>        for ( var i = 0; i &lt; 10000; i++) {<br>            var part = i % 46;<br>            var c = part / .74;<br>            var point = surface(Math.random(), Math.random(), c);<br>            if (point) {<br>                var z = point.z;<br>                var x = parseInt(point.x </em> SIZE / z - h);<br>                var y = parseInt(point.y <em> SIZE / z - h);<br>                var zBufferIndex = y </em> SIZE + x;<br>                if ((typeof zBuffer[zBufferIndex] === “undefined”)  || (zBuffer[zBufferIndex] &gt; z)) {<br>                    zBuffer[zBufferIndex] = z;<br>                    var r = -parseInt(point.r <em> h);  var g = -parseInt(point.g </em> h);<br>                    var b = -parseInt(point.r <em> point.r </em> -80);<br>                    context.fillStyle = “rgb(“ + r + “,” + g + “,” + b  + “)”;<br>                    context.fillRect(x, y, 1, 1);<br>                }<br>            }<br>        }<br>    }, 0);<br><br></script><br><br></body><br></html>
+<h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><pre><code> &lt;!DOCTYPE HTML&gt;
+ &lt;html&gt;  
+ &lt;head&gt;  
+ &lt;title&gt;Rose&lt;/title&gt;  
+ &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;  
+ &lt;/head&gt;  
+ &lt;body style=&quot;margin-left:200px&quot;&gt;  
+ &lt;div style=&quot;text-align: center&quot;&gt; 
+     &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt; 
+ &lt;/div&gt;
+
+ &lt;script type=&quot;text/javascript&quot;&gt;
+     var canvas = document.getElementsByTagName(&apos;canvas&apos;)[0];
+     var context = canvas.getContext(&apos;2d&apos;); 
+
+     var a = context; 
+     var b = document.body;
+     var c = canvas;
+
+     document.body.clientWidth; 
+     var zBuffer = []; 
+     var SIZE = 777;
+     canvas.width = canvas.height = SIZE;
+     var h = -350; 
+
+     function surface(a, b, c) {  
+         if (c &gt; 60) {  
+             return {   
+                 x : Math.sin(a * 7) * (13 + 5 / (.2 + Math.pow(b * 4, 4)))  - Math.sin(b) * 50,  
+                 y : b * SIZE + 50,   
+                 z : 625 + Math.cos(a * 7)   * (13 + 5 / (.2 + Math.pow(b * 4, 4))) + b * 400,  
+                 r : a * 1 - b / 2,  g : a  };  
+             } 
+
+         var A = a * 2 - 1;
+         var B = b * 2 - 1; 
+
+         if (A * A + B * B &lt; 1) {
+         if (c &gt; 37) { 
+             var j = c &amp; 1;  
+             var n = j ? 6 : 4;   
+             var o = .5 / (a + .01) + Math.cos(b * 125) * 3 - a * 300;  
+             var w = b * h;  
+             return {   
+                 x : o * Math.cos(n) + w * Math.sin(n) + j * 610 - 390,  
+                 y : o * Math.sin(n) - w * Math.cos(n) + 550 - j * 350,  
+                 z : 1180 + Math.cos(B + A) * 99 - j * 300,  
+                 r : .4  - a  * .1   + Math.pow(1 - B * B, -h * 6)  * .15  - a  * b  * .4   + Math.cos(a + b)  /      5   + Math.pow(Math.cos((o * (a + 1) + (B &gt; 0 ? w  : -w)) / 25), 30) * .1 * (1 - B * B),  g : o / 1e3 + .7 - o * w * 3e-6
+        };  
+    }
+
+    if (c &gt; 32) {  
+        c = c * 1.16 - .15;  
+        var o = a * 45 - 20;  
+        var w = b * b * h;  
+        var z = o * Math.sin(c) + w * Math.cos(c) + 620;  
+        return {  
+            x : o * Math.cos(c) - w * Math.sin(c),  
+            y : 28 + Math.cos(B * .5) * 99 - b * b * b * 60 - z / 2  - h,  
+            z : z,  
+            r : (b * b * .3 + Math.pow((1 - (A * A)), 7) * .15 + .3)  * b,  
+            g : b * .7  
+        };  
+    }
+
+    var o = A * (2 - b) * (80 - c * 2);  
+    var w = 99 - Math.cos(A) * 120 - Math.cos(b) * (-h - c * 4.9)  + Math.cos(Math.pow(1 - b, 7)) * 50 + c * 2;  
+    var z = o * Math.sin(c) + w * Math.cos(c) + 700;  
+    return {  
+        x : o * Math.cos(c) - w * Math.sin(c),  
+        y : B * 99 - Math.cos(Math.pow(b, 7)) * 50 - c / 3 - z  / 1.35 + 450,  z : z,  
+        r : (1 - b / 1.2) * .9 + a * .1,  
+        g : Math.pow((1 - b), 20) / 4 + .05  
+    };  
+    }  
+}   
+
+
+
+setInterval(function() {  
+    for ( var i = 0; i &lt; 10000; i++) {   
+        var part = i % 46;   
+        var c = part / .74;   
+        var point = surface(Math.random(), Math.random(), c);  
+        if (point) {  
+            var z = point.z;  
+            var x = parseInt(point.x * SIZE / z - h);  
+            var y = parseInt(point.y * SIZE / z - h);  
+            var zBufferIndex = y * SIZE + x;  
+            if ((typeof zBuffer[zBufferIndex] === &quot;undefined&quot;)  || (zBuffer[zBufferIndex] &gt; z)) {  
+                zBuffer[zBufferIndex] = z;   
+                var r = -parseInt(point.r * h);  var g = -parseInt(point.g * h);  
+                var b = -parseInt(point.r * point.r * -80);   
+                context.fillStyle = &quot;rgb(&quot; + r + &quot;,&quot; + g + &quot;,&quot; + b  + &quot;)&quot;;  
+                context.fillRect(x, y, 1, 1);  
+            }  
+        }  
+    }  
+}, 0);  
+
+ &lt;/script&gt;
+
+ &lt;/body&gt;  
+ &lt;/html&gt;
+</code></pre>
       
     </div><!-- .entry-content -->
 
