@@ -86,238 +86,18 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-08/" data-id="cjlm6d4gd004yaog1vg5atcig" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-08/" data-id="cjlmzrke7004ut0g1nuz4scmf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <a id="more"></a>
-<h3 id="在vim编辑器中搜索内容忽略大小写"><a href="#在vim编辑器中搜索内容忽略大小写" class="headerlink" title="在vim编辑器中搜索内容忽略大小写"></a>在vim编辑器中搜索内容忽略大小写</h3><pre><code>:set ic
-取消忽略大小写
-:set noic
-</code></pre><h3 id="免交互分发秘钥"><a href="#免交互分发秘钥" class="headerlink" title="免交互分发秘钥"></a>免交互分发秘钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no root@172.16.1.31&quot;</span><br><span class="line"></span><br><span class="line">sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no root@172.16.1.41&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="批量分发秘钥实现脚本"><a href="#批量分发秘钥实现脚本" class="headerlink" title="批量分发秘钥实现脚本"></a>批量分发秘钥实现脚本</h3><pre><code>vim batch_fenfa.sh
-#!/bin/bash
-#create key pair
-
-rm -f /root/.ssh/id_dsa*
-ssh-keygen -t dsa -f /root/.ssh/id_dsa -P &quot;&quot; -q
-
-#fenfa key file
-for ip in 8 31 41
-do
-  echo &quot;============ fenfa key to host 172.16.1.$ip ============&quot;
-  sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no root@172.16.1.$ip&quot;
-  echo &quot;==================== fenfa key end =====================&quot;
-  echo &quot;&quot;
-done
-</code></pre><h3 id="批量管理脚本"><a href="#批量管理脚本" class="headerlink" title="批量管理脚本"></a>批量管理脚本</h3><pre><code>vim piliang_guanli.sh
-#!/bin/bash
-CMD=&quot;$1&quot;
-if [ $# -ne 1 ]
-then
-  echo &quot;pls input 1 args!!!&quot;
-  exit
-fi
-
-for ip in 8 31 41
-do
-  echo &quot;====host 172.16.1.$ip info====&quot;
-  ssh 172.16.1.$ip &quot;$CMD&quot;
-  echo &quot;==============================&quot;
-  echo &quot;&quot;
-done
-</code></pre><h4 id="补充说明-运行出现很难的问题-需要放大招"><a href="#补充说明-运行出现很难的问题-需要放大招" class="headerlink" title="补充说明:运行出现很难的问题,需要放大招"></a>补充说明:运行出现很难的问题,需要放大招</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">服务重启</span><br><span class="line">系统重启</span><br><span class="line">系统重装</span><br></pre></td></tr></table></figure>
-<h4 id="sftp-远程连接"><a href="#sftp-远程连接" class="headerlink" title="sftp 远程连接"></a>sftp 远程连接</h4><pre><code>sftp -oPort=22 172.16.1.41
-</code></pre><h4 id="远程主机操作命令"><a href="#远程主机操作命令" class="headerlink" title="远程主机操作命令:"></a>远程主机操作命令:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd pwd ls</span><br><span class="line">sftp&gt; cd /tmp</span><br><span class="line">sftp&gt; ls</span><br><span class="line">check.txt  ckeck.txt  </span><br><span class="line">sftp&gt; pwd</span><br><span class="line">Remote working directory: /tmp</span><br><span class="line">sftp&gt; bye</span><br><span class="line">[root@m01 ~]#</span><br></pre></td></tr></table></figure>
-<h4 id="本地主机操作命令"><a href="#本地主机操作命令" class="headerlink" title="本地主机操作命令:"></a>本地主机操作命令:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lcd lpwd lls</span><br><span class="line">sftp&gt; lcd /tmp</span><br><span class="line">sftp&gt; lpwd</span><br><span class="line">Local working directory: /tmp</span><br></pre></td></tr></table></figure>
-<h4 id="上传数据方法"><a href="#上传数据方法" class="headerlink" title="上传数据方法:"></a>上传数据方法:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">put  mput</span><br><span class="line">sftp&gt; put /etc/hosts to /tmp/hosts</span><br><span class="line">Uploading /etc/hosts to /root/to</span><br><span class="line">/etc/hosts                                              100%  371     0.4KB/s   00:00</span><br></pre></td></tr></table></figure>
-<h4 id="下载数据方法"><a href="#下载数据方法" class="headerlink" title="下载数据方法:"></a>下载数据方法:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get  mget</span><br><span class="line">sftp&gt; get check.txt</span><br><span class="line">Fetching /tmp/check.txt to check.txt</span><br></pre></td></tr></table></figure>
-<h3 id="总结-以上命令为sftp控制界面-常用命令信息"><a href="#总结-以上命令为sftp控制界面-常用命令信息" class="headerlink" title="总结: 以上命令为sftp控制界面,常用命令信息"></a>总结: 以上命令为sftp控制界面,常用命令信息</h3><h3 id="给50台主机分发公钥-实现基于秘钥远程管理"><a href="#给50台主机分发公钥-实现基于秘钥远程管理" class="headerlink" title="给50台主机分发公钥,实现基于秘钥远程管理?"></a>给50台主机分发公钥,实现基于秘钥远程管理?</h3><pre><code>1. 分发公钥时需要输入密码信息        sshpass
-2. 分发公钥时总有确认信息(yes/no)  需要查看ssh-copy-id
-3. 远程主机ssh服务端口号,如果不是22端口如何分发
-
-1) 需要进行密码交互
-[root@m01 ~]# sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub 172.16.1.41
-Now try logging into the machine, with &quot;ssh &apos;172.16.1.41&apos;&quot;, and check in:
-
-  .ssh/authorized_keys
-
-to make sure we haven&apos;t added extra keys that you weren&apos;t expecting.
-
-2) 需要输入确认信息(yes/no)
-ssh-copy-id脚本中内容说明
-ssh $1 &quot;exec sh -c &apos;cd; umask 077; test -d .ssh || mkdir .ssh ; cat &gt;&gt; .ssh/authorized_keys &amp;&amp; \
-(test -x /sbin/restorecon &amp;&amp; /sbin/restorecon .ssh .ssh/authorized_keys &gt;/dev/null 2&gt;&amp;1
-1) 利用ssh进行远程连接,对远程主机进行操作($1 表示是一个远程主机IP地址信息)
-2) 先进入远程主机家目录中,并设置umask值为077
-3) 判断是否存在.ssh目录,如果没有.ssh目录进行创建
-4) 让远程主机生成公钥文件authorized_keys,并设置权限为600
-
-[root@m01 ~]# sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;172.16.1.41 -o StrictHostKeyChecking=no&quot;
-Warning: Permanently added &apos;172.16.1.41&apos; (RSA) to the list of known hosts.
-Now try logging into the machine, with &quot;ssh &apos;172.16.1.41 -o StrictHostKeyChecking=no&apos;&quot;, and check in:
-
-  .ssh/authorized_keys
-
-to make sure we haven&apos;t added extra keys that you weren&apos;t expecting.
-
-3)远程主机ssh服务端口号,如果不是22端口如何分发
-[root@m01 ~]# sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;172.16.1.31 -p52113 -o  StrictHostKeyChecking=no&quot;
-</code></pre><h3 id="脚本实现批量分发和管理"><a href="#脚本实现批量分发和管理" class="headerlink" title="脚本实现批量分发和管理"></a>脚本实现批量分发和管理</h3><p>  1)批量分发秘钥实现脚本</p>
-<pre><code>vim batch_fenfa.sh
-#!/bin/bash
-#create key pair
-
-rm -f /root/.ssh/id_dsa*
-ssh-keygen -t dsa -f /root/.ssh/id_dsa -P &quot;&quot; -q
-
-#fenfa key file
-for ip in 8 31 41
-do
-  echo &quot;============ fenfa key to host 172.16.1.$ip ============&quot;
-  sshpass -p123456 ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no root@172.16.1.$ip&quot;
-  echo &quot;==================== fenfa key end =====================&quot;
-  echo &quot;&quot;
-done
-
-
-2)批量管理脚本
-vim piliang_guanli.sh
-#!/bin/bash
-CMD=&quot;$1&quot;
-if [ $# -ne 1 ]
-then
-  echo &quot;pls input 1 args!!!&quot;
-  exit
-fi
-
-for ip in 8 31 41
-do
-  echo &quot;====host 172.16.1.$ip info====&quot;
-  ssh 172.16.1.$ip &quot;$CMD&quot;
-  echo &quot;==============================&quot;
-  echo &quot;&quot;
-done
-</code></pre><p>  脚本完善补充:实现免交互创建秘钥对<br>    1)不要再问我私钥保存到什么位置了?<br>    ssh-keygen -t dsa -f “/root/.ssh/id_dsa”</p>
-<pre><code>2) 私钥密码信息不要再问我了?
-rm -f /root/.ssh/id_dsa*
-ssh-keygen -t dsa -f &quot;/root/.ssh/id_dsa&quot; -N &quot;&quot; -q
-echo &quot;key pair create ok!!!&quot;
-
--N new_passphrase
-   Provides the new passphrase.
--P passphrase
-   Provides the (old) passphrase.
-</code></pre><h3 id="ansible-批量管理软件介绍-运维开发"><a href="#ansible-批量管理软件介绍-运维开发" class="headerlink" title="ansible 批量管理软件介绍(运维开发)"></a>ansible 批量管理软件介绍(运维开发)</h3><pre><code>1) Python语言是运维人员必会的语言!
-   ansible是一个基于Python开发的自动化运维工具!
-2) 其功能实现基于ssh远程连接服务
-3) ansible 可以实现批量系统配置,批量软件部署,批量文件拷贝,批量运行命令等功能
-</code></pre><h3 id="说明信息："><a href="#说明信息：" class="headerlink" title="说明信息："></a>说明信息：</h3><pre><code>ansible软件相关参考链接信息
-http://docs.ansible.com/ansible/intro_installation.html
-http://www.ansible.com.cn/
-http://docs.ansible.com/modules_by_category.html
-http://www.ansible.cn/docs/
-</code></pre><h3 id="ansible-软件特点概述-saltstack-puppet"><a href="#ansible-软件特点概述-saltstack-puppet" class="headerlink" title="ansible 软件特点概述(saltstack puppet)"></a>ansible 软件特点概述(saltstack puppet)</h3><pre><code>1)不需要单独安装客户端(no agents),基于系统自带的sshd服务,sshd就相当于ansible的客户端
-2)不需要服务端(no server)
-3)需要依靠大量的模块实现批量管理
-4)配置文件/etc/ansible/ansible.cfg
-</code></pre><h3 id="ansible软件的安装部署过程"><a href="#ansible软件的安装部署过程" class="headerlink" title="ansible软件的安装部署过程"></a>ansible软件的安装部署过程</h3><pre><code>管理端部署
-第一个里程:    部署ssh+key 远程连接主机环境
-
-第二个里程: 安装ansible软件程序
-说明: ansible软件安装需要有epel源
-yum install -y ansible
-补充:将一个jobs能查看到的进程杀死,并扔掉
- yum install -y keepalived  --- ctrl+z 暂停 --- kill % 
-
-/etc/ansible              --- ansible程序目录
-/etc/ansible/ansible.cfg  --- ansible默认配置文件
-/etc/ansible/hosts        --- ansible主机管理文件
-/etc/ansible/roles        --- ansible角色目录
-/usr/bin/ansible          --- ansible程序命令(执行一个模块)
-/usr/bin/ansible-playbook --- ansible程序命令(执行一个剧本)
-
-第三里程:配置编写主机管理文件
-[root@m01 ansible]# tail -5 /etc/ansible/hosts 
-
-172.16.1.31
-172.16.1.41
-
-至此,管理端基本部署流程完毕
-
-
-受控端部署
-yum install -y libselinux-python
-</code></pre><h3 id="利用ansible实现批量管理方法"><a href="#利用ansible实现批量管理方法" class="headerlink" title="利用ansible实现批量管理方法"></a>利用ansible实现批量管理方法</h3><pre><code>ansible批量管理命令语法
-ansible 主机信息或模块信息  -m 模块名(命令)  -a &quot;模块参数(参数信息)&quot;
-</code></pre><h4 id="管理单个主机"><a href="#管理单个主机" class="headerlink" title="管理单个主机"></a>管理单个主机</h4><pre><code>[root@m01 ansible]# ansible 172.16.1.31 -m command -a &apos;hostname&apos;
-172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
-nfs01
-
-[root@m01 ansible]# ansible 172.16.1.31 -m command -a &apos;hostnam&apos;
-172.16.1.31 | FAILED | rc=2 &gt;&gt;
-[Errno 2] No such file or directory
-</code></pre><h4 id="管理多个主机"><a href="#管理多个主机" class="headerlink" title="管理多个主机"></a>管理多个主机</h4><pre><code>[root@m01 ansible]# ansible 172.16.1.31,172.16.1.41 -m command -a &apos;hostname&apos;
-172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
-nfs01
-
-172.16.1.41 | SUCCESS | rc=0 &gt;&gt;
-backup
-</code></pre><h4 id="管理所有主机"><a href="#管理所有主机" class="headerlink" title="管理所有主机"></a>管理所有主机</h4><pre><code>[root@m01 ansible]# ansible all -m command -a &apos;hostname&apos;
-172.16.1.41 | SUCCESS | rc=0 &gt;&gt;
-backup
-
-172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
-nfs01
-</code></pre><h4 id="进行分组管理"><a href="#进行分组管理" class="headerlink" title="进行分组管理"></a>进行分组管理</h4><pre><code>[root@m01 ansible]# tail -10 hosts
-[oldboy01]
-172.16.1.31
-172.16.1.41
-
-[oldboy02]
-172.16.1.7
-
-[root@m01 ansible]# ansible oldboy01 -m command -a &apos;hostname&apos;
-172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
-nfs01
-
-172.16.1.41 | SUCCESS | rc=0 &gt;&gt;
-backup
-
-[root@m01 ansible]# ansible oldboy02 -m command -a &apos;df -h&apos;
-172.16.1.7 | SUCCESS | rc=0 &gt;&gt;
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sda3        48G  1.9G   44G   5% /
-tmpfs           238M     0  238M   0% /dev/shm
-/dev/sda1       190M   35M  146M  19% /boot
-</code></pre><h4 id="补充说明-不让分发公钥如何远程管理"><a href="#补充说明-不让分发公钥如何远程管理" class="headerlink" title="补充说明: 不让分发公钥如何远程管理"></a>补充说明: 不让分发公钥如何远程管理</h4><pre><code>1) 编写hosts文件,添加用户名称和密码信息
-[oldboy02]
-172.16.1.7 ansible_ssh_user=root ansible_ssh_pass=123456 ansible_port=52113
-
-2) 执行ansible命令进行测试    
-ansible oldboy02 -m command -a &apos;df -h&apos;
-172.16.1.7 | SUCCESS | rc=0 &gt;&gt;
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sda3        48G  1.9G   44G   5% /
-tmpfs           238M     0  238M   0% /dev/shm
-/dev/sda1       190M   35M  146M  19% /boot
-
-3)不将密码写入配置文件,临时远程管理  
-[oldboy02]
-172.16.1.7 ansible_ssh_user=root ansible_port=52113
-
-在执行ansible远程连接管理命令后面加上一个 -k 参数,再输入密码即可实现
-[root@m01 ansible]# ansible oldboy02 -m command -a &apos;df -h&apos; -k
-SSH password: 
-172.16.1.7 | SUCCESS | rc=0 &gt;&gt;
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sda3        48G  1.9G   44G   5% /
-tmpfs           238M     0  238M   0% /dev/shm
-/dev/sda1       190M   35M  146M  19% /boot
-</code></pre><h3 id="ansible-软件官网"><a href="#ansible-软件官网" class="headerlink" title="ansible 软件官网"></a>ansible 软件官网</h3><p><a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html" target="_blank" rel="noopener">https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html</a></p>
-
+        <h3 id="好似，你曾得一方光阴。再度，寻找你的初衷。"><a href="#好似，你曾得一方光阴。再度，寻找你的初衷。" class="headerlink" title="好似，你曾得一方光阴。再度，寻找你的初衷。"></a>好似，你曾得一方光阴。再度，寻找你的初衷。</h3>
+        
+          <p class="article-more-link">
+            <a href="/2018/09/03/期中架构-08/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
@@ -356,464 +136,18 @@ tmpfs           238M     0  238M   0% /dev/shm
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-09/" data-id="cjlm6d4gx0058aog1h2sx5hu9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-09/" data-id="cjlmzrkf1005at0g1w6dgk8l9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <a id="more"></a>
-<p>期中-09</p>
-<h3 id="ansible批量管理软件的模块"><a href="#ansible批量管理软件的模块" class="headerlink" title="ansible批量管理软件的模块"></a>ansible批量管理软件的模块</h3><h4 id="command-模块–命令模块"><a href="#command-模块–命令模块" class="headerlink" title="command 模块–命令模块"></a>command 模块–命令模块</h4><h5 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h5><h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><pre><code>chdir--先切换目录再执行操作
-eg:
-[root@m01 scripts]# ansible nfs -m command -a &quot;chdir=/tmp ls&quot;
- 172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
- ansible__b5sgw
- ansible_GUKNgk
- backup.sh
-creates--先确定当前文件是否存在，再执行操作
-eg:
-[root@m01 scripts]# ansible nfs -m command -a &quot;creates=/etc/hosts ls&quot;
- 172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
- skipped, since /etc/hosts exists
-
- [root@m01 scripts]# ansible nfs -m command -a &quot;creates=/etc/hos ls&quot;
- 172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
- anaconda-ks.cfg
- backup
- install.log
- install.log.syslog
- sshpass.tar.gz
-free_form(required)--使用command模块里面必须添加一个有效的参数
-eg：
-[root@m01 scripts]# ansible nfs -m command -a &quot;df -h&quot;
-172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
-Filesystem        Size  Used Avail Use% Mounted on
-/dev/sda3          18G  1.5G   16G   9% /
-tmpfs             491M     0  491M   0% /dev/shm
-/dev/sda1         190M   35M  146M  19% /boot
-172.16.1.31:/nfs   18G  1.5G   16G   9% /mnt
-removes--判断文件是否存在，若存在则执行后面的命令
-eg：
-[root@m01 scripts]# ansible nfs -m command -a &quot;removes=/etc/hosts pwd&quot;
-172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
-/root
-
-[root@m01 scripts]# ansible nfs -m command -a &quot;removes=/etc/h pwd&quot;
-172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
-skipped, since /etc/h does not exist
-</code></pre><h4 id="shell模块"><a href="#shell模块" class="headerlink" title="shell模块"></a>shell模块</h4><pre><code>功能说明：更加像在远程主机shell上执行命令（万能模块）
-说明：shell模块识别一些特殊符号信息。例如变量$HOME 或者&quot;&lt;&quot; &quot;&gt;&quot; &quot;|&quot; 等
-[root@m01 scripts]# ansible 172.16.1.31 -m shell -a &quot;/bin/sh /server/scripts/ansible_test.sh&quot;
-172.16.1.31 | FAILED | rc=127 &gt;&gt;
-/bin/sh: /server/scripts/ansible_test.sh: No such file or directorynon-zero return code
-
-[root@m01 scripts]# scp -rp /server/scripts/ansible_test.sh 172.16.1.31:/server/scripts/
-ansible_test.sh                                                                        100%   44     0.0KB/s   00:00    
-[root@m01 scripts]# ansible 172.16.1.31 -m shell -a &quot;/bin/sh /server/scripts/ansible_test.sh&quot;
-172.16.1.31 | SUCCESS | rc=0 &gt;&gt;
-</code></pre><h4 id="scripts模块"><a href="#scripts模块" class="headerlink" title="scripts模块"></a>scripts模块</h4><pre><code>功能说明：执行一个脚本
-[root@m01 scripts]# ansible 172.16.1.31 -m script -a &quot;/server/scripts/ansible_test.sh&quot;
-172.16.1.31 | SUCCESS =&gt; {
-&quot;changed&quot;: true, 
-&quot;rc&quot;: 0, 
-&quot;stderr&quot;: &quot;Shared connection to 172.16.1.31 closed.\r\n&quot;, 
-&quot;stderr_lines&quot;: [
-    &quot;Shared connection to 172.16.1.31 closed.&quot;
-], 
-&quot;stdout&quot;: &quot;&quot;, 
-&quot;stdout_lines&quot;: []
-}
-</code></pre><h4 id="ansible模块–文件模块"><a href="#ansible模块–文件模块" class="headerlink" title="ansible模块–文件模块"></a>ansible模块–文件模块</h4><h5 id="copy模块"><a href="#copy模块" class="headerlink" title="copy模块"></a>copy模块</h5><h5 id="copy模块功能说明："><a href="#copy模块功能说明：" class="headerlink" title="copy模块功能说明："></a>copy模块功能说明：</h5><pre><code>功能说明：复制文件到远程主机
-官方链接：http://docs.ansible.com/ansible/latest/copy_module.html
-参数说明：
-
-dest/src
-功能说明: 执行要复制的数据源信息和目标信息
-[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;checksum&quot;: &quot;080ff42e45402331e84c439195cc0bdd8612dab2&quot;, 
-    &quot;dest&quot;: &quot;/etc/hosts&quot;, 
-    &quot;gid&quot;: 0, 
-    &quot;group&quot;: &quot;root&quot;, 
-    &quot;md5sum&quot;: &quot;d7f371dbf1a0c9b5ff429b9d64eb44a0&quot;, 
-    &quot;mode&quot;: &quot;0644&quot;, 
-    &quot;owner&quot;: &quot;root&quot;, 
-    &quot;size&quot;: 381, 
-    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535941545.77-24280459730276/source&quot;, 
-    &quot;state&quot;: &quot;file&quot;, 
-    &quot;uid&quot;: 0
-}
-[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: false, 
-    &quot;checksum&quot;: &quot;080ff42e45402331e84c439195cc0bdd8612dab2&quot;, 
-    &quot;dest&quot;: &quot;/etc/hosts&quot;, 
-    &quot;gid&quot;: 0, 
-    &quot;group&quot;: &quot;root&quot;, 
-    &quot;mode&quot;: &quot;0644&quot;, 
-    &quot;owner&quot;: &quot;root&quot;, 
-    &quot;path&quot;: &quot;/etc/hosts&quot;, 
-    &quot;size&quot;: 381, 
-    &quot;state&quot;: &quot;file&quot;, 
-    &quot;uid&quot;: 0
-}
-
-owner/group:
-功能说明: 表示定义数据信息属主或属组
-[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/hosts01.txt owner=oldboy group=oldboy&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;checksum&quot;: &quot;080ff42e45402331e84c439195cc0bdd8612dab2&quot;, 
-    &quot;dest&quot;: &quot;/etc/hosts01.txt&quot;, 
-    &quot;gid&quot;: 500, 
-    &quot;group&quot;: &quot;oldboy&quot;, 
-    &quot;md5sum&quot;: &quot;d7f371dbf1a0c9b5ff429b9d64eb44a0&quot;, 
-    &quot;mode&quot;: &quot;0644&quot;, 
-    &quot;owner&quot;: &quot;oldboy&quot;, 
-    &quot;size&quot;: 381, 
-    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535941799.51-3452448680975/source&quot;, 
-    &quot;state&quot;: &quot;file&quot;, 
-    &quot;uid&quot;: 500
-}
-
-mode:
-功能说明: 表示定义文件权限信息
-[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/hosts02.txt owner=oldboy group=oldboy mode=600&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;checksum&quot;: &quot;080ff42e45402331e84c439195cc0bdd8612dab2&quot;, 
-    &quot;dest&quot;: &quot;/etc/hosts02.txt&quot;, 
-    &quot;gid&quot;: 500, 
-    &quot;group&quot;: &quot;oldboy&quot;, 
-    &quot;mode&quot;: &quot;0600&quot;, 
-    &quot;owner&quot;: &quot;oldboy&quot;, 
-    &quot;path&quot;: &quot;/etc/hosts02.txt&quot;, 
-    &quot;size&quot;: 381, 
-    &quot;state&quot;: &quot;file&quot;, 
-    &quot;uid&quot;: 500
-}
-
-backup
-功能说明: 备份文件参数
-[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/etc/ backup=yes&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;backup_file&quot;: &quot;/etc/hosts.27356.2018-08-29@14:49:24~&quot;, 
-    &quot;changed&quot;: true, 
-    &quot;checksum&quot;: &quot;ecb1141795156de5c9e8dd8d6110664967bd5c2c&quot;, 
-    &quot;dest&quot;: &quot;/etc/hosts&quot;, 
-    &quot;gid&quot;: 0, 
-    &quot;group&quot;: &quot;root&quot;, 
-    &quot;md5sum&quot;: &quot;d549b184f3047f0f7d339b54b49cd7fa&quot;, 
-    &quot;mode&quot;: &quot;0644&quot;, 
-    &quot;owner&quot;: &quot;root&quot;, 
-    &quot;size&quot;: 391, 
-    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535942238.19-73156608014775/source&quot;, 
-    &quot;state&quot;: &quot;file&quot;, 
-    &quot;uid&quot;: 0
-}
-
-content
-功能说明: 编辑定义文件中的内容信息
-[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;content=oldboy123 dest=/etc/rsync.password mode=600&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;checksum&quot;: &quot;3f8922898e4b39c87b50ac500daa3cca511852e6&quot;, 
-    &quot;dest&quot;: &quot;/etc/rsync.password&quot;, 
-    &quot;gid&quot;: 0, 
-    &quot;group&quot;: &quot;root&quot;, 
-    &quot;md5sum&quot;: &quot;484d81f3893c04df63dc6bd2aedc917c&quot;, 
-    &quot;mode&quot;: &quot;0600&quot;, 
-    &quot;owner&quot;: &quot;root&quot;, 
-    &quot;size&quot;: 9, 
-    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535942489.52-110515874860286/source&quot;, 
-    &quot;state&quot;: &quot;file&quot;, 
-    &quot;uid&quot;: 0
-}
-remote_src
-功能说明: 实现远程主机数据手工备份
-[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/opt/h01.txt remote_src=no&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;checksum&quot;: &quot;ecb1141795156de5c9e8dd8d6110664967bd5c2c&quot;, 
-    &quot;dest&quot;: &quot;/opt/h01.txt&quot;, 
-    &quot;gid&quot;: 0, 
-    &quot;group&quot;: &quot;root&quot;, 
-    &quot;md5sum&quot;: &quot;d549b184f3047f0f7d339b54b49cd7fa&quot;, 
-    &quot;mode&quot;: &quot;0644&quot;, 
-    &quot;owner&quot;: &quot;root&quot;, 
-    &quot;size&quot;: 391, 
-    &quot;src&quot;: &quot;/root/.ansible/tmp/ansible-tmp-1535942742.61-251519694289367/source&quot;, 
-    &quot;state&quot;: &quot;file&quot;, 
-    &quot;uid&quot;: 0
-}
-[root@m01 scripts]# ansible 172.16.1.31 -m copy -a &quot;src=/etc/hosts dest=/opt/h02.txt remote_src=yes&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;checksum&quot;: &quot;4fe93330a67ebc6aead89e9408b88b2eb6052406&quot;, 
-    &quot;dest&quot;: &quot;/opt/h02.txt&quot;, 
-    &quot;gid&quot;: 0, 
-    &quot;group&quot;: &quot;root&quot;, 
-    &quot;md5sum&quot;: &quot;0e91dad6dc1a1b210963dbb5ca12adbc&quot;, 
-    &quot;mode&quot;: &quot;0644&quot;, 
-    &quot;owner&quot;: &quot;root&quot;, 
-    &quot;size&quot;: 371, 
-    &quot;src&quot;: &quot;/etc/hosts&quot;, 
-    &quot;state&quot;: &quot;file&quot;, 
-    &quot;uid&quot;: 0
-}
-</code></pre><h5 id="file模块"><a href="#file模块" class="headerlink" title="file模块"></a>file模块</h5><h5 id="功能说明：功能说明：修改文件属性；创建文件信息、目录信息或者连接文件信息；删除"><a href="#功能说明：功能说明：修改文件属性；创建文件信息、目录信息或者连接文件信息；删除" class="headerlink" title="功能说明：功能说明：修改文件属性；创建文件信息、目录信息或者连接文件信息；删除"></a>功能说明：功能说明：修改文件属性；创建文件信息、目录信息或者连接文件信息；删除</h5><pre><code> state：创建目录
- [root@m01 scripts]# ansible nfs -m file -a &quot;dest=/tmp/test/ state=touch&quot;
- 172.16.1.31 | SUCCESS =&gt; {
-     &quot;changed&quot;: true, 
-     &quot;dest&quot;: &quot;/tmp/test&quot;, 
-     &quot;gid&quot;: 0, 
-     &quot;group&quot;: &quot;root&quot;, 
-     &quot;mode&quot;: &quot;0644&quot;, 
-     &quot;owner&quot;: &quot;root&quot;, 
-     &quot;size&quot;: 0, 
-     &quot;state&quot;: &quot;file&quot;, 
-     &quot;uid&quot;: 0
- }
- 删除目录：
- [root@m01 scripts]# ansible nfs -m file -a &quot;dest=/tmp/test/ state=absent&quot;
- 172.16.1.31 | SUCCESS =&gt; {
-     &quot;changed&quot;: true, 
-     &quot;path&quot;: &quot;/tmp/test&quot;, 
-     &quot;state&quot;: &quot;absent&quot;
- }
-
- recurse --递归
- [root@m01 scripts]# ansible 172.16.1.31 -m file -a &quot;dest=/tmp/01/ owner=oldboy recurse=yes&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;gid&quot;: 0, 
-    &quot;group&quot;: &quot;root&quot;, 
-    &quot;mode&quot;: &quot;0755&quot;, 
-    &quot;owner&quot;: &quot;oldboy&quot;, 
-    &quot;path&quot;: &quot;/tmp/01/&quot;, 
-    &quot;size&quot;: 4096, 
-    &quot;state&quot;: &quot;directory&quot;, 
-    &quot;uid&quot;: 500
-}
-</code></pre><h3 id="cron模块功能说明："><a href="#cron模块功能说明：" class="headerlink" title="cron模块功能说明："></a>cron模块功能说明：</h3><pre><code>功能说明：可以变量编辑定时任务信息
-官方链接：https://docs.ansible.com/ansible/latest/modules/file_module.html#file-module
-参数说明：
-</code></pre><h3 id="测验-批量设置时间同步定时任务-每五分钟进行时间同步"><a href="#测验-批量设置时间同步定时任务-每五分钟进行时间同步" class="headerlink" title="测验: 批量设置时间同步定时任务(每五分钟进行时间同步)"></a>测验: 批量设置时间同步定时任务(每五分钟进行时间同步)</h3><pre><code>*/5 * * * *  ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1 
-minute:                # Minute when the job should run ( 0-59, *, */2, etc )
-hour:                  # Hour when the job should run ( 0-23, *, */2, etc )
-day:                   # Day of the month the job should run ( 1-31, *, */2, etc )
-month:                 # Month of the year the job should run ( 1-12, *, */2, etc )
-weekday:               # Day of the week that the job should run ( 0-6 for Sunday-Saturday, *, etc )
-
-job:                   # The command to execute or, if env is set, the value of environment variable. The command
-                         should not contain line breaks. Required if state=present.
-
-# ansible 172.16.1.31 -m cron -a &quot;minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos;&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;None&quot;
-    ]
-}
-
-[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos;&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: false, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;time ntpdate&quot;, 
-        &quot;None&quot;
-    ]
-}
-[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate01&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos;&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;time ntpdate&quot;, 
-        &quot;time ntpdate01&quot;
-    ]
-}
-说明: 以上是设置定时任务方法
-
-[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate01&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos; state=absent&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;time ntpdate&quot;
-    ]
-}
-说明: 以上是删除定时任务方法
-
-[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos; disabled=yes&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;time ntpdate&quot;
-    ]
-}
-[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; minute=*/5 hour=* day=* month=* weekday=* job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos; disabled=no&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;time ntpdate&quot;
-    ]
-}
-</code></pre><h4 id="定时任务编写-命令精简后操作信息"><a href="#定时任务编写-命令精简后操作信息" class="headerlink" title="定时任务编写(命令精简后操作信息)"></a>定时任务编写(命令精简后操作信息)</h4><pre><code>[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate02&apos; minute=*/5 job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos;&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;time ntpdate&quot;, 
-        &quot;time ntpdate02&quot;
-    ]
-}
-[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate02&apos; state=absent&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;time ntpdate&quot;
-    ]
-}
-[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; disabled=yes&quot;
-172.16.1.31 | FAILED! =&gt; {
-    &quot;changed&quot;: false, 
-    &quot;msg&quot;: &quot;You must specify &apos;job&apos; to install a new cron job or variable&quot;
-}
-[root@m01 scripts]# ansible 172.16.1.31 -m cron -a &quot;name=&apos;time ntpdate&apos; job=&apos;ntpdate ntp1.aliyun.com &gt;/dev/null 2&gt;&amp;1&apos; disabled=yes&quot;
-172.16.1.31 | SUCCESS =&gt; {
-    &quot;changed&quot;: true, 
-    &quot;envs&quot;: [], 
-    &quot;jobs&quot;: [
-        &quot;time ntpdate&quot;
-    ]
-}
-</code></pre><h3 id="ansible剧本编写方法"><a href="#ansible剧本编写方法" class="headerlink" title="ansible剧本编写方法"></a>ansible剧本编写方法</h3><pre><code> ansible -m 模块 -a 参数 &gt;&gt;ansible_playbook.yml  === linux 命令 参数 &gt;&gt;shell.sh
-
- 让一个定时任务执行脚本
- 1) 分发一个脚本文件到远程主机
- 2) 编写定时任务
-
- ansible剧本核心知识:
- 1. ansible剧本编写规范
- 2. paramiko远程连接与数据传输    
- 3. Jinjia2用于编写ansible的模板信息
-  ======================================================================================
- 扩展说明：jinja2模板作用：
-【 for循环语句jinja模板】
- 为远程主机生成服务器列表，加入该列表info从192.168.13.201 web01.test.com 到192.168.13.211 web11.test.com 结束，
- 如果手动添加就很不科学了，这里需要使用jinja2语法的for循环通过模板批量生成对应的配置文件，如下：
-
- ansible目录结构：
- #cd /etc/ansible/roles/test_hosts
- .
- ├── meta
- │   └── main.yml
- ├── tasks
- │   ├── file1.yml
- │   └── main.yml
- ├── templates
- │   └── test1.j2
- └── vars
-     └── main.yml
-
-各个目录下yml文件内容：
-# cat tasks/main.yml 
-- include: file1.yml
-
-# cat tasks/file1.yml 
-- name: ansible jinja2 template for hosts config
-  template: src=test1.j2 dest=/etc/httpd/conf/httpd.conf.test
-
-# cat templates/test1.j2 
-  {% for id in range(201,212) %}
-      192.168.13.{{ id }} web{{ "%02d" |format(id-200) }}.test.com
-      {% endfor %}
-  解释：
-  {{ id }} 提取for循环中对应的变量id值
-  &quot;%02d&quot;   调用的是python内置的字符串格式化输出（%d格式化整数）因为是01,02这种格式，所以是保留2位，故用02
-  然后将结果通过管道符 “|” 传递给format 函数做二次处理。
-
-  执行结果：    
-  #cat httpd.conf.test
-  192.168.13.201 web01.test.com
-  192.168.13.202 web02.test.com
-  192.168.13.203 web03.test.com
-  192.168.13.204 web04.test.com
-  192.168.13.205 web05.test.com
-  192.168.13.206 web06.test.com
-  192.168.13.207 web07.test.com
-  192.168.13.208 web08.test.com
-  192.168.13.209 web09.test.com
-  192.168.13.210 web10.test.com
-  192.168.13.211 web11.test.com
-
- 参考资料：http://linuxg.blog.51cto.com/4410110/1788574
- ======================================================================================    
-  说明：很多ansible的报错都是和python有关，因为ansible的底层开发是利用python编写的
-</code></pre><h3 id="ansible剧本编写规范"><a href="#ansible剧本编写规范" class="headerlink" title="ansible剧本编写规范:"></a>ansible剧本编写规范:</h3><pre><code>pyYAML-----用于ansible编写剧本所使用的语言格式
-     xml---&lt;sersync xxx&gt;xxx&lt;/sersync&gt;
-     ini---rsyncd.conf  [backup] path=xxx list=&quot;&quot;
-     shell--- #!/bin/bash
-1) 缩进规范 两个空格代表一个缩进
-  找人
-  做事
-  01.
-      02.
-
-  找人
-    做事
-  特别重点强调: 一定不要使用tab按键进行缩进
-2) 冒号使用
-  oldboy=123456
-  hosts:空格172.16.1.31 172.16.1.41
-  hosts:
-  172.16.1.31
-  注释信息中的:,不要后面接上空格
-  name: cond-01:ntpdate time
-
-3) 短横线用法
-  用于指定列表信息
-
-  01  oldboy   22   大学
-  02  oldgirl  23   大专
-  03  sholdboy 21   高中    
-
-  - hosts: 172.16.1.31
-
-  - hosts: 172.16.1.1 172.16.1.2      
-
-  - hosts: 192.16.1.1       
-</code></pre><h3 id="编写剧本实践"><a href="#编写剧本实践" class="headerlink" title="编写剧本实践"></a>编写剧本实践</h3><h4 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h4><pre><code>01. 将一个脚本分发给多台主机
-02. 利用定时任务,定时执行脚本
-</code></pre><h4 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h4><pre><code>cat ansible_test.sh    
-#!/bin/bash
-echo 123456 &gt;&gt;/tmp/oldboy_test.txt
-
-没分钟执行一次这个脚本 
-</code></pre><h4 id="编写剧本"><a href="#编写剧本" class="headerlink" title="编写剧本:"></a>编写剧本:</h4><pre><code>- hosts: 172.16.1.31
-   tasks:
-   - name: copy shell scripts file
-      copy: src=/server/scripts/ansible_test.sh dest=/server/scripts/ mode=755
-    - name: set crond
-      cron: name=&apos;ntp time&apos; minute=*/5 job=&apos;/bin/sh /server/scripts/ansible_test.sh &amp;&gt;/dev/null&apos;
-</code></pre><h4 id="剧本编写完"><a href="#剧本编写完" class="headerlink" title="剧本编写完:"></a>剧本编写完:</h4><pre><code>1) 进行语法检查
-ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
-
-2) 进行模拟执行剧本测试
-</code></pre><h3 id="ansible命令执行颜色说明"><a href="#ansible命令执行颜色说明" class="headerlink" title="ansible命令执行颜色说明"></a>ansible命令执行颜色说明</h3><pre><code>绿色：查询或命令执行成功，显示绿色信息；不会对远程主机系统环境做任何改变
-红色：执行命令失败
-黄色：执行命令成功，但是对远程主机做了相应修改
-粉色：建议信息
-蓝色：显示命令执行过程信息
-</code></pre>
+        <h3 id="那时候，我们十六七岁，时间很慢，夏天很长，年少的我们，以为只要说过了永远，就一定能够永远。"><a href="#那时候，我们十六七岁，时间很慢，夏天很长，年少的我们，以为只要说过了永远，就一定能够永远。" class="headerlink" title="那时候，我们十六七岁，时间很慢，夏天很长，年少的我们，以为只要说过了永远，就一定能够永远。"></a>那时候，我们十六七岁，时间很慢，夏天很长，年少的我们，以为只要说过了永远，就一定能够永远。</h3>
+        
+          <p class="article-more-link">
+            <a href="/2018/09/03/期中架构-09/#more" class="more-link">More <span class="meta-nav">→</span></a>
+          </p>
+        
       
     </div><!-- .entry-content -->
 
@@ -852,7 +186,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/28/期中架构-07/" data-id="cjlm6d4gg0050aog174a4ome3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/28/期中架构-07/" data-id="cjlmzrke4004st0g10b9a02pe" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -902,7 +236,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/mfs学习笔记-01/" data-id="cjlm6d4bp002saog1dltqpy3t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/mfs学习笔记-01/" data-id="cjlmzrkap002pt0g11gzxv23u" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -952,7 +286,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/肆式青春/" data-id="cjlm6d4f1004faog1xt425c3y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/肆式青春/" data-id="cjlmzrkcq0046t0g13mlu4buz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1002,7 +336,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-06/" data-id="cjlm6d4dp003taog11ki4nyi7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-06/" data-id="cjlmzrkbg003ct0g1xsxxmmeu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1052,7 +386,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-05/" data-id="cjlm6d4dj003raog1kmrnuycx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-05/" data-id="cjlmzrkbf003bt0g1yc6bbb8u" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1102,7 +436,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-04/" data-id="cjlm6d4ea0041aog1jlqw7cnu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-04/" data-id="cjlmzrkbl003ft0g195uo9kid" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1152,7 +486,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-03/" data-id="cjlm6d4e0003xaog1rdfab0pv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-03/" data-id="cjlmzrkbd0039t0g182etj1pa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1202,7 +536,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/zabbix简单安装部署/" data-id="cjlm6d4c70031aog10ridnwsx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/zabbix简单安装部署/" data-id="cjlmzrkay002wt0g15cbn6sgf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1252,7 +586,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/期中架构-02/" data-id="cjlm6d4dg003paog1wuleg34w" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/期中架构-02/" data-id="cjlmzrkba0036t0g14zoqoeco" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1302,7 +636,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/期中架构-01/" data-id="cjlm6d4cj0037aog181e28wdp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/期中架构-01/" data-id="cjlmzrkb70034t0g133viln5y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1352,7 +686,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/Linux基础优化/" data-id="cjlm6d46q000caog1xzwmatwf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/Linux基础优化/" data-id="cjlmzrk80000ct0g1u5p4fdzo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1402,7 +736,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/kali-linux-学习笔记/" data-id="cjlm6d4b8002oaog1422fams8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/kali-linux-学习笔记/" data-id="cjlmzrkb1002yt0g13vnd6got" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1452,7 +786,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/Linux运维学习-第三十二天/" data-id="cjlm6d49x001uaog1dhw6hnue" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/Linux运维学习-第三十二天/" data-id="cjlmzrk9c001ht0g1f3yklabp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1502,7 +836,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/14/Linux运维学习-第三十天/" data-id="cjlm6d472000haog15cktr9n2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/14/Linux运维学习-第三十天/" data-id="cjlmzrk8f000mt0g10v146p63" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1552,7 +886,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/12/curl-error-7/" data-id="cjlm6d4ap002caog1g3ll4de9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/12/curl-error-7/" data-id="cjlmzrka80029t0g14vtogt2n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1602,7 +936,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/12/ELK/" data-id="cjlm6d45q0001aog1v9tsbwzb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/12/ELK/" data-id="cjlmzrk760001t0g1cqlp8quz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1644,7 +978,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/10/Linux运维学习-第二十八天/" data-id="cjlm6d47z0012aog1c3ur7zo0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/10/Linux运维学习-第二十八天/" data-id="cjlmzrk8t000zt0g1y9ctwv0k" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1694,7 +1028,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/09/往后余生/" data-id="cjlm6d4de003naog1pkln689d" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/09/往后余生/" data-id="cjlmzrkb40032t0g1b0336pzl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1747,7 +1081,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/08/Linux运维学习-第二十七天/" data-id="cjlm6d47k000qaog1a0rlp84o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/08/Linux运维学习-第二十七天/" data-id="cjlmzrk8j000rt0g137qoc75t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1797,7 +1131,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/centos7-通过git连接GitHub仓库/" data-id="cjlm6d4as002eaog183tpuifl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/centos7-通过git连接GitHub仓库/" data-id="cjlmzrkac002dt0g1ymlw431l" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1847,7 +1181,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/shell之11292-0-0/" data-id="cjlm6d4bx002waog15mb964bd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/shell之11292-0-0/" data-id="cjlmzrkam002nt0g18b8v12jt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1897,7 +1231,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/Linux运维学习-第二十六天/" data-id="cjlm6d47u000yaog1544un5iq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/Linux运维学习-第二十六天/" data-id="cjlmzrk8y0013t0g1ly55x5is" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1947,7 +1281,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/不染/" data-id="cjlm6d4ce0035aog1e8fl6ynp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/不染/" data-id="cjlmzrkbu003kt0g12mpi5d4o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1997,7 +1331,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/centos7下安装docker/" data-id="cjlm6d4bv002uaog1tsvndqqc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/centos7下安装docker/" data-id="cjlmzrka40027t0g1rqskoefx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2047,7 +1381,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/shell之运算符/" data-id="cjlm6d4da003laog1b7yvliy4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/shell之运算符/" data-id="cjlmzrke0004qt0g16qxxmehb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2097,7 +1431,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/Linux运维学习-第二十五天/" data-id="cjlm6d496001aaog18fev46f5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/Linux运维学习-第二十五天/" data-id="cjlmzrk8v0011t0g1ztjotvt2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2147,7 +1481,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/" data-id="cjlm6d4aw002gaog11l8qdv7m" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/" data-id="cjlmzrkaf002ft0g1gs323tkt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2197,7 +1531,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/eth0-网卡问题解决小方法/" data-id="cjlm6d4b0002iaog1t0fae805" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/eth0-网卡问题解决小方法/" data-id="cjlmzrkal002lt0g1u8f54u2w" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2247,7 +1581,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/Linux运维学习-第二十四天/" data-id="cjlm6d49b001eaog1ca5blpvk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/Linux运维学习-第二十四天/" data-id="cjlmzrk97001dt0g180fqci90" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2297,7 +1631,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/02/Linux运维学习-第二十三天/" data-id="cjlm6d47w0010aog15llapowk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/02/Linux运维学习-第二十三天/" data-id="cjlmzrk8o000wt0g1zwwi7tty" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2347,7 +1681,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/Linux运维学习-第二十二天/" data-id="cjlm6d47r000vaog1zwnrqzmy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/Linux运维学习-第二十二天/" data-id="cjlmzrka10024t0g14khp3ym2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2397,7 +1731,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/每天一个Linux命令10/" data-id="cjlm6d4fh004naog1gcqhb137" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/每天一个Linux命令10/" data-id="cjlmzrkek0052t0g1yzn6fr6y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2447,7 +1781,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/Linux运维学习-第二十一天/" data-id="cjlm6d47f000oaog1v7bg69xa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/Linux运维学习-第二十一天/" data-id="cjlmzrk8h000pt0g1x77age5e" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2497,7 +1831,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/wordpress搭建自己博客/" data-id="cjlm6d4cb0033aog1t82i1z8n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/wordpress搭建自己博客/" data-id="cjlmzrkas002st0g1h0cs7h8a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2539,7 +1873,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/LNMP-PHP/" data-id="cjlm6d4670005aog11v3v0kny" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/LNMP-PHP/" data-id="cjlmzrk7m0005t0g1sxh8swfg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2589,7 +1923,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/N那些你很冒险的梦/" data-id="cjlm6d4ah0024aog15h9qy9i1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/N那些你很冒险的梦/" data-id="cjlmzrk9z0022t0g1xl2ay7z0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2639,7 +1973,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/NFS—-脚本/" data-id="cjlm6d4a80020aog1ktac7u11" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/NFS—-脚本/" data-id="cjlmzrk9q001tt0g1o038gqtm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2689,7 +2023,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/Linux运维学习-第二十天/" data-id="cjlm6d4930019aog13jrbjexi" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/Linux运维学习-第二十天/" data-id="cjlmzrk930019t0g1gqt8sfl1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2739,7 +2073,7 @@ ansible-playbook --syntax-check /etc/ansible/ansible_playbook/test.yaml
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十九天/" data-id="cjlm6d49s001oaog1wx9qug3m" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十九天/" data-id="cjlmzrk9x0020t0g1xmgpe6cx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2853,7 +2187,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/醉赤壁/" data-id="cjlm6d4fc004laog1zo41594p" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/醉赤壁/" data-id="cjlmzrkcy004at0g12qcaq4hy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2903,7 +2237,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/生如夏花/" data-id="cjlm6d4f4004haog17yvd4ru0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/生如夏花/" data-id="cjlmzrkcu0048t0g16qn27txw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2953,7 +2287,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十八天/" data-id="cjlm6d4d5003gaog1neyzagg4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十八天/" data-id="cjlmzrkdu004lt0g1duabn3b5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3003,7 +2337,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/linux运维学习-第十七天/" data-id="cjlm6d4cm003caog1l3zd17za" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/linux运维学习-第十七天/" data-id="cjlmzrkb20030t0g1q6xu9h5a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3053,7 +2387,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/ansible-安装二三事/" data-id="cjlm6d4ak0027aog1p2h0ln7q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/ansible-安装二三事/" data-id="cjlmzrkab002bt0g18v6ddl84" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3103,7 +2437,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/MySQL安装配置/" data-id="cjlm6d4a0001waog1juskmf4j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/MySQL安装配置/" data-id="cjlmzrk9o001rt0g1xqiukey9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3145,7 +2479,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/Linux运维学习-第十六天/" data-id="cjlm6d44v0000aog1e0v736r1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/Linux运维学习-第十六天/" data-id="cjlmzrk5c0000t0g1ejv9hrfb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3187,7 +2521,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/NFS配置二三事/" data-id="cjlm6d4d8003jaog16vwmd58m" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/NFS配置二三事/" data-id="cjlmzrkdx004ot0g1g1hficxi" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3237,7 +2571,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/每天一个Linux命令09/" data-id="cjlm6d4ep0049aog1srubfyvn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/每天一个Linux命令09/" data-id="cjlmzrkco0044t0g1mhdd486z" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3287,7 +2621,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/tomcat安装轶事/" data-id="cjlm6d4c2002yaog1n6cnpfml" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/tomcat安装轶事/" data-id="cjlmzrkc0003rt0g1i2f51knq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3337,7 +2671,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/每天一个Linux命令08/" data-id="cjlm6d4ey004daog1b2yhkpqc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/每天一个Linux命令08/" data-id="cjlmzrkck0042t0g1dizn8rm8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3387,7 +2721,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/Linux运维学习-第十五天/" data-id="cjlm6d4ae0022aog195uay7tq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/Linux运维学习-第十五天/" data-id="cjlmzrk9i001lt0g1anuescot" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3437,7 +2771,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/22/Linux运维学习-第十四天/" data-id="cjlm6d4d6003haog17qxglh3p" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/22/Linux运维学习-第十四天/" data-id="cjlmzrkdw004mt0g1wk8w14x4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3487,7 +2821,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/" data-id="cjlm6d45z0003aog14pq0jblf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/" data-id="cjlmzrk7d0003t0g1vmkdr9ei" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3537,7 +2871,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux关于密码二三事/" data-id="cjlm6d46c0007aog1u8ot6ya8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux关于密码二三事/" data-id="cjlmzrk7s000at0g1v1d4rbm3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3587,7 +2921,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux运维学习-第十三天/" data-id="cjlm6d49n001kaog1anwdads7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux运维学习-第十三天/" data-id="cjlmzrk9a001ft0g19jy8meok" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3637,7 +2971,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令07/" data-id="cjlm6d4ev004baog10ro6vie2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令07/" data-id="cjlmzrkc7003wt0g14hs4f482" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3687,7 +3021,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令-06/" data-id="cjlm6d4e4003zaog11jqzs2tl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令-06/" data-id="cjlmzrkbp003ht0g1bzehdmt1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3737,7 +3071,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/nginx-简单安装-排错/" data-id="cjlm6d4ck0039aog15lm2165q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/nginx-简单安装-排错/" data-id="cjlmzrkav002ut0g18zu1pyr2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3787,7 +3121,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/每天一个Linux命令05/" data-id="cjlm6d4ej0045aog1yflk75g8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/每天一个Linux命令05/" data-id="cjlmzrkby003pt0g12pvgl0x0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3837,7 +3171,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjlm6d4gp0054aog1b5sudfdh" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjlmzrkei0050t0g1y22596is" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3887,7 +3221,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/" data-id="cjlm6d49v001saog13ycugyhu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/" data-id="cjlmzrk9m001pt0g1ed9r1sh0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3937,7 +3271,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux同步网络时间/" data-id="cjlm6d47a000maog1bu2lf2rr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux同步网络时间/" data-id="cjlmzrk8d000kt0g1mpp839yc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3987,7 +3321,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux运维学习-第十一天/" data-id="cjlm6d49t001qaog143xpqr0j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux运维学习-第十一天/" data-id="cjlmzrk9k001nt0g1t2fsqjel" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4037,7 +3371,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/16/每天一个Linux命令04/" data-id="cjlm6d4gn0052aog1uh09w9vr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/16/每天一个Linux命令04/" data-id="cjlmzrkef004yt0g1xkl1ilcc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4087,7 +3421,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/16/Linux运维学习-第十天/" data-id="cjlm6d4aj0026aog1hktbqw8w" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/16/Linux运维学习-第十天/" data-id="cjlmzrk9s001vt0g1i17vx860" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4137,7 +3471,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/centos-6-x下python2-6升级为2-7/" data-id="cjlm6d4an002aaog1qnqiidqc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/centos-6-x下python2-6升级为2-7/" data-id="cjlmzrkah002ht0g1iiu1k4uq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4187,7 +3521,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/Linux忘记密码解决2333/" data-id="cjlm6d46g000aaog1sevvjnxn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/Linux忘记密码解决2333/" data-id="cjlmzrk7p0007t0g10c4k1na7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4237,7 +3571,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/centos-6-x命令行模式转图形化模式/" data-id="cjlm6d4b2002kaog1q8r7id9c" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/centos-6-x命令行模式转图形化模式/" data-id="cjlmzrkd7004et0g119r50gxh" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4287,7 +3621,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/Linux运维学习-第九天/" data-id="cjlm6d47o000taog1d6837s7p" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/Linux运维学习-第九天/" data-id="cjlmzrk8m000ut0g13798jugv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4337,7 +3671,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/Linux运维学习-第八天/" data-id="cjlm6d49i001iaog1cly4bj9q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/Linux运维学习-第八天/" data-id="cjlmzrk900015t0g1ska2pp5y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4387,7 +3721,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjlm6d4fl004paog190rt4shu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjlmzrkeo0056t0g17ulpyr38" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4437,7 +3771,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/每天一个Linux命令03/" data-id="cjlm6d4fa004jaog15i97b7zt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/每天一个Linux命令03/" data-id="cjlmzrkca003yt0g1x5sapcgt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4487,7 +3821,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/Linux运维学习-第七天/" data-id="cjlm6d477000kaog1tyja4fne" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/Linux运维学习-第七天/" data-id="cjlmzrk89000ht0g1hx9xho2h" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4537,7 +3871,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/每天一个Linux命令02/" data-id="cjlm6d4em0047aog1217r49u1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/每天一个Linux命令02/" data-id="cjlmzrkc5003ut0g173i5t93b" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4587,7 +3921,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/Linux运维学习-第六天/" data-id="cjlm6d49f001gaog105xi6972" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/Linux运维学习-第六天/" data-id="cjlmzrk920017t0g1iuza7hgz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4637,7 +3971,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/第一次测验题目汇总/" data-id="cjlm6d4fq004raog1wq6kgyxb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/第一次测验题目汇总/" data-id="cjlmzrkd4004ct0g17s2z7i9a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4687,7 +4021,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjlm6d49q001maog1xwq7xc5e" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjlmzrk9f001jt0g1qt751duo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4737,7 +4071,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjlm6d4690006aog15764j6is" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjlmzrk7a0002t0g15t2avn4z" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4787,7 +4121,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjlm6d4gb004xaog1sxu5lgdg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjlmzrkea004wt0g1t3ukreq1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4837,7 +4171,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjlm6d45t0002aog1o68yqvqr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjlmzrk7o0006t0g1ghupg0b4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4887,7 +4221,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux运维学习-第四天/" data-id="cjlm6d4a3001yaog1h7jwp7o0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux运维学习-第四天/" data-id="cjlmzrk9w001yt0g178zhjxu2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4937,7 +4271,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/每天一个Linux命令01/" data-id="cjlm6d4ed0042aog1mxhr3wf8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/每天一个Linux命令01/" data-id="cjlmzrkem0054t0g1zcbiglwg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4987,7 +4321,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/linux快捷键/" data-id="cjlm6d4b5002maog170uuejrp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/linux快捷键/" data-id="cjlmzrkce0040t0g17tvrppdg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5037,7 +4371,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/每天一个Linux命令/" data-id="cjlm6d4dw003vaog1um2kf02a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/每天一个Linux命令/" data-id="cjlmzrkbw003mt0g1ohfi83nc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5087,7 +4421,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/linux运维学习-第三天/" data-id="cjlm6d4bc002qaog1wa0g4egs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/linux运维学习-第三天/" data-id="cjlmzrkaj002jt0g1fplwj96i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5137,7 +4471,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/Linux运维学习-第二天/" data-id="cjlm6d498001caog1m1ewl87k" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/Linux运维学习-第二天/" data-id="cjlmzrk96001bt0g1yf4n8kbs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5187,7 +4521,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/04/Linux运维学习-第一天/" data-id="cjlm6d46y000faog15ekha25o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/04/Linux运维学习-第一天/" data-id="cjlmzrk86000ft0g1cpq4jymo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
