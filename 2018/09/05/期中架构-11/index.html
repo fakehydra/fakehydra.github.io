@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>期中架构-11 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="青石板、老街巷……">
+<meta name="keywords" content="期中架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="期中架构-11">
+<meta property="og:url" content="http://yoursite.com/2018/09/05/期中架构-11/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="青石板、老街巷……">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-05T11:37:49.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="期中架构-11">
+<meta name="twitter:description" content="青石板、老街巷……">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-期中架构-11" class="post-期中架构-11 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      期中架构-11
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/05/期中架构-11/" data-id="cjlp2jr9b003q18g179fktcak" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="青石板、老街巷……"><a href="#青石板、老街巷……" class="headerlink" title="青石板、老街巷……"></a>青石板、老街巷……</h3><a id="more"></a>
+<h3 id="nginx程序的目录结构"><a href="#nginx程序的目录结构" class="headerlink" title="nginx程序的目录结构"></a>nginx程序的目录结构</h3><pre><code>conf     --- 配置文件保存路径(nginx.conf)
+html     --- 站点目录,整合网站资源
+logs     --- 日志文件(错误日志文件 访问日志文件  进程pid文件)
+sbin     --- 程序命令保存路径
+             启动nginx服务  nginx   (建议配置好环境变量)
+             停止nginx服务  nginx -s stop
+             平滑重启nginx服务        nginx -s reload
+             检查nginx配置文件语法    nginx -t
+</code></pre><h3 id="详细查看一下nginx配置文件内容"><a href="#详细查看一下nginx配置文件内容" class="headerlink" title="详细查看一下nginx配置文件内容"></a>详细查看一下nginx配置文件内容</h3><pre><code>[root@web01 conf]# grep -Ev &quot;^$|#&quot; nginx.conf.default &gt;nginx.conf
+[root@web01 conf]# cat nginx.conf
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+    server {
+        listen       80;
+        server_name  localhost;
+        location / {
+            root   html;
+            index  index.html index.htm;
+           error_page   500 502 503 504  /50x.html;
+       location = /50x.html {
+           root   html;
+       }
+       }
+       }
+</code></pre><h3 id="编写nginx配置文件规范总结"><a href="#编写nginx配置文件规范总结" class="headerlink" title="编写nginx配置文件规范总结"></a>编写nginx配置文件规范总结</h3><pre><code>1.配置文件中指令&amp;参数别写错；位置别放错
+2.每一个区块都是由成对的{}组成
+3.所有区块中的指令信息都以；结尾
+</code></pre><h3 id="配置虚拟主机信息"><a href="#配置虚拟主机信息" class="headerlink" title="配置虚拟主机信息"></a>配置虚拟主机信息</h3><h4 id="编写虚拟主机网站页面代码文件"><a href="#编写虚拟主机网站页面代码文件" class="headerlink" title="编写虚拟主机网站页面代码文件"></a>编写虚拟主机网站页面代码文件</h4><pre><code>&lt;html&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;jinc&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+hello
+&lt;table border=1&gt;
+&lt;tr&gt; &lt;td&gt;01&lt;/td&gt; &lt;td&gt; 1&lt;/td&gt; &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;02&lt;/td&gt; &lt;td&gt; 2&lt;/td&gt; &lt;/tr&gt;
+&lt;tr&gt; &lt;td&gt;03&lt;/td&gt; &lt;td&gt; 3&lt;/td&gt; &lt;/tr&gt;
+&lt;/table&gt;
+&lt;a href=&quot;http://fakehydra.xyz&quot;&gt;
+&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3 id="编写多个虚拟主机方法"><a href="#编写多个虚拟主机方法" class="headerlink" title="编写多个虚拟主机方法:"></a>编写多个虚拟主机方法:</h3><h4 id="基于域名的配置"><a href="#基于域名的配置" class="headerlink" title="基于域名的配置"></a>基于域名的配置</h4><h5 id="第一个里程-编写配置文件"><a href="#第一个里程-编写配置文件" class="headerlink" title="第一个里程: 编写配置文件"></a>第一个里程: 编写配置文件</h5><pre><code>[root@web01 conf]# cat nginx.conf
+worker_processes  4;
+events {
+    worker_connections  1025;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+    server {
+        listen       80;
+        server_name  www.etiantian.org;
+        root   html/www;
+        index  index.html index.htm;
+    }
+    server {
+        listen       80;
+        server_name  bbs.etiantian.org;
+        root   html/bbs;
+        index  index.html index.htm;
+    }
+    server {
+        listen       80;
+        server_name  blog.etiantian.org;
+        root   html/blog;
+        index  index.html index.htm;
+    }
+}
+</code></pre><h5 id="第二个里程-创建站点目录信息-创建首页文件"><a href="#第二个里程-创建站点目录信息-创建首页文件" class="headerlink" title="第二个里程: 创建站点目录信息/创建首页文件"></a>第二个里程: 创建站点目录信息/创建首页文件</h5><pre><code>mkdir /application/nginx/html/{www,bbs,blog}
+
+ps: 403错误出现原因
+1) 配置了禁止访问
+2) 指定站点目录下面没有首页文件
+
+for name in www bbs blog;do echo &quot;10.0.0.7 $name.etiantian.org&quot; &gt;/application/nginx/html/$name/index.html;done
+for name in www bbs blog;do cat /application/nginx/html/$name/index.html;done
+</code></pre><h5 id="第三个里程-重启nginx服务"><a href="#第三个里程-重启nginx服务" class="headerlink" title="第三个里程: 重启nginx服务"></a>第三个里程: 重启nginx服务</h5><pre><code>nginx -s reload
+</code></pre><h5 id="第四个里程-编写windows系统中hosts解析文件"><a href="#第四个里程-编写windows系统中hosts解析文件" class="headerlink" title="第四个里程: 编写windows系统中hosts解析文件"></a>第四个里程: 编写windows系统中hosts解析文件</h5><h5 id="第五个里程-进行访问测试"><a href="#第五个里程-进行访问测试" class="headerlink" title="第五个里程: 进行访问测试"></a>第五个里程: 进行访问测试</h5><h4 id="基于端口的配置"><a href="#基于端口的配置" class="headerlink" title="基于端口的配置"></a>基于端口的配置</h4><pre><code>server {
+    listen       8080;
+    server_name  bbs.etiantian.org;
+    root   html/bbs;
+    index  index.html index.htm;
+}
+</code></pre><h4 id="基于IP的配置"><a href="#基于IP的配置" class="headerlink" title="基于IP的配置"></a>基于IP的配置</h4><pre><code>server {
+    listen       10.0.0.7:80;
+    server_name  www.etiantian.org;
+    root   html/www;
+    index  index.html index.htm;
+}
+server {
+    listen       172.16.1.7:80;
+    server_name  bbs.etiantian.org;
+    root   html/bbs;
+    index  index.html index.htm;
+}
+
+[root@web01 conf]# netstat -lntup|grep nginx
+tcp        0      0 172.16.1.7:80               0.0.0.0:*                   LISTEN      26477/nginx         
+tcp        0      0 10.0.0.7:80                 0.0.0.0:*                   LISTEN      26477/nginx  
+强调: nginx配置文件中只要涉及IP地址的修改,必须真正重启nginx服务(不能采用平滑重启)
+</code></pre><h3 id="总结常见问题信息"><a href="#总结常见问题信息" class="headerlink" title="总结常见问题信息"></a>总结常见问题信息</h3><h4 id="问题一-报403错误"><a href="#问题一-报403错误" class="headerlink" title="问题一: 报403错误"></a>问题一: 报403错误</h4><pre><code>        是否有首页文件    
+        autoindex on; #&lt;==当找不到首页文件时，会展示目录结构，这个功能一般不要用除非有需求
+参考链接: http://blog.51cto.com/oldboy/1633952
+</code></pre><h4 id="问题二-worker进程用户被删除了"><a href="#问题二-worker进程用户被删除了" class="headerlink" title="问题二: worker进程用户被删除了"></a>问题二: worker进程用户被删除了</h4><pre><code>nginx: [emerg] getpwnam(&quot;www&quot;) failed
+worker进程管理用户被删除了
+</code></pre><h4 id="问题三-服务已经启动-不要反复启动"><a href="#问题三-服务已经启动-不要反复启动" class="headerlink" title="问题三: 服务已经启动,不要反复启动"></a>问题三: 服务已经启动,不要反复启动</h4><pre><code>[root@web01 www]# nginx 
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] still could not bind()
+</code></pre><h4 id="问题四-服务已经停止-不要反复操作了"><a href="#问题四-服务已经停止-不要反复操作了" class="headerlink" title="问题四: 服务已经停止,不要反复操作了"></a>问题四: 服务已经停止,不要反复操作了</h4><pre><code>[root@web01 www]# nginx -s stop
+nginx: [error] open() &quot;/application/nginx-1.14/logs/nginx.pid&quot; failed (2: No such file or directory)
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/09/05/期中架构-11/">
+    <time datetime="2018-09-05T11:35:41.000Z" class="entry-date">
+        2018-09-05
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/09/04/rose/" rel="next">rose <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/05/期中架构-11/">期中架构-11</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/04/rose/">rose</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/04/期中架构-10/">期中架构-10</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/03/期中架构-08/">期中架构-08</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/03/期中架构-09/">期中架构-09</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 11.67px;">Nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.67px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.33px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.67px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 16.67px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.67px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 13.33px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
