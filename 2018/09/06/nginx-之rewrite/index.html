@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>nginx 之rewrite | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="nginx 之rewrite">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx 之rewrite">
+<meta property="og:url" content="http://yoursite.com/2018/09/06/nginx-之rewrite/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="nginx 之rewrite">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-06T13:09:27.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx 之rewrite">
+<meta name="twitter:description" content="nginx 之rewrite">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-nginx-之rewrite" class="post-nginx-之rewrite post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      nginx 之rewrite
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/nginx-之rewrite/" data-id="cjlql9f3s002jx8g10oy9k34q" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="nginx-之rewrite"><a href="#nginx-之rewrite" class="headerlink" title="nginx 之rewrite"></a>nginx 之rewrite</h3><a id="more"></a>
+<h3 id="rewrite语法格式及参数语法说明如下"><a href="#rewrite语法格式及参数语法说明如下" class="headerlink" title="rewrite语法格式及参数语法说明如下:"></a>rewrite语法格式及参数语法说明如下:</h3><pre><code>rewrite    &lt;regex&gt;    &lt;replacement&gt;    [flag];
+
+关键字      正则        替代内容          flag标记
+
+关键字：其中关键字error_log不能改变
+
+正则：perl兼容正则表达式语句进行规则匹配
+
+替代内容：将正则匹配的内容替换成replacement
+
+flag标记：rewrite支持的flag标记
+</code></pre><h3 id="flag标记说明："><a href="#flag标记说明：" class="headerlink" title="flag标记说明："></a>flag标记说明：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">last  #本条规则匹配完成后，继续向下匹配新的location URI规则</span><br><span class="line"></span><br><span class="line">break  #本条规则匹配完成即终止，不再匹配后面的任何规则</span><br><span class="line"></span><br><span class="line">redirect  #返回302临时重定向，浏览器地址会显示跳转后的URL地址</span><br><span class="line"></span><br><span class="line">permanent  #返回301永久重定向，浏览器地址栏会显示跳转后的URL地址</span><br></pre></td></tr></table></figure>
+<h3 id="rewrite参数的标签段位置："><a href="#rewrite参数的标签段位置：" class="headerlink" title="rewrite参数的标签段位置："></a>rewrite参数的标签段位置：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server,location,if</span><br></pre></td></tr></table></figure>
+<h3 id="eg："><a href="#eg：" class="headerlink" title="eg："></a>eg：</h3><p>rewrite ^/(.*) <a href="http://www.czlun.com/$1" target="_blank" rel="noopener">http://www.czlun.com/$1</a> permanent;</p>
+<h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h4><pre><code>rewrite为固定关键字，表示开始进行rewrite匹配规则
+
+regex部分是 ^/(.*) ，这是一个正则表达式，匹配完整的域名和后面的路径地址
+
+replacement部分是http://www.czlun.com/$1 $1，是取自regex部分()里的内容。匹配成功后跳转到的URL。
+
+flag部分 permanent表示永久301重定向标记，即跳转到新的 http://www.czlun.com/$1 地址上
+regex 常用正则表达式说明
+</code></pre><h3 id="字符-amp-描述"><a href="#字符-amp-描述" class="headerlink" title="字符&amp;描述"></a>字符&amp;描述</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">\：将后面接着的字符标记为一个特殊字符或一个原义字符或一个向后引用。如“\n”匹配一个换行符，而“\$”则匹配“$”</span><br><span class="line"></span><br><span class="line">^：匹配输入字符串的起始位置</span><br><span class="line"></span><br><span class="line">$：匹配输入字符串的结束位置</span><br><span class="line"></span><br><span class="line">*：匹配前面的字符零次或多次。如“ol*”能匹配“o”及“ol”、“oll”</span><br><span class="line"></span><br><span class="line">+：匹配前面的字符一次或多次。如“ol+”能匹配“ol”及“oll”、“oll”，但不能匹配“o”</span><br><span class="line"></span><br><span class="line">?：匹配前面的字符零次或一次，例如“do(es)?”能匹配“do”或者“does”，&quot;?&quot;等效于&quot;&#123;0,1&#125;&quot;</span><br><span class="line"></span><br><span class="line">.：匹配除“\n”之外的任何单个字符，若要匹配包括“\n”在内的任意字符，请使用诸如“[.\n]”之类的模式。</span><br><span class="line"></span><br><span class="line">(pattern)：匹配括号内pattern并可以在后面获取对应的匹配，常用$0...$9属性获取小括号中的匹配内容，要匹配圆括号字符需要\(Content\)</span><br></pre></td></tr></table></figure>
+<h3 id="rewrite-企业应用场景"><a href="#rewrite-企业应用场景" class="headerlink" title="rewrite 企业应用场景"></a>rewrite 企业应用场景</h3><h4 id="Nginx的rewrite功能在企业里应用非常广泛："><a href="#Nginx的rewrite功能在企业里应用非常广泛：" class="headerlink" title="Nginx的rewrite功能在企业里应用非常广泛："></a>Nginx的rewrite功能在企业里应用非常广泛：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可以调整用户浏览的URL，看起来更规范，合乎开发及产品人员的需求</span><br><span class="line">为了让搜索引擎搜录网站内容及用户体验更好，企业会将动态URL地址伪装成静态地址提供服务</span><br><span class="line">网址换新域名后，让旧的访问跳转到新的域名上。例如，访问京东的360buy.com会跳转到jd.co</span><br><span class="line">根据特殊变量、目录、客户端的信息进行URL调整等</span><br></pre></td></tr></table></figure>
+<h3 id="Nginx配置rewrite过程介绍"><a href="#Nginx配置rewrite过程介绍" class="headerlink" title="Nginx配置rewrite过程介绍"></a>Nginx配置rewrite过程介绍</h3><h4 id="创建rewrite语句"><a href="#创建rewrite语句" class="headerlink" title="创建rewrite语句"></a>创建rewrite语句</h4><p>vi conf/vhost/<a href="http://www.abc.com.conf" target="_blank" rel="noopener">www.abc.com.conf</a></p>
+<p>#vi编辑虚拟主机配置文件</p>
+<h4 id="文件内容"><a href="#文件内容" class="headerlink" title="文件内容"></a>文件内容</h4><pre><code>server {
+
+        listen 80;
+
+        server_name abc.com;
+
+        rewrite ^/(.*) http://www.abc.com/$1 permanent;
+
+}
+server {
+
+        listen 80;
+
+        server_name www.abc.com;
+
+        location / {
+
+                root /data/www/www;
+
+                index index.html index.htm;
+
+        }
+
+        error_log    logs/error_www.abc.com.log error;
+
+        access_log    logs/access_www.abc.com.log    main;
+
+}
+</code></pre><h3 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h3><pre><code>server {
+
+        listen 80;
+
+        server_name abc.com www.abc.com;
+
+        if ( $host != &apos;www.abc.com&apos;  ) {
+
+                rewrite ^/(.*) http://www.abc.com/$1 permanent;
+
+        }
+
+        location / {
+
+                root /data/www/www;
+
+                index index.html index.htm;
+
+        }
+
+        error_log    logs/error_www.abc.com.log error;
+
+        access_log    logs/access_www.abc.com.log    main;
+
+}
+</code></pre><h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><p>确认无误便可重启，操作如下：</p>
+<pre><code>nginx -t
+</code></pre><p>#结果显示ok和success没问题便可重启</p>
+<pre><code>nginx -s reload
+</code></pre><h4 id="查看跳转效果"><a href="#查看跳转效果" class="headerlink" title="查看跳转效果"></a>查看跳转效果</h4><p>打开浏览器访问abc.com</p>
+<p>页面打开后，URL地址栏的abc.com变成了<a href="http://www.abc.com说明URL重写成功。" target="_blank" rel="noopener">www.abc.com说明URL重写成功。</a></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/09/06/nginx-之rewrite/">
+    <time datetime="2018-09-06T12:41:29.000Z" class="entry-date">
+        2018-09-06
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/09/06/nginx-之location/" rel="next">nginx 之location <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/06/nginx-之rewrite/">nginx 之rewrite</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/06/nginx-之location/">nginx 之location</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/06/期中架构-12/">期中架构-12</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/05/期中架构-11/">期中架构-11</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/04/rose/">rose</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.43px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.57px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.43px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.14px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 15.71px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14.29px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.86px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
