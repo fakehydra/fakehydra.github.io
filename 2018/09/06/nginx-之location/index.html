@@ -15,17 +15,18 @@
   
   <title>nginx 之location | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="淡望余生，漫漫回忆如你">
+  <meta name="description" content="nginx 之 location">
+<meta name="keywords" content="Nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx 之location">
 <meta property="og:url" content="http://yoursite.com/2018/09/06/nginx-之location/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="淡望余生，漫漫回忆如你">
+<meta property="og:description" content="nginx 之 location">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-06T12:41:18.043Z">
+<meta property="og:updated_time" content="2018-09-06T13:14:28.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx 之location">
-<meta name="twitter:description" content="淡望余生，漫漫回忆如你">
+<meta name="twitter:description" content="nginx 之 location">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -85,13 +86,42 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/nginx-之location/" data-id="cjlql9f40002px8g1yi7lumls" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/nginx-之location/" data-id="cjlqlft7e0033r0g1h7s1hpb9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        
+        <h3 id="nginx-之-location"><a href="#nginx-之-location" class="headerlink" title="nginx 之 location"></a>nginx 之 location</h3><a id="more"></a>
+<h3 id="语法规则：-location-uri-…"><a href="#语法规则：-location-uri-…" class="headerlink" title="语法规则： location [=|~|~*|^~] /uri/ { … }"></a>语法规则： location [=|~|~*|^~] /uri/ { … }</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">= 开头表示精确匹配</span><br><span class="line">^~ 开头表示uri以某个常规字符串开头，理解为匹配 url路径即可。nginx不对url做编码，因此请求为/static/20%/aa，可以被规则^~ /static/ /aa匹配到（注意是空格）。</span><br><span class="line">~ 开头表示区分大小写的正则匹配</span><br><span class="line">~*  开头表示不区分大小写的正则匹配</span><br><span class="line">!~和!~*分别为区分大小写不匹配及不区分大小写不匹配 的正则</span><br><span class="line">/ 通用匹配，任何请求都会匹配到。</span><br></pre></td></tr></table></figure>
+<h4 id="多个location配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）："><a href="#多个location配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）：" class="headerlink" title="多个location配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）："></a>多个location配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）：</h4><p> 首先匹配 =，其次匹配^~, 其次是按文件中顺序的正则匹配，最后是交给 / 通用匹配。当有匹配成功时候，停止匹配，按当前匹配规则处理请求。</p>
+<h3 id="eg，有如下匹配规则："><a href="#eg，有如下匹配规则：" class="headerlink" title="eg，有如下匹配规则："></a>eg，有如下匹配规则：</h3><pre><code>location = / {  
+   #规则A  
+}  
+location = /login {  
+   #规则B  
+}  
+location ^~ /static/ {  
+   #规则C  
+}  
+location ~ \.(gif|jpg|png|js|css)$ {  
+   #规则D  
+}  
+location ~* \.png$ {  
+   #规则E  
+}  
+location !~ \.xhtml$ {  
+   #规则F  
+}  
+location !~* \.xhtml$ {  
+   #规则G  
+}  
+location / {  
+   #规则H  
+}  
+</code></pre><h4 id="那么产生的效果如下："><a href="#那么产生的效果如下：" class="headerlink" title="那么产生的效果如下："></a>那么产生的效果如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">访问根目录/， 比如http://localhost/ 将匹配规则A</span><br><span class="line">访问 http://localhost/login 将匹配规则B，http://localhost/register 则匹配规则H</span><br><span class="line">访问 http://localhost/static/a.html 将匹配规则C</span><br><span class="line">访问 http://localhost/a.gif, http://localhost/b将匹配规则D和规则E，但是规则D顺序优先，规则E不起作用，而      http://localhost/static/c.png 则优先匹配到 规则C</span><br><span class="line">访问 http://localhost/a.PNG 则匹配规则E， 而不会匹配规则D，因为规则E不区分大小写。</span><br><span class="line">访问 http://localhost/a.xhtml 不会匹配规则F和规则G，http://locala.XHTML不会匹配规则G，因为不区分大小写。规则F，规则G属于排除法，符合匹配规则但是不会匹配到，所以想想看实际应用中哪里会用到。</span><br><span class="line">访问 http://localhost/category/id/1111 则最终匹配到规则H，</span><br><span class="line">因为以上规则都不匹配，这个时候应该是nginx转发请求给后端应用服务器，比如FastCGI（php），tomcat（jsp），ngin代理服务器存在。</span><br></pre></td></tr></table></figure>
+<h4 id="所以实际使用中，通常至少有三个匹配规则定义，如下："><a href="#所以实际使用中，通常至少有三个匹配规则定义，如下：" class="headerlink" title="所以实际使用中，通常至少有三个匹配规则定义，如下："></a>所以实际使用中，通常至少有三个匹配规则定义，如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。  </span><br><span class="line">#这里是直接转发给后端应用服务器了，也可以是一个静态首页  </span><br><span class="line"># 第一个必选规则  </span><br><span class="line">location = / &#123;  </span><br><span class="line">    proxy_pass http://tomcat:8080/index  </span><br><span class="line">&#125;  </span><br><span class="line">   </span><br><span class="line"># 第二个必选规则是处理静态文件请求，这是nginx作为http服务器的强项  </span><br><span class="line"># 有两种配置模式，目录匹配或后缀匹配,任选其一或搭配使用  </span><br><span class="line">location ^~ /static/ &#123;  </span><br><span class="line">    root /webroot/static/;  </span><br><span class="line">&#125;  </span><br><span class="line">location ~* \.(gif|jpg|jpeg|png|css|js|ico)$ &#123;  </span><br><span class="line">    root /webroot/res/;  </span><br><span class="line">&#125;  </span><br><span class="line">   </span><br><span class="line">#第三个规则就是通用规则，用来转发动态请求到后端应用服务器  </span><br><span class="line">#非静态文件请求就默认是动态请求，自己根据实际把握  </span><br><span class="line">#毕竟目前的一些框架的流行，带.php,.jsp后缀的情况很少了</span><br></pre></td></tr></table></figure>
+
       
     </div><!-- .entry-content -->
 
@@ -103,6 +133,9 @@
 </a>
     
     
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+
     </footer>
 </article>
 
@@ -183,7 +216,7 @@
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 
@@ -192,7 +225,7 @@
   <aside class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.43px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.57px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.43px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.14px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 15.71px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14.29px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.86px;">那些年学习的Linux命令</a>
+      <a href="/tags/Nginx/" style="font-size: 13.75px;">Nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.25px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.75px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.25px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.5px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.25px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.5px;">那些年学习的Linux命令</a>
     </div>
   </aside>
 
