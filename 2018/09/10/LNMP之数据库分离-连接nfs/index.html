@@ -13,19 +13,20 @@
   
   
   
-  <title>wordpress搭建自己博客 | 瑾川</title>
+  <title>LNMP之数据库分离&amp;&amp;连接nfs | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="淡望余生，漫漫回忆如你">
+  <meta name="description" content="mysql分离以及nfs存储">
+<meta name="keywords" content="期中架构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wordpress搭建自己博客">
-<meta property="og:url" content="http://yoursite.com/2018/07/31/wordpress搭建自己博客/index.html">
+<meta property="og:title" content="LNMP之数据库分离&amp;&amp;连接nfs">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/LNMP之数据库分离-连接nfs/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="淡望余生，漫漫回忆如你">
+<meta property="og:description" content="mysql分离以及nfs存储">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T11:28:02.374Z">
+<meta property="og:updated_time" content="2018-09-10T12:31:51.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wordpress搭建自己博客">
-<meta name="twitter:description" content="淡望余生，漫漫回忆如你">
+<meta name="twitter:title" content="LNMP之数据库分离&amp;&amp;连接nfs">
+<meta name="twitter:description" content="mysql分离以及nfs存储">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -70,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-wordpress搭建自己博客" class="post-wordpress搭建自己博客 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-LNMP之数据库分离-连接nfs" class="post-LNMP之数据库分离-连接nfs post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -78,31 +79,67 @@
         
   
     <h1 class="entry-title article-title">
-      wordpress搭建自己博客
+      LNMP之数据库分离&amp;&amp;连接nfs
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/wordpress搭建自己博客/" data-id="cjlwa5g9x003jewg1gy7vkx0b" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/10/LNMP之数据库分离-连接nfs/" data-id="cjlwa5g4i0004ewg1hg7q5bep" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        
+        <h3 id="mysql分离以及nfs存储"><a href="#mysql分离以及nfs存储" class="headerlink" title="mysql分离以及nfs存储"></a>mysql分离以及nfs存储</h3><a id="more"></a>
+<h3 id="mysql分离"><a href="#mysql分离" class="headerlink" title="mysql分离"></a>mysql分离</h3><h4 id="部署安装mysql数据库软件"><a href="#部署安装mysql数据库软件" class="headerlink" title="部署安装mysql数据库软件"></a>部署安装mysql数据库软件</h4><pre><code>这就不啰嗦了
+</code></pre><h4 id="数据库数据备份"><a href="#数据库数据备份" class="headerlink" title="数据库数据备份"></a>数据库数据备份</h4><pre><code>mysqldump -uroot -poldboy123 --all-databases &gt;/tmp/bak.sql
+ll /tmp/bak.sql -h
+scp /tmp/bak.sql 172.16.1.51:/tmp/
+</code></pre><h4 id="迁移数据库备份信息"><a href="#迁移数据库备份信息" class="headerlink" title="迁移数据库备份信息"></a>迁移数据库备份信息</h4><pre><code>scp -rp /tmp/back.sql 172.16.1.51:/tmp
+</code></pre><h4 id="恢复数据库备份文件"><a href="#恢复数据库备份文件" class="headerlink" title="恢复数据库备份文件"></a>恢复数据库备份文件</h4><pre><code>mysql -uroot -poldboy123 &lt;/tmp/back.sql
+</code></pre><h4 id="修改代码配置文件"><a href="#修改代码配置文件" class="headerlink" title="修改代码配置文件"></a>修改代码配置文件</h4><pre><code>[root@web01 blog]# pwd
+/application/nginx/html/blog
+[root@web01 blog]# vim wp-config.php 
+ /** MySQL主机 */
+define(&apos;DB_HOST&apos;, &apos;10.0.0.51&apos;);   --- 修改为数据库服务器地址
+</code></pre><h4 id="关闭web服务器上mysql服务"><a href="#关闭web服务器上mysql服务" class="headerlink" title="关闭web服务器上mysql服务"></a>关闭web服务器上mysql服务</h4><h4 id="–over–"><a href="#–over–" class="headerlink" title="–over–"></a>–over–</h4><h3 id="nfs存储"><a href="#nfs存储" class="headerlink" title="nfs存储"></a>nfs存储</h3><h4 id="实现nginx服务与nfs服务建立联系"><a href="#实现nginx服务与nfs服务建立联系" class="headerlink" title="实现nginx服务与nfs服务建立联系"></a>实现nginx服务与nfs服务建立联系</h4><h5 id="确认用户上传的数据保存在web服务器的哪个目录中"><a href="#确认用户上传的数据保存在web服务器的哪个目录中" class="headerlink" title="确认用户上传的数据保存在web服务器的哪个目录中"></a>确认用户上传的数据保存在web服务器的哪个目录中</h5><pre><code>01) 利用浏览器页面信息获取数据存储路径
+http://blog.etiantian.org/wp-content/uploads/2018/09/oldboy-300x267.jpg
+
+02) 监控目录中的数据变化软件
+inotifywait -mrq 
+
+03) 利用find查找方法发现变化数据
+find /站点目录  -mmin -3  
+</code></pre><h5 id="将目录中的数据进行备份迁移"><a href="#将目录中的数据进行备份迁移" class="headerlink" title="将目录中的数据进行备份迁移"></a>将目录中的数据进行备份迁移</h5><pre><code>[root@web01 blog]# cd /application/nginx/html/blog/wp-content/uploads/
+
+[root@web01 uploads]# mkdir /data_backup
+
+[root@web01 uploads]# mv 2018/ /data_backup/
+</code></pre><h5 id="进行共享目录挂载操作"><a href="#进行共享目录挂载操作" class="headerlink" title="进行共享目录挂载操作"></a>进行共享目录挂载操作</h5><pre><code>[root@web01 uploads]# mount -t nfs 172.16.1.31:/data ./
+[root@web01 uploads]# df -h
+Filesystem         Size  Used Avail Use% Mounted on
+/dev/sda3           48G  4.0G   42G   9% /
+tmpfs              238M     0  238M   0% /dev/shm
+/dev/sda1          190M   35M  146M  19% /boot
+172.16.1.31:/data   48G  1.8G   44G   4% /application/nginx-1.14/html/blog/wp-content/uploads
+</code></pre><h5 id="还原数据信息"><a href="#还原数据信息" class="headerlink" title="还原数据信息"></a>还原数据信息</h5><pre><code>cp -a /data_backup/2018/  /application/nginx/html/blog/wp-content/uploads/
+</code></pre><h5 id="进行测试访问"><a href="#进行测试访问" class="headerlink" title="进行测试访问"></a>进行测试访问</h5><h4 id="–over–-1"><a href="#–over–-1" class="headerlink" title="–over–"></a>–over–</h4>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/31/wordpress搭建自己博客/">
-    <time datetime="2018-07-31T11:28:02.000Z" class="entry-date">
-        2018-07-31
+    <a href="/2018/09/10/LNMP之数据库分离-连接nfs/">
+    <time datetime="2018-09-10T12:11:20.000Z" class="entry-date">
+        2018-09-10
     </time>
 </a>
     
     
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期中架构/">期中架构</a></li></ul>
+
     </footer>
 </article>
 
@@ -111,10 +148,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/31/Linux运维学习-第二十一天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第二十一天</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/31/LNMP-PHP/" rel="next">LNMP-PHP <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/09/10/LNMP之WordPress/" rel="next">LNMP之WordPress <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
