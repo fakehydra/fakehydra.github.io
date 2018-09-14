@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="metasploit 基础">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-27T13:30:33.536Z">
+<meta property="og:updated_time" content="2018-09-10T13:12:30.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mfs学习笔记-01">
 <meta name="twitter:description" content="metasploit 基础">
@@ -86,7 +86,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/mfs学习笔记-01/" data-id="cjlwa5g9c0031ewg14rv38o4c" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/mfs学习笔记-01/" data-id="cjm1yeeil002sx4g1g4ydvqc8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -102,6 +102,7 @@ metasploit是一个完全的ruby驱动项目，提供了大量的漏洞攻击、
 </code></pre><h3 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">渗透模块（exploit）：这是一段程序，运行时会利用目标的安全漏洞进行攻击</span><br><span class="line">攻击载荷模块（payload）：在成功对目标进行一次渗透之后，开始在目标计算机运行。能帮助我们在目标系统中获得需要的访问和行动权限</span><br><span class="line">辅助模块（auxiliary）：包含了一系列的辅助支持模块，包括扫描模块、fuzz测试漏洞模块、网络协议欺骗和一些其他的模块</span><br><span class="line">编码器模块（encoder）：具有代码混淆功能，逃过目标机的安全保护机制的保护。</span><br><span class="line">Meterpreter:一种使用内存技术的攻击载荷，可以注入到进程。提供了各种可以在目标机上执行的功能</span><br></pre></td></tr></table></figure>
 <h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use     --选择一个指定的模块开始运行</span><br><span class="line">show    --显示可用的功能及需要的配置</span><br><span class="line">set     --给某个特定对象赋值</span><br><span class="line">setg    --全局赋值</span><br><span class="line">run     --启动设置好的辅助模块</span><br><span class="line">exploit --启动一个渗透模块</span><br><span class="line">back    --取消当前选择的模块并退回上一层</span><br><span class="line">info    --列出相关模块信息</span><br><span class="line">search  --搜索</span><br><span class="line">check   --检查某个特定目标是否易受攻击</span><br><span class="line">sessions--列出当前可用会话</span><br></pre></td></tr></table></figure>
 <h3 id="Meterpreter-部分命令"><a href="#Meterpreter-部分命令" class="headerlink" title="Meterpreter 部分命令"></a>Meterpreter 部分命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sysinfo    --列出被渗透的主机系统信息</span><br><span class="line">ifconfig   --网络接口</span><br><span class="line">ARP        --列出目标的ARP缓存地址的ip和Mac地址</span><br><span class="line">background --后台运行</span><br><span class="line">shell      --获取目标机的一个cmd shell</span><br><span class="line">getuid     --获取当前用户信息</span><br><span class="line">getsystem  --提升权限</span><br><span class="line">getpid     --获取在目标机注入进程的进程号</span><br><span class="line">pa         --列出目标机的所有进程</span><br></pre></td></tr></table></figure>
+
       
     </div><!-- .entry-content -->
 
@@ -168,6 +169,10 @@ metasploit是一个完全的ruby驱动项目，提供了大量的漏洞攻击、
       <ul>
         
           <li>
+            <a href="/2018/09/14/搭建-ntp时间服务器/">搭建 ntp时间服务器</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/10/LNMP之数据库分离-连接nfs/">LNMP之数据库分离&amp;&amp;连接nfs</a>
           </li>
         
@@ -183,10 +188,6 @@ metasploit是一个完全的ruby驱动项目，提供了大量的漏洞攻击、
             <a href="/2018/09/06/nginx-之location/">nginx 之location</a>
           </li>
         
-          <li>
-            <a href="/2018/09/06/期中架构-12/">期中架构-12</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -196,7 +197,7 @@ metasploit是一个完全的ruby驱动项目，提供了大量的漏洞攻击、
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 

@@ -13,20 +13,20 @@
   
   
   
-  <title>那些你很冒险的梦 | 瑾川</title>
+  <title>搭建 ntp时间服务器 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;lt;学不会&amp;gt;">
-<meta name="keywords" content="浮生若梦">
+  <meta name="description" content="ntp服务器搭建">
+<meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="那些你很冒险的梦">
-<meta property="og:url" content="http://yoursite.com/2018/07/30/N那些你很冒险的梦/index.html">
+<meta property="og:title" content="搭建 ntp时间服务器">
+<meta property="og:url" content="http://yoursite.com/2018/09/14/搭建-ntp时间服务器/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="&amp;lt;学不会&amp;gt;">
+<meta property="og:description" content="ntp服务器搭建">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T12:23:08.315Z">
+<meta property="og:updated_time" content="2018-09-14T12:01:42.106Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="那些你很冒险的梦">
-<meta name="twitter:description" content="&amp;lt;学不会&amp;gt;">
+<meta name="twitter:title" content="搭建 ntp时间服务器">
+<meta name="twitter:description" content="ntp服务器搭建">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-N那些你很冒险的梦" class="post-N那些你很冒险的梦 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-搭建-ntp时间服务器" class="post-搭建-ntp时间服务器 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,62 +79,108 @@
         
   
     <h1 class="entry-title article-title">
-      那些你很冒险的梦
+      搭建 ntp时间服务器
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/N那些你很冒险的梦/" data-id="cjm1yeehs002bx4g13sp2isyf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/14/搭建-ntp时间服务器/" data-id="cjm1yeejn003ex4g10f72sy25" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="lt-学不会-gt"><a href="#lt-学不会-gt" class="headerlink" title="&lt;学不会&gt;"></a>&lt;学不会&gt;</h3><a id="more"></a>
-<h3 id="那些你很冒险的梦"><a href="#那些你很冒险的梦" class="headerlink" title="那些你很冒险的梦"></a>那些你很冒险的梦</h3><pre><code>当两颗心开始震动
-当你瞳孔学会闪躲
-当爱慢慢被遮住只剩下黑
-距离像影子被拉拖
-当爱的故事剩听说
-我找不到你单纯的面孔
-当生命每分每秒都为你转动
-心多执著就加倍心痛
-那些你很冒险的梦 我陪你去疯
-折纸飞机 碰到雨天 终究会坠落
-太残忍的话我直说 因为爱很重
-你却不想懂 只往反方向走
-当爱的故事像剩听说
-我找不到你单纯的面孔
-当生命每分每秒都为你转动
-心有多执著就加倍心痛
-那些你很冒险的梦 我陪你去疯
-折纸飞机 碰到雨天 终究会坠落
-太残忍的话我直说 因为爱很重
-你却不想懂 只往反方向走
-我不想放手 你松开的左手
-你爱的放纵 我白不回天空
-我输了累了但你再也 不回头
-那些你很冒险的梦 我陪你去疯
-折纸飞机 碰到雨天 终究会坠落
-太残忍的话我直说 因为爱很重
-你却不想懂 只往反方向走
-你真的不懂 我的爱已降落                              
+        <h3 id="ntp服务器搭建"><a href="#ntp服务器搭建" class="headerlink" title="ntp服务器搭建"></a>ntp服务器搭建</h3><a id="more"></a>
+<h3 id="ntp服务器：10-0-0-61"><a href="#ntp服务器：10-0-0-61" class="headerlink" title="ntp服务器：10.0.0.61"></a>ntp服务器：10.0.0.61</h3><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><pre><code>yum install ntp ntpdate
+</code></pre><h4 id="修改配置文件：-etc-ntp-conf"><a href="#修改配置文件：-etc-ntp-conf" class="headerlink" title="修改配置文件：/etc/ntp/conf"></a>修改配置文件：/etc/ntp/conf</h4><pre><code>[root@vpn scripts]# cat /etc/ntp.conf
+# For more information about this file, see the man pages
+# ntp.conf(5), ntp_acc(5), ntp_auth(5), ntp_clock(5), ntp_misc(5), ntp_mon(5).
+
+driftfile /var/lib/ntp/drift
+
+# Permit time synchronization with our time source, but do not
+# permit the source to query or modify the service on this system.
+restrict default kod nomodify notrap nopeer noquery
+restrict -6 default kod nomodify notrap nopeer noquery
+
+# Permit all access over the loopback interface.  This could
+# be tightened as well, but to do so would effect some of
+# the administrative functions.
+restrict 127.0.0.1 
+restrict -6 ::1
+
+# Hosts on local network are less restricted.
+#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+service 172.16.1.61
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+server 0.centos.pool.ntp.org
+server 1.centos.pool.ntp.org
+server 2.centos.pool.ntp.org
+server 3.centos.pool.ntp.org
+
+#broadcast 192.168.1.255 autokey    # broadcast server
+#broadcastclient            # broadcast client
+#broadcast 224.0.1.1 autokey        # multicast server
+#multicastclient 224.0.1.1        # multicast client
+#manycastserver 239.255.254.254        # manycast server
+#manycastclient 239.255.254.254 autokey # manycast client
+
+server 127.127.1.0
+fudge  127.127.1.0 stratum 10
+
+# Enable public key cryptography.
+#crypto
+
+includefile /etc/ntp/crypto/pw
+
+# Key file containing the keys and key identifiers used when operating
+# with symmetric key cryptography. 
+keys /etc/ntp/keys
+
+# Specify the key identifiers which are trusted.
+#trustedkey 4 8 42
+
+# Specify the key identifier to use with the ntpdc utility.
+#requestkey 8
+
+# Specify the key identifier to use with the ntpq utility.
+#controlkey 8
+
+# Enable writing of statistics records.
+#statistics clockstats cryptostats loopstats peerstats
+</code></pre><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><pre><code>service ntpd start
+</code></pre><h4 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h4><pre><code>ntpq -p 
+[root@vpn scripts]# ntpq -p
+remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++ntp5.flashdance 194.58.202.20    2 u   55   64   17  226.709   11.084  13.639
+ static-5-103-13 .GPS.            1 u  120   64    2  239.689   18.837   0.000
+*85.199.214.101  .GPS.            1 u   54   64   17  210.012   -3.548  16.501
+ cn.ntp.faelix.n 185.134.196.169  2 u  115   64   16  236.597    2.159  23.535
+ LOCAL(0)        .LOCL.          10 l   56   64   17    0.000    0.000   0.000
+</code></pre><h4 id="ps-jitter数值全部为0-的话表示失败，一般是防火墙未关闭，关闭即可"><a href="#ps-jitter数值全部为0-的话表示失败，一般是防火墙未关闭，关闭即可" class="headerlink" title="ps:jitter数值全部为0 的话表示失败，一般是防火墙未关闭，关闭即可"></a>ps:jitter数值全部为0 的话表示失败，一般是防火墙未关闭，关闭即可</h4><pre><code>service iptables stop
+</code></pre><h4 id="或者：在vi-etc-sysconfig-iptables添加如下规则："><a href="#或者：在vi-etc-sysconfig-iptables添加如下规则：" class="headerlink" title="或者：在vi /etc/sysconfig/iptables添加如下规则："></a>或者：在vi /etc/sysconfig/iptables添加如下规则：</h4><pre><code>-A INPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT 
+</code></pre><p>###客户端配置：</p>
+<h4 id="客户端安装ntp服务"><a href="#客户端安装ntp服务" class="headerlink" title="客户端安装ntp服务"></a>客户端安装ntp服务</h4><pre><code>[root@vpn scripts]# ansible all -m yum -a &quot;name=ntp name=ntpdate state=installed&quot;
+</code></pre><h4 id="配置ntp-conf文件"><a href="#配置ntp-conf文件" class="headerlink" title="配置ntp.conf文件"></a>配置ntp.conf文件</h4><pre><code>ansible all -m command -a &quot;echo 10.0.0.61&gt;&gt;/etc/ntp.conf
+</code></pre><h4 id="手动同步时间"><a href="#手动同步时间" class="headerlink" title="手动同步时间"></a>手动同步时间</h4><pre><code>ansible all -m command -a &quot;ntpdate 10.0.0.61&quot;
 </code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/30/N那些你很冒险的梦/">
-    <time datetime="2018-07-30T11:22:36.000Z" class="entry-date">
-        2018-07-30
+    <a href="/2018/09/14/搭建-ntp时间服务器/">
+    <time datetime="2018-09-14T11:56:14.000Z" class="entry-date">
+        2018-09-14
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浮生若梦/">浮生若梦</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
 
     </footer>
 </article>
@@ -144,10 +190,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/31/LNMP-PHP/" rel="prev"><span class="meta-nav">←</span> LNMP-PHP</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/30/NFS—-脚本/" rel="next">NFS—-脚本 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/09/10/LNMP之数据库分离-连接nfs/" rel="next">LNMP之数据库分离&amp;&amp;连接nfs <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

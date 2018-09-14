@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="Be just to all, but trust not all.要公正对待所有的人，但不要轻信所有的人。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-06T12:40:45.764Z">
+<meta property="og:updated_time" content="2018-09-10T13:12:31.315Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="期中架构-12">
 <meta name="twitter:description" content="Be just to all, but trust not all.要公正对待所有的人，但不要轻信所有的人。">
@@ -86,7 +86,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/期中架构-12/" data-id="cjlwa5gb4004aewg1pfyppp9t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/期中架构-12/" data-id="cjm1yeekz0044x4g1j3lg0vy8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -183,7 +183,7 @@ nginx -V
    创建一个新的密码文件
    -b  Use the password from the command line rather than prompting for it.
    采用免交互的方式输入用户的密码信息
-</code></pre><h5 id="修改权限："><a href="#修改权限：" class="headerlink" title="修改权限："></a>修改权限：</h5><pre><code>chmod /application/nginx/conf/htpasswd
+</code></pre><h5 id="修改权限："><a href="#修改权限：" class="headerlink" title="修改权限："></a>修改权限：</h5><pre><code>chmod 400 1/application/nginx/conf/htpasswd
 chowm www /application.nginx/conf/htpasswd
 </code></pre><h5 id="在浏览器测试：输入地址-www-jinc-org-status"><a href="#在浏览器测试：输入地址-www-jinc-org-status" class="headerlink" title="在浏览器测试：输入地址 www.jinc.org/status"></a>在浏览器测试：输入地址 <a href="http://www.jinc.org/status" target="_blank" rel="noopener">www.jinc.org/status</a></h5><pre><code>会提示输入账号密码：admin admin 就行了
 </code></pre><h5 id="Linux测试："><a href="#Linux测试：" class="headerlink" title="Linux测试："></a>Linux测试：</h5><pre><code>[root@web01 conf]# curl -u admin:admin www.jinc.org
@@ -268,6 +268,10 @@ hello
       <ul>
         
           <li>
+            <a href="/2018/09/14/搭建-ntp时间服务器/">搭建 ntp时间服务器</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/10/LNMP之数据库分离-连接nfs/">LNMP之数据库分离&amp;&amp;连接nfs</a>
           </li>
         
@@ -283,10 +287,6 @@ hello
             <a href="/2018/09/06/nginx-之location/">nginx 之location</a>
           </li>
         
-          <li>
-            <a href="/2018/09/06/期中架构-12/">期中架构-12</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -296,7 +296,7 @@ hello
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 

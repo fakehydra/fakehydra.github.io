@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="ansible">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-29T04:35:04.956Z">
+<meta property="og:updated_time" content="2018-09-10T13:12:28.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ansible 安装二三事">
 <meta name="twitter:description" content="ansible">
@@ -86,7 +86,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/ansible-安装二三事/" data-id="cjlwa5g8q002lewg1fu96fdel" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/ansible-安装二三事/" data-id="cjm1yeehi0024x4g10zuu9ht9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -94,7 +94,7 @@
       
         <h3 id="ansible"><a href="#ansible" class="headerlink" title="ansible"></a>ansible</h3><a id="more"></a>
 <h2 id="ansible-安装配置"><a href="#ansible-安装配置" class="headerlink" title="ansible 安装配置"></a>ansible 安装配置</h2><h3 id="ansible-组成："><a href="#ansible-组成：" class="headerlink" title="ansible 组成："></a>ansible 组成：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Control Node：控制机器</span><br><span class="line">Inventory：主机清单，配置管理主机列表</span><br><span class="line">Playbooks：剧本、任务编排。根据规则定义多个任务，模块组织结构清晰，由ansible自动执行。</span><br><span class="line">Modules（Core | Custom）：模块，用于执行某个具体的任务</span><br><span class="line">connection plugin（连接插件）：Ansible通过不同的协议连接到远程主机上，执行指定的命令。默认采用ssh协议连接远程主机。</span><br></pre></td></tr></table></figure>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">no agents：不需要在被管控主机上安装任何客</span><br><span class="line">no server：无服务器端，使用时直接运行命令</span><br><span class="line">modules in any languages：基于模块工作，可使用任意语言开发</span><br><span class="line">yaml，not code：使用yaml语言定制剧本playbo</span><br><span class="line">ssh by default：基于SSH</span><br><span class="line">strong multi-tier solution：可实现多级</span><br></pre></td></tr></table></figure>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">no agents：不需要在被管控主机上安装任何客</span><br><span class="line">no server：无服务器端，使用时直接运行命令</span><br><span class="line">modules in any languages：基于模块工作，可使用任意语言开发</span><br><span class="line">yaml，not code：使用yaml语言定制剧本playbook</span><br><span class="line">ssh by default：基于SSH</span><br><span class="line">strong multi-tier solution：可实现多级</span><br></pre></td></tr></table></figure>
 <h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">轻量级，无需在客户端安装agent，更新时，只需在操作机上进行一次更新即可；</span><br><span class="line">批量任务执行可以写成脚本，而且不用分发到远程就可以执行；</span><br><span class="line">使用python编写，维护更简单，ruby语法过于复杂；</span><br><span class="line">支持sudo。</span><br></pre></td></tr></table></figure>
 <h3 id="运行："><a href="#运行：" class="headerlink" title="运行："></a>运行：</h3><pre><code>Ansible在运行时，首先读取ansible.cfg中的配置，根据规则获取Inventory中的管理主机
 列表，并行的在这些主机中执行配置的任务，最后等待执行返回的结果。
@@ -232,6 +232,10 @@ ansible m -m command -a &quot;hostname&quot; -k
       <ul>
         
           <li>
+            <a href="/2018/09/14/搭建-ntp时间服务器/">搭建 ntp时间服务器</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/10/LNMP之数据库分离-连接nfs/">LNMP之数据库分离&amp;&amp;连接nfs</a>
           </li>
         
@@ -247,10 +251,6 @@ ansible m -m command -a &quot;hostname&quot; -k
             <a href="/2018/09/06/nginx-之location/">nginx 之location</a>
           </li>
         
-          <li>
-            <a href="/2018/09/06/期中架构-12/">期中架构-12</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -260,7 +260,7 @@ ansible m -m command -a &quot;hostname&quot; -k
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 
