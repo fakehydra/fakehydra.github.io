@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>iptables 简单介绍 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简单的防火墙软件 iptables介绍">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iptables 简单介绍">
+<meta property="og:url" content="http://yoursite.com/2018/09/17/iptables-简单介绍/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="简单的防火墙软件 iptables介绍">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-17T12:52:48.949Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iptables 简单介绍">
+<meta name="twitter:description" content="简单的防火墙软件 iptables介绍">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-iptables-简单介绍" class="post-iptables-简单介绍 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      iptables 简单介绍
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/17/iptables-简单介绍/" data-id="cjmkjzx88003s88g18bhqutr6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="简单的防火墙软件-iptables介绍"><a href="#简单的防火墙软件-iptables介绍" class="headerlink" title="简单的防火墙软件 iptables介绍"></a>简单的防火墙软件 iptables介绍</h3><a id="more"></a>
+<h3 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h3><pre><code>管理网络流量是系统管理员必需处理的最棘手工作之一，我们必需规定连接系统的用户满足防火墙的传入和传出要求，以最大限度保证系统免受攻击。很多用户把 Linux 中的 IPTables 当成一个防火墙，从严格意见上来说 IPTables 只是能够帮助管理员定义各种规则并与 Linux Kernel 进行沟通的一个命令行工具。它只是帮助管理员配置网络流量的传入、传出规则列表，具体的实现其实是在 Linux 内核当中。
+</code></pre><h3 id="iptables-防火墙服务"><a href="#iptables-防火墙服务" class="headerlink" title="iptables 防火墙服务"></a>iptables 防火墙服务</h3><h3 id="iptables防火墙服务名词概念"><a href="#iptables防火墙服务名词概念" class="headerlink" title="iptables防火墙服务名词概念"></a>iptables防火墙服务名词概念</h3><pre><code>iptables(容器)---表(filter nat) ---- 链(在不同方向上控制数据包) ---规则(允许 禁止)
+</code></pre><h3 id="防火墙工作原理"><a href="#防火墙工作原理" class="headerlink" title="防火墙工作原理"></a>防火墙工作原理</h3><pre><code>工作流程小结：
+1.    防火墙是层层过滤的，实际是按照配置规则的顺序从上到下，从前到后进行过滤的。
+2.    如果匹配上规则，即明确表示是阻止还是通过，数据包就不再向下匹配新的规则。
+3.    如果规则中没有明确表明是阻止还是通过的，也就是没有匹配规则，向下进行匹配，直到匹配默认规则得到明确的阻止还是通过。
+4.    防火墙的默认规则是所有规则执行完才执行的。
+</code></pre><h3 id="四个表五个链"><a href="#四个表五个链" class="headerlink" title="四个表五个链"></a>四个表五个链</h3><h4 id="filter表-是数据包的过滤功能"><a href="#filter表-是数据包的过滤功能" class="headerlink" title="filter表:  是数据包的过滤功能"></a>filter表:  是数据包的过滤功能</h4><pre><code>input链:   是否允许数据包进入到防火墙服务中
+output链:  是否允许防火墙服务器产生的数据包可以出去
+forward链: 是否允许数据经过防火墙到到达相应主机
+</code></pre><h4 id="nat表-对数据包中的源地址或目标地址-以及源端口或目标端口进行修改"><a href="#nat表-对数据包中的源地址或目标地址-以及源端口或目标端口进行修改" class="headerlink" title="nat表: 对数据包中的源地址或目标地址,以及源端口或目标端口进行修改"></a>nat表: 对数据包中的源地址或目标地址,以及源端口或目标端口进行修改</h4><pre><code>prerouting:  将路由之前接收到的数据包, 进行修改调整
+postrouting: 将路由之后发出去的数据包, 进行修改调整
+output:       将防火墙自身产生数据包,在发出去的时候进行修改调整
+</code></pre><h3 id="熟悉掌握iptables防火墙配置方法"><a href="#熟悉掌握iptables防火墙配置方法" class="headerlink" title="熟悉掌握iptables防火墙配置方法"></a>熟悉掌握iptables防火墙配置方法</h3><h4 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识:"></a>预备知识:</h4><pre><code>01. 防火墙服务必须开启
+02. 了解运维基础网络(数据包结构信息)
+03. 掌握防火墙服务配置命令
+</code></pre><h4 id="iptables防火墙操作管理方法"><a href="#iptables防火墙操作管理方法" class="headerlink" title="iptables防火墙操作管理方法:"></a>iptables防火墙操作管理方法:</h4><h5 id="查看方法"><a href="#查看方法" class="headerlink" title="查看方法"></a>查看方法</h5><pre><code>/etc/init.d/iptables status
+iptables -L -n
+iptables -nL -v  --- 显示更详细的规则策略
+
+iptables -L -n
+Chain INPUT (policy ACCEPT)   --- 访问防火墙做策略管理
+target     prot opt source               destination         
+ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           state RELATED,ESTABLISHED 
+指定允许任意IP地址主机和我的防火墙建立连接, 允许防火墙进行访问
+
+ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0   
+指定任意主机访问其他主机,icmp协议放行(可以进行ping的操作)
+
+ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0  
+指定任意主机可以访问防火墙服务任意端口信息
+
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           state NEW tcp dpt:22 
+指定任意主机可以访问ssh服务信息
+
+REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited
+指定任意主机防火墙进行拒绝, 并给出拒绝的原因 
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited 
+
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination 
+</code></pre><h5 id="防火墙初始化操作"><a href="#防火墙初始化操作" class="headerlink" title="防火墙初始化操作"></a>防火墙初始化操作</h5><pre><code>iptables -F  --- 将防火墙默认规则信息进行删除清空
+iptables -Z  --- 将防火墙默认计数器信息进行清楚
+iptables -X  --- 将防火墙默认自定义链信息删除
+</code></pre><h4 id="实现防火请策略添加配置"><a href="#实现防火请策略添加配置" class="headerlink" title="实现防火请策略添加配置"></a>实现防火请策略添加配置</h4><pre><code>iptables命令             --- 临时生效（即时生效）
+语法结构:
+iptables 指定在什么表上进行配置  指定在什么链上进行配置  如何进行配置规则
+案例: 禁止来自 10.0.0.1 ip 地址访问 80 端口的请求 
+# iptables filter  input 组织访问本地服务器上80端口
+iptables -t filter -A INPUT -p tcp --dport 80 -j REJECT
+-t   --- 指定防火墙表的信息, 默认不添加-t参数, 表示直接配置filter表
+-A   --- 指定在相应链上进行添加规则信息
+-p   --- 指定规则中协议信息
+--dport  --- 指定规则中目标端口信息
+-j   --- 指定对匹配的数据包做什么处理 (ACCEPT REJECT DROP)
+
+
+/etc/sysconfig/iptables  --- 永久生效
+</code></pre><h3 id="接下来我们将由简入难介绍-20-条-Linux-管理员最常会用到的-IPTables-规则。"><a href="#接下来我们将由简入难介绍-20-条-Linux-管理员最常会用到的-IPTables-规则。" class="headerlink" title="接下来我们将由简入难介绍 20 条 Linux 管理员最常会用到的 IPTables 规则。"></a>接下来我们将由简入难介绍 20 条 Linux 管理员最常会用到的 IPTables 规则。</h3><h4 id="1、启动、停止和重启IPTables"><a href="#1、启动、停止和重启IPTables" class="headerlink" title="1、启动、停止和重启IPTables"></a>1、启动、停止和重启IPTables</h4><pre><code>虽然 IPTables 并不是一项服务，但在 Linux 中还是可以像服务一样对其状态进行管理。
+基于SystemD的系统（centos7）
+
+systemctl start iptables
+systemctl stop iptables
+systemctl restart iptables
+
+基于SysVinit的系统（centos6）
+
+ /etc/init.d/iptables start
+/etc/init.d/iptables stop
+/etc/init.d/iptables restart
+</code></pre><h4 id="2、查看IPtables防火墙策略"><a href="#2、查看IPtables防火墙策略" class="headerlink" title="2、查看IPtables防火墙策略"></a>2、查看IPtables防火墙策略</h4><pre><code>你可以使用如下命令来查看 IPtables 防火墙策略：
+
+ iptables -L -n -v
+
+
+以上命令是查看默认的 FILTER 表，如果你只希望查看特定的表，可以在 -t 参数后跟上要单独查看的表名。例如只查看 NAT 表中的规则，可以使用如下命令：
+
+ iptables -t nat -L -v –n
+</code></pre><h4 id="3、屏蔽某个IP地址"><a href="#3、屏蔽某个IP地址" class="headerlink" title="3、屏蔽某个IP地址"></a>3、屏蔽某个IP地址</h4><pre><code>如果你发布有某个 IP 向服务器导入攻击或非正常流量，可以使用如下规则屏蔽其 IP 地址：
+
+ iptables -A INPUT -s xxx.xxx.xxx.xxx -j DROP
+
+注意需要将上述的 XXX 改成要屏蔽的实际 IP 地址，其中的 -A 参数表示在 INPUT 链的最后追加本条规则。（IPTables 中的规则是从上到下匹配的，一旦匹配成功就不再继续往下匹配）
+
+如果你只想屏蔽 TCP 流量，可以使用 -p 参数的指定协议，例如：
+
+iptables -A INPUT -p tcp -s xxx.xxx.xxx.xxx -j DROP
+</code></pre><h4 id="4、解封某个IP地址"><a href="#4、解封某个IP地址" class="headerlink" title="4、解封某个IP地址"></a>4、解封某个IP地址</h4><pre><code>要解封对 IP 地址的屏蔽，可以使用如下命令进行删除：
+
+ iptables -D INPUT -s xxx.xxx.xxx.xxx -j DROP
+
+其中 -D 参数表示从链中删除一条或多条规则。
+</code></pre><h4 id="5、使用IPtables关闭特定端口"><a href="#5、使用IPtables关闭特定端口" class="headerlink" title="5、使用IPtables关闭特定端口"></a>5、使用IPtables关闭特定端口</h4><pre><code>很多时候，我们需要阻止某个特定端口的网络连接，可以使用 IPtables 关闭特定端口。
+
+阻止特定的传出连接：
+
+ iptables -A OUTPUT -p tcp --dport xxx -j DROP
+
+阻止特定的传入连接：
+
+iptables -A INPUT -p tcp --dport xxx -j ACCEPT
+</code></pre><h4 id="6、使用Multiport控制多端口"><a href="#6、使用Multiport控制多端口" class="headerlink" title="6、使用Multiport控制多端口"></a>6、使用Multiport控制多端口</h4><pre><code>使用 multiport 我们可以一次性在单条规则中写入多个端口，例如：
+
+iptables -A INPUT  -p tcp -m multiport --dports 22,80,443 -j ACCEPT
+iptables -A OUTPUT -p tcp -m multiport --sports 22,80,443 -j ACCEPT
+</code></pre><h4 id="7、在规则中使用-IP-地址范围"><a href="#7、在规则中使用-IP-地址范围" class="headerlink" title="7、在规则中使用 IP 地址范围"></a>7、在规则中使用 IP 地址范围</h4><pre><code>在 IPtables 中 IP 地址范围是可以直接使用 CIDR 进行表示的，例如：
+
+iptables -A OUTPUT -p tcp -d 192.168.100.0/24 --dport 22 -j ACCEPT
+</code></pre><h4 id="8、配置端口转发"><a href="#8、配置端口转发" class="headerlink" title="8、配置端口转发"></a>8、配置端口转发</h4><pre><code>有时我们需要将 Linux 服务器的某个服务流量转发到另一端口，此时可以使用如下命令：
+
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 25 -j REDIRECT --to-port 2525
+
+上述命令会将所有到达 eth0 网卡 25 端口的流量重定向转发到 2525 端口。
+</code></pre><h4 id="9、屏蔽HTTP服务Flood攻击"><a href="#9、屏蔽HTTP服务Flood攻击" class="headerlink" title="9、屏蔽HTTP服务Flood攻击"></a>9、屏蔽HTTP服务Flood攻击</h4><pre><code>有时会有用户在某个服务，例如 HTTP 80 上发起大量连接请求，此时我们可以启用如下规则：
+
+iptables -A INPUT -p tcp --dport 80 -m limit --limit 100/minute --limit-burst 200 -j ACCEPT
+
+上述命令会将连接限制到每分钟 100 个，上限设定为 200。
+</code></pre><h4 id="10、禁止PING"><a href="#10、禁止PING" class="headerlink" title="10、禁止PING"></a>10、禁止PING</h4><pre><code>对 Linux 禁 PING 可以使用如下规则屏蔽 ICMP 传入连接：
+
+iptables -A INPUT -p icmp -i eth0 -j DROP
+</code></pre><h4 id="11、允许访问回环网卡"><a href="#11、允许访问回环网卡" class="headerlink" title="11、允许访问回环网卡"></a>11、允许访问回环网卡</h4><pre><code>环回访问（127.0.0.1）是比较重要的，建议大家都开放：
+
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+</code></pre><h4 id="12、屏蔽指定MAC地址"><a href="#12、屏蔽指定MAC地址" class="headerlink" title="12、屏蔽指定MAC地址"></a>12、屏蔽指定MAC地址</h4><pre><code>使用如下规则可以屏蔽指定的 MAC 地址：
+
+iptables -A INPUT -m mac --mac-source 00:00:00:00:00:00 -j DROP
+</code></pre><h4 id="13、限制并发连接数"><a href="#13、限制并发连接数" class="headerlink" title="13、限制并发连接数"></a>13、限制并发连接数</h4><pre><code>如果你不希望来自特定端口的过多并发连接，可以使用如下规则：
+
+iptables -A INPUT -p tcp --syn --dport 22 -m connlimit --connlimit-above 3 -j REJECT
+
+以上规则限制每客户端不超过 3 个连接。
+</code></pre><h4 id="14、清空IPtables规则"><a href="#14、清空IPtables规则" class="headerlink" title="14、清空IPtables规则"></a>14、清空IPtables规则</h4><pre><code>要清空 IPtables 链可以使用如下命令：
+
+iptables -F
+
+要清空特定的表可以使用 -t 参数进行指定，例如：
+
+iptables -t nat –F
+</code></pre><h4 id="15、保存IPtables规则"><a href="#15、保存IPtables规则" class="headerlink" title="15、保存IPtables规则"></a>15、保存IPtables规则</h4><pre><code>默认情况下，管理员对 IPtables 规则的操作会立即生效。但由于规则都是保存在内存当中的，所以重启系统会造成配置丢失，要永久保存 IPtables 规则可以使用 iptables-save 命令：
+
+iptables-save &gt; ~/iptables.rules
+
+保存的名称大家可以自己改。
+</code></pre><h4 id="16、还原IPtables规则"><a href="#16、还原IPtables规则" class="headerlink" title="16、还原IPtables规则"></a>16、还原IPtables规则</h4><pre><code>有保存自然就对应有还原，大家可以使用 iptables-restore 命令还原已保存的规则：
+
+iptables-restore &lt; ~/iptables.rules
+</code></pre><h4 id="17、允许建立相关连接"><a href="#17、允许建立相关连接" class="headerlink" title="17、允许建立相关连接"></a>17、允许建立相关连接</h4><pre><code>随着网络流量的进出分离，要允许建立传入相关连接，可以使用如下规则：
+
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+允许建立传出相关连接的规则：
+
+iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
+</code></pre><h4 id="18、丢弃无效数据包"><a href="#18、丢弃无效数据包" class="headerlink" title="18、丢弃无效数据包"></a>18、丢弃无效数据包</h4><pre><code>很多网络攻击都会尝试用黑客自定义的非法数据包进行尝试，我们可以使用如下命令来丢弃无效数据包：
+
+iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+</code></pre><h4 id="19、IPtables屏蔽邮件发送规则"><a href="#19、IPtables屏蔽邮件发送规则" class="headerlink" title="19、IPtables屏蔽邮件发送规则"></a>19、IPtables屏蔽邮件发送规则</h4><pre><code>如果你的系统不会用于邮件发送，我们可以在规则中屏蔽 SMTP 传出端口：
+
+iptables -A OUTPUT -p tcp --dports 25,465,587 -j REJECT
+</code></pre><h4 id="20、阻止连接到某块网卡"><a href="#20、阻止连接到某块网卡" class="headerlink" title="20、阻止连接到某块网卡"></a>20、阻止连接到某块网卡</h4><pre><code>如果你的系统有多块网卡，我们可以限制 IP 范围访问某块网卡：
+
+iptables -A INPUT -i eth0 -s xxx.xxx.xxx.xxx -j DROP
+
+源地址可以是 IP 或 CIDR。
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/09/17/iptables-简单介绍/">
+    <time datetime="2018-09-17T12:50:46.000Z" class="entry-date">
+        2018-09-17
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/09/27/PXE-kickstart-无人值守安装/" rel="prev"><span class="meta-nav">←</span> PXE+kickstart 无人值守安装</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/09/17/mysql-主从/" rel="next">mysql 主从 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/27/解决nfs单点故障优化方案/">解决nfs单点故障优化方案</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/centos-搭建vpn/">centos 搭建vpn</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/memcache-实现session共享/">memcache 实现session共享</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/PXE-kickstart-无人值守安装/">PXE+kickstart 无人值守安装</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/17/iptables-简单介绍/">iptables 简单介绍</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.75px;">Nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.25px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.75px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.25px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.5px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.25px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.5px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

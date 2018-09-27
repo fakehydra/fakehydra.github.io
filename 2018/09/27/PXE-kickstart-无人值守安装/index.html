@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>PXE+kickstart 无人值守安装 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="无人值守安装">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PXE+kickstart 无人值守安装">
+<meta property="og:url" content="http://yoursite.com/2018/09/27/PXE-kickstart-无人值守安装/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="无人值守安装">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-27T12:21:50.524Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PXE+kickstart 无人值守安装">
+<meta name="twitter:description" content="无人值守安装">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-PXE-kickstart-无人值守安装" class="post-PXE-kickstart-无人值守安装 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      PXE+kickstart 无人值守安装
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/PXE-kickstart-无人值守安装/" data-id="cjmkjzx5x002988g18c6nby7y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="无人值守安装"><a href="#无人值守安装" class="headerlink" title="无人值守安装"></a>无人值守安装</h3><a id="more"></a>
+<h3 id="下载dhcp"><a href="#下载dhcp" class="headerlink" title="下载dhcp"></a>下载dhcp</h3><pre><code>yum install -y dhcp
+</code></pre><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><pre><code>[root@yum ~]# vim /etc/dhcp/dhcpd.conf 
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp*/dhcpd.conf.sample
+#   see &apos;man 5 dhcpd.conf&apos;
+#
+
+subnet 10.0.0.0 netmask 255.255.255.0 {
+        range 10.0.0.206 10.0.0.240;      --分配的区段
+        option subnet-mask 255.255.255.0;   --子网掩码
+        default-lease-time 21600;    --租用期限
+        max-lease-time 43200;    --最大值
+        next-server 10.0.0.71;   --tftp地址
+        filename &quot;/pxelinux.0&quot;;  --宣告文件地址
+}
+</code></pre><h3 id="启动dhcp"><a href="#启动dhcp" class="headerlink" title="启动dhcp"></a>启动dhcp</h3><pre><code>[root@yum ~]# /etc/init.d/dhcpd start
+正在启动 dhcpd：                                           [确定]
+</code></pre><h3 id="安装tftp"><a href="#安装tftp" class="headerlink" title="安装tftp"></a>安装tftp</h3><pre><code>yum install -y tftp-server
+已安装:
+tftp-server.x86_64 0:0.49-8.el6 
+</code></pre><h4 id="配置tftp"><a href="#配置tftp" class="headerlink" title="配置tftp"></a>配置tftp</h4><pre><code>[root@yum ~]# vim /etc/xinetd.d/tftp 
+# default: off
+# description: The tftp server serves files using the trivial file transfer \
+#       protocol.  The tftp protocol is often used to boot diskless \
+#       workstations, download configuration files to network-aware printers, \
+#       and to start the installation process for some operating systems.
+service tftp
+{
+        socket_type             = dgram
+        protocol                = udp
+        wait                    = yes
+        user                    = root
+        server                  = /usr/sbin/in.tftpd
+        server_args             = -s /var/lib/tftpboot
+        disable                 = no
+        per_source              = 11
+        cps                     = 100 2
+        flags                   = IPv4
+</code></pre><h3 id="启动xinetd-d"><a href="#启动xinetd-d" class="headerlink" title="启动xinetd.d"></a>启动xinetd.d</h3><pre><code>[root@yum ~]# /etc/init.d/xinetd start
+正在启动 xinetd：                                          [确定]
+</code></pre><h3 id="安装httpd服务"><a href="#安装httpd服务" class="headerlink" title="安装httpd服务"></a>安装httpd服务</h3><h4 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h4><pre><code>#！/bin/bash
+. /etc/rc.d/init.d/functions
+nginx_name=&quot;nginx-1.14.0.tar.gz&quot;
+Nginx_Dir=&quot;nginx-1.14.0&quot;
+Nginx_Install_Dir=&quot;/application/nginx-1.14.0&quot;
+Install_Nginx(){
+    #跟新源
+  wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo
+ # 安装依赖包
+  yum install -y pcre pcre-devel openssl openssl-devel gcc make gcc-c++
+  if [ -f $nginx_name ]
+    then
+      echo &apos;nginx need have&apos;
+      # t解压文件
+      tar zxf ${nginx_name} &amp;&amp; cd ${Nginx_Dir}
+      # 添加僵尸用户
+      useradd nginx -s /sbin/nologin -M -u 664 
+      # 编译安装
+      ./configure --user=nginx --group=nginx --prefix=${Nginx_Install_Dir} --with-http_stub_status_module --with-http_ssl_module
+      [ $(echo $?) -eq 0 ] &amp;&amp; make &amp;&amp; make install
+      [ $(echo $?) -eq 0 ] &amp;&amp; action nginx安装 /bin/true || action nginx安装 /bin/false  
+        #创建软链接
+     ln -s ${Nginx_Install_Dir} /application/nginx
+ fi
+}
+Install_Nginx
+</code></pre><h4 id="ps-nginx的tar文件要和脚本放一起"><a href="#ps-nginx的tar文件要和脚本放一起" class="headerlink" title="ps:nginx的tar文件要和脚本放一起"></a>ps:nginx的tar文件要和脚本放一起</h4><h4 id="配置nginx-conf"><a href="#配置nginx-conf" class="headerlink" title="配置nginx.conf"></a>配置nginx.conf</h4><pre><code>[root@yum scripts]# vim /application/nginx-1.14.0/conf/nginx.conf
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+    server {
+        listen       80;
+        server_name  localhost;
+        location / {
+            autoindex on;
+            root   html;
+            index  index.html index.htm;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+}
+</code></pre><h4 id="启动nginx"><a href="#启动nginx" class="headerlink" title="启动nginx"></a>启动nginx</h4><pre><code>[root@yum scripts]# /application/nginx/sbin/nginx 
+</code></pre><h3 id="挂载光盘"><a href="#挂载光盘" class="headerlink" title="挂载光盘"></a>挂载光盘</h3><pre><code>[root@yum html]# cd /application/nginx-1.14.0/html/ &amp;&amp; \rm *.html
+[root@yum html]# mkdir -p /application/nginx-1.14.0/html/iso
+[root@yum html]# mount /dev/cdrom /application/nginx-1.14.0/html/iso/
+mount: block device /dev/sr0 is write-protected, mounting read-only
+</code></pre><h4 id="这里除了一个小问题。。。解决"><a href="#这里除了一个小问题。。。解决" class="headerlink" title="这里除了一个小问题。。。解决"></a>这里除了一个小问题。。。解决</h4><pre><code>[root@yum html]# mount -o remount,rw /dev/cdrom /application/nginx/html/iso/
+[root@yum html]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3        18G  5.7G   12G  34% /
+tmpfs           238M     0  238M   0% /dev/shm
+/dev/sda1       190M   35M  146M  19% /boot
+/dev/sr0        3.7G  3.7G     0 100% /mnt
+/dev/sr0        3.7G  3.7G     0 100% /application/nginx-1.14.0/html/iso
+</code></pre><h3 id="配置支持pxe的启动程序"><a href="#配置支持pxe的启动程序" class="headerlink" title="配置支持pxe的启动程序"></a>配置支持pxe的启动程序</h3><pre><code>[root@yum html]# yum install -y syslinux
+已安装:
+  syslinux.x86_64 0:4.04-3.el6                                                        
+
+作为依赖被安装:
+  mtools.x86_64 0:4.0.12-1.el6          syslinux-nonlinux.noarch 0:4.04-3.el6   
+</code></pre><h3 id="配置自动安装"><a href="#配置自动安装" class="headerlink" title="配置自动安装"></a>配置自动安装</h3><h4 id="设置grub密码"><a href="#设置grub密码" class="headerlink" title="设置grub密码"></a>设置grub密码</h4><pre><code>[root@yum html]# grub-crypt 
+Password: 123456
+Retype password: 123456
+$6$smYDIsCJH7v7P9Zn$tcZDWFGZVmr/.JShj.oyobPreZxK6rI7qarSndiSAZ4WeC/glIcakiw6/qA.6ZrerFGfpaIR4OQVQsqJIG6nX1
+</code></pre><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre><code>[root@yum html]# vim /var/lib/tftpboot/pxelinux.cfg/default
+[root@jumpserver ks_config]# cat /var/lib/tftpboot/pxelinux.cfg/default
+default ks
+prompt 0
+timeout 600
+
+display boot.msg
+
+menu background splash.jpg
+menu title Welcome to CentOS 6.9!
+menu color border 0 #ffffffff #00000000
+menu color sel 7 #ffffffff #ff000000
+menu color title 0 #ffffffff #00000000
+menu color tabmsg 0 #ffffffff #00000000
+menu color unsel 0 #ffffffff #00000000
+menu color hotsel 0 #ff000000 #ffffffff
+menu color hotkey 7 #ffffffff #ff000000
+menu color scrollbar 0 #ffffffff #00000000
+
+label linux
+  menu label ^Install or upgrade an existing system
+  menu default
+  kernel vmlinuz
+  append initrd=initrd.img
+label vesa
+  menu label Install system with ^basic video driver
+  kernel vmlinuz
+  append initrd=initrd.img nomodeset
+label rescue
+  menu label ^Rescue installed system
+  kernel vmlinuz
+  append initrd=initrd.img rescue
+label local
+  menu label Boot from ^local drive
+  localboot 0xffff
+label memtest86
+  menu label ^Memory test
+  kernel memtest
+  append -
+label ks
+  kernel vmlinuz
+  append initrd=initrd.img ks=http://10.0.0.71/ks_config/CentOS-6.9-ks.cfg
+
+[root@yum html]# mkdir -p /application/nginx-1.14.0/html/ks_config  
+[root@yum html]# vim /application/nginx-1.14.0/html/ks_config/Centos-6.9-ks.cfg
+install
+url --url=&quot;http://10.0.0.71/ios/&quot;
+text
+lang en_US.UTF-8
+keyboard us
+zerombr
+bootloader --location=mbr --driveorder=sda --append=&quot;crashkernel=auto rhgb quiet&quot;
+network --bootproto=dhcp --device=eth0 --onboot=yes --noipv6 --hostname=CentOS6
+install
+url --url=&quot;http://10.0.0.71/ios/&quot;
+text
+lang en_US.UTF-8
+keyboard us
+zerombr
+bootloader --location=mbr --driveorder=sda --append=&quot;crashkernel=auto rhgb quiet&quot;
+network --bootproto=dhcp --device=eth0 --onboot=yes --noipv6 --hostname=CentOS6
+timezone --utc Asia/Shanghai
+authconfig --enableshadow --passalgo=sha512
+clearpart --all --initlabel
+part /boot --fstype=ext4 --asprimary --size=200
+part swap --size=768
+part / --fstype=ext4 --grow --asprimary --size=200
+firstboot --disable
+selinux --disabled
+firewall --disabled
+logging --level=info
+reboot
+%packages
+@base
+@compat-libraries
+@debugging
+@development
+tree
+nmap
+sysstat
+lrzsz
+dos2unix
+telnet
+%post
+wget -O /tmp/linux.sh http://10.0.0.71/ks_config/linux.sh &amp;&gt;/dev/null
+/bin/sh /tmp/linux.sh
+%end
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/09/27/PXE-kickstart-无人值守安装/">
+    <time datetime="2018-09-27T12:20:50.000Z" class="entry-date">
+        2018-09-27
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/09/27/memcache-实现session共享/" rel="prev"><span class="meta-nav">←</span> memcache 实现session共享</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/09/17/iptables-简单介绍/" rel="next">iptables 简单介绍 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/27/解决nfs单点故障优化方案/">解决nfs单点故障优化方案</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/centos-搭建vpn/">centos 搭建vpn</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/memcache-实现session共享/">memcache 实现session共享</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/PXE-kickstart-无人值守安装/">PXE+kickstart 无人值守安装</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/17/iptables-简单介绍/">iptables 简单介绍</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.75px;">Nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.25px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.75px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.25px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.5px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.25px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.5px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>memcache 实现session共享 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="memcache 实现session共享">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="memcache 实现session共享">
+<meta property="og:url" content="http://yoursite.com/2018/09/27/memcache-实现session共享/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="memcache 实现session共享">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-27T12:23:32.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="memcache 实现session共享">
+<meta name="twitter:description" content="memcache 实现session共享">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-memcache-实现session共享" class="post-memcache-实现session共享 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      memcache 实现session共享
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/memcache-实现session共享/" data-id="cjmkjzx6r002v88g1nxmb9o0s" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="memcache-实现session共享"><a href="#memcache-实现session共享" class="headerlink" title="memcache 实现session共享"></a>memcache 实现session共享</h3><a id="more"></a>
+<h3 id="memcached-server"><a href="#memcached-server" class="headerlink" title="memcached server"></a>memcached server</h3><pre><code>yum install -y libevent libevent-devel nc
+
+yum install -y memcached
+</code></pre><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>libevent libevent-devel  --事件触发的网络库
+nc   --连接memcached 的工具（查看工具）
+</code></pre><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre><code>memcached -m 16m -p 11211 -d -u root -c 8192
+</code></pre><h4 id="Memcached启动参数"><a href="#Memcached启动参数" class="headerlink" title="Memcached启动参数"></a>Memcached启动参数</h4><pre><code>-d 启动一个守护进程。
+
+-m 分配个memcache使用的内存，单位是MB
+
+-u 运行memcache的用户，如果当前为root,需要使用此参数指定用户。
+
+-l 监听的服务器ip地址。
+
+-p 设定memcache监听的端口，默认11211
+
+-c 设置最大运行的并发连接数，默认为1024.
+
+-P设置保存Memcache的pid文件 保存pid到指定文件。
+</code></pre><h3 id="添加开机自启"><a href="#添加开机自启" class="headerlink" title="添加开机自启"></a>添加开机自启</h3><pre><code>echo &apos;memcached -m 16m -p 11211 -d -u root -c 8192&apos; &gt;&gt;/etc/rc.local
+</code></pre><h3 id="memcached-client"><a href="#memcached-client" class="headerlink" title="memcached client"></a>memcached client</h3><h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd /server/tools/</span><br><span class="line">tar xf memcache-2.2.7.tgz</span><br><span class="line">cd memcache-2.2.7</span><br><span class="line">/application/php-5.5.32/bin/phpize</span><br><span class="line">./configure -enable-memcache --with-php-config=/application/php-5.5.32/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">\cp /server/file/php.ini /application/php-5.5.32/lib/php.ini</span><br><span class="line">killall php-fpm</span><br><span class="line">php-fpm</span><br></pre></td></tr></table></figure>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>vim /application/php/lib/php.ini
+extension_dir = &quot;/application/php-5.5.32/lib/php/extensions/no-debug-non-zts-20121212/
+&quot;
+extension = memcache.so
+在后面添加这两行--相当于上面\cp
+</code></pre><h4 id="修改PHP配置文件"><a href="#修改PHP配置文件" class="headerlink" title="修改PHP配置文件"></a>修改PHP配置文件</h4><pre><code>[root@web01 ~]# vim /application/php/lib/php.ini
+</code></pre><h4 id="原配置"><a href="#原配置" class="headerlink" title="原配置"></a>原配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session.save_handler = files</span><br><span class="line">session.save_path = &quot;/tmp&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="修改为："><a href="#修改为：" class="headerlink" title="修改为："></a>修改为：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session.save_handler = memcache</span><br><span class="line">session.save_path = &quot;tcp://172.16.1.31:11211&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="做到这里，访问dedecms的后台会出现500错误"><a href="#做到这里，访问dedecms的后台会出现500错误" class="headerlink" title="做到这里，访问dedecms的后台会出现500错误"></a>做到这里，访问dedecms的后台会出现500错误</h4><h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><pre><code>修改文件：/application/nginx/html/www/include/commom.inc.php
+135 //Session保存路径
+136 $enkey = substr(md5(substr($cfg_cookie_encode,0,5)),0,10);
+137 //$sessSavePath = DEDEDATA.&quot;/sessions_{$enkey}&quot;;  --原
+138 $sessSavePath = &quot;tcp://172.16.1.61:11211&quot;;  --修改成
+139 if ( !is_dir($sessSavePath) ) mkdir($sessSavePath);
+
+修改文件：/application/nginx/html/www/include/vdimgck.php
+ 24 $enkey = substr(md5(substr($cfg_cookie_encode,0,5)),0,10);
+ 25 //$sessSavePath = DEDEDATA.&quot;/sessions_{$enkey}&quot;;  --原
+ 26 $sessSavePath = &quot;tcp://172.16.1.61:11211&quot;;  --修改
+ 27 if ( !is_dir($sessSavePath) ) mkdir($sessSavePath);
+</code></pre><h4 id="测试memcached"><a href="#测试memcached" class="headerlink" title="测试memcached"></a>测试memcached</h4><pre><code>[root@web01 www]# cat test_ss.php
+ &lt;?php
+      $memcache = new Memcache;
+      $memcache-&gt;connect(&apos;172.16.1.61&apos;, 11211) or die (&quot;Could not connect NFS server&quot;);
+      $memcache-&gt;set(&apos;key&apos;, &apos;Memcache connect OK&apos;);
+      $get = $memcache-&gt;get(&apos;key&apos;);
+      echo $get;
+ ?&gt;
+
+若连接成功，则返回OK ,反之则could not
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/09/27/memcache-实现session共享/">
+    <time datetime="2018-09-27T12:22:43.000Z" class="entry-date">
+        2018-09-27
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/09/27/centos-搭建vpn/" rel="prev"><span class="meta-nav">←</span> centos 搭建vpn</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/09/27/PXE-kickstart-无人值守安装/" rel="next">PXE+kickstart 无人值守安装 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/27/解决nfs单点故障优化方案/">解决nfs单点故障优化方案</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/centos-搭建vpn/">centos 搭建vpn</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/memcache-实现session共享/">memcache 实现session共享</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/PXE-kickstart-无人值守安装/">PXE+kickstart 无人值守安装</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/17/iptables-简单介绍/">iptables 简单介绍</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.75px;">Nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.25px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.75px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.25px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.5px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.25px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.5px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
