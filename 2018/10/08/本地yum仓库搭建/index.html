@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux中关于telnet无法远程root-解决 | 瑾川</title>
+  <title>本地yum仓库搭建 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于telnet无法远程root用户解决">
+  <meta name="description" content="本地yum仓库搭建">
 <meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux中关于telnet无法远程root-解决">
-<meta property="og:url" content="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/index.html">
+<meta property="og:title" content="本地yum仓库搭建">
+<meta property="og:url" content="http://yoursite.com/2018/10/08/本地yum仓库搭建/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="关于telnet无法远程root用户解决">
+<meta property="og:description" content="本地yum仓库搭建">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-20T00:36:53.324Z">
+<meta property="og:updated_time" content="2018-10-08T00:17:45.327Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux中关于telnet无法远程root-解决">
-<meta name="twitter:description" content="关于telnet无法远程root用户解决">
+<meta name="twitter:title" content="本地yum仓库搭建">
+<meta name="twitter:description" content="本地yum仓库搭建">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux中关于telnet无法远程root-解决" class="post-Linux中关于telnet无法远程root-解决 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-本地yum仓库搭建" class="post-本地yum仓库搭建 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,45 +79,55 @@
         
   
     <h1 class="entry-title article-title">
-      Linux中关于telnet无法远程root-解决
+      本地yum仓库搭建
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/" data-id="cjmzk8o1p0007wcg13ih31seo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/08/本地yum仓库搭建/" data-id="cjmzk8odf004vwcg1cdpfdzbx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="关于telnet无法远程root用户解决"><a href="#关于telnet无法远程root用户解决" class="headerlink" title="关于telnet无法远程root用户解决"></a>关于telnet无法远程root用户解决</h3><a id="more"></a>
-<h3 id="移除securetty文件"><a href="#移除securetty文件" class="headerlink" title="移除securetty文件"></a>移除securetty文件</h3><pre><code>验证规则设置在/etc/security文件中，该文件定义root用户只能在tty1-tty6的终端上记录，
-删除该文件或者将其改名即可避开验证规则实现root用户远程登录。
-</code></pre><h4 id="主机201："><a href="#主机201：" class="headerlink" title="主机201："></a>主机201：</h4><pre><code>[root@jinc1 ~]# mv /etc/securetty /etc/securetty.bak
-</code></pre><h4 id="主机200："><a href="#主机200：" class="headerlink" title="主机200："></a>主机200：</h4><pre><code>[root@jinc ~]# telnet 10.0.0.201
- Trying 10.0.0.201...
- Connected to 10.0.0.201.
- Escape character is &apos;^]&apos;.
- CentOS release 6.9 (Final)
- Kernel 2.6.32-696.el6.x86_64 on an x86_64
- jinc1 login: root
- Password: 
- Last login: Fri Jul 20 08:19:07 from 10.0.0.1
- [root@jinc1 ~]# pwd
- /root
- [root@jinc1 ~]# ifconfig
- eth0      Link encap:Ethernet  HWaddr 00:0C:29:17:CB:55  
-      inet addr:10.0.0.201  Bcast:10.0.0.255  Mask:255.255.255.0
+        <p>本地yum仓库搭建</p>
+<a id="more"></a>
+<h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><pre><code>mkdir -p /application/yum/centos6.6/x86_64/
+</code></pre><h4 id="进入目录"><a href="#进入目录" class="headerlink" title="进入目录"></a>进入目录</h4><pre><code>cd /application/yum/centos6.6/x86_64/
+</code></pre><h4 id="下载createrepo软件"><a href="#下载createrepo软件" class="headerlink" title="下载createrepo软件"></a>下载createrepo软件</h4><pre><code>yum install -y createrepo
+</code></pre><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><pre><code>createrepo -pdo /application/yum/centos6.6/x86_64/ /application/yum/centos6.6/x86_64/
+</code></pre><h4 id="提供yum服务"><a href="#提供yum服务" class="headerlink" title="提供yum服务"></a>提供yum服务</h4><pre><code>python -m SimpleHTTPServer 80 &amp;&gt;/dev/null &amp;
+ps:可以用nginx或者Apache ，但python更适合内网环境
+</code></pre><h4 id="添加新的rpm包"><a href="#添加新的rpm包" class="headerlink" title="添加新的rpm包"></a>添加新的rpm包</h4><pre><code>yumdownloader pcre-devel openssl-devel
+</code></pre><h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><pre><code>createrepo --update /application/yum/centos6.6/x86_64/
+ps：每新加一个rpm包都更新一下
+</code></pre><h3 id="修改yum配置文件，不删除安装包"><a href="#修改yum配置文件，不删除安装包" class="headerlink" title="修改yum配置文件，不删除安装包"></a>修改yum配置文件，不删除安装包</h3><pre><code>vim /etc/yum.conf
+keepcache=1
+cachedir=/var/cache/yum/x86_64/6/base/packages
+</code></pre><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><h4 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h4><pre><code>[root@lb01 yum.repos.d]# vim hydra.repo
+[hydra]
+name=Server
+baseurl=http://10.0.0.71
+enable=1
+gpgcheck=0
+</code></pre><h4 id="临时使用"><a href="#临时使用" class="headerlink" title="临时使用"></a>临时使用</h4><pre><code>[root@lb01 yum.repos.d]# yum --enablerepo=hydra --disablerepo=base,extras,updates,epel list
+--指定使用hydra库
+</code></pre><h4 id="永久使用"><a href="#永久使用" class="headerlink" title="永久使用"></a>永久使用</h4><pre><code>[root@lb01 yum.repos.d]# vim CentOS-Base.repo
+在每一个启动的源后面加上：enabled=0
+--当数值为1或者没有的时候，都是启动，为0 关闭
+[base]
+...
+enabled=0
 </code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/20/Linux中关于telnet无法远程root-解决/">
-    <time datetime="2018-07-20T00:34:15.000Z" class="entry-date">
-        2018-07-20
+    <a href="/2018/10/08/本地yum仓库搭建/">
+    <time datetime="2018-10-08T00:15:03.000Z" class="entry-date">
+        2018-10-08
     </time>
 </a>
     
@@ -133,10 +143,10 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/22/Linux运维学习-第十四天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第十四天</a></span>
+        <span class="nav-previous"><a href="/2018/10/08/解决-WordPress安装东西需要ftp信息方法/" rel="prev"><span class="meta-nav">←</span> 解决 WordPress安装东西需要ftp信息方法</a></span>
     
     
-        <span class="nav-next"><a href="/2018/07/19/Linux关于密码二三事/" rel="next">Linux关于密码二三事 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/09/27/解决nfs单点故障优化方案/" rel="next">解决nfs单点故障优化方案 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

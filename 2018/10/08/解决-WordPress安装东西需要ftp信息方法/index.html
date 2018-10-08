@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux中关于telnet无法远程root-解决 | 瑾川</title>
+  <title>解决 WordPress安装东西需要ftp信息方法 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于telnet无法远程root用户解决">
+  <meta name="description" content="解决WordPress安装东西需要ftp信息">
 <meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux中关于telnet无法远程root-解决">
-<meta property="og:url" content="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/index.html">
+<meta property="og:title" content="解决 WordPress安装东西需要ftp信息方法">
+<meta property="og:url" content="http://yoursite.com/2018/10/08/解决-WordPress安装东西需要ftp信息方法/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="关于telnet无法远程root用户解决">
+<meta property="og:description" content="解决WordPress安装东西需要ftp信息">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-20T00:36:53.324Z">
+<meta property="og:updated_time" content="2018-10-08T00:24:41.838Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux中关于telnet无法远程root-解决">
-<meta name="twitter:description" content="关于telnet无法远程root用户解决">
+<meta name="twitter:title" content="解决 WordPress安装东西需要ftp信息方法">
+<meta name="twitter:description" content="解决WordPress安装东西需要ftp信息">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux中关于telnet无法远程root-解决" class="post-Linux中关于telnet无法远程root-解决 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-解决-WordPress安装东西需要ftp信息方法" class="post-解决-WordPress安装东西需要ftp信息方法 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,45 +79,36 @@
         
   
     <h1 class="entry-title article-title">
-      Linux中关于telnet无法远程root-解决
+      解决 WordPress安装东西需要ftp信息方法
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/" data-id="cjmzk8o1p0007wcg13ih31seo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/08/解决-WordPress安装东西需要ftp信息方法/" data-id="cjmzk8oem005rwcg15ap5zqud" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="关于telnet无法远程root用户解决"><a href="#关于telnet无法远程root用户解决" class="headerlink" title="关于telnet无法远程root用户解决"></a>关于telnet无法远程root用户解决</h3><a id="more"></a>
-<h3 id="移除securetty文件"><a href="#移除securetty文件" class="headerlink" title="移除securetty文件"></a>移除securetty文件</h3><pre><code>验证规则设置在/etc/security文件中，该文件定义root用户只能在tty1-tty6的终端上记录，
-删除该文件或者将其改名即可避开验证规则实现root用户远程登录。
-</code></pre><h4 id="主机201："><a href="#主机201：" class="headerlink" title="主机201："></a>主机201：</h4><pre><code>[root@jinc1 ~]# mv /etc/securetty /etc/securetty.bak
-</code></pre><h4 id="主机200："><a href="#主机200：" class="headerlink" title="主机200："></a>主机200：</h4><pre><code>[root@jinc ~]# telnet 10.0.0.201
- Trying 10.0.0.201...
- Connected to 10.0.0.201.
- Escape character is &apos;^]&apos;.
- CentOS release 6.9 (Final)
- Kernel 2.6.32-696.el6.x86_64 on an x86_64
- jinc1 login: root
- Password: 
- Last login: Fri Jul 20 08:19:07 from 10.0.0.1
- [root@jinc1 ~]# pwd
- /root
- [root@jinc1 ~]# ifconfig
- eth0      Link encap:Ethernet  HWaddr 00:0C:29:17:CB:55  
-      inet addr:10.0.0.201  Bcast:10.0.0.255  Mask:255.255.255.0
+        <h3 id="解决WordPress安装东西需要ftp信息"><a href="#解决WordPress安装东西需要ftp信息" class="headerlink" title="解决WordPress安装东西需要ftp信息"></a>解决WordPress安装东西需要ftp信息</h3><a id="more"></a>
+<h3 id="step1："><a href="#step1：" class="headerlink" title="step1："></a>step1：</h3><pre><code>chmod -R 777 /wordpress  --站点目录
+</code></pre><h3 id="step2"><a href="#step2" class="headerlink" title="step2:"></a>step2:</h3><pre><code>vim wp-config.php
+添加下面内容
+define(&quot;FS_METHOD&quot;,&quot;direct&quot;);
+define(&quot;FS_CHMOD_DIR&quot;, 0777);
+define(&quot;FS_CHMOD_FILE&quot;, 0777); 
+保存退出
+</code></pre><h3 id="step3："><a href="#step3：" class="headerlink" title="step3："></a>step3：</h3><pre><code>刷新网页即可
 </code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/20/Linux中关于telnet无法远程root-解决/">
-    <time datetime="2018-07-20T00:34:15.000Z" class="entry-date">
-        2018-07-20
+    <a href="/2018/10/08/解决-WordPress安装东西需要ftp信息方法/">
+    <time datetime="2018-10-08T00:22:12.000Z" class="entry-date">
+        2018-10-08
     </time>
 </a>
     
@@ -133,10 +124,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/22/Linux运维学习-第十四天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第十四天</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/19/Linux关于密码二三事/" rel="next">Linux关于密码二三事 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/10/08/本地yum仓库搭建/" rel="next">本地yum仓库搭建 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
