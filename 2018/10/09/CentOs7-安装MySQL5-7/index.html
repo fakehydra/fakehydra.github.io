@@ -13,20 +13,20 @@
   
   
   
-  <title>Linux基础优化 | 瑾川</title>
+  <title>CentOs7 安装MySQL5.7 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Linux一些基础优化">
+  <meta name="description" content="centos7下安装mysql5.7">
 <meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux基础优化">
-<meta property="og:url" content="http://yoursite.com/2018/08/20/Linux基础优化/index.html">
+<meta property="og:title" content="CentOs7 安装MySQL5.7">
+<meta property="og:url" content="http://yoursite.com/2018/10/09/CentOs7-安装MySQL5-7/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="Linux一些基础优化">
+<meta property="og:description" content="centos7下安装mysql5.7">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-20T13:13:35.752Z">
+<meta property="og:updated_time" content="2018-10-09T07:54:12.035Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux基础优化">
-<meta name="twitter:description" content="Linux一些基础优化">
+<meta name="twitter:title" content="CentOs7 安装MySQL5.7">
+<meta name="twitter:description" content="centos7下安装mysql5.7">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Linux基础优化" class="post-Linux基础优化 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-CentOs7-安装MySQL5-7" class="post-CentOs7-安装MySQL5-7 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,48 +79,88 @@
         
   
     <h1 class="entry-title article-title">
-      Linux基础优化
+      CentOs7 安装MySQL5.7
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/Linux基础优化/" data-id="cjn1fl7yv000sy0g1bt6q71f0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/09/CentOs7-安装MySQL5-7/" data-id="cjn1fl7u50001y0g15zmrx9rs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>Linux一些基础优化</p>
-<a id="more"></a>
-<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>#yum源优化<br>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup &amp;&amp;\<br>wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/Centos-6.repo</a><br>mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup &amp;&amp;\<br>wget -O /etc/yum.repos.d/epel.repo <a href="http://mirrors.aliyun.com/repo/epel-6.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/repo/epel-6.repo</a></p>
-<p>#1、关闭selinux<br>sed -i ‘s/SELINUX=enforcing/SELINUX=disabled/‘ /etc/selinux/config<br>grep SELINUX=disabled /etc/selinux/config<br>setenforce 0<br>getenforce</p>
-<p>#2、关闭iptables<br>/etc/init.d/iptables stop<br>/etc/init.d/iptables stop<br>chkconfig iptables off</p>
-<p>#3、精简开机自启动服务<br>chkconfig|egrep -v “crond|sshd|network|rsyslog|sysstat”|awk ‘{print “chkconfig”,$1,”off”}’|bash<br>export LANG=en<br>chkconfig –list|grep 3:on</p>
-<p>#4、提权oldboy可以sudo (可选项)<br>useradd oldboy<br>echo 123456|passwd –stdin oldboy<br>\cp /etc/sudoers /etc/sudoers.ori<br>echo “oldboy  ALL=(ALL) NOPASSWD: ALL “ &gt;&gt;/etc/sudoers<br>tail -1 /etc/sudoers<br>visudo -c</p>
-<p>#5、中文字符集<br>cp /etc/sysconfig/i18n /etc/sysconfig/i18n.ori<br>echo ‘LANG=”zh_CN.UTF-8”‘  &gt;/etc/sysconfig/i18n<br>source /etc/sysconfig/i18n<br>echo $LANG</p>
-<p>#6、时间同步<br>echo ‘#time sync by oldboy at 2010-2-1’ &gt;&gt;/var/spool/cron/root<br>echo ‘<em>/5 </em> <em> </em> * /usr/sbin/ntpdate time.nist.gov &gt;/dev/null 2&gt;&amp;1’ &gt;&gt;/var/spool/cron/root<br>crontab -l</p>
-<p>#7、命令行安全  (一定不要优化)</p>
-<p>#echo ‘export TMOUT=300’ &gt;&gt;/etc/profile</p>
-<p>#echo ‘export HISTSIZE=5’ &gt;&gt;/etc/profile</p>
-<p>#echo ‘export HISTFILESIZE=5’ &gt;&gt;/etc/profile</p>
-<p>#tail -3 /etc/profile</p>
-<p>#. /etc/profile</p>
-<p>#8、加大文件描述<br>echo ‘*               -       nofile          65535 ‘ &gt;&gt;/etc/security/limits.conf<br>tail -1 /etc/security/limits.conf </p>
-<h1 id="确保服务程序可以正常运行"><a href="#确保服务程序可以正常运行" class="headerlink" title="确保服务程序可以正常运行"></a>确保服务程序可以正常运行</h1><p>#9、内核优化<br>cat &gt;&gt;/etc/sysctl.conf&lt;&lt;EOF<br>net.ipv4.tcp_fin_timeout = 2<br>net.ipv4.tcp_tw_reuse = 1<br>net.ipv4.tcp_tw_recycle = 1<br>net.ipv4.tcp_syncookies = 1<br>net.ipv4.tcp_keepalive_time = 600<br>net.ipv4.ip_local_port_range = 4000    65000<br>net.ipv4.tcp_max_syn_backlog = 16384<br>net.ipv4.tcp_max_tw_buckets = 36000<br>net.ipv4.route.gc_timeout = 100<br>net.ipv4.tcp_syn_retries = 1<br>net.ipv4.tcp_synack_retries = 1<br>net.core.somaxconn = 16384<br>net.core.netdev_max_backlog = 16384<br>net.ipv4.tcp_max_orphans = 16384</p>
-<p>#以下参数是对iptables防火墙的优化，防火墙不开会提示，可以忽略不理。<br>net.nf_conntrack_max = 25000000<br>net.netfilter.nf_conntrack_max = 25000000<br>net.netfilter.nf_conntrack_tcp_timeout_established = 180<br>net.netfilter.nf_conntrack_tcp_timeout_time_wait = 120<br>net.netfilter.nf_conntrack_tcp_timeout_close_wait = 60<br>net.netfilter.nf_conntrack_tcp_timeout_fin_wait = 120<br>EOF</p>
-<p>#10. 下载安装系统基础软件<br>yum install lrzsz nmap tree dos2unix nc -y</p>
-<p>B、模板机解析配置</p>
-<p>a./etc/hosts<br>hosts解析<br>cat &gt;/etc/hosts&lt;&lt;EOF<br>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4<br>::1         localhost localhost.localdomain localhost6 localhost6.localdomain6<br>172.16.1.5      lb01<br>172.16.1.6      lb02<br>172.16.1.7      web01<br>172.16.1.8      web02<br>172.16.1.9      web03<br>172.16.1.51     db01 db01.etiantian.org<br>172.16.1.31     nfs01<br>172.16.1.41     backup<br>172.16.1.61     m01<br>EOF</p>
+        <h4 id="centos7下安装mysql5-7"><a href="#centos7下安装mysql5-7" class="headerlink" title="centos7下安装mysql5.7"></a>centos7下安装mysql5.7</h4><a id="more"></a>
+<p>centos7 安装MySQL</p>
+<h4 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h4><pre><code>在centos7上，系统默认将mysql换成了mariadb，所以，我们要是想要安装mysql的话，需要先把系统中的mariadb删除
+</code></pre><h4 id="查看主机是否安装了mariadb"><a href="#查看主机是否安装了mariadb" class="headerlink" title="查看主机是否安装了mariadb"></a>查看主机是否安装了mariadb</h4><pre><code>[root@jinch ~]# rpm -qa |grep mariadb
+mariadb-devel-5.5.56-2.el7.x86_64
+mariadb-libs-5.5.56-2.el7.x86_64
+</code></pre><h4 id="删除mariadb"><a href="#删除mariadb" class="headerlink" title="删除mariadb"></a>删除mariadb</h4><pre><code>root@jinch ~]# rpm -e --nodeps mariadb-devel-5.5.56-2.el7.x86_64
+root@jinch ~]# rpm -e --nodeps mariadb-libs-5.5.56-2.el7.x86_64
+再查看已经是没有的了
+</code></pre><h4 id="删除相关文件"><a href="#删除相关文件" class="headerlink" title="删除相关文件"></a>删除相关文件</h4><pre><code>[root@jinch ~]# rm -rf /etc/my.cnf
+</code></pre><h4 id="添加相关用户mysql"><a href="#添加相关用户mysql" class="headerlink" title="添加相关用户mysql"></a>添加相关用户mysql</h4><pre><code>[root@jinch ~]# id mysql
+uid=1000(mysql) gid=1000(mysql) 组=1000(mysql)
+</code></pre><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><h5 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h5><pre><code>wget https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.22-linux-glibc2.12-x86_64.tar.gz
+</code></pre><h5 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h5><pre><code>tar -zxvf mysql-5.7.22-linux-glibc2.12-x86_64.tar.gz       
+</code></pre><h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><pre><code>cp -r mysql-5.7.22-linux-glibc2.12-x86_64 /usr/local/mysql
+</code></pre><h5 id="添加系统mysql组和mysql用户"><a href="#添加系统mysql组和mysql用户" class="headerlink" title="添加系统mysql组和mysql用户"></a>添加系统mysql组和mysql用户</h5><pre><code>添加系统mysql组     groupadd mysql
 
+添加mysql用户 useradd -r -g mysql mysql （添加完成后可用id mysql查看）
+</code></pre><h4 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h4><pre><code>切到mysql目录 cd /usr/local/mysql
+
+修改当前目录拥有者为mysql用户 chown -R mysql:mysql ./
+</code></pre><h5 id="安装数据库-1"><a href="#安装数据库-1" class="headerlink" title="安装数据库"></a>安装数据库</h5><pre><code>bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+
+生成了临时密码
+</code></pre><h5 id="执行以下命令创建RSA-private-key"><a href="#执行以下命令创建RSA-private-key" class="headerlink" title="执行以下命令创建RSA private key"></a>执行以下命令创建RSA private key</h5><pre><code>bin/mysql_ssl_rsa_setup --datadir=/usr/local/mysql/data
+</code></pre><h5 id="修改当前目录拥有者为mysql用户"><a href="#修改当前目录拥有者为mysql用户" class="headerlink" title="修改当前目录拥有者为mysql用户"></a>修改当前目录拥有者为mysql用户</h5><pre><code>chown -R mysql:mysql ./
+</code></pre><h5 id="修改当前data目录拥有者为mysql用户"><a href="#修改当前data目录拥有者为mysql用户" class="headerlink" title="修改当前data目录拥有者为mysql用户"></a>修改当前data目录拥有者为mysql用户</h5><pre><code>chown -R mysql:mysql data
+</code></pre><h4 id="配置my-cnf"><a href="#配置my-cnf" class="headerlink" title="配置my.cnf"></a>配置my.cnf</h4><pre><code>vim /etc/my.cnf    （直接把下面内容复制上就行）
+
+[mysqld]
+character_set_server=utf8
+init_connect=&apos;SET NAMES utf8&apos;
+skip-name-resolve
+#设置3306端口
+port = 3306 
+socket=/var/lib/mysql/mysql.sock
+# 设置mysql的安装目录
+basedir=/usr/local/mysql
+# 设置mysql数据库的数据的存放目录
+datadir=/usr/local/mysql/data
+# 允许最大连接数
+max_connections=200
+# 服务端使用的字符集默认为8比特编码的latin1字符集
+character-set-server=utf8
+# 创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB
+lower_case_table_name=1
+max_allowed_packet=16M
+</code></pre><h5 id="添加开机启动"><a href="#添加开机启动" class="headerlink" title="添加开机启动"></a>添加开机启动</h5><pre><code>cp /usr/local/mysql/support-files/mysql.server  /etc/init.d/mysqld
+</code></pre><h5 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h5><pre><code>vim /etc/init.d/mysqld   
+
+添加路径 在46行   
+
+basedir=/usr/local/mysql
+datadir=/usr/local/mysql/data
+</code></pre><h5 id="启动mysql"><a href="#启动mysql" class="headerlink" title="启动mysql"></a>启动mysql</h5><pre><code>service mysqld start 
+</code></pre><h5 id="加入开机起动"><a href="#加入开机起动" class="headerlink" title="加入开机起动"></a>加入开机起动</h5><pre><code>chkconfig --add mysqld  
+</code></pre><h5 id="登录修改密码"><a href="#登录修改密码" class="headerlink" title="登录修改密码"></a>登录修改密码</h5><pre><code>mysql -uroot -p 
+上面初始化时的密码
+
+如果出现错误 添加软连接  ln -s /usr/local/mysql/bin/mysql /usr/bin
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/08/20/Linux基础优化/">
-    <time datetime="2018-08-20T13:10:51.000Z" class="entry-date">
-        2018-08-20
+    <a href="/2018/10/09/CentOs7-安装MySQL5-7/">
+    <time datetime="2018-10-09T07:52:52.000Z" class="entry-date">
+        2018-10-09
     </time>
 </a>
     
@@ -136,10 +176,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/08/20/期中架构-01/" rel="prev"><span class="meta-nav">←</span> 期中架构-01</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/08/16/kali-linux-学习笔记/" rel="next">kali linux 学习笔记 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/10/09/基础网站优化之nginx优化（部分）/" rel="next">基础网站优化之nginx优化（部分） <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

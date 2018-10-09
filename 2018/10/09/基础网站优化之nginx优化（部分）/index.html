@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>基础网站优化之nginx优化（部分） | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对网站基础优化之nginx优化">
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础网站优化之nginx优化（部分）">
+<meta property="og:url" content="http://yoursite.com/2018/10/09/基础网站优化之nginx优化（部分）/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="对网站基础优化之nginx优化">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-09T07:55:49.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础网站优化之nginx优化（部分）">
+<meta name="twitter:description" content="对网站基础优化之nginx优化">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-基础网站优化之nginx优化（部分）" class="post-基础网站优化之nginx优化（部分） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      基础网站优化之nginx优化（部分）
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/09/基础网站优化之nginx优化（部分）/" data-id="cjn1fl854003ly0g12r90lh1i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="对网站基础优化之nginx优化"><a href="#对网站基础优化之nginx优化" class="headerlink" title="对网站基础优化之nginx优化"></a>对网站基础优化之nginx优化</h4><a id="more"></a>
+<p>基础网站nginx优化</p>
+<h3 id="优化的作用"><a href="#优化的作用" class="headerlink" title="优化的作用"></a>优化的作用</h3><pre><code>让服务更好的运行
+</code></pre><h3 id="LNMP架构优化"><a href="#LNMP架构优化" class="headerlink" title="LNMP架构优化"></a>LNMP架构优化</h3><h4 id="Linux优化"><a href="#Linux优化" class="headerlink" title="Linux优化"></a>Linux优化</h4><pre><code>ssh远程优化
+字符集优化
+内核优化
+</code></pre><h4 id="nginx优化"><a href="#nginx优化" class="headerlink" title="nginx优化"></a>nginx优化</h4><pre><code>3-5万并发（静态访问：nginx可以处理的请求）
+</code></pre><h4 id="PHP优化"><a href="#PHP优化" class="headerlink" title="PHP优化"></a>PHP优化</h4><pre><code>3-5千并发
+</code></pre><h4 id="MySQL优化"><a href="#MySQL优化" class="headerlink" title="MySQL优化"></a>MySQL优化</h4><pre><code>1千并发
+</code></pre><h3 id="nginx优化操作实践"><a href="#nginx优化操作实践" class="headerlink" title="nginx优化操作实践"></a>nginx优化操作实践</h3><h3 id="安全优化"><a href="#安全优化" class="headerlink" title="安全优化"></a>安全优化</h3><h3 id="01-隐藏nginx版本号信息"><a href="#01-隐藏nginx版本号信息" class="headerlink" title="01.隐藏nginx版本号信息"></a>01.隐藏nginx版本号信息</h3><pre><code>[root@web01 ~]# curl -I -H host:www.jinc.org 10.0.0.7/index.html
+Server: nginx/1.14.0
+</code></pre><h4 id="利用server-tokens"><a href="#利用server-tokens" class="headerlink" title="利用server_tokens"></a>利用server_tokens</h4><pre><code>在配置文件中添加：server_tokens off
+默认是on 我们用off是关闭显示版本号信息
+[root@web01 nginx]# vim conf/nginx.conf
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    server_tokens   off;
+</code></pre><h4 id="结果显示"><a href="#结果显示" class="headerlink" title="结果显示"></a>结果显示</h4><pre><code>[root@web01 nginx]# nginx -s reload
+[root@web01 nginx]# curl -I -H host:www.jinc.org 10.0.0.7/index.html
+HTTP/1.1 404 Not Found
+Server: nginx
+</code></pre><h3 id="02-修改nginx软件名称"><a href="#02-修改nginx软件名称" class="headerlink" title="02.修改nginx软件名称"></a>02.修改nginx软件名称</h3><pre><code>修改三个源码文件
+</code></pre><h4 id="文件一：nginx-x-x-x-src-core-nginx-h"><a href="#文件一：nginx-x-x-x-src-core-nginx-h" class="headerlink" title="文件一：nginx-x.x.x/src/core/nginx.h"></a>文件一：nginx-x.x.x/src/core/nginx.h</h4><pre><code>14 #define NGINX_VER          &quot;JC/&quot; NGINX_VERSION
+22 #define NGINX_VAR          &quot;JC&quot;
+</code></pre><h4 id="文件二：nginx-x-x-x-src-http-ngx-http-header-filter-module-c"><a href="#文件二：nginx-x-x-x-src-http-ngx-http-header-filter-module-c" class="headerlink" title="文件二：nginx-x.x.x/src/http/ngx_http_header_filter_module.c"></a>文件二：nginx-x.x.x/src/http/ngx_http_header_filter_module.c</h4><pre><code>49 static u_char ngx_http_server_string[] = &quot;Server: JC&quot; CRLF;
+</code></pre><h4 id="文件三：nginx-x-x-x-src-http-ngx-http-special-response-c"><a href="#文件三：nginx-x-x-x-src-http-ngx-http-special-response-c" class="headerlink" title="文件三：nginx-x.x.x/src/http/ngx_http_special_response.c"></a>文件三：nginx-x.x.x/src/http/ngx_http_special_response.c</h4><pre><code>22 &quot;&lt;hr&gt;&lt;center&gt;&quot; NGINX_VER &quot;(664341340@qq.com)&lt;/center&gt;&quot; CRLF
+36 &quot;&lt;hr&gt;&lt;center&gt;JC&lt;/center&gt;&quot; CRLF
+</code></pre><h4 id="重新编译安装"><a href="#重新编译安装" class="headerlink" title="重新编译安装"></a>重新编译安装</h4><h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><pre><code>1）备份好配置文件&amp;站点目录数据信息
+2）按照原有编译安装过程再来一遍（nginx -V)
+</code></pre><h3 id="03-修改nginx进程用户信息（worker进程）"><a href="#03-修改nginx进程用户信息（worker进程）" class="headerlink" title="03.修改nginx进程用户信息（worker进程）"></a>03.修改nginx进程用户信息（worker进程）</h3><h4 id="第一种方法：通过编译安装指定worker进程用户信息"><a href="#第一种方法：通过编译安装指定worker进程用户信息" class="headerlink" title="第一种方法：通过编译安装指定worker进程用户信息"></a>第一种方法：通过编译安装指定worker进程用户信息</h4><pre><code>--user=www --group=www
+</code></pre><h4 id="第二种方法：修改配置文件-application-nginx-conf-nginx-conf"><a href="#第二种方法：修改配置文件-application-nginx-conf-nginx-conf" class="headerlink" title="第二种方法：修改配置文件 /application//nginx/conf/nginx.conf"></a>第二种方法：修改配置文件 /application//nginx/conf/nginx.conf</h4><pre><code>首行添加 user nginx
+[root@web01 nginx]# head -1 conf/nginx.conf
+user nginx;
+[root@web01 nginx]# ps -ef |grep nginx
+root       5694      1  0 18:13 ?        00:00:00 nginx: master process nginx
+nginx      5721   5694  0 18:43 ?        00:00:00 nginx: worker process
+</code></pre><h3 id="04-配置Nginx，禁止非法域名解析访问企业网站"><a href="#04-配置Nginx，禁止非法域名解析访问企业网站" class="headerlink" title="04.配置Nginx，禁止非法域名解析访问企业网站"></a>04.配置Nginx，禁止非法域名解析访问企业网站</h3><pre><code>server {
+   listen 80;
+   server_name -;
+   return 501;
+}
+</code></pre><h3 id="05-实现防盗链"><a href="#05-实现防盗链" class="headerlink" title="05.实现防盗链"></a>05.实现防盗链</h3><h5 id="01-利用reffer实现防盗链"><a href="#01-利用reffer实现防盗链" class="headerlink" title="01. 利用reffer实现防盗链"></a>01. 利用reffer实现防盗链</h5><pre><code>location ~* .*\.(jpg|gif|swf|flv|wma|wmv|asf|mp3|mmf|zip|rar)$ {
+     valid_referers none blocked *.[图片]etiantian.org [图片]etiantian.org;
+    if ($invalid_referer) {
+     rewrite ^/  [图片]http://www.etiantian.org/daolian.png;
+    }
+   }
+</code></pre><h5 id="PS：可以添加缓存expire配置-让禁止盗链的图片在用户本地缓存"><a href="#PS：可以添加缓存expire配置-让禁止盗链的图片在用户本地缓存" class="headerlink" title="PS：可以添加缓存expire配置, 让禁止盗链的图片在用户本地缓存"></a>PS：可以添加缓存expire配置, 让禁止盗链的图片在用户本地缓存</h5><h5 id="02-根据cookie防盗链"><a href="#02-根据cookie防盗链" class="headerlink" title="02. 根据cookie防盗链"></a>02. 根据cookie防盗链</h5><h5 id="03-通过加密变换访问路径实现防盗链"><a href="#03-通过加密变换访问路径实现防盗链" class="headerlink" title="03. 通过加密变换访问路径实现防盗链"></a>03. 通过加密变换访问路径实现防盗链</h5><h5 id="04-给图片信息加上水印"><a href="#04-给图片信息加上水印" class="headerlink" title="04. 给图片信息加上水印"></a>04. 给图片信息加上水印</h5><h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><h3 id="01-优化worker进程数量信息"><a href="#01-优化worker进程数量信息" class="headerlink" title="01.优化worker进程数量信息"></a>01.优化worker进程数量信息</h3><pre><code>vim nginx.conf
+worker_processes 1;
+PS:worker进程数量主要参照CPU核数信息
+worker_processes 数量==CPU核数
+worker_processes 数量==CPU核数*2
+</code></pre><h4 id="CPU核数查看："><a href="#CPU核数查看：" class="headerlink" title="CPU核数查看："></a>CPU核数查看：</h4><pre><code>[root@web01 nginx]# grep processor /proc/cpuinfo |wc -l
+1
+
+也可以使用top命令 按数字键1
+</code></pre><h4 id="CPU颗数信息查看"><a href="#CPU颗数信息查看" class="headerlink" title="CPU颗数信息查看"></a>CPU颗数信息查看</h4><pre><code>[root@web01 nginx]# grep &apos;physical id&apos; /proc/cpuinfo |sort|wc -l
+1
+</code></pre><h3 id="02-优化worker进程连接数量能力"><a href="#02-优化worker进程连接数量能力" class="headerlink" title="02.优化worker进程连接数量能力"></a>02.优化worker进程连接数量能力</h3><pre><code>vim nginx.conf
+worker_connections 1024;(2的倍数为妙)
+PS：系统最大打开文件数&gt;=worker_connections*worker_processes
+[root@web01 nginx]# ulimit -a|grep open
+open files                      (-n) 65535
+</code></pre><h3 id="03-优化nginx服务CPU亲和力"><a href="#03-优化nginx服务CPU亲和力" class="headerlink" title="03.优化nginx服务CPU亲和力"></a>03.优化nginx服务CPU亲和力</h3><pre><code>服务器: CPU01(繁忙) CPU02 CPU03 CPU04  
+
+案例一: 有4个nginx进程  服务器有4颗CPU(进程数和颗数相同)
+wker_processes    4；
+worker_cpu_affinity 0001 0010 0100 1000;
+
+案例二: 有多个nginx进程 服务器有4颗CPU(进程数大于颗数信息)
+wker_cpu_affinity 00000001 00000010 00000100 00001000 00010000 00100000 01000000 10000000；
+worker_cpu_affinity 0001 0010 0100 1000 0001 0010 0100 1000；
+
+案例三: 
+wker_processes    4；
+worker_cpu_affinity 0101 1010;
+</code></pre><h3 id="04-优化nginx使用的epoll模型信息"><a href="#04-优化nginx使用的epoll模型信息" class="headerlink" title="04.优化nginx使用的epoll模型信息"></a>04.优化nginx使用的epoll模型信息</h3><pre><code>use epoll；
+</code></pre><h3 id="05-开启高效文件传输模式"><a href="#05-开启高效文件传输模式" class="headerlink" title="05.开启高效文件传输模式"></a>05.开启高效文件传输模式</h3><pre><code>sendfile    on;  特殊的数据传输功能：零拷贝
+tcp_nopush  on;  将数据积攒到一定量再发送
+tcp_nodelay off; 经数据信息进行快速传输 
+
+数据包==1500字节==货车=1500件  1600字节 1500 100 == 1400  1500
+   01. 先别着急发送, 确保数据包已经装满数据, 避免了网络拥塞
+       tcp_nopush on;
+   02. 有时要抓紧发货, 确保数据尽快发送, 提高可数据传输效率    
+        tcp_nodelay on;    
+   说明: 以上两个参数选择其一使用
+</code></pre><h3 id="06-优化nginx服务超时信息"><a href="#06-优化nginx服务超时信息" class="headerlink" title="06.优化nginx服务超时信息"></a>06.优化nginx服务超时信息</h3><pre><code>1）keepalive_timeout  60;
+确保通讯双方在一定时间内没有传输数据了，断开连接
+2）client_header_timeout  15;
+发送方发出请求信息，但接受方迟迟不作出响应
+3) client_body_timeout  15;
+发送方放出主体信息，但接受方没有正常处理
+4） send_timeout  ;
+服务端等待客户端两次请求的间隔时间
+</code></pre><h3 id="07-设置nginx服务允许用户最大上传数据大小"><a href="#07-设置nginx服务允许用户最大上传数据大小" class="headerlink" title="07.设置nginx服务允许用户最大上传数据大小"></a>07.设置nginx服务允许用户最大上传数据大小</h3><pre><code>client_max_body_size 2m;
+PS: 默认大小为1m
+</code></pre><h3 id="08-nginx与php之间fsstcgi优化信息"><a href="#08-nginx与php之间fsstcgi优化信息" class="headerlink" title="08.nginx与php之间fsstcgi优化信息"></a>08.nginx与php之间fsstcgi优化信息</h3><h4 id="时间超时设定"><a href="#时间超时设定" class="headerlink" title="时间超时设定"></a>时间超时设定</h4><pre><code>fastcgi_connect_timeout 240;
+fastcgi_send_timeout 240;
+fastcgi_read_timeout 240;
+</code></pre><h4 id="缓冲设置"><a href="#缓冲设置" class="headerlink" title="缓冲设置"></a>缓冲设置</h4><h5 id="http区块中设置"><a href="#http区块中设置" class="headerlink" title="http区块中设置"></a>http区块中设置</h5><pre><code>fastcgi_buffer_size 64k;
+fastcgi_buffers 4 64k;
+fastcgi_busy_buffers_size 128k;
+fastcgi_temp_file_write_size 128k;
+#fastcgi_temp_path /data/ngx_fcgi_tmp;
+fastcgi_cache_path /data/ngx_fcgi_cache levels=1:2 keys_zone=ngx_fcgi_cache:512m inactive=1d max_size=40g;
+</code></pre><h5 id="server区块中设置"><a href="#server区块中设置" class="headerlink" title="server区块中设置"></a>server区块中设置</h5><pre><code>server {
+    listen       80;
+    server_name  blog.etiantian.org;
+    root   html/blog;
+    index  index.php index.html index.htm;
+    client_max_body_size 2m;
+    location ~* .*\.(php|php5)?$ {
+      root html/blog;
+      fastcgi_pass  127.0.0.1:9000;
+      fastcgi_index index.php;
+      fastcgi_cache ngx_fcgi_cache;
+      fastcgi_cache_valid 200 302 1h;
+      fastcgi_cache_valid 301 1d;
+      fastcgi_cache_valid any 1m;
+      fastcgi_cache_min_uses 1;
+      fastcgi_cache_use_stale error timeout invalid_header http_500;
+      fastcgi_cache_key http://$host$request_uri;
+      include fastcgi.conf;
+  }
+}
+</code></pre><h3 id="09-压缩传输的数据信息"><a href="#09-压缩传输的数据信息" class="headerlink" title="09.压缩传输的数据信息"></a>09.压缩传输的数据信息</h3><pre><code>gzip on;
+gzip_min_length             1k;
+gzip_buffers                4 16k;
+gzip_http_version           1.1;
+gzip_comp_level             7;
+gzip_types                  text/css text/xml application/javascripts;
+gzip_vary                   on;
+</code></pre><h3 id="10-让用户尽可能多的缓存网站数据信息"><a href="#10-让用户尽可能多的缓存网站数据信息" class="headerlink" title="10.让用户尽可能多的缓存网站数据信息"></a>10.让用户尽可能多的缓存网站数据信息</h3><h5 id="运维思路-当网站架构负载压力过大的时候-尽量将压力向前推"><a href="#运维思路-当网站架构负载压力过大的时候-尽量将压力向前推" class="headerlink" title="运维思路: 当网站架构负载压力过大的时候, 尽量将压力向前推"></a>运维思路: 当网站架构负载压力过大的时候, 尽量将压力向前推</h5><pre><code>location ~ .*\.（|jpg|jpeg|png|bmp|swf）$
+   {
+       expires      3650d；
+   }
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/09/基础网站优化之nginx优化（部分）/">
+    <time datetime="2018-10-09T07:52:04.000Z" class="entry-date">
+        2018-10-09
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/10/09/CentOs7-安装MySQL5-7/" rel="prev"><span class="meta-nav">←</span> CentOs7 安装MySQL5.7</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/10/08/解决-WordPress安装东西需要ftp信息方法/" rel="next">解决 WordPress安装东西需要ftp信息方法 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/09/CentOs7-安装MySQL5-7/">CentOs7 安装MySQL5.7</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/09/基础网站优化之nginx优化（部分）/">基础网站优化之nginx优化（部分）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/08/解决-WordPress安装东西需要ftp信息方法/">解决 WordPress安装东西需要ftp信息方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/08/本地yum仓库搭建/">本地yum仓库搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/27/解决nfs单点故障优化方案/">解决nfs单点故障优化方案</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.75px;">Nginx</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.25px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 18.75px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.25px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.5px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.25px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.5px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
