@@ -13,20 +13,20 @@
   
   
   
-  <title>shell之11292,0,0 | 瑾川</title>
+  <title>mysql误删root用户导致无法登陆解决方法 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="$$,$#,$?">
-<meta name="keywords" content="shell二三事">
+  <meta name="description" content="mysql误删root用户导致无法登陆解决方法">
+<meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell之11292,0,0">
-<meta property="og:url" content="http://yoursite.com/2018/08/07/shell之11292-0-0/index.html">
+<meta property="og:title" content="mysql误删root用户导致无法登陆解决方法">
+<meta property="og:url" content="http://yoursite.com/2018/10/10/mysql误删root用户导致无法登陆解决方法/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="$$,$#,$?">
+<meta property="og:description" content="mysql误删root用户导致无法登陆解决方法">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-07T13:31:01.702Z">
+<meta property="og:updated_time" content="2018-10-10T09:36:39.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shell之11292,0,0">
-<meta name="twitter:description" content="$$,$#,$?">
+<meta name="twitter:title" content="mysql误删root用户导致无法登陆解决方法">
+<meta name="twitter:description" content="mysql误删root用户导致无法登陆解决方法">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-shell之11292-0-0" class="post-shell之11292-0-0 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-mysql误删root用户导致无法登陆解决方法" class="post-mysql误删root用户导致无法登陆解决方法 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,34 +79,77 @@
         
   
     <h1 class="entry-title article-title">
-      shell之11292,0,0
+      mysql误删root用户导致无法登陆解决方法
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/shell之11292-0-0/" data-id="cjn2yorg0003ki4g1bw03z7se" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/10/mysql误删root用户导致无法登陆解决方法/" data-id="cjn2yorfb0035i4g17m2kkwwc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id=""><a href="#" class="headerlink" title="$$,$#,$?"></a>$$,$#,$?</h3><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">【$0】 当前脚本的文件名；</span><br><span class="line">【$n】 传递给脚本的第n个参数值（n为1~9）；</span><br><span class="line">【$*】 传递给脚本的所有参数；</span><br><span class="line">【$#】 传递给脚本的参数个数；</span><br><span class="line">【$?】 显示最后命令的退出状态(0表示没有错误，其他任何值表明有错误)；</span><br><span class="line">【$$】 当前脚本运行的进程ID号;</span><br><span class="line">【$@】 与$*功能类似;</span><br><span class="line">【$! 】执行上一个背景指令的PID(后台运行的最后一个进程的进程ID号)</span><br></pre></td></tr></table></figure>
+        <h4 id="mysql误删root用户导致无法登陆解决方法"><a href="#mysql误删root用户导致无法登陆解决方法" class="headerlink" title="mysql误删root用户导致无法登陆解决方法"></a>mysql误删root用户导致无法登陆解决方法</h4><a id="more"></a>
+<h4 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h4><h5 id="删除前"><a href="#删除前" class="headerlink" title="删除前"></a>删除前</h5><pre><code>mysql&gt; select user,host,password from mysql.user;
++------+-----------+-------------------------------------------+
+| user | host      | password                                  |
++------+-----------+-------------------------------------------+
+| root | localhost | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |
+| root | jinch     |                                           |
+| root | 127.0.0.1 |                                           |
+| root | ::1       |                                           |
+| test | 10.0.0.%  | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |
+</code></pre><h5 id="删除root用户"><a href="#删除root用户" class="headerlink" title="删除root用户"></a>删除root用户</h5><pre><code>mysql&gt; drop user root@&apos;localhost&apos;;
+为了测试，把其他root相关都删除了，命令就不一一展示了，显示结果。
+</code></pre><h4 id="删除后"><a href="#删除后" class="headerlink" title="删除后"></a>删除后</h4><pre><code>mysql&gt; select user,host from mysql.user;
++------+-----------+
+| user | host      |
++------+-----------+
+| test | localhost |
++------+-----------+
+1 row in set (0.00 sec)
+</code></pre><h5 id="退出再登陆"><a href="#退出再登陆" class="headerlink" title="退出再登陆"></a>退出再登陆</h5><pre><code>[root@jinch ~]# mysql -uroot -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user &apos;root&apos;@&apos;localhost&apos; (using password: YES)
+现在已经无法登陆了，之前误删过一次。。。无奈那会儿不知道如何解决，就只能重装了，但是，经过一段时间的学习，发现并不是没有解决办法的。
+</code></pre><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><h4 id="首先，关闭数据库"><a href="#首先，关闭数据库" class="headerlink" title="首先，关闭数据库"></a>首先，关闭数据库</h4><pre><code>service mysqld stop
+</code></pre><h4 id="用安全模式设置开启免密登陆"><a href="#用安全模式设置开启免密登陆" class="headerlink" title="用安全模式设置开启免密登陆"></a>用安全模式设置开启免密登陆</h4><pre><code>mysqld_safe --skip-grant-tables --skip-networking 
+--skip-grant-tables  关闭连接层的验证模块
+--skip-networking    关闭远程连接数据库（只允许本地登陆，可设置防火墙达到相同效果）
+
+[root@jinch ~]# mysqld_safe --skip-grant-tables
+181010 16:57:03 mysqld_safe Logging to &apos;/usr/local/mysql/data/jinch.err&apos;.
+181010 16:57:04 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+</code></pre><p>执行完命令后你会发现它会一直霸占这个窗口，这是你可以加个 &amp; 让他在后台运行</p>
+<h5 id="然后使用mysql命令就可以直接进入数据库"><a href="#然后使用mysql命令就可以直接进入数据库" class="headerlink" title="然后使用mysql命令就可以直接进入数据库"></a>然后使用mysql命令就可以直接进入数据库</h5><h5 id="进入之后，使用insert-命令重新插入表"><a href="#进入之后，使用insert-命令重新插入表" class="headerlink" title="进入之后，使用insert 命令重新插入表"></a>进入之后，使用insert 命令重新插入表</h5><pre><code>mysql&gt; insert into user(user,host,password,ssl_type,ssl_cipher,x509_issuer,x509_subject) values(&apos;root&apos;,&apos;localhost&apos;,PASSWORD(&apos;123&apos;),&apos;&apos;,&apos;&apos;,&apos;&apos;,&apos;&apos;);
+PASSWORD大写的原因：在mysql中密码都是密文的，所以这里是调用一个函数，将明文加密成密文。
+</code></pre><h5 id="然后退出重启一下数据库就可以重新使用账号密码登录了"><a href="#然后退出重启一下数据库就可以重新使用账号密码登录了" class="headerlink" title="然后退出重启一下数据库就可以重新使用账号密码登录了"></a>然后退出重启一下数据库就可以重新使用账号密码登录了</h5><pre><code>mysql&gt; quit
+Bye
+[root@jinch ~]# /etc/init.d/mysqld restart     
+[root@jinch ~]# mysql -uroot -p123
+Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.
+
+mysql&gt;  --这边就放一部分啦，
+</code></pre><h5 id="误删root用户无法登陆的解决就到这里啦"><a href="#误删root用户无法登陆的解决就到这里啦" class="headerlink" title="误删root用户无法登陆的解决就到这里啦"></a>误删root用户无法登陆的解决就到这里啦</h5><h5 id="附赠忘记密码如何修改"><a href="#附赠忘记密码如何修改" class="headerlink" title="附赠忘记密码如何修改"></a>附赠忘记密码如何修改</h5><h4 id="5-6和5-6以前版本："><a href="#5-6和5-6以前版本：" class="headerlink" title="5.6和5.6以前版本："></a>5.6和5.6以前版本：</h4><pre><code>update mysql.user set password=PASSWORD(&apos;123&apos;) where user=&apos;oldboy&apos; and host=&apos;10.0.0.%&apos;;
+flush privileges;
+</code></pre><h4 id="5-7以上版本："><a href="#5-7以上版本：" class="headerlink" title="5.7以上版本："></a>5.7以上版本：</h4><pre><code>update mysql.user set authentication_string=PASSWORD(&apos;123&apos;) where user=&apos;oldboy&apos; and host=&apos;10.0.0.%&apos;;
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/08/07/shell之11292-0-0/">
-    <time datetime="2018-08-07T13:11:56.000Z" class="entry-date">
-        2018-08-07
+    <a href="/2018/10/10/mysql误删root用户导致无法登陆解决方法/">
+    <time datetime="2018-10-10T09:35:08.000Z" class="entry-date">
+        2018-10-10
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell二三事/">shell二三事</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
 
     </footer>
 </article>
@@ -116,10 +159,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/08/07/centos7-通过git连接GitHub仓库/" rel="prev"><span class="meta-nav">←</span> centos7 通过git连接GitHub仓库</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/08/07/Linux运维学习-第二十六天/" rel="next">Linux运维学习-第二十六天 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/10/10/基础网站优化之PHP优化/" rel="next">基础网站优化之PHP优化 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 

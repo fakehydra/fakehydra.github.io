@@ -13,20 +13,20 @@
   
   
   
-  <title>shell之11292,0,0 | 瑾川</title>
+  <title>基础网站优化之PHP优化 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="$$,$#,$?">
-<meta name="keywords" content="shell二三事">
+  <meta name="description" content="对网站的基础优化之PHP优化">
+<meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell之11292,0,0">
-<meta property="og:url" content="http://yoursite.com/2018/08/07/shell之11292-0-0/index.html">
+<meta property="og:title" content="基础网站优化之PHP优化">
+<meta property="og:url" content="http://yoursite.com/2018/10/10/基础网站优化之PHP优化/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="$$,$#,$?">
+<meta property="og:description" content="对网站的基础优化之PHP优化">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-07T13:31:01.702Z">
+<meta property="og:updated_time" content="2018-10-10T09:38:09.936Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shell之11292,0,0">
-<meta name="twitter:description" content="$$,$#,$?">
+<meta name="twitter:title" content="基础网站优化之PHP优化">
+<meta name="twitter:description" content="对网站的基础优化之PHP优化">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-shell之11292-0-0" class="post-shell之11292-0-0 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-基础网站优化之PHP优化" class="post-基础网站优化之PHP优化 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,34 +79,92 @@
         
   
     <h1 class="entry-title article-title">
-      shell之11292,0,0
+      基础网站优化之PHP优化
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/shell之11292-0-0/" data-id="cjn2yorg0003ki4g1bw03z7se" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/10/基础网站优化之PHP优化/" data-id="cjn2yorg4003mi4g11tr2qfja" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id=""><a href="#" class="headerlink" title="$$,$#,$?"></a>$$,$#,$?</h3><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">【$0】 当前脚本的文件名；</span><br><span class="line">【$n】 传递给脚本的第n个参数值（n为1~9）；</span><br><span class="line">【$*】 传递给脚本的所有参数；</span><br><span class="line">【$#】 传递给脚本的参数个数；</span><br><span class="line">【$?】 显示最后命令的退出状态(0表示没有错误，其他任何值表明有错误)；</span><br><span class="line">【$$】 当前脚本运行的进程ID号;</span><br><span class="line">【$@】 与$*功能类似;</span><br><span class="line">【$! 】执行上一个背景指令的PID(后台运行的最后一个进程的进程ID号)</span><br></pre></td></tr></table></figure>
+        <h4 id="对网站的基础优化之PHP优化"><a href="#对网站的基础优化之PHP优化" class="headerlink" title="对网站的基础优化之PHP优化"></a>对网站的基础优化之PHP优化</h4><a id="more"></a>
+<h4 id="PHP软件程序优化：给软件打补丁（添加扩展插件）"><a href="#PHP软件程序优化：给软件打补丁（添加扩展插件）" class="headerlink" title="PHP软件程序优化：给软件打补丁（添加扩展插件）"></a>PHP软件程序优化：给软件打补丁（添加扩展插件）</h4><h4 id="解决部分加速软件的Perl编译问题"><a href="#解决部分加速软件的Perl编译问题" class="headerlink" title="解决部分加速软件的Perl编译问题"></a>解决部分加速软件的Perl编译问题</h4><pre><code>配置环境变量LC_ALL，过程如下：
+[root@www ~]# echo &apos;export LC_ALL=C&apos;&gt;&gt; /etc/profile
+#←设置环境变量，解决后面Perl程序插件的编译问题。符号&quot;&gt;&gt;&quot;表示向文件追加内容
+</code></pre><h4 id="PHP缓存加速器扩展部署"><a href="#PHP缓存加速器扩展部署" class="headerlink" title="PHP缓存加速器扩展部署"></a>PHP缓存加速器扩展部署</h4><h5 id="xcache缓存加速模块"><a href="#xcache缓存加速模块" class="headerlink" title="xcache缓存加速模块"></a>xcache缓存加速模块</h5><pre><code>cd /server/tools/
+wget http://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.bz2
+tar xf xcache-3.2.0.tar.bz2
+cd xcache-3.2.0
+/application/php/bin/phpize
+./configure --enable-xcache  --with-php-config=/application/php/bin/php-config
+make
+make install
+ls -l /application/php-5.5.32/lib/php/extensions/no-debug-non-zts-20121212/
+cd ..
+</code></pre><h4 id="配置XCache插件加速并优化参数"><a href="#配置XCache插件加速并优化参数" class="headerlink" title="配置XCache插件加速并优化参数"></a>配置XCache插件加速并优化参数</h4><h5 id="1-先在配置XCache参数前加个配置分界符，配置命令如下"><a href="#1-先在配置XCache参数前加个配置分界符，配置命令如下" class="headerlink" title="1) 先在配置XCache参数前加个配置分界符，配置命令如下"></a>1) 先在配置XCache参数前加个配置分界符，配置命令如下</h5><pre><code>cd /application/php/lib
+echo &gt;&gt;php.ini
+echo &apos;; xcache config by oldboy 20150501----------------------&apos; &gt;&gt;php.ini
+</code></pre><h5 id="2-编辑xcache-ini，修改XCache的配置参数"><a href="#2-编辑xcache-ini，修改XCache的配置参数" class="headerlink" title="2) 编辑xcache.ini，修改XCache的配置参数"></a>2) 编辑xcache.ini，修改XCache的配置参数</h5><pre><code>vim /server/tools/xcache-3.2.0/xcache.ini
+xcache.size            =        256M
+xcache.count            =        2
+xcache.ttl            =        86400
+xcache.gc_interval    =        3600
+xcache.var_size        =        64M
+cat /server/tools/xcache-3.2.0/xcache.ini &gt;&gt;php.ini
+</code></pre><h5 id="3-检查XCache加速情况配置"><a href="#3-检查XCache加速情况配置" class="headerlink" title="3) 检查XCache加速情况配置"></a>3) 检查XCache加速情况配置</h5><pre><code>[root@web02 lib]# /application/php/bin/php -v
+</code></pre><h4 id="ZendOpcache缓存加速模块"><a href="#ZendOpcache缓存加速模块" class="headerlink" title="ZendOpcache缓存加速模块"></a>ZendOpcache缓存加速模块</h4><pre><code>cd /server/tools/
+wget http://pecl.php.net/get/zendopcache-7.0.5.tgz
+tar xf zendopcache-7.0.5.tgz
+cd zendopcache-7.0.5
+/application/php/bin/phpize
+./configure --enable-opcache --with-php-config=/application/php/bin/php-config
+make
+make install
+ls -l /application/php-5.5.32/lib/php/extensions/no-debug-non-zts-20121212/
+cd ..
+</code></pre><h4 id="安装PHP-Memcached扩展插件-单客户端"><a href="#安装PHP-Memcached扩展插件-单客户端" class="headerlink" title="安装PHP Memcached扩展插件(单客户端)"></a>安装PHP Memcached扩展插件(单客户端)</h4><pre><code>cd /server/tools/
+wget http://pecl.php.net/get/memcache-2.2.7.tgz
+tar zxf memcache-2.2.7.tgz
+cd memcache-2.2.7
+/application/php/bin/phpize
+./configure  --enable-memcache  --with-php-config=/application/php/bin/php-config
+make
+make install
+ls -l /application/php-5.5.32/lib/php/extensions/no-debug-non-zts-20121212/
+cd ..
+</code></pre><h4 id="安装PHP-redis扩展插件"><a href="#安装PHP-redis扩展插件" class="headerlink" title="安装PHP redis扩展插件"></a>安装PHP redis扩展插件</h4><pre><code>cd /server/tools/
+wget https://github.com/nicolasff/phpredis/archive/master.zip 
+unzip master.zip
+cd phpredis-master/
+/application/php/bin/phpize
+./configure -with-php-config=/application/php/bin/php-config
+make
+make install
+ls -l /application/php-5.5.32/lib/php/extensions/no-debug-non-zts-20121212/
+cd ../
+</code></pre><h3 id="PHP优化总结说明"><a href="#PHP优化总结说明" class="headerlink" title="PHP优化总结说明:"></a>PHP优化总结说明:</h3><h4 id="01-下载安装软件模块"><a href="#01-下载安装软件模块" class="headerlink" title="01. 下载安装软件模块"></a>01. 下载安装软件模块</h4><pre><code>ls -l /application/php-5.5.32/lib/php/extensions/no-debug-non-zts-20121212/
+</code></pre><h4 id="02-进行加载php插件模块"><a href="#02-进行加载php插件模块" class="headerlink" title="02. 进行加载php插件模块"></a>02. 进行加载php插件模块</h4><h5 id="1-直接编写php-ini文件进行加载"><a href="#1-直接编写php-ini文件进行加载" class="headerlink" title="1) 直接编写php.ini文件进行加载"></a>1) 直接编写php.ini文件进行加载</h5><pre><code>extension_dir = &quot;/application/php-5.5.32/lib/php/extensions/no-debug-non-zts-20121212/&quot;
+extension = memcache.so
+</code></pre><h5 id="2-通过已有配置文件添加到php-ini文件中进行加载插件"><a href="#2-通过已有配置文件添加到php-ini文件中进行加载插件" class="headerlink" title="2) 通过已有配置文件添加到php.ini文件中进行加载插件"></a>2) 通过已有配置文件添加到php.ini文件中进行加载插件</h5><pre><code>cat /server/tools/xcache-3.2.0/xcache.ini &gt;&gt;php.ini
+</code></pre>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/08/07/shell之11292-0-0/">
-    <time datetime="2018-08-07T13:11:56.000Z" class="entry-date">
-        2018-08-07
+    <a href="/2018/10/10/基础网站优化之PHP优化/">
+    <time datetime="2018-10-10T09:34:37.000Z" class="entry-date">
+        2018-10-10
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell二三事/">shell二三事</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
 
     </footer>
 </article>
@@ -116,10 +174,10 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/08/07/centos7-通过git连接GitHub仓库/" rel="prev"><span class="meta-nav">←</span> centos7 通过git连接GitHub仓库</a></span>
+        <span class="nav-previous"><a href="/2018/10/10/mysql误删root用户导致无法登陆解决方法/" rel="prev"><span class="meta-nav">←</span> mysql误删root用户导致无法登陆解决方法</a></span>
     
     
-        <span class="nav-next"><a href="/2018/08/07/Linux运维学习-第二十六天/" rel="next">Linux运维学习-第二十六天 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/10/09/CentOs7-安装MySQL5-7/" rel="next">CentOs7 安装MySQL5.7 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
