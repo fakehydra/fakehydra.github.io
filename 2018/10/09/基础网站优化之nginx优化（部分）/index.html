@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="对网站基础优化之nginx优化">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-09T07:55:49.948Z">
+<meta property="og:updated_time" content="2018-10-10T00:48:58.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基础网站优化之nginx优化（部分）">
 <meta name="twitter:description" content="对网站基础优化之nginx优化">
@@ -86,7 +86,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/09/基础网站优化之nginx优化（部分）/" data-id="cjn1fl854003ly0g12r90lh1i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/09/基础网站优化之nginx优化（部分）/" data-id="cjn2fso4g003lukg1fdx4kulf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -140,9 +140,9 @@ nginx      5721   5694  0 18:43 ?        00:00:00 nginx: worker process
    return 501;
 }
 </code></pre><h3 id="05-实现防盗链"><a href="#05-实现防盗链" class="headerlink" title="05.实现防盗链"></a>05.实现防盗链</h3><h5 id="01-利用reffer实现防盗链"><a href="#01-利用reffer实现防盗链" class="headerlink" title="01. 利用reffer实现防盗链"></a>01. 利用reffer实现防盗链</h5><pre><code>location ~* .*\.(jpg|gif|swf|flv|wma|wmv|asf|mp3|mmf|zip|rar)$ {
-     valid_referers none blocked *.[图片]etiantian.org [图片]etiantian.org;
+     valid_referers none blocked *.etiantian.org etiantian.org;
     if ($invalid_referer) {
-     rewrite ^/  [图片]http://www.etiantian.org/daolian.png;
+     rewrite ^/  http://www.etiantian.org/daolian.png;
     }
    }
 </code></pre><h5 id="PS：可以添加缓存expire配置-让禁止盗链的图片在用户本地缓存"><a href="#PS：可以添加缓存expire配置-让禁止盗链的图片在用户本地缓存" class="headerlink" title="PS：可以添加缓存expire配置, 让禁止盗链的图片在用户本地缓存"></a>PS：可以添加缓存expire配置, 让禁止盗链的图片在用户本地缓存</h5><h5 id="02-根据cookie防盗链"><a href="#02-根据cookie防盗链" class="headerlink" title="02. 根据cookie防盗链"></a>02. 根据cookie防盗链</h5><h5 id="03-通过加密变换访问路径实现防盗链"><a href="#03-通过加密变换访问路径实现防盗链" class="headerlink" title="03. 通过加密变换访问路径实现防盗链"></a>03. 通过加密变换访问路径实现防盗链</h5><h5 id="04-给图片信息加上水印"><a href="#04-给图片信息加上水印" class="headerlink" title="04. 给图片信息加上水印"></a>04. 给图片信息加上水印</h5><h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><h3 id="01-优化worker进程数量信息"><a href="#01-优化worker进程数量信息" class="headerlink" title="01.优化worker进程数量信息"></a>01.优化worker进程数量信息</h3><pre><code>vim nginx.conf
