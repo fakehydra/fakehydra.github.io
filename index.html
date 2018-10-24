@@ -71,6 +71,124 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-mysql笔记之修改" class="post-mysql笔记之修改 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/10/24/mysql笔记之修改/">mysql笔记之修改</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/24/mysql笔记之修改/" data-id="cjnn20zu2003c9kg19xe5gdbt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="MySQL笔记之修改"><a href="#MySQL笔记之修改" class="headerlink" title="MySQL笔记之修改"></a>MySQL笔记之修改</h4><h4 id="数据库-数据类型"><a href="#数据库-数据类型" class="headerlink" title="数据库 数据类型"></a>数据库 数据类型</h4><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><pre><code>MariaDB [oldboy]&gt; CREATE TABLE student(sid INT,sname VARCHAR(20),sage TINYINT,sgender ENUM(&apos;m&apos;,&apos;f&apos;),scomtime DATETIME);
+
+--int 整数  -2^31 ~ 3^31-1
+--varchar（20）  变长
+--char（20）     定长  
+--tinyint        整数  255
+--ENUM（‘m’,‘f’） 枚举类型 （男，女）
+--datetime       时间类型  年月日时分秒
+
+show create table stu;
+
+| stu   | CREATE TABLE `stu` (
+  `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT &apos;学号&apos;,
+  `sname` varchar(20) NOT NULL COMMENT &apos;姓名&apos;,
+  `sage` tinyint(3) unsigned DEFAULT NULL COMMENT &apos;年龄&apos;,
+  `sgender` enum(&apos;m&apos;,&apos;f&apos;) DEFAULT &apos;m&apos; COMMENT &apos;性别&apos;,
+  `scomtime` datetime NOT NULL COMMENT &apos;入学时间&apos;,
+  PRIMARY KEY (`sid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   
+</code></pre><h4 id="以下选项会影响到数据的录入"><a href="#以下选项会影响到数据的录入" class="headerlink" title="以下选项会影响到数据的录入"></a>以下选项会影响到数据的录入</h4><pre><code>-- not null  非空的
+--primary key  唯一且非空的
+--auto_increment  自增长  需要有 primary key 或者unique key
+--default      默认值
+--unsigned     非负数
+--comment ‘xx’  注释
+
+show tables； --查看当前数据库下所有表
+show create table   --查看表的创建语句
+desc stu;     --查看表中列的定义信息
+</code></pre><h3 id="修改表定义"><a href="#修改表定义" class="headerlink" title="修改表定义"></a>修改表定义</h3><h5 id="重命名表名"><a href="#重命名表名" class="headerlink" title="重命名表名"></a>重命名表名</h5><pre><code>MariaDB [oldboy]&gt; show tables;
++------------------+
+| Tables_in_oldboy |
++------------------+
+| stu              |
+| student          |
++------------------+
+MariaDB [oldboy]&gt; ALTER TABLE stu RENAME stt;
+MariaDB [oldboy]&gt; show tables;
++------------------+
+| Tables_in_oldboy |
++------------------+
+| stt              |
+| student          |
++------------------+
+2 rows in set (0.00 sec)
+</code></pre><h4 id="添加列"><a href="#添加列" class="headerlink" title="添加列"></a>添加列</h4><pre><code>MariaDB [oldboy]&gt; desc stt;
++----------+---------------------+------+-----+---------+----------------+
+| Field    | Type                | Null | Key | Default | Extra          |
++----------+---------------------+------+-----+---------+----------------+
+| sid      | int(11)             | NO   | PRI | NULL    | auto_increment |
+| sname    | varchar(20)         | NO   |     | NULL    |                |
+| sage     | tinyint(3) unsigned | YES  |     | NULL    |                |
+| sgender  | enum(&apos;m&apos;,&apos;f&apos;)       | YES  |     | m       |                |
+| scomtime | datetime            | NO   |     | NULL    |                |
++----------+---------------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+MariaDB [oldboy]&gt; alter table stt add stest int;
+Query OK, 0 rows affected (0.01 sec)               
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [oldboy]&gt; desc stt;
++----------+---------------------+------+-----+---------+----------------+
+| Field    | Type                | Null | Key | Default | Extra          |
++----------+---------------------+------+-----+---------+----------------+
+| sid      | int(11)             | NO   | PRI | NULL    | auto_increment |
+| sname    | varchar(20)         | NO   |     | NULL    |                |
+| sage     | tinyint(3) unsigned | YES  |     | NULL    |                |
+| sgender  | enum(&apos;m&apos;,&apos;f&apos;)       | YES  |     | m       |                |
+| scomtime | datetime            | NO   |     | NULL    |                |
+| stest    | int(11)             | YES  |     | NULL    |                |
++----------+---------------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/24/mysql笔记之修改/">
+    <time datetime="2018-10-24T11:06:26.000Z" class="entry-date">
+        2018-10-24
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-mysql笔记之插入-键值重复解决" class="post-mysql笔记之插入-键值重复解决 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -86,7 +204,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/24/mysql笔记之插入-键值重复解决/" data-id="cjnn1x3fy003dkog1v1sb0906" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/24/mysql笔记之插入-键值重复解决/" data-id="cjnn20zue003g9kg1a6lfxs5z" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -280,7 +398,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/24/zabbix笔记之proxy/" data-id="cjnn1x3h5003zkog1coact4x7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/24/zabbix笔记之proxy/" data-id="cjnn20zve003x9kg12oe7zma6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -330,7 +448,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/12/cobbler-无人值守安装系统/" data-id="cjnn1x3ms0069kog1i798wurr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/12/cobbler-无人值守安装系统/" data-id="cjnn2102l00689kg1z0q3k6qp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -380,7 +498,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/10/mysql错误之error1142/" data-id="cjnn1x3n5006dkog1azsud4ds" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/10/mysql错误之error1142/" data-id="cjnn2102s006c9kg131nyho9a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -430,7 +548,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/10/mysql误删root用户导致无法登陆解决方法/" data-id="cjnn1x3g4003fkog14lvs21gx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/10/mysql误删root用户导致无法登陆解决方法/" data-id="cjnn20zu5003e9kg1bfm9paeu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -480,7 +598,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/10/基础网站优化之PHP优化/" data-id="cjnn1x3ha0043kog1kcyu1cwm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/10/基础网站优化之PHP优化/" data-id="cjnn20zw700449kg18z56k3z7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -530,7 +648,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/09/CentOs7-安装MySQL5-7/" data-id="cjnn1x37n0003kog10n9eotev" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/09/CentOs7-安装MySQL5-7/" data-id="cjnn20ziw00029kg1j9r5f6ok" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -580,7 +698,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/09/基础网站优化之nginx优化（部分）/" data-id="cjnn1x3he0045kog1sbxtprmm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/09/基础网站优化之nginx优化（部分）/" data-id="cjnn20zwe00469kg1ozkc45vu" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -630,7 +748,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/08/解决-WordPress安装东西需要ftp信息方法/" data-id="cjnn1x3kv005rkog15u9el55e" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/08/解决-WordPress安装东西需要ftp信息方法/" data-id="cjnn2100w005r9kg1nhy606mq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -680,7 +798,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/08/本地yum仓库搭建/" data-id="cjnn1x3ix004vkog1ydzcdm1k" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/08/本地yum仓库搭建/" data-id="cjnn20zz1004w9kg1oa1ftii7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -730,7 +848,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/解决nfs单点故障优化方案/" data-id="cjnn1x3kz005tkog1z76pa0ah" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/解决nfs单点故障优化方案/" data-id="cjnn2100z005t9kg1ooc7ilty" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -780,7 +898,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/centos-搭建vpn/" data-id="cjnn1x3ep002rkog1txq8fozq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/centos-搭建vpn/" data-id="cjnn20zs4002o9kg1d87wnjda" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -830,7 +948,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/memcache-实现session共享/" data-id="cjnn1x3fp0037kog157ivz171" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/memcache-实现session共享/" data-id="cjnn20zto00369kg1xn2h6lyb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -880,7 +998,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/PXE-kickstart-无人值守安装/" data-id="cjnn1x3dw002ekog1t01y3091" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/27/PXE-kickstart-无人值守安装/" data-id="cjnn20zr5002d9kg1kehbyhb3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -930,7 +1048,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/17/iptables-简单介绍/" data-id="cjnn1x3mw006bkog1beq698x5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/17/iptables-简单介绍/" data-id="cjnn2102p006a9kg1wekols6z" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -980,7 +1098,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/17/mysql-主从/" data-id="cjnn1x3fu003bkog1xquqq1do" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/17/mysql-主从/" data-id="cjnn20ztz003a9kg1rwzqxwac" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1030,7 +1148,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/14/搭建-ntp时间服务器/" data-id="cjnn1x3hn004akog1ubveskig" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/14/搭建-ntp时间服务器/" data-id="cjnn20zwt00499kg12y0p0va5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1080,7 +1198,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/10/LNMP之数据库分离-连接nfs/" data-id="cjnn1x37x0006kog131w52z2v" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/10/LNMP之数据库分离-连接nfs/" data-id="cjnn20zjc00069kg1x4nw5uai" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1130,7 +1248,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/10/LNMP之WordPress/" data-id="cjnn1x37u0005kog1s4fi387j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/10/LNMP之WordPress/" data-id="cjnn20zj900059kg1mwexkgt1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1180,7 +1298,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/nginx-之rewrite/" data-id="cjnn1x3ga003jkog1x70oiqrf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/nginx-之rewrite/" data-id="cjnn20zuk003k9kg125oyuqd5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1230,7 +1348,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/nginx-之location/" data-id="cjnn1x3g7003hkog1rhw2dwvd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/nginx-之location/" data-id="cjnn20zuh003i9kg19juatfh6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1280,7 +1398,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/期中架构-12/" data-id="cjnn1x3iq004tkog1rb5u270u" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/06/期中架构-12/" data-id="cjnn20zyt004u9kg1pm95qbou" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1330,7 +1448,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/05/期中架构-11/" data-id="cjnn1x3im004rkog1sk1qsx5i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/05/期中架构-11/" data-id="cjnn20zyp004s9kg1dze3iiaq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1380,7 +1498,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/04/rose/" data-id="cjnn1x3gn003pkog1n21aykly" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/04/rose/" data-id="cjnn20zuu003o9kg164teay7a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1430,7 +1548,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/04/期中架构-10/" data-id="cjnn1x3ij004pkog1322i6a5n" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/04/期中架构-10/" data-id="cjnn20zym004q9kg1sdq06ti3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1480,7 +1598,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-08/" data-id="cjnn1x3nm006jkog1wmarjbr2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-08/" data-id="cjnn21038006k9kg1ys6z2676" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1530,7 +1648,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-09/" data-id="cjnn1x3ow006tkog1scjhvboc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/09/03/期中架构-09/" data-id="cjnn21045006s9kg19ijzojyw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1580,7 +1698,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/28/期中架构-07/" data-id="cjnn1x3nq006lkog1c2yzkpzm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/28/期中架构-07/" data-id="cjnn21036006i9kg1k942pizg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1630,7 +1748,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/msf学习笔记-01/" data-id="cjnn1x3fs0039kog1ferw4ezo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/msf学习笔记-01/" data-id="cjnn20ztu00389kg1hsv52qaw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1680,7 +1798,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/肆式青春/" data-id="cjnn1x3ks005okog1vc1j0s9g" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/肆式青春/" data-id="cjnn2100r005o9kg1c6bk5iqv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1730,7 +1848,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-06/" data-id="cjnn1x3ig004nkog1tgbxcye9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-06/" data-id="cjnn20zyi004o9kg1zhob1223" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1780,7 +1898,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-05/" data-id="cjnn1x3ic004lkog1cjmxhcfm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/27/期中架构-05/" data-id="cjnn20zyc004m9kg14rps1y5c" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1830,7 +1948,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-04/" data-id="cjnn1x3i8004jkog1811g8dy7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-04/" data-id="cjnn20zy8004k9kg1otd18j69" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1880,7 +1998,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-03/" data-id="cjnn1x3i4004hkog1e8dvem19" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/23/期中架构-03/" data-id="cjnn20zy1004i9kg18iafazda" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1930,7 +2048,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/zabbix简单安装部署/" data-id="cjnn1x3h1003wkog1j6dzwgxj" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/zabbix简单安装部署/" data-id="cjnn20zvv00409kg1ndsgls6p" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -1980,7 +2098,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/期中架构-02/" data-id="cjnn1x3i1004fkog1c0c7933k" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/21/期中架构-02/" data-id="cjnn20zxs004g9kg1g3kq6y1t" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2030,7 +2148,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/期中架构-01/" data-id="cjnn1x3hr004ckog1dcn5egpo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/期中架构-01/" data-id="cjnn20zx9004d9kg1d8amc4g2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2080,7 +2198,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/Linux基础优化/" data-id="cjnn1x38y000ikog12eq25743" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/20/Linux基础优化/" data-id="cjnn20zkr000k9kg1s2dgawnd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2130,7 +2248,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/kali-linux-学习笔记/" data-id="cjnn1x3f9002zkog18ksk23g3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/kali-linux-学习笔记/" data-id="cjnn20zt0002y9kg1pulue91i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2180,7 +2298,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/Linux运维学习-第三十二天/" data-id="cjnn1x39g000skog1egrx9n4x" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/16/Linux运维学习-第三十二天/" data-id="cjnn20zlc000u9kg19z9imyzx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2230,7 +2348,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/14/Linux运维学习-第三十天/" data-id="cjnn1x39n000ukog1801mpate" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/14/Linux运维学习-第三十天/" data-id="cjnn20zlo000w9kg1x0swgy81" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2280,7 +2398,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/12/curl-error-7/" data-id="cjnn1x3ew002vkog12cuuh313" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/12/curl-error-7/" data-id="cjnn20zsn002u9kg1eebqhj8l" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2330,7 +2448,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/12/ELK/" data-id="cjnn1x37f0001kog1i91t9yc4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/12/ELK/" data-id="cjnn20zj500049kg16r3jq858" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2372,7 +2490,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/10/Linux运维学习-第二十八天/" data-id="cjnn1x3ae001bkog18k63ha91" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/10/Linux运维学习-第二十八天/" data-id="cjnn20znx001e9kg1e4luitr7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2422,7 +2540,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/09/往后余生/" data-id="cjnn1x3hk0048kog1e257bgs9" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/09/往后余生/" data-id="cjnn20zwx004b9kg11gnglx3d" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2475,7 +2593,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/08/Linux运维学习-第二十七天/" data-id="cjnn1x39y0011kog1ywtxnltl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/08/Linux运维学习-第二十七天/" data-id="cjnn20zmk00139kg1ncidn0sj" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2525,7 +2643,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/centos7-通过git连接GitHub仓库/" data-id="cjnn1x3et002tkog13kpbdvge" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/centos7-通过git连接GitHub仓库/" data-id="cjnn20zs9002q9kg17xz7j2q5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2575,7 +2693,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/shell之11292-0-0/" data-id="cjnn1x3gk003nkog10xqhwxsb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/shell之11292-0-0/" data-id="cjnn20zuy003q9kg1atue5dya" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2625,7 +2743,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/Linux运维学习-第二十六天/" data-id="cjnn1x3am001ekog157anlmqk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/07/Linux运维学习-第二十六天/" data-id="cjnn20zno001c9kg13pihnwb1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2675,7 +2793,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/不染/" data-id="cjnn1x3h70041kog1okkjtcs2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/不染/" data-id="cjnn20zvy00429kg1eyhlurcb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2725,7 +2843,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/centos7下安装docker/" data-id="cjnn1x3ej002pkog1r1c8ivfq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/centos7下安装docker/" data-id="cjnn20zsg002s9kg1mk3y5zlc" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2775,7 +2893,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/shell之运算符/" data-id="cjnn1x3n8006fkog1iwgvtizr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/shell之运算符/" data-id="cjnn2102v006e9kg1zblbcnuz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2825,7 +2943,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/Linux运维学习-第二十五天/" data-id="cjnn1x3ab0019kog1b3t2px2o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/06/Linux运维学习-第二十五天/" data-id="cjnn20znl001a9kg175h4kbcw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2875,7 +2993,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/" data-id="cjnn1x3e5002ikog1mewqy3zj" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/centOS-7-py2升级py3/" data-id="cjnn20zrq002k9kg1t97oj4rg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2925,7 +3043,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/eth0-网卡问题解决小方法/" data-id="cjnn1x3f3002xkog12x6959eg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/eth0-网卡问题解决小方法/" data-id="cjnn20zsq002w9kg14stxiyx7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -2975,7 +3093,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/Linux运维学习-第二十四天/" data-id="cjnn1x3aq001gkog1vt4rgz0v" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/03/Linux运维学习-第二十四天/" data-id="cjnn20zo0001g9kg1v9wex10a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3025,7 +3143,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/02/Linux运维学习-第二十三天/" data-id="cjnn1x3a50014kog1vq0ttqci" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/02/Linux运维学习-第二十三天/" data-id="cjnn20zmr00169kg1sb9uqpdv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3075,7 +3193,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/Linux运维学习-第二十二天/" data-id="cjnn1x3a70016kog1r142yhef" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/Linux运维学习-第二十二天/" data-id="cjnn20zn000189kg1efu6nm8f" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3125,7 +3243,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/每天一个Linux命令10/" data-id="cjnn1x3kf005ikog10xbz9lko" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/08/01/每天一个Linux命令10/" data-id="cjnn21003005i9kg1a281rd4i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3175,7 +3293,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/Linux运维学习-第二十一天/" data-id="cjnn1x39u000zkog1i3pagjka" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/Linux运维学习-第二十一天/" data-id="cjnn20zmb00119kg1cxx0ff7y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3225,7 +3343,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/wordpress搭建自己博客/" data-id="cjnn1x3gu003ukog1w6skw5iz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/wordpress搭建自己博客/" data-id="cjnn20zv9003v9kg1213zz1kr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3267,7 +3385,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/LNMP-PHP/" data-id="cjnn1x37j0002kog1mvxyjhkd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/LNMP-PHP/" data-id="cjnn20zit00019kg1f9mkxapp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3317,7 +3435,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/N那些你很冒险的梦/" data-id="cjnn1x3do002bkog12mswaaxz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/N那些你很冒险的梦/" data-id="cjnn20zqr002a9kg1vz0djbxd" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3367,7 +3485,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/NFS—-脚本/" data-id="cjnn1x3dj0029kog1f8eh1qbg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/NFS—-脚本/" data-id="cjnn20zqk00289kg1crobsfdn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3417,7 +3535,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/Linux运维学习-第二十天/" data-id="cjnn1x3ay001jkog17aiiingb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/30/Linux运维学习-第二十天/" data-id="cjnn20zo2001i9kg1bxmq5v0l" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3467,7 +3585,7 @@ MariaDB [test]&gt; select * from t5;
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十九天/" data-id="cjnn1x3cp001xkog19qnxtj4u" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十九天/" data-id="cjnn20zpq001w9kg1escx414o" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3581,7 +3699,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/醉赤壁/" data-id="cjnn1x3ld005xkog15lewf5b3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/醉赤壁/" data-id="cjnn2101e005x9kg16739kv47" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3631,7 +3749,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/生如夏花/" data-id="cjnn1x3kk005kkog1ae5ajlgf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/生如夏花/" data-id="cjnn2100i005k9kg176vvcdii" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3681,7 +3799,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十八天/" data-id="cjnn1x3mj0065kog1c6j5jjiw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/27/Linux运维学习-第十八天/" data-id="cjnn2102a00639kg19uct6tn7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3731,7 +3849,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/linux运维学习-第十七天/" data-id="cjnn1x3fl0035kog1rpprn6sl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/linux运维学习-第十七天/" data-id="cjnn20ztl00349kg1qxbngq3s" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3781,7 +3899,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/ansible-安装二三事/" data-id="cjnn1x3dz002gkog1cvo2o7bz" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/ansible-安装二三事/" data-id="cjnn20zr8002f9kg1xqn1dome" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3831,7 +3949,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/MySQL安装配置/" data-id="cjnn1x3de0027kog1wh632pwi" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/MySQL安装配置/" data-id="cjnn20zqd00269kg1poqvazza" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3873,7 +3991,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/Linux运维学习-第十六天/" data-id="cjnn1x34w0000kog16p5l6hle" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/Linux运维学习-第十六天/" data-id="cjnn20zg800009kg1ijz6k1kg" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3915,7 +4033,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/NFS配置二三事/" data-id="cjnn1x3mo0067kog1ll371soj" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/24/NFS配置二三事/" data-id="cjnn2102f00669kg1w0lqiywp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -3965,7 +4083,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/每天一个Linux命令09/" data-id="cjnn1x3kb005gkog1xd8jzlzl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/每天一个Linux命令09/" data-id="cjnn21000005g9kg1231qc02l" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4015,7 +4133,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/tomcat安装轶事/" data-id="cjnn1x3gq003skog1ox0odrfa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/tomcat安装轶事/" data-id="cjnn20zv2003t9kg1ao5c3c4f" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4065,7 +4183,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/每天一个Linux命令08/" data-id="cjnn1x3k4005ekog1c4gjy3ze" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/每天一个Linux命令08/" data-id="cjnn20zzy005e9kg11bn1y2kb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4115,7 +4233,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/Linux运维学习-第十五天/" data-id="cjnn1x3d00021kog1yrw6x993" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/23/Linux运维学习-第十五天/" data-id="cjnn20zpw00209kg1qah9k8m4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4165,7 +4283,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/22/Linux运维学习-第十四天/" data-id="cjnn1x3mg0064kog18dn73vkx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/22/Linux运维学习-第十四天/" data-id="cjnn2102c00649kg12wvhpk51" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4215,7 +4333,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/" data-id="cjnn1x38f000bkog12lxcifpn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/20/Linux中关于telnet无法远程root-解决/" data-id="cjnn20zk0000d9kg15dtq03ch" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4265,7 +4383,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux关于密码二三事/" data-id="cjnn1x38r000dkog12g1mfebx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux关于密码二三事/" data-id="cjnn20zkb000f9kg1npvmeu8b" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4315,7 +4433,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux运维学习-第十三天/" data-id="cjnn1x3ce001vkog1r4mu4h6k" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/Linux运维学习-第十三天/" data-id="cjnn20zpi001u9kg1ts6ylvmy" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4365,7 +4483,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令07/" data-id="cjnn1x3jx005bkog1i73mpqj6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令07/" data-id="cjnn20zzn00599kg1qy7q8xn8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4415,7 +4533,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令-06/" data-id="cjnn1x3iz004xkog16he1xnji" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/每天一个Linux命令-06/" data-id="cjnn20zz4004y9kg1s9iugobo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4465,7 +4583,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/nginx-简单安装-排错/" data-id="cjnn1x3gf003lkog1dvze34ba" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/19/nginx-简单安装-排错/" data-id="cjnn20zuq003m9kg1yz6lun6u" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4515,7 +4633,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/每天一个Linux命令05/" data-id="cjnn1x3jt0059kog1djog7mk4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/每天一个Linux命令05/" data-id="cjnn20zzs005b9kg1jylnq475" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4565,7 +4683,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjnn1x3o2006pkog1l6u0tsgx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/第二次测验题目汇总/" data-id="cjnn2103d006o9kg168dnsoby" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4615,7 +4733,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/" data-id="cjnn1x3cx001zkog18w7krq0m" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/18/Linux运维学习-第十二天/" data-id="cjnn20zpt001y9kg115627y08" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4665,7 +4783,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux同步网络时间/" data-id="cjnn1x38v000fkog186hm3xof" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux同步网络时间/" data-id="cjnn20zkh000i9kg14r4gpr8g" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4715,7 +4833,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux运维学习-第十一天/" data-id="cjnn1x3cb001tkog11hcl51qa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/17/Linux运维学习-第十一天/" data-id="cjnn20zpa001s9kg1ka11le74" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4765,7 +4883,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/16/每天一个Linux命令04/" data-id="cjnn1x3o0006nkog1q5p7uzfr" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/16/每天一个Linux命令04/" data-id="cjnn2103b006m9kg1iab5qh9a" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4815,7 +4933,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/16/Linux运维学习-第十天/" data-id="cjnn1x3d40023kog16ryrr4w4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/16/Linux运维学习-第十天/" data-id="cjnn20zpz00229kg11w8sa8e4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4865,7 +4983,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/centos-6-x下python2-6升级为2-7/" data-id="cjnn1x3ec002lkog135l50mz7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/centos-6-x下python2-6升级为2-7/" data-id="cjnn20zra002h9kg1g606dix7" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4915,7 +5033,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/Linux忘记密码解决2333/" data-id="cjnn1x391000kkog1b30057y3" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/Linux忘记密码解决2333/" data-id="cjnn20zkv000n9kg1y1pgcsv4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -4965,7 +5083,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/centos-6-x命令行模式转图形化模式/" data-id="cjnn1x3ef002nkog1jlyiodoa" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/centos-6-x命令行模式转图形化模式/" data-id="cjnn20zru002m9kg1lt2dkzhs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5015,7 +5133,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/Linux运维学习-第九天/" data-id="cjnn1x39q000xkog13du28thk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/13/Linux运维学习-第九天/" data-id="cjnn20zm3000y9kg18vfuzk0h" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5065,7 +5183,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/Linux运维学习-第八天/" data-id="cjnn1x3bv001pkog1tt2hrz85" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/Linux运维学习-第八天/" data-id="cjnn20zof001o9kg1ykiyiny6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5115,7 +5233,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjnn1x3l8005vkog15q1xmjsb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/12/这是一个命令/" data-id="cjnn21018005v9kg18ke6ihes" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5165,7 +5283,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/每天一个Linux命令03/" data-id="cjnn1x3jf0054kog12jqfblsx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/每天一个Linux命令03/" data-id="cjnn20zzj00569kg1llcr5su2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5215,7 +5333,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/Linux运维学习-第七天/" data-id="cjnn1x39b000pkog1ogagbogx" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/11/Linux运维学习-第七天/" data-id="cjnn20zl8000r9kg1yig2j5et" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5265,7 +5383,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/每天一个Linux命令02/" data-id="cjnn1x3ji0056kog112n0ywvh" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/每天一个Linux命令02/" data-id="cjnn20zzi00559kg1pfu68hxp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5315,7 +5433,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/Linux运维学习-第六天/" data-id="cjnn1x3c7001rkog1bgimp6te" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/Linux运维学习-第六天/" data-id="cjnn20zoj001q9kg1tii1qp21" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5365,7 +5483,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/第一次测验题目汇总/" data-id="cjnn1x3ko005mkog14zu3qmc2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/10/第一次测验题目汇总/" data-id="cjnn2100l005m9kg1ss69mar6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5415,7 +5533,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjnn1x3bo001nkog1wdah8jwn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux运维学习-第五天/" data-id="cjnn20zob001m9kg1ush8u9lv" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5465,7 +5583,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjnn1x388000akog1vscggbya" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/Linux三剑客之-sed/" data-id="cjnn20zjn000b9kg1iyjkkxvw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5515,7 +5633,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjnn1x3nf006hkog18lgg2g9e" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/09/常用命令总结/" data-id="cjnn2102x006g9kg1xveyjcx6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5565,7 +5683,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjnn1x3800007kog1dg0c6gb8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux三剑客之-grep/" data-id="cjnn20zjf00099kg18g2yvs7y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5615,7 +5733,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux运维学习-第四天/" data-id="cjnn1x3d90025kog17nl6axc6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/08/Linux运维学习-第四天/" data-id="cjnn20zqa00249kg1urtt93xp" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5665,7 +5783,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/每天一个Linux命令01/" data-id="cjnn1x3j90052kog1phvr9bu5" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/每天一个Linux命令01/" data-id="cjnn20zzd00539kg17wmd2lw4" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5715,7 +5833,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/linux快捷键/" data-id="cjnn1x3fc0031kog1xljn9214" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/06/linux快捷键/" data-id="cjnn20zt500309kg1gs7bflm6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5765,7 +5883,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/每天一个Linux命令/" data-id="cjnn1x3j2004zkog13r1xbu1j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/每天一个Linux命令/" data-id="cjnn20zz600509kg1pd2th8md" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5815,7 +5933,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/linux运维学习-第三天/" data-id="cjnn1x3ff0033kog10sx3850y" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/linux运维学习-第三天/" data-id="cjnn20ztg00329kg1s9leg1q0" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5865,7 +5983,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/Linux运维学习-第二天/" data-id="cjnn1x3b4001lkog14p5b5glb" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/05/Linux运维学习-第二天/" data-id="cjnn20zo4001k9kg1ng411hk6" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5915,7 +6033,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/04/Linux运维学习-第一天/" data-id="cjnn1x395000nkog15ie1h7fm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/04/Linux运维学习-第一天/" data-id="cjnn20zl5000p9kg1husyk839" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -5983,6 +6101,10 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
       <ul>
         
           <li>
+            <a href="/2018/10/24/mysql笔记之修改/">mysql笔记之修改</a>
+          </li>
+        
+          <li>
             <a href="/2018/10/24/mysql笔记之插入-键值重复解决/">mysql笔记之插入&amp;键值重复解决</a>
           </li>
         
@@ -5998,10 +6120,6 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
             <a href="/2018/10/10/mysql错误之error1142/">mysql错误之error1142</a>
           </li>
         
-          <li>
-            <a href="/2018/10/10/mysql误删root用户导致无法登陆解决方法/">mysql误删root用户导致无法登陆解决方法</a>
-          </li>
-        
       </ul>
     </div>
   </aside>
@@ -6011,7 +6129,7 @@ crontab -e（推荐）/ vim /var/spool/cron/root   -- crontab -e 编写定时任
   <aside class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </aside>
 

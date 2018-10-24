@@ -13,18 +13,20 @@
   
   
   
-  <title>Tag: shell | 瑾川</title>
+  <title>mysql笔记之修改 | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="淡望余生，漫漫回忆如你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="瑾川">
-<meta property="og:url" content="http://yoursite.com/tags/shell/index.html">
+  <meta name="description" content="MySQL笔记之修改数据库 数据类型创建表MariaDB [oldboy]&amp;gt; CREATE TABLE student(sid INT,sname VARCHAR(20),sage TINYINT,sgender ENUM(&amp;apos;m&amp;apos;,&amp;apos;f&amp;apos;),scomtime DATETIME);  --int 整数  -2^31 ~ 3^31-1 --varchar（">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql笔记之修改">
+<meta property="og:url" content="http://yoursite.com/2018/10/24/mysql笔记之修改/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="淡望余生，漫漫回忆如你">
+<meta property="og:description" content="MySQL笔记之修改数据库 数据类型创建表MariaDB [oldboy]&amp;gt; CREATE TABLE student(sid INT,sname VARCHAR(20),sage TINYINT,sgender ENUM(&amp;apos;m&amp;apos;,&amp;apos;f&amp;apos;),scomtime DATETIME);  --int 整数  -2^31 ~ 3^31-1 --varchar（">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-24T11:06:59.811Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="瑾川">
-<meta name="twitter:description" content="淡望余生，漫漫回忆如你">
+<meta name="twitter:title" content="mysql笔记之修改">
+<meta name="twitter:description" content="MySQL笔记之修改数据库 数据类型创建表MariaDB [oldboy]&amp;gt; CREATE TABLE student(sid INT,sname VARCHAR(20),sage TINYINT,sgender ENUM(&amp;apos;m&amp;apos;,&amp;apos;f&amp;apos;),scomtime DATETIME);  --int 整数  -2^31 ~ 3^31-1 --varchar（">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -69,46 +71,133 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-mysql笔记之修改" class="post-mysql笔记之修改 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="post type-post status-publish format-standard hentry archive-type-post">
-  <header class="entry-header">
-      
-  
-    <h1 class="entry-title">
-      <a class="archive-article-title" href="/2018/09/04/rose/">rose</a>
+    <h1 class="entry-title article-title">
+      mysql笔记之修改
     </h1>
   
 
-  </header>
-  <footer class="entry-meta">
-    <a href="/2018/09/04/rose/">
-    <time datetime="2018-09-04T12:53:55.000Z" class="entry-date">
-        2018-09-04
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/24/mysql笔记之修改/" data-id="cjnn20zu2003c9kg19xe5gdbt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="MySQL笔记之修改"><a href="#MySQL笔记之修改" class="headerlink" title="MySQL笔记之修改"></a>MySQL笔记之修改</h4><h4 id="数据库-数据类型"><a href="#数据库-数据类型" class="headerlink" title="数据库 数据类型"></a>数据库 数据类型</h4><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><pre><code>MariaDB [oldboy]&gt; CREATE TABLE student(sid INT,sname VARCHAR(20),sage TINYINT,sgender ENUM(&apos;m&apos;,&apos;f&apos;),scomtime DATETIME);
+
+--int 整数  -2^31 ~ 3^31-1
+--varchar（20）  变长
+--char（20）     定长  
+--tinyint        整数  255
+--ENUM（‘m’,‘f’） 枚举类型 （男，女）
+--datetime       时间类型  年月日时分秒
+
+show create table stu;
+
+| stu   | CREATE TABLE `stu` (
+  `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT &apos;学号&apos;,
+  `sname` varchar(20) NOT NULL COMMENT &apos;姓名&apos;,
+  `sage` tinyint(3) unsigned DEFAULT NULL COMMENT &apos;年龄&apos;,
+  `sgender` enum(&apos;m&apos;,&apos;f&apos;) DEFAULT &apos;m&apos; COMMENT &apos;性别&apos;,
+  `scomtime` datetime NOT NULL COMMENT &apos;入学时间&apos;,
+  PRIMARY KEY (`sid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   
+</code></pre><h4 id="以下选项会影响到数据的录入"><a href="#以下选项会影响到数据的录入" class="headerlink" title="以下选项会影响到数据的录入"></a>以下选项会影响到数据的录入</h4><pre><code>-- not null  非空的
+--primary key  唯一且非空的
+--auto_increment  自增长  需要有 primary key 或者unique key
+--default      默认值
+--unsigned     非负数
+--comment ‘xx’  注释
+
+show tables； --查看当前数据库下所有表
+show create table   --查看表的创建语句
+desc stu;     --查看表中列的定义信息
+</code></pre><h3 id="修改表定义"><a href="#修改表定义" class="headerlink" title="修改表定义"></a>修改表定义</h3><h5 id="重命名表名"><a href="#重命名表名" class="headerlink" title="重命名表名"></a>重命名表名</h5><pre><code>MariaDB [oldboy]&gt; show tables;
++------------------+
+| Tables_in_oldboy |
++------------------+
+| stu              |
+| student          |
++------------------+
+MariaDB [oldboy]&gt; ALTER TABLE stu RENAME stt;
+MariaDB [oldboy]&gt; show tables;
++------------------+
+| Tables_in_oldboy |
++------------------+
+| stt              |
+| student          |
++------------------+
+2 rows in set (0.00 sec)
+</code></pre><h4 id="添加列"><a href="#添加列" class="headerlink" title="添加列"></a>添加列</h4><pre><code>MariaDB [oldboy]&gt; desc stt;
++----------+---------------------+------+-----+---------+----------------+
+| Field    | Type                | Null | Key | Default | Extra          |
++----------+---------------------+------+-----+---------+----------------+
+| sid      | int(11)             | NO   | PRI | NULL    | auto_increment |
+| sname    | varchar(20)         | NO   |     | NULL    |                |
+| sage     | tinyint(3) unsigned | YES  |     | NULL    |                |
+| sgender  | enum(&apos;m&apos;,&apos;f&apos;)       | YES  |     | m       |                |
+| scomtime | datetime            | NO   |     | NULL    |                |
++----------+---------------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+MariaDB [oldboy]&gt; alter table stt add stest int;
+Query OK, 0 rows affected (0.01 sec)               
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [oldboy]&gt; desc stt;
++----------+---------------------+------+-----+---------+----------------+
+| Field    | Type                | Null | Key | Default | Extra          |
++----------+---------------------+------+-----+---------+----------------+
+| sid      | int(11)             | NO   | PRI | NULL    | auto_increment |
+| sname    | varchar(20)         | NO   |     | NULL    |                |
+| sage     | tinyint(3) unsigned | YES  |     | NULL    |                |
+| sgender  | enum(&apos;m&apos;,&apos;f&apos;)       | YES  |     | m       |                |
+| scomtime | datetime            | NO   |     | NULL    |                |
+| stest    | int(11)             | YES  |     | NULL    |                |
++----------+---------------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/24/mysql笔记之修改/">
+    <time datetime="2018-10-24T11:06:26.000Z" class="entry-date">
+        2018-10-24
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
 
     </footer>
 </article>
-  
-  
-    </div></section>
-  
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/10/24/mysql笔记之插入-键值重复解决/" rel="next">mysql笔记之插入&amp;键值重复解决 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
 
 </div></div>
         <div id="secondary" class="widget-area" role="complementary">
