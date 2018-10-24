@@ -13,19 +13,20 @@
   
   
   
-  <title>wordpress搭建自己博客 | 瑾川</title>
+  <title>zabbix笔记之proxy | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="淡望余生，漫漫回忆如你">
+  <meta name="description" content="利用zabbix实现分布式监控">
+<meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wordpress搭建自己博客">
-<meta property="og:url" content="http://yoursite.com/2018/07/31/wordpress搭建自己博客/index.html">
+<meta property="og:title" content="zabbix笔记之proxy">
+<meta property="og:url" content="http://yoursite.com/2018/10/24/zabbix笔记之proxy/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="淡望余生，漫漫回忆如你">
+<meta property="og:description" content="利用zabbix实现分布式监控">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-10T13:12:43.335Z">
+<meta property="og:updated_time" content="2018-10-24T10:54:59.591Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wordpress搭建自己博客">
-<meta name="twitter:description" content="淡望余生，漫漫回忆如你">
+<meta name="twitter:title" content="zabbix笔记之proxy">
+<meta name="twitter:description" content="利用zabbix实现分布式监控">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -70,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-wordpress搭建自己博客" class="post-wordpress搭建自己博客 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-zabbix笔记之proxy" class="post-zabbix笔记之proxy post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -78,31 +79,79 @@
         
   
     <h1 class="entry-title article-title">
-      wordpress搭建自己博客
+      zabbix笔记之proxy
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/31/wordpress搭建自己博客/" data-id="cjnn1ldy1003h6og1huqqemrt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/24/zabbix笔记之proxy/" data-id="cjnn1ldy8003m6og1y76vifbh" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        
+        <h4 id="利用zabbix实现分布式监控"><a href="#利用zabbix实现分布式监控" class="headerlink" title="利用zabbix实现分布式监控"></a>利用zabbix实现分布式监控</h4><a id="more"></a>
+<h4 id="利用zabbix实现分布式监控-1"><a href="#利用zabbix实现分布式监控-1" class="headerlink" title="利用zabbix实现分布式监控"></a>利用zabbix实现分布式监控</h4><h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><h4 id="规划分布式监控网络"><a href="#规划分布式监控网络" class="headerlink" title="规划分布式监控网络"></a>规划分布式监控网络</h4><pre><code>01.zabbix-server端  server_name：zabbix_ser    IP:10.0.0.77
+02.zabbix-proxy端   server_name：zabbix_proxy  IP：10.0.0.88
+03.zabbix-agent端   server_name：web01         IP: 10.0.0.7
+</code></pre><h5 id="配置zabbix-agent端配置文件"><a href="#配置zabbix-agent端配置文件" class="headerlink" title="配置zabbix-agent端配置文件"></a>配置zabbix-agent端配置文件</h5><pre><code>[root@web01 ~]# grep -Ev &quot;#|^$&quot; /etc/zabbix/zabbix_agentd.conf 
+PidFile=/var/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix/zabbix_agentd.log
+LogFileSize=0
+Server=172.16.1.78
+ServerActive=172.16.1.78
+Hostname=web01
+Include=/etc/zabbix/zabbix_agentd.d/*.conf
+</code></pre><h4 id="配置zabbix-proxy端"><a href="#配置zabbix-proxy端" class="headerlink" title="配置zabbix-proxy端"></a>配置zabbix-proxy端</h4><h4 id="下载zabbix程序源"><a href="#下载zabbix程序源" class="headerlink" title="下载zabbix程序源"></a>下载zabbix程序源</h4><pre><code>[root@zabbix-proxy ~]# rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+</code></pre><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>yum install -y zabbix-proxy-mysql
+</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>[root@zabbix-proxy ~]# grep -Ev &quot;#|^$&quot; /etc/zabbix/zabbix_proxy.conf 
+Server=10.0.0.77
+Hostname=10.0.0.78
+LogFile=/var/log/zabbix/zabbix_proxy.log
+LogFileSize=0
+PidFile=/var/run/zabbix/zabbix_proxy.pid
+SocketDir=/var/run/zabbix
+DBName=zabbix_proxy
+DBUser=zabbix
+DbPassword=123456
+SNMPTrapperFile=/var/log/snmptrap/snmptrap.log
+Timeout=4
+ExternalScripts=/usr/lib/zabbix/externalscripts
+LogSlowQueries=3000
+</code></pre><h4 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h4><pre><code>[root@zabbix-proxy ~]# yum install -y mariadb-server
+[root@zabbix-proxy ~]# systemctl start mariadb.service 
+[root@zabbix-proxy ~]# systemctl enable mariadb.service 
+[root@zabbix-proxy ~]# mysql_secure_installation   --优化，一直y就好
+</code></pre><h4 id="创建库"><a href="#创建库" class="headerlink" title="创建库"></a>创建库</h4><pre><code>MariaDB [(none)]&gt; create database zabbix_proxy character set  utf8 collate utf8_bin;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]&gt; grant all on zabbix_proxy.* to &apos;zabbix&apos;@&apos;localhost&apos; identified by &apos;123456&apos;;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre><h4 id="导入表"><a href="#导入表" class="headerlink" title="导入表"></a>导入表</h4><pre><code>[root@zabbix-proxy ~]# zcat /usr/share/doc/zabbix-proxy-mysql-4.0.0/schema.sql.gz |mysql -uzabbix -p123456 zabbix_proxy
+</code></pre><h4 id="启动zabbix-proxy-服务程序"><a href="#启动zabbix-proxy-服务程序" class="headerlink" title="启动zabbix-proxy 服务程序"></a>启动zabbix-proxy 服务程序</h4><pre><code>systemctl start zabbix-proxy.service
+systemctl enable zabbix-proxy.service
+</code></pre><h4 id="配置zabbix-server-端"><a href="#配置zabbix-server-端" class="headerlink" title="配置zabbix-server 端"></a>配置zabbix-server 端</h4><pre><code>截图见下网址
+</code></pre><p><a href="https://blog.csdn.net/fake_hydra/article/details/83348638" target="_blank" rel="noopener">https://blog.csdn.net/fake_hydra/article/details/83348638</a></p>
+
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/31/wordpress搭建自己博客/">
-    <time datetime="2018-07-31T11:28:02.000Z" class="entry-date">
-        2018-07-31
+    <a href="/2018/10/24/zabbix笔记之proxy/">
+    <time datetime="2018-10-24T10:53:25.000Z" class="entry-date">
+        2018-10-24
     </time>
 </a>
     
     
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
     </footer>
 </article>
 
@@ -111,10 +160,8 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/31/Linux运维学习-第二十一天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第二十一天</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/31/LNMP-PHP/" rel="next">LNMP-PHP <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/10/12/cobbler-无人值守安装系统/" rel="next">cobbler 无人值守安装系统 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
