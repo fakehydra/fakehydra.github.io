@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Tomcat笔记之监控 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="实现监控方法">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat笔记之监控">
+<meta property="og:url" content="http://yoursite.com/2018/10/26/Tomcat笔记之监控/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="实现监控方法">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-26T09:59:50.123Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat笔记之监控">
+<meta name="twitter:description" content="实现监控方法">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Tomcat笔记之监控" class="post-Tomcat笔记之监控 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Tomcat笔记之监控
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/26/Tomcat笔记之监控/" data-id="cjnpui7kw006akwg1x83y9xus" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="实现监控方法"><a href="#实现监控方法" class="headerlink" title="实现监控方法"></a>实现监控方法</h4><a id="more"></a>
+<h4 id="1-利用tomcat自带的默认查看状态信息页面"><a href="#1-利用tomcat自带的默认查看状态信息页面" class="headerlink" title="1.利用tomcat自带的默认查看状态信息页面"></a>1.利用tomcat自带的默认查看状态信息页面</h4><h5 id="在conf目录下的tomcat-user-xml中添加登陆用户名和密码"><a href="#在conf目录下的tomcat-user-xml中添加登陆用户名和密码" class="headerlink" title="在conf目录下的tomcat-user.xml中添加登陆用户名和密码"></a>在conf目录下的tomcat-user.xml中添加登陆用户名和密码</h5><pre><code>&lt;role rolename=&quot;manager-gui&quot;/&gt;
+    &lt;role rolename=&quot;admin-gui&quot;/&gt;
+    &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui,admin-gui&quot;/&gt;
+
+    加入以上代码
+
+    http://10.0.0.81:8080/manager
+    输入账号密码登陆
+    都为tomcat
+</code></pre><h3 id="2-在tomcat服务器上部署相应监控页面代码"><a href="#2-在tomcat服务器上部署相应监控页面代码" class="headerlink" title="2.在tomcat服务器上部署相应监控页面代码"></a>2.在tomcat服务器上部署相应监控页面代码</h3><pre><code>&lt;%
+Runtime rtm = Runtime.getRuntime();
+long mm = rtm.maxMemory()/1024/1024;
+long tm = rtm.totalMemory()/1024/1024;
+long fm = rtm.freeMemory()/1024/1024;
+
+out.println(&quot;JVM memory detail info :&lt;br&gt;&quot;);
+out.println(&quot;Max memory:&quot;+mm+&quot;MB&quot;+&quot;&lt;br&gt;&quot;);
+out.println(&quot;Total memory:&quot;+tm+&quot;MB&quot;+&quot;&lt;br&gt;&quot;);
+out.println(&quot;Free memory:&quot;+fm+&quot;MB&quot;+&quot;&lt;br&gt;&quot;);
+out.println(&quot;Available memory can be used is :&quot;+(mm+fm-tm)+&quot;MB&quot;+&quot;&lt;br&gt;&quot;);
+%&gt;
+</code></pre><h3 id="3-第三方监控软件（jdk）"><a href="#3-第三方监控软件（jdk）" class="headerlink" title="3.第三方监控软件（jdk）"></a>3.第三方监控软件（jdk）</h3><h4 id="tomcat服务端配置"><a href="#tomcat服务端配置" class="headerlink" title="tomcat服务端配置"></a>tomcat服务端配置</h4><pre><code>#在tomcat配置文件中开启监控功能
+vim /application/tomcat-01/bin/catalina.sh +97
+CATALINA_OPTS=&quot;$CATALINA_OPTS
+-Dcom.sun.management.jmxremote 
+-Dcom.sun.management.jmxremote.port=12345  --监控端口
+-Dcom.sun.management.jmxremote.authenticate=false 
+-Dcom.sun.management.jmxremote.ssl=false 
+-Djava.rmi.server.hostname=10.0.0.81&quot;
+</code></pre><h4 id="修改完重启并查看相应端口"><a href="#修改完重启并查看相应端口" class="headerlink" title="修改完重启并查看相应端口"></a>修改完重启并查看相应端口</h4><pre><code>[root@tomcat conf]# shutdown.sh
+Using CATALINA_BASE:   /application/tomcat
+Using CATALINA_HOME:   /application/tomcat
+Using CATALINA_TMPDIR: /application/tomcat/temp
+Using JRE_HOME:        /application/jdk
+Using CLASSPATH:       /application/tomcat/bin/bootstrap.jar:/application/tomcat/bin/tomcat-juli.jar
+[root@tomcat conf]# startup.sh 
+Using CATALINA_BASE:   /application/tomcat
+Using CATALINA_HOME:   /application/tomcat
+Using CATALINA_TMPDIR: /application/tomcat/temp
+Using JRE_HOME:        /application/jdk
+Using CLASSPATH:       /application/tomcat/bin/bootstrap.jar:/application/tomcat/bin/tomcat-juli.jar
+Tomcat started.
+[root@tomcat conf]# ss -lntup|grep 12345
+tcp    LISTEN     0      50       :::12345                :::*                   users:((&quot;java&quot;,pid=4841,fd=20))
+
+windows安装第三方监控软件jdk
+一直下一步就好
+
+在地址栏输入：C:\Program Files\Java\jdk1.8.0_31\bin\jconsole.exe
+在弹出页面点击远程进程
+输入相应ip+端口即可
+
+在地址栏输入：C:\Program Files\Java\jdk1.8.0_31\bin\jvisualvm.exe
+
+在弹出页面：远程-&gt;右键-&gt;添加远程主机-&gt;输入tomcat服务器ip-&gt;选择主机右键-&gt;添加JMX连接-&gt;输入相应端口-&gt;再开启即可
+</code></pre><h3 id="4-利用命令进行查看操作或者利用监控脚本"><a href="#4-利用命令进行查看操作或者利用监控脚本" class="headerlink" title="4.利用命令进行查看操作或者利用监控脚本"></a>4.利用命令进行查看操作或者利用监控脚本</h3><h5 id="命令：jps-lvm"><a href="#命令：jps-lvm" class="headerlink" title="命令：jps -lvm"></a>命令：jps -lvm</h5><h5 id="脚本代码"><a href="#脚本代码" class="headerlink" title="脚本代码"></a>脚本代码</h5><pre><code>#!/bin/bash
+# @Function
+# Find out the highest cpu consumed threads of java, and print the stack of these threads.
+#
+# @Usage
+#   $ ./show-busy-java-threads.sh
+#
+# @author Jerry Lee
+
+readonly PROG=`basename $0`
+readonly -a COMMAND_LINE=(&quot;$0&quot; &quot;$@&quot;)
+
+usage() {
+    cat &lt;&lt;EOF
+Usage: ${PROG} [OPTION]...
+Find out the highest cpu consumed threads of java, and print the stack of these threads.
+Example: ${PROG} -c 10
+
+Options:
+    -p, --pid       find out the highest cpu consumed threads from the specifed java process,
+                    default from all java process.
+    -c, --count     set the thread count to show, default is 5
+    -h, --help      display this help and exit
+EOF
+    exit $1
+}
+
+readonly ARGS=`getopt -n &quot;$PROG&quot; -a -o c:p:h -l count:,pid:,help -- &quot;$@&quot;`
+[ $? -ne 0 ] &amp;&amp; usage 1
+eval set -- &quot;${ARGS}&quot;
+
+while true; do
+    case &quot;$1&quot; in
+    -c|--count)
+        count=&quot;$2&quot;
+        shift 2
+        ;;
+    -p|--pid)
+        pid=&quot;$2&quot;
+        shift 2
+        ;;
+    -h|--help)
+        usage
+        ;;
+    --)
+        shift
+        break
+        ;;
+    esac
+done
+count=${count:-5}
+
+redEcho() {
+    [ -c /dev/stdout ] &amp;&amp; {
+        # if stdout is console, turn on color output.
+        echo -ne &quot;\033[1;31m&quot;
+        echo -n &quot;$@&quot;
+        echo -e &quot;\033[0m&quot;
+    } || echo &quot;$@&quot;
+}
+
+yellowEcho() {
+    [ -c /dev/stdout ] &amp;&amp; {
+        # if stdout is console, turn on color output.
+        echo -ne &quot;\033[1;33m&quot;
+        echo -n &quot;$@&quot;
+        echo -e &quot;\033[0m&quot;
+    } || echo &quot;$@&quot;
+}
+
+blueEcho() {
+    [ -c /dev/stdout ] &amp;&amp; {
+        # if stdout is console, turn on color output.
+        echo -ne &quot;\033[1;36m&quot;
+        echo -n &quot;$@&quot;
+        echo -e &quot;\033[0m&quot;
+    } || echo &quot;$@&quot;
+}
+
+# Check the existence of jstack command!
+if ! which jstack &amp;&gt; /dev/null; then
+    [ -z &quot;$JAVA_HOME&quot; ] &amp;&amp; {
+        redEcho &quot;Error: jstack not found on PATH!&quot;
+        exit 1
+    }
+    ! [ -f &quot;$JAVA_HOME/bin/jstack&quot; ] &amp;&amp; {
+        redEcho &quot;Error: jstack not found on PATH and $JAVA_HOME/bin/jstack file does NOT exists!&quot;
+        exit 1
+    }
+    ! [ -x &quot;$JAVA_HOME/bin/jstack&quot; ] &amp;&amp; {
+        redEcho &quot;Error: jstack not found on PATH and $JAVA_HOME/bin/jstack is NOT executalbe!&quot;
+        exit 1
+    }
+    export PATH=&quot;$JAVA_HOME/bin:$PATH&quot;
+fi
+
+readonly uuid=`date +%s`_${RANDOM}_$$
+
+cleanupWhenExit() {
+    rm /tmp/${uuid}_* &amp;&gt; /dev/null
+}
+trap &quot;cleanupWhenExit&quot; EXIT
+
+printStackOfThread() {
+    local line
+    local count=1
+    while IFS=&quot; &quot; read -a line ; do
+        local pid=${line[0]}
+        local threadId=${line[1]}
+        local threadId0x=`printf %x ${threadId}`
+        local user=${line[2]}
+        local pcpu=${line[4]}
+
+        local jstackFile=/tmp/${uuid}_${pid}
+
+        [ ! -f &quot;${jstackFile}&quot; ] &amp;&amp; {
+            {
+                if [ &quot;${user}&quot; == &quot;${USER}&quot; ]; then
+                    jstack ${pid} &gt; ${jstackFile}
+                else
+                    if [ $UID == 0 ]; then
+                        sudo -u ${user} jstack ${pid} &gt; ${jstackFile}
+                    else
+                        redEcho &quot;[$((count++))] Fail to jstack Busy(${pcpu}%) thread(${threadId}/0x${threadId0x}) stack of java process(${pid}) under user(${user}).&quot;
+                        redEcho &quot;User of java process($user) is not current user($USER), need sudo to run again:&quot;
+                        yellowEcho &quot;    sudo ${COMMAND_LINE[@]}&quot;
+                        echo
+                        continue
+                    fi
+                fi
+            } || {
+                redEcho &quot;[$((count++))] Fail to jstack Busy(${pcpu}%) thread(${threadId}/0x${threadId0x}) stack of java process(${pid}) under user(${user}).&quot;
+                echo
+                rm ${jstackFile}
+                continue
+            }
+        }
+        blueEcho &quot;[$((count++))] Busy(${pcpu}%) thread(${threadId}/0x${threadId0x}) stack of java process(${pid}) under user(${user}):&quot;
+        sed &quot;/nid=0x${threadId0x} /,/^$/p&quot; -n ${jstackFile}
+    done
+}
+
+
+ps -Leo pid,lwp,user,comm,pcpu --no-headers | {
+    [ -z &quot;${pid}&quot; ] &amp;&amp;
+    awk &apos;$4==&quot;java&quot;{print $0}&apos; ||
+    awk -v &quot;pid=${pid}&quot; &apos;$1==pid,$4==&quot;java&quot;{print $0}&apos;
+} | sort -k5 -r -n | head --lines &quot;${count}&quot; | printStackOfThread
+</code></pre><h3 id="5-利用zabbix监控软件"><a href="#5-利用zabbix监控软件" class="headerlink" title="5.利用zabbix监控软件"></a>5.利用zabbix监控软件</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code>yum install -y zabbix-java-gateway-4.0.0-2.el7.x86_64
+不然在rpm安装的时候会有报错
+rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/4.0/rhel/7/x86_64/zabbix-java-gateway-4.0.0-2.el7.x86_64.rpm
+</code></pre><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre><code>[root@zabbix_ser ~]# systemctl start zabbix-java-gateway.service 
+[root@zabbix_ser ~]# ss -lntup|grep java
+tcp    LISTEN     0      50       :::10052                :::*                   users:((&quot;java&quot;,pid=126186,fd=13))
+</code></pre><h5 id="修改zabbix配置文件中与Java有关的"><a href="#修改zabbix配置文件中与Java有关的" class="headerlink" title="修改zabbix配置文件中与Java有关的"></a>修改zabbix配置文件中与Java有关的</h5><pre><code>[root@zabbix_ser ~]# grep java -i /etc/zabbix/zabbix_server.conf 
+#    Number of pre-forked instances of pollers for unreachable hosts (including IPMI and Java).
+#    At least one poller for unreachable hosts must be running if regular, IPMI or Java pollers
+### Option: JavaGateway
+#    IP address (or hostname) of Zabbix Java gateway.
+#    Only required if Java pollers are started.
+# JavaGateway=127.0.0.1
+### Option: JavaGatewayPort
+#    Port that Zabbix Java gateway listens on.
+# JavaGatewayPort=10052
+### Option: StartJavaPollers
+#    Number of pre-forked instances of Java pollers.
+# StartJavaPollers=5
+</code></pre><h5 id="修改的地方："><a href="#修改的地方：" class="headerlink" title="修改的地方："></a>修改的地方：</h5><pre><code>JavaGateway=127.0.0.1
+StartJavaPollers=5
+</code></pre><h4 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h4><h5 id="在tomcat端安装zabbix—agent端"><a href="#在tomcat端安装zabbix—agent端" class="headerlink" title="在tomcat端安装zabbix—agent端"></a>在tomcat端安装zabbix—agent端</h5><pre><code>[root@tomcat conf]# rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/4.0/rhel/7/x86_64/zabbix-agent-4.0.0-2.el7.x86_64.rpm
+</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>不多说=-=
+
+在http://10.0.0.77/zabbix  web界面添加一台主机，勾选JMX输入tomcat的地址即可
+</code></pre><p>详细内容可见：<a href="https://blog.csdn.net/fake_hydra/article/details/83412966" target="_blank" rel="noopener">https://blog.csdn.net/fake_hydra/article/details/83412966</a></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/26/Tomcat笔记之监控/">
+    <time datetime="2018-10-26T09:56:01.000Z" class="entry-date">
+        2018-10-26
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2018/10/26/Tomcat笔记之多实例/" rel="next">Tomcat笔记之多实例 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之监控/">Tomcat笔记之监控</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之多实例/">Tomcat笔记之多实例</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之初始用/">Tomcat笔记之初始用</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之部署安装/">Tomcat笔记之部署安装</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/24/mysql笔记之修改/">mysql笔记之修改</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.75px;">Nginx</a> <a href="/tags/nginx/" style="font-size: 11.25px;">nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.25px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 18.75px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 20px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.25px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.5px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.25px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.5px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

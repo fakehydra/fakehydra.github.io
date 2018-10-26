@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Tomcat笔记之多实例 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Tomcat笔记之多实例">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat笔记之多实例">
+<meta property="og:url" content="http://yoursite.com/2018/10/26/Tomcat笔记之多实例/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Tomcat笔记之多实例">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-26T09:58:54.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat笔记之多实例">
+<meta name="twitter:description" content="Tomcat笔记之多实例">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Tomcat笔记之多实例" class="post-Tomcat笔记之多实例 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Tomcat笔记之多实例
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/26/Tomcat笔记之多实例/" data-id="cjnpui7780024kwg1rs5m5x0s" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="Tomcat笔记之多实例"><a href="#Tomcat笔记之多实例" class="headerlink" title="Tomcat笔记之多实例"></a>Tomcat笔记之多实例</h4><a id="more"></a>
+<p>Tomcat笔记之多实例</p>
+<h4 id="规划端口定义信息"><a href="#规划端口定义信息" class="headerlink" title="规划端口定义信息"></a>规划端口定义信息</h4><pre><code>tomcat-01  8081 8006 8010
+tomcat-02  8082 8007 8011
+</code></pre><h4 id="部署多实例目录"><a href="#部署多实例目录" class="headerlink" title="部署多实例目录"></a>部署多实例目录</h4><pre><code>[root@tomcat tools]# tar xf apache-tomcat-8.0.27.tar.gz 
+[root@tomcat tools]# mv apache-tomcat-8.0.27 tomcat-01
+[root@tomcat tools]# tar xf apache-tomcat-8.0.27.tar.gz 
+[root@tomcat tools]# mv apache-tomcat-8.0.27 tomcat-02
+
+[root@tomcat tools]# ll
+总用量 185908
+-rw-r--r--. 1 root root   9128610 10月 25 15:33 apache-tomcat-8.0.27.tar.gz
+-rw-r--r--. 1 root root 181238643 10月 25 15:27 jdk-8u60-linux-x64.tar.gz
+drwxr-xr-x. 9 root root       160 10月 26 09:25 tomcat-01
+drwxr-xr-x. 9 root root       160 10月 26 09:25 tomcat-02
+</code></pre><h4 id="修改端口号"><a href="#修改端口号" class="headerlink" title="修改端口号"></a>修改端口号</h4><pre><code>[root@tomcat tools]# sed -i &apos;s#8080#8081#g;s#8005#8006#g;s#8009#8010#g&apos; tomcat-01/conf/server.xml
+
+[root@tomcat tools]# sed -i &apos;s#8080#8082#g;s#8005#8007#g;s#8009#8011#g&apos; tomcat-02/conf/server.xml 
+</code></pre><h4 id="重新启动"><a href="#重新启动" class="headerlink" title="重新启动"></a>重新启动</h4><pre><code>[root@tomcat tools]# /application/tomcat-01/bin/startup.sh 
+Using CATALINA_BASE:   /application/tomcat-01
+Using CATALINA_HOME:   /application/tomcat-01
+Using CATALINA_TMPDIR: /application/tomcat-01/temp
+Using JRE_HOME:        /application/jdk
+Using CLASSPATH:       /application/tomcat-01/bin/bootstrap.jar:/application/tomcat-01/bin/tomcat-juli.jar
+Tomcat started.
+[root@tomcat tools]# /application/tomcat-02/bin/startup.sh 
+Using CATALINA_BASE:   /application/tomcat-02
+Using CATALINA_HOME:   /application/tomcat-02
+Using CATALINA_TMPDIR: /application/tomcat-02/temp
+Using JRE_HOME:        /application/jdk
+Using CLASSPATH:       /application/tomcat-02/bin/bootstrap.jar:/application/tomcat-02/bin/tomcat-juli.jar
+Tomcat started.
+</code></pre><h4 id="确定启动，查看端口"><a href="#确定启动，查看端口" class="headerlink" title="确定启动，查看端口"></a>确定启动，查看端口</h4><pre><code>[root@tomcat tools]# ss -lntup|grep java
+tcp    LISTEN     0      1      ::ffff:127.0.0.1:8005                 :::*                   users:((&quot;java&quot;,pid=4067,fd=67))
+tcp    LISTEN     0      1      ::ffff:127.0.0.1:8006                 :::*                   users:((&quot;java&quot;,pid=4248,fd=69))
+tcp    LISTEN     0      1      ::ffff:127.0.0.1:8007                 :::*                   users:((&quot;java&quot;,pid=4277,fd=69))
+tcp    LISTEN     0      100      :::8009                 :::*                   users:((&quot;java&quot;,pid=4067,fd=51))
+tcp    LISTEN     0      100      :::8010                 :::*                   users:((&quot;java&quot;,pid=4248,fd=51))
+tcp    LISTEN     0      100      :::8011                 :::*                   users:((&quot;java&quot;,pid=4277,fd=51))
+tcp    LISTEN     0      100      :::8080                 :::*                   users:((&quot;java&quot;,pid=4067,fd=46))
+tcp    LISTEN     0      100      :::8081                 :::*                   users:((&quot;java&quot;,pid=4248,fd=46))
+tcp    LISTEN     0      100      :::8082                 :::*                   users:((&quot;java&quot;,pid=4277,fd=46))
+</code></pre><h4 id="测试页面"><a href="#测试页面" class="headerlink" title="测试页面"></a>测试页面</h4><pre><code>[root@tomcat tools]# curl 127.0.0.1:8081
+jinc tomcat-01
+[root@tomcat tools]# curl 127.0.0.1:8082
+jinc tomcat-02
+</code></pre><h4 id="添加负载均衡"><a href="#添加负载均衡" class="headerlink" title="添加负载均衡"></a>添加负载均衡</h4><pre><code>到之前负载均衡主机lb01，修改配置文件，以及修改windows主机hosts解析为负载均衡ip
+</code></pre><h4 id="配置文件代码"><a href="#配置文件代码" class="headerlink" title="配置文件代码"></a>配置文件代码</h4><pre><code>[root@lb01 ~]# cat /application/nginx/conf/nginx.conf
+http {
+    upstream jinc {
+    server 172.16.1.81:8081;
+        server 172.16.1.81:8082;
+}
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+    server   {
+    listen      10.0.0.3:80;
+    server_name  localhost;
+    location ~* / {
+    proxy_pass http://jinc;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+    }
+
+}
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/26/Tomcat笔记之多实例/">
+    <time datetime="2018-10-26T09:55:50.000Z" class="entry-date">
+        2018-10-26
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/10/26/Tomcat笔记之监控/" rel="prev"><span class="meta-nav">←</span> Tomcat笔记之监控</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/10/26/Tomcat笔记之初始用/" rel="next">Tomcat笔记之初始用 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之监控/">Tomcat笔记之监控</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之多实例/">Tomcat笔记之多实例</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之初始用/">Tomcat笔记之初始用</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之部署安装/">Tomcat笔记之部署安装</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/24/mysql笔记之修改/">mysql笔记之修改</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.75px;">Nginx</a> <a href="/tags/nginx/" style="font-size: 11.25px;">nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.25px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 18.75px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 20px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.25px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.5px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.25px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.5px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

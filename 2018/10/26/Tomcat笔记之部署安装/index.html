@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>Tomcat笔记之部署安装 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Tomcat笔记">
+<meta name="keywords" content="小东西">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat笔记之部署安装">
+<meta property="og:url" content="http://yoursite.com/2018/10/26/Tomcat笔记之部署安装/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="Tomcat笔记">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-26T09:57:17.932Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat笔记之部署安装">
+<meta name="twitter:description" content="Tomcat笔记">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-Tomcat笔记之部署安装" class="post-Tomcat笔记之部署安装 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      Tomcat笔记之部署安装
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/26/Tomcat笔记之部署安装/" data-id="cjnpui77v002akwg1vx8h01fn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="Tomcat笔记"><a href="#Tomcat笔记" class="headerlink" title="Tomcat笔记"></a>Tomcat笔记</h4><a id="more"></a>
+<h4 id="什么是Tomcat服务"><a href="#什么是Tomcat服务" class="headerlink" title="什么是Tomcat服务"></a>什么是Tomcat服务</h4><p>LNMP<br>LTMP</p>
+<p>Java程序具有可以移植型，跨平台特性</p>
+<p>简单jvm环境：jre  –Java SE Runtime Environment  指Java运行环境，是Sun的产品<br>高级jvm环境：jdk  –Java Development Kit  Java开发工具包</p>
+<h3 id="安装部署Tomcat"><a href="#安装部署Tomcat" class="headerlink" title="安装部署Tomcat"></a>安装部署Tomcat</h3><h4 id="部署jdk环境"><a href="#部署jdk环境" class="headerlink" title="部署jdk环境"></a>部署jdk环境</h4><h4 id="配置Java环境变量"><a href="#配置Java环境变量" class="headerlink" title="配置Java环境变量"></a>配置Java环境变量</h4><pre><code>[root@tomcat tools]# cat &gt;&gt;/etc/profile&lt;&lt;&apos;EOF&apos;
+&gt; export JAVA_HOME=/application/jdk
+&gt; export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+&gt; export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$JAVA_HOME/lib/tools.jar
+&gt; EOF
+
+‘EOF’作用：对$PATH不解析
+</code></pre><h4 id="调整权限"><a href="#调整权限" class="headerlink" title="调整权限"></a>调整权限</h4><pre><code>[root@tomcat tools]# ll /application/jdk/
+总用量 25904
+src.zip
+drwxr-xr-x. 5 10 143      185 8月   5 2015 jre
+drwxr-xr-x. 5 10 143      245 8月   5 2015 lib
+-r--r--r--. 1 10 143       40 8月   5 2015 LICENSE
+</code></pre><p>部分展示<br>属组属主不对</p>
+<h5 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h5><pre><code>[root@tomcat tools]# chown -R root.root /application/jdk
+</code></pre><h4 id="安装完成，查看Java版本信息"><a href="#安装完成，查看Java版本信息" class="headerlink" title="安装完成，查看Java版本信息"></a>安装完成，查看Java版本信息</h4><pre><code>[root@tomcat tools]# java -version
+java version &quot;1.8.0_60&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+</code></pre><h4 id="Tomcat安装"><a href="#Tomcat安装" class="headerlink" title="Tomcat安装"></a>Tomcat安装</h4><pre><code>[root@tomcat tools]# tar xf apache-tomcat-8.0.27.tar.gz -C /application/
+[root@tomcat tools]# ln -s /application/apache-tomcat-8.0.27/ /application/tomcat
+</code></pre><h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><pre><code>[root@tomcat bin]# echo &apos;export TOMCAT_HOME=/application/tomcat&apos;&gt;&gt;/etc/profile
+
+[root@tomcat bin]# pwd
+/application/tomcat/bin
+将bin目录放到变量，方便以后使用
+
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH:/application/tomcat/bin
+</code></pre><h4 id="查看版本信息"><a href="#查看版本信息" class="headerlink" title="查看版本信息"></a>查看版本信息</h4><pre><code>[root@tomcat bin]# version.sh 
+Using CATALINA_BASE:   /application/tomcat
+Using CATALINA_HOME:   /application/tomcat
+Using CATALINA_TMPDIR: /application/tomcat/temp
+Using JRE_HOME:        /application/jdk
+Using CLASSPATH:       /application/tomcat/bin/bootstrap.jar:/application/tomcat/bin/tomcat-juli.jar
+Server version: Apache Tomcat/8.0.27
+Server built:   Sep 28 2015 08:17:25 UTC
+Server number:  8.0.27.0
+OS Name:        Linux
+OS Version:     3.10.0-862.el7.x86_64
+Architecture:   amd64
+JVM Version:    1.8.0_60-b27
+JVM Vendor:     Oracle Corporation
+</code></pre><h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre><code>[root@tomcat bin]# startup.sh 
+Using CATALINA_BASE:   /application/tomcat
+Using CATALINA_HOME:   /application/tomcat
+Using CATALINA_TMPDIR: /application/tomcat/temp
+Using JRE_HOME:        /application/jdk
+Using CLASSPATH:       /application/tomcat/bin/bootstrap.jar:/application/tomcat/bin/tomcat-juli.jar
+Tomcat started.
+</code></pre><h4 id="确认启动，查看端口"><a href="#确认启动，查看端口" class="headerlink" title="确认启动，查看端口"></a>确认启动，查看端口</h4><pre><code>[root@tomcat bin]# ss -lntup|grep java
+tcp    LISTEN     0      1      ::ffff:127.0.0.1:8005                 :::*                   users:((&quot;java&quot;,pid=2856,fd=69))
+tcp    LISTEN     0      100      :::8009                 :::*                   users:((&quot;java&quot;,pid=2856,fd=51))
+tcp    LISTEN     0      100      :::8080                 :::*                   users:((&quot;java&quot;,pid=2856,fd=46))
+</code></pre><h4 id="关闭服务"><a href="#关闭服务" class="headerlink" title="关闭服务"></a>关闭服务</h4><pre><code>[root@tomcat conf]# shutdown.sh 
+Using CATALINA_BASE:   /application/tomcat
+Using CATALINA_HOME:   /application/tomcat
+Using CATALINA_TMPDIR: /application/tomcat/temp
+Using JRE_HOME:        /application/jdk
+Using CLASSPATH:       /application/tomcat/bin/bootstrap.jar:/application/tomcat/bin/tomcat-juli.jar
+</code></pre><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><pre><code>echo &quot;SHUTDOWN&quot; |nc 127.0.0.1 8005
+通过nc给端口8005发送一个shutdown的指令
+安全优化：修改改端口&amp;指令
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/10/26/Tomcat笔记之部署安装/">
+    <time datetime="2018-10-26T09:55:26.000Z" class="entry-date">
+        2018-10-26
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/10/26/Tomcat笔记之初始用/" rel="prev"><span class="meta-nav">←</span> Tomcat笔记之初始用</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/10/24/mysql笔记之修改/" rel="next">mysql笔记之修改 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之监控/">Tomcat笔记之监控</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之多实例/">Tomcat笔记之多实例</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之初始用/">Tomcat笔记之初始用</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/26/Tomcat笔记之部署安装/">Tomcat笔记之部署安装</a>
+          </li>
+        
+          <li>
+            <a href="/2018/10/24/mysql笔记之修改/">mysql笔记之修改</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.75px;">Nginx</a> <a href="/tags/nginx/" style="font-size: 11.25px;">nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 11.25px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 18.75px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 20px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.25px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.5px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.25px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 15px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.5px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
