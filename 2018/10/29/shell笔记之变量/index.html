@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="瑾川">
 <meta property="og:description" content="shell中的一些变量">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-29T08:31:44.097Z">
+<meta property="og:updated_time" content="2018-11-06T12:08:49.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell笔记之变量">
 <meta name="twitter:description" content="shell中的一些变量">
@@ -86,14 +86,13 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/29/shell笔记之变量/" data-id="cjo5ovxp000676sg1meg24e5i" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/10/29/shell笔记之变量/" data-id="cjo5p0mm4004f20g1q2yemmov" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
         <h4 id="shell中的一些变量"><a href="#shell中的一些变量" class="headerlink" title="shell中的一些变量"></a>shell中的一些变量</h4><a id="more"></a>
-<p>shell笔记之变量</p>
 <h4 id="什么是变量"><a href="#什么是变量" class="headerlink" title="什么是变量"></a>什么是变量</h4><h4 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h4><h5 id="全局变量（环境变量）"><a href="#全局变量（环境变量）" class="headerlink" title="全局变量（环境变量）"></a>全局变量（环境变量）</h5><pre><code>系统默认定义好的，大写字母组成，哪里都可以使用
 </code></pre><h5 id="自定义全局变量方法注意"><a href="#自定义全局变量方法注意" class="headerlink" title="自定义全局变量方法注意"></a>自定义全局变量方法注意</h5><pre><code>变量名大写
 定义变量时需要使用export命令
@@ -131,7 +130,7 @@
 [root@zabbix_ser]# declare -i oldboy=$oldgirl+1
 [root@zabbix_ser]# echo $oldboy
 14
-</code></pre><h5 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h5><h6 id="0-调用脚本名"><a href="#0-调用脚本名" class="headerlink" title="$0  调用脚本名"></a>$0  调用脚本名</h6><pre><code>[root@zabbix_ser ]# cat test01.sh
+</code></pre><h5 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h5><h6 id="3-0-调用脚本名"><a href="#3-0-调用脚本名" class="headerlink" title="3$0  调用脚本名"></a>3$0  调用脚本名</h6><pre><code>[root@zabbix_ser ]# cat test01.sh
 echo $0
 [root@zabbix_ser ]# sh test01.sh 
 test01.sh
