@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>docker笔记之初体验（容器管理） | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="容器管理">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker笔记之初体验（容器管理）">
+<meta property="og:url" content="http://yoursite.com/2018/11/06/docker笔记之初体验（容器管理）/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="容器管理">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-06T12:01:52.990Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker笔记之初体验（容器管理）">
+<meta name="twitter:description" content="容器管理">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-docker笔记之初体验（容器管理）" class="post-docker笔记之初体验（容器管理） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      docker笔记之初体验（容器管理）
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/11/06/docker笔记之初体验（容器管理）/" data-id="cjo5ovxhe002x6sg1ewhw9vyk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="容器管理"><a href="#容器管理" class="headerlink" title="容器管理"></a>容器管理</h4><a id="more"></a>
+<h3 id="容器基本操作："><a href="#容器基本操作：" class="headerlink" title="容器基本操作："></a>容器基本操作：</h3><p>==创建一个容器==</p>
+<pre><code>[root@ct7-mb ~]# docker run -itd ubuntu
+3635f4dd3ae30a4377fc4f2eafc191b7890bbe5873bb4e5f9e5077f794466ec4
+</code></pre><p>==查看容器进程==</p>
+<pre><code>[root@ct7-mb ~]# docker ps 
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+3635f4dd3ae3        ubuntu              &quot;/bin/bash&quot;         8 seconds ago       Up 6 seconds                            romantic_lamarr
+[root@ct7-mb ~]# docker ps -l
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+3635f4dd3ae3        ubuntu              &quot;/bin/bash&quot;         15 seconds ago      Up 13 seconds                           romantic_lamarr
+[root@ct7-mb ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+3635f4dd3ae3        ubuntu              &quot;/bin/bash&quot;         About a minute ago   Up About a minute   
+</code></pre><p>==开启容器：==</p>
+<pre><code>[root@ct7-mb ~]# docker start  romantic_lamarr
+romantic_lamarr
+</code></pre><p>==进入容器进行操作：==</p>
+<pre><code>[root@ct7-mb ~]# docker attach romantic_lamarr
+root@3635f4dd3ae3:/# ls
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+root@3635f4dd3ae3:/# exit
+exit
+</code></pre><p>==停止容器==</p>
+<pre><code>[root@ct7-mb ~]# docker stop romantic_lamarr
+romantic_lamarr
+</code></pre><p>==删除容器==</p>
+<pre><code>[root@ct7-mb ~]# docker rm romantic_lamarr
+romantic_lamarr
+[root@ct7-mb ~]# docker start romantic_lamarr
+Error response from daemon: No such container: romantic_lamarr
+Error: failed to start containers: romantic_lamarr
+</code></pre><p><em>PS：使用rm需要先停止使用容器（stop），强行删除可以加 -r 参数选项</em></p>
+<p>==重命名容器==</p>
+<pre><code>[root@ct7-mb ~]# docker run -itd ubuntu
+992dec8c882cbc3115045be8d7e76b496733e5996e4e083aebaa00e1ccef2a23
+[root@ct7-mb ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+992dec8c882c        ubuntu              &quot;/bin/bash&quot;         5 seconds ago       Up 3 seconds                            reverent_hamilton
+[root@ct7-mb ~]# docker rename reverent_hamilton jinc
+[root@ct7-mb ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+992dec8c882c        ubuntu              &quot;/bin/bash&quot;         22 seconds ago      Up 21 seconds                           jinc
+</code></pre><h3 id="容器更多操作："><a href="#容器更多操作：" class="headerlink" title="容器更多操作："></a>容器更多操作：</h3><p>==查看容器详细信息（截取部分）==</p>
+<pre><code>[root@ct7-mb ~]# docker inspect jinc
+[
+    {
+        &quot;Id&quot;: &quot;992dec8c882cbc3115045be8d7e76b496733e5996e4e083aebaa00e1ccef2a23&quot;,
+        &quot;Created&quot;: &quot;2018-11-06T09:26:25.660163089Z&quot;,
+        &quot;Path&quot;: &quot;/bin/bash&quot;,
+        &quot;Args&quot;: [],
+        &quot;State&quot;: {
+            &quot;Status&quot;: &quot;running&quot;,
+            &quot;Running&quot;: true,
+            &quot;Paused&quot;: false,
+            &quot;Restarting&quot;: false,
+            &quot;OOMKilled&quot;: false,
+            &quot;Dead&quot;: false,
+            &quot;Pid&quot;: 55541,
+            &quot;ExitCode&quot;: 0,
+            &quot;Error&quot;: &quot;&quot;,
+            &quot;StartedAt&quot;: &quot;2018-11-06T09:26:26.727348683Z&quot;,
+            &quot;FinishedAt&quot;: &quot;0001-01-01T00:00:00Z&quot;
+</code></pre><p>==不进入容器执行命令（截取部分）==</p>
+<pre><code>[root@ct7-mb ~]# docker exec jinc ls
+bin
+boot
+dev
+etc
+</code></pre><p>==容器中运行的进程==</p>
+<pre><code>[root@ct7-mb ~]# docker top jinc
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                55541               55527               0                   17:26               pts/0               00:00:00            /bin/bash
+</code></pre><p>==端口映射信息（没做映射，所以这里没有显示）==</p>
+<pre><code>[root@ct7-mb ~]# docker port jinc
+</code></pre><p>==拷贝文件到容器==</p>
+<pre><code>[root@ct7-mb ~]# touch a.txt
+[root@ct7-mb ~]# docker cp a.txt jinc:/home
+[root@ct7-mb ~]# docker exec jinc ls /home
+a.txt
+</code></pre><p>==从容器拉取文件到本机==</p>
+<pre><code>[root@ct7-mb ~]# docker cp jinc:/home/a.txt /tmp/
+[root@ct7-mb ~]# ls /tmp/
+a.txt
+</code></pre><p>==查看读写层操作（新增文件）==</p>
+<pre><code>[root@ct7-mb ~]# docker diff jinc
+C /home
+A /home/a.txt
+</code></pre><p>==查看容器标准输出日志==</p>
+<pre><code>[root@ct7-mb ~]# docker logs jinc
+</code></pre><p>==动态查看容器利用率==</p>
+<pre><code>[root@ct7-mb ~]# docker stats jinc
+
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+992dec8c882c        jinc                0.00%               404KiB / 1.779GiB   0.02%               648B / 0B           0B / 0B             1
+</code></pre><p>==静态查看容器利用率==</p>
+<pre><code>[root@ct7-mb ~]# docker stats --no-stream jinc
+CONTAINER ID        NAME                CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+992dec8c882c        jinc                0.00%               404KiB / 1.779GiB   0.02%               648B / 0B           0B / 0B             1
+</code></pre><p>==动态修改容器硬件参数==</p>
+<pre><code>[root@ct7-mb ~]# docker update --help
+
+Usage:    docker update [OPTIONS] CONTAINER [CONTAINER...]
+
+Update configuration of one or more containers
+
+Options:
+      --blkio-weight uint16        Block IO (relative weight), between 10 and
+                                   1000, or 0 to disable (default 0)
+      --cpu-period int             Limit CPU CFS (Completely Fair Scheduler) period
+      --cpu-quota int              Limit CPU CFS (Completely Fair Scheduler) quota
+      --cpu-rt-period int          Limit the CPU real-time period in microseconds
+      --cpu-rt-runtime int         Limit the CPU real-time runtime in microseconds
+  -c, --cpu-shares int             CPU shares (relative weight)
+      --cpus decimal               Number of CPUs
+      --cpuset-cpus string         CPUs in which to allow execution (0-3, 0,1)
+      --cpuset-mems string         MEMs in which to allow execution (0-3, 0,1)
+      --kernel-memory bytes        Kernel memory limit
+  -m, --memory bytes               Memory limit
+      --memory-reservation bytes   Memory soft limit
+      --memory-swap bytes          Swap limit equal to memory plus swap: &apos;-1&apos; to
+                                   enable unlimited swap
+      --restart string             Restart policy to apply when a container exits
+</code></pre><p>==实时监控容器操作日志==</p>
+<pre><code>[root@ct7-mb ~]# docker events 
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/11/06/docker笔记之初体验（容器管理）/">
+    <time datetime="2018-11-06T11:45:12.000Z" class="entry-date">
+        2018-11-06
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/11/06/docker笔记之数据持久化/" rel="prev"><span class="meta-nav">←</span> docker笔记之数据持久化</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/11/06/shell笔记之数组/" rel="next">shell笔记之数组 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/06/docker笔记之部署安装/">docker笔记之部署安装</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/06/docker笔记之数据持久化/">docker笔记之数据持久化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/06/docker笔记之初体验（容器管理）/">docker笔记之初体验（容器管理）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/06/shell笔记之数组/">shell笔记之数组</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/06/MongoDB笔记之部署/">MongoDB笔记之部署</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">42</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/docker/" style="font-size: 12.22px;">docker</a> <a href="/tags/nginx/" style="font-size: 11.11px;">nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 15.56px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 18.89px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 20px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.11px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.78px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.67px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14.44px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.22px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

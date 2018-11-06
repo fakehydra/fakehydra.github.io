@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="淡望余生，漫漫回忆如你" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>shell笔记之数组 | 瑾川</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="shell笔记之数组">
+<meta name="keywords" content="shell二三事">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell笔记之数组">
+<meta property="og:url" content="http://yoursite.com/2018/11/06/shell笔记之数组/index.html">
+<meta property="og:site_name" content="瑾川">
+<meta property="og:description" content="shell笔记之数组">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-06T11:50:19.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell笔记之数组">
+<meta name="twitter:description" content="shell笔记之数组">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="瑾川" rel="home">瑾川</a>
+      </h1>
+      
+        <h2 class="site-description">
+          <a href="/" id="subtitle">心有爱鬼，血祭蔷薇</a>
+        </h2>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.cnblogs.com/kingle-study">kingle</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://lemonsu9.github.io/">xmy</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-shell笔记之数组" class="post-shell笔记之数组 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      shell笔记之数组
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/11/06/shell笔记之数组/" data-id="cjo5ovxjz004a6sg1t9yy4rd1" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h4 id="shell笔记之数组"><a href="#shell笔记之数组" class="headerlink" title="shell笔记之数组"></a>shell笔记之数组</h4><a id="more"></a>
+<h4 id="定义数组的方法："><a href="#定义数组的方法：" class="headerlink" title="定义数组的方法："></a>定义数组的方法：</h4><p><em>传统</em></p>
+<pre><code>[root@web01 ~]# array=(a b c d)
+[root@web01 ~]# echo ${array[*]}
+a b c d
+</code></pre><p><em>多行元素信息定义数组</em></p>
+<pre><code>array=（
+http://www.baidu.com
+http://www.google.com
+http://bbs.dz.com
+）
+</code></pre><p><em>指定数组元素下标定义方式</em></p>
+<pre><code>[root@web01 ~]# array=([1]=a [2]=b [3]=c)
+[root@web01 ~]# echo ${array[1]}
+a
+[root@web01 ~]# array[1]=fake
+[root@web01 ~]# array[2]=hydra
+[root@web01 ~]# echo ${array[1]}
+fake
+</code></pre><p><em>动态定义数组元素信息</em></p>
+<pre><code>[root@web01 ~]# array=(`ls /root`)
+[root@web01 ~]# echo ${array[0]}
+anaconda-ks.cfg
+[root@web01 ~]# ls
+anaconda-ks.cfg  install.log.syslog 
+</code></pre><h4 id="调用数组中的元素"><a href="#调用数组中的元素" class="headerlink" title="调用数组中的元素"></a>调用数组中的元素</h4><pre><code>[root@web01 ~]# echo ${array[@]}
+a b c d
+[root@web01 ~]# echo ${array[0]}
+a
+[root@web01 ~]# echo ${array[1]}
+b
+[root@web01 ~]# echo ${array[2]}
+c
+[root@web01 ~]# echo ${array[3]}
+d
+</code></pre><h4 id="统计数组中元素的长度"><a href="#统计数组中元素的长度" class="headerlink" title="统计数组中元素的长度"></a>统计数组中元素的长度</h4><pre><code>[root@web01 ~]# echo ${#array[*]}
+4
+[root@web01 ~]# array=(fake hydra)
+[root@web01 ~]# echo ${#array[*]}
+2
+</code></pre><h4 id="测试练习"><a href="#测试练习" class="headerlink" title="测试练习"></a>测试练习</h4><p>=习题一：=</p>
+<pre><code>读取下面字符串的内容，读取出小于3的字符串，并进行打印
+i am a student my name is fakehydra
+</code></pre><p>==解题：==</p>
+<p><em>数组解：</em></p>
+<pre><code>[root@web01 scripts]# cat zy03.sh
+array=(i am a student my name is fakehydra)
+for ((i=0;i&lt;${#array[@]};i++))
+do
+if [ ${#array[i]} -lt 3 ]
+then
+echo ${array[i]}
+fi
+done
+</code></pre><p><em>利用awk进行解：</em></p>
+<pre><code>echo &quot;I am oldboy teacher I am 35&quot;|awk &apos;{for(i=1;i&lt;=NF;i++)if(length($i)&lt;3)print $i}&apos;    
+
+echo &quot;I am oldboy teacher I am 35&quot;|xargs -n1|awk &apos;{if(length($1)&lt;3)print $1}&apos;
+
+echo &quot;I am oldboy teacher I am 35&quot;|awk &apos;{for(i=1;i&lt;=NF;i++)if(length($i)&lt;3)print $i;else print $0}&apos;
+</code></pre><p>=习题二：=</p>
+<pre><code>批量检查多个网站地址是否正常
+具体要求:
+①. 使用shell数组方法实现, 检测策略尽量模拟用户访问
+②. 每10秒钟做一次所有的检测, 无法访问的输出报警
+③. 待检测的地址信息
+   http://blog.oldboyedu.com
+   http://blog.etiantian.org
+   http://oldboy.blog.51cto.com
+   http://10.0.0.7    
+</code></pre><p>=解题：=</p>
+<pre><code>[root@web01 scripts]# cat zy04.sh
+array=(
+http://blog.oldboyedu.com
+http://blog.etiantian.org
+http://oldboy.blog.51cto.com
+http://10.0.0.7    
+)
+main (){
+for ((i=0;i&lt;${#array[@]};i++))
+do
+wget -T 5 -t 3 -q --spider  ${array[$i]}
+if [ $? -eq 0 ]
+then
+echo &quot;${array[$i]} 访问ok&quot;
+else
+echo &quot;${array[$i]} 访问失败&quot;
+fi
+done
+}
+while true 
+do
+main
+sleep 10
+done
+</code></pre>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/11/06/shell笔记之数组/">
+    <time datetime="2018-11-06T11:44:47.000Z" class="entry-date">
+        2018-11-06
+    </time>
+</a>
+    
+    
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell二三事/">shell二三事</a></li></ul>
+
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/11/06/docker笔记之初体验（容器管理）/" rel="prev"><span class="meta-nav">←</span> docker笔记之初体验（容器管理）</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/11/06/MongoDB笔记之部署/" rel="next">MongoDB笔记之部署 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Music</h3>
+    <div class="widget-content">
+      <audio src="&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;//music.163.com/outchain/player?type=2&amp;id=461525011&amp;auto=1&amp;height=66&#34;&gt;&lt;/iframe&gt;" controls="controls"
+             style="width:100%">
+        您的浏览器不支持 audio 标签。
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/06/docker笔记之部署安装/">docker笔记之部署安装</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/06/docker笔记之数据持久化/">docker笔记之数据持久化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/06/docker笔记之初体验（容器管理）/">docker笔记之初体验（容器管理）</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/06/shell笔记之数组/">shell笔记之数组</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/06/MongoDB笔记之部署/">MongoDB笔记之部署</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell二三事/">shell二三事</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小东西/">小东西</a><span class="tag-list-count">42</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小测试/">小测试</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期中架构/">期中架构</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/每天一个Linux命令/">每天一个Linux命令</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浮生若梦/">浮生若梦</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/这里有一片文章/">这里有一片文章</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年写过的shell/">那些年写过的shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/那些年学习的Linux命令/">那些年学习的Linux命令</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/Nginx/" style="font-size: 13.33px;">Nginx</a> <a href="/tags/docker/" style="font-size: 12.22px;">docker</a> <a href="/tags/nginx/" style="font-size: 11.11px;">nginx</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/shell二三事/" style="font-size: 15.56px;">shell二三事</a> <a href="/tags/学习笔记/" style="font-size: 18.89px;">学习笔记</a> <a href="/tags/小东西/" style="font-size: 20px;">小东西</a> <a href="/tags/小测试/" style="font-size: 11.11px;">小测试</a> <a href="/tags/期中架构/" style="font-size: 17.78px;">期中架构</a> <a href="/tags/每天一个Linux命令/" style="font-size: 16.67px;">每天一个Linux命令</a> <a href="/tags/浮生若梦/" style="font-size: 14.44px;">浮生若梦</a> <a href="/tags/这里有一片文章/" style="font-size: 10px;">这里有一片文章</a> <a href="/tags/那些年写过的shell/" style="font-size: 10px;">那些年写过的shell</a> <a href="/tags/那些年学习的Linux命令/" style="font-size: 12.22px;">那些年学习的Linux命令</a>
+    </div>
+  </aside>
+
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2018 瑾川
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
