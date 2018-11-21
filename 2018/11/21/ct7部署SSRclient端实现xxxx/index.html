@@ -13,20 +13,20 @@
   
   
   
-  <title>linux运维学习-第十七天 | 瑾川</title>
+  <title>ct7部署SSRclient端实现xxxx | 瑾川</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第十七天">
-<meta name="keywords" content="学习笔记">
+  <meta name="description" content="前排酸酸乳">
+<meta name="keywords" content="小东西">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux运维学习-第十七天">
-<meta property="og:url" content="http://yoursite.com/2018/07/25/linux运维学习-第十七天/index.html">
+<meta property="og:title" content="ct7部署SSRclient端实现xxxx">
+<meta property="og:url" content="http://yoursite.com/2018/11/21/ct7部署SSRclient端实现xxxx/index.html">
 <meta property="og:site_name" content="瑾川">
-<meta property="og:description" content="第十七天">
+<meta property="og:description" content="前排酸酸乳">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T12:28:00.757Z">
+<meta property="og:updated_time" content="2018-11-21T13:44:09.190Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux运维学习-第十七天">
-<meta name="twitter:description" content="第十七天">
+<meta name="twitter:title" content="ct7部署SSRclient端实现xxxx">
+<meta name="twitter:description" content="前排酸酸乳">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -71,7 +71,7 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-linux运维学习-第十七天" class="post-linux运维学习-第十七天 post type-post status-publish format-standard hentry">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-ct7部署SSRclient端实现xxxx" class="post-ct7部署SSRclient端实现xxxx post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -79,137 +79,99 @@
         
   
     <h1 class="entry-title article-title">
-      linux运维学习-第十七天
+      ct7部署SSRclient端实现xxxx
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/07/25/linux运维学习-第十七天/" data-id="cjor7yqzi004bmwg1odsk2l3d" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://yoursite.com/2018/11/21/ct7部署SSRclient端实现xxxx/" data-id="cjor7yqxc002umwg1ewrdm1xf" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="第十七天"><a href="#第十七天" class="headerlink" title="第十七天"></a>第十七天</h3><a id="more"></a>
-<h3 id="正则表达式总结"><a href="#正则表达式总结" class="headerlink" title="正则表达式总结"></a>正则表达式总结</h3><h4 id="括号家族"><a href="#括号家族" class="headerlink" title="括号家族"></a>括号家族</h4><h3 id=""><a href="#" class="headerlink" title="[]"></a>[]</h3><p>  作用：指定多个要匹配的字符信息 a b c 0 9 中括号中的每一个字符==元素<br>        [0-9] [a-z] [A-z]</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title="()"></a>()</h3><p>   作用：将分散字符汇总成一个整体，进行匹配 I am o(ld)boy<br>         sed 命令指定一个整体信息，利用sed的替换能力，实现后项引用前项</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title="{}"></a>{}</h3><pre><code>作用：01.通配符：作为一个序列符号使用 {1..10}{1,3,5}  {1,2}{3,4}
+        <h4 id="前排酸酸乳"><a href="#前排酸酸乳" class="headerlink" title="前排酸酸乳"></a>前排酸酸乳</h4><a id="more"></a>
+<h3 id="centos7-部署ssr-client实现科学上网"><a href="#centos7-部署ssr-client实现科学上网" class="headerlink" title="centos7 部署ssr client实现科学上网"></a>centos7 部署ssr client实现科学上网</h3><pre><code>最近学习k8s，然后发现使用kubeadm部署的时候需要访问Google，虽然说也可以换成国内的源，但是吧。。还是学习了一下如何科学上网
+</code></pre><h4 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h4><pre><code>[root@k8s-node1 bin]# cat /etc/centos-release
+CentOS Linux release 7.5.1804 (Core)
+</code></pre><h4 id="开始部署："><a href="#开始部署：" class="headerlink" title="开始部署："></a>开始部署：</h4><pre><code>[root@k8s-node1 ~]# yum install -y git
+[root@k8s-node1 ~]#git clone https://github.com/SAMZONG/gfwlist2privoxy.git
+[root@k8s-node1 ~]# cd gfwlist2privoxy/
+[root@k8s-node1 gfwlist2privoxy]# ls
+gfw.action  gfwlist2privoxy  README.md  ssr  ssr_manager
+[root@k8s-node1 gfwlist2privoxy]# mv ssr /usr/local/bin
+[root@k8s-node1 bin]# chmod +x /usr/local/bin/ssr 
+[root@k8s-server gfwlist2privoxy]# ssr install
+正克隆到 &apos;/usr/local/share/shadowsocksr&apos;...
+remote: Enumerating objects: 5490, done.
+remote: Total 5490 (delta 0), reused 0 (delta 0), pack-reused 5490
+接收对象中: 100% (5490/5490), 1.71 MiB | 4.00 KiB/s, done.
+处理 delta 中: 100% (3799/3799), done.
+[root@k8s-node1 bin]# ssr config
+2018-11-21 14:49:27 ERROR    shell.py:50 [Errno 2] No such file or directory: &apos;/var/run/shadowsocksr.pid&apos;
+2018-11-21 14:49:27 ERROR    daemon.py:146 not running
+  File &quot;/usr/local/share/shadowsocksr/shadowsocks/../shadowsocks/crypto/sodium.py&quot;, line 42, in load_libsodium
+    raise Exception(&apos;libsodium not found&apos;)
+Exception: libsodium not found
+</code></pre><h5 id="这里有一个报错，截图部分了"><a href="#这里有一个报错，截图部分了" class="headerlink" title="这里有一个报错，截图部分了"></a>这里有一个报错，截图部分了</h5><h5 id="报错原因：因为我用的加密方式是chacha20，需要一个libsodium的包，而我没有"><a href="#报错原因：因为我用的加密方式是chacha20，需要一个libsodium的包，而我没有" class="headerlink" title="报错原因：因为我用的加密方式是chacha20，需要一个libsodium的包，而我没有"></a>报错原因：因为我用的加密方式是chacha20，需要一个libsodium的包，而我没有</h5><h5 id="解决：下载libsodium包"><a href="#解决：下载libsodium包" class="headerlink" title="解决：下载libsodium包"></a>解决：下载libsodium包</h5><pre><code>wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz
+tar zxf LATEST.tar.gz
+cd libsodium*
+./configure
+make &amp;&amp; sudo make install
+</code></pre><h5 id="然后将下面的代码加入到-etc-ld-so-conf："><a href="#然后将下面的代码加入到-etc-ld-so-conf：" class="headerlink" title="然后将下面的代码加入到 /etc/ld.so.conf："></a>然后将下面的代码加入到 /etc/ld.so.conf：</h5><pre><code>include ld.so.conf.d/*.conf&quot;
+/lib
+/usr/lib64
+/usr/local/lib
+</code></pre><h5 id="执行：ldconfig"><a href="#执行：ldconfig" class="headerlink" title="执行：ldconfig"></a>执行：ldconfig</h5><h5 id="然后再启动ssr"><a href="#然后再启动ssr" class="headerlink" title="然后再启动ssr"></a>然后再启动ssr</h5><pre><code>ssr start
+[root@k8s-node1 libsodium-stable]# ssr start
+IPv6 support
+2018-11-21 10:01:48 INFO     util.py:85 loading libsodium from libsodium.so.23
+started
+</code></pre><h3 id="privoxy配置"><a href="#privoxy配置" class="headerlink" title="privoxy配置"></a>privoxy配置</h3><pre><code>yum install -y epel-release
+yum install -y privoxy
+</code></pre><h4 id="全局模式（若使用PAC模式，跳过这里）"><a href="#全局模式（若使用PAC模式，跳过这里）" class="headerlink" title="全局模式（若使用PAC模式，跳过这里）"></a>全局模式（若使用PAC模式，跳过这里）</h4><pre><code># 添加本地ssr服务到配置文件
+echo &apos;forward-socks5 / 127.0.0.1:1080 .&apos; &gt;&gt; /etc/privoxy/config
+# Privoxy 默认监听端口是是8118
+export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118
+export no_proxy=localhost
+# 启动服务
+systemctl start privoxy.service
+</code></pre><h4 id="PAC模式"><a href="#PAC模式" class="headerlink" title="PAC模式"></a>PAC模式</h4><pre><code>[root@k8s-node1 ~]# cd gfwlist2privoxy/
+[root@k8s-node1 gfwlist2privoxy]# bash gfwlist2privoxy 
+proxy(socks5): 127.0.0.1:1080
+</code></pre><h4 id="环境变量："><a href="#环境变量：" class="headerlink" title="环境变量："></a>环境变量：</h4><pre><code># privoxy默认监听端口为8118
+export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118
+export no_proxy=localhost
+# no_proxy是不经过privoxy代理的地址
+# 只能填写具体的ip、域名后缀，多个条目之间使用&apos;,&apos;逗号隔开
+# 比如: export no_proxy=&quot;localhost, 192.168.1.1, ip.cn, chinaz.com&quot;
+# 访问 localhost、192.168.1.1、ip.cn、*.ip.cn、chinaz.com、*.chinaz.com 将不使用代理
+</code></pre><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><pre><code>[root@k8s-node1 gfwlist2privoxy]# systemctl start privoxy.service
+Job for privoxy.service failed because the control process exited with error code. See &quot;systemctl status privoxy.service&quot; and &quot;journalctl -xe&quot; for details.
+</code></pre><h4 id="这里有一个报错：发现是由于selinux没关"><a href="#这里有一个报错：发现是由于selinux没关" class="headerlink" title="这里有一个报错：发现是由于selinux没关"></a>这里有一个报错：发现是由于selinux没关</h4><h4 id="解决：修改selinux配置文件，关闭selinux"><a href="#解决：修改selinux配置文件，关闭selinux" class="headerlink" title="解决：修改selinux配置文件，关闭selinux"></a>解决：修改selinux配置文件，关闭selinux</h4><pre><code>[root@k8s-node1 gfwlist2privoxy]# systemctl start privoxy
+</code></pre><p>没问题了</p>
+<h4 id="使用管理脚本："><a href="#使用管理脚本：" class="headerlink" title="使用管理脚本："></a>使用管理脚本：</h4><p><code>`</code><br>mv gfwlist2privoxy/ssr_manager /usr/local/bin<br>chmod +x ssr_manager</p>
+<h1 id="启动服务-1"><a href="#启动服务-1" class="headerlink" title="启动服务"></a>启动服务</h1><p>ssr_manager start</p>
+<h1 id="关闭服务"><a href="#关闭服务" class="headerlink" title="关闭服务"></a>关闭服务</h1><p>ssr_manager stop </p>
+<h1 id="添加开机自启动"><a href="#添加开机自启动" class="headerlink" title="添加开机自启动"></a>添加开机自启动</h1><p>ssr_manager autostart<br>脚本内容自己cat即可</p>
 
-     02.扩展正则：更加灵活的匹配前一个字符连续出现的次数 {n,m} {n} {n,} {,m}
-
-
-
-
-*  --- 匹配 0次 或者 1次 或者 多次
-?  --- 匹配前一个字符0次或者1次
-+  --- 匹配          1次 或者 多次
-</code></pre><h2 id="终极总结"><a href="#终极总结" class="headerlink" title="终极总结"></a>终极总结</h2><pre><code>&apos;&apos; : 所见即所得
-&quot;&quot; : 类似单引号，会识别有些符号信息（!,$PATH等）。
-没有引号：类似于双引号，可以支持通配符号
-
-`` ：执行命令，把结果交由外面处理
-</code></pre><h3 id="正则使用常见问题"><a href="#正则使用常见问题" class="headerlink" title="正则使用常见问题"></a>正则使用常见问题</h3><pre><code>1）匹配一行从头到m字符的信息
-    grep &apos;^.*&apos; oldboy.txt
-    贪婪特性：默认都是从左开头向右开始贪婪匹配
-
-2）^d 和*d 之间的区别
-    正则符号：用于匹配文件内容信息 --grep sed awk
-    通配符号：用于匹配文件名称信息 --find ls 
-
-
-
-3） 基础正则于扩展正则的区别
-     基础正则：grep sed awk 可以直接识别基础正则
-     扩展正则：egrep  sed -r   awk
-     说明：转译符号主要作用是把一个字符高级意思转换为低级意思
-</code></pre><h3 id="第三关测验练习题"><a href="#第三关测验练习题" class="headerlink" title="第三关测验练习题"></a>第三关测验练习题</h3><h4 id="如何截取文件中的数据信息（正则表达式）"><a href="#如何截取文件中的数据信息（正则表达式）" class="headerlink" title="如何截取文件中的数据信息（正则表达式）"></a>如何截取文件中的数据信息（正则表达式）</h4><pre><code>eth0      Link encap:Ethernet  HWaddr 00:0C:29:B3:36:16  
-     inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-     inet6 addr: fe80::20c:29ff:feb3:3616/64 Scope:Link
-     UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-     RX packets:6429 errors:0 dropped:0 overruns:0 frame:0
-     TX packets:4069 errors:0 dropped:0 overruns:0 carrier:0
-     collisions:0 txqueuelen:1000 
-     RX bytes:601226 (587.1 KiB)  TX bytes:521474 (509.2 KiB)
-</code></pre><h5 id="方法一：利用sed（替换数据信息）"><a href="#方法一：利用sed（替换数据信息）" class="headerlink" title="方法一：利用sed（替换数据信息）"></a>方法一：利用sed（替换数据信息）</h5><pre><code>1）定位截取内容所在的行
-ifconfig eth0|sed -n &apos;2p&apos; 
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
-      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-
-2）定位截取内容所在列
-三种方法：
-①. 利用替换功能
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
-      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*:##g&apos;
-255.255.255.0
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;
-10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed &apos;s#^.*r:##g&apos;|sed &apos;s#  Bc.*$##g&apos;
-10.0.0.200
-
-②. 利用替换功能
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:|  Bc.*$##g&apos;
-10.0.0.200
-
-扩展：取第二个地址
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;
-      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*t:|  M.*$##g&apos;
-10.0.0.255
-
-③. 利用后项引用前项的方法
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*r:(.*)  Bc.*$#\1#g&apos;
-10.0.0.200
-
-扩展：取第三个地址
-[root@oldgirl oldboy]# ifconfig eth0|sed -n &apos;2p&apos;|sed -r &apos;s#^.*:(.*)#\1#g&apos;
-255.255.255.0
-
-终结解法
-sed -n &apos;2     p==条件&apos;  sed -r &apos;s#^.*:(.*)#\1#g==具体做的事情&apos;
-
-sed -nr &apos;2s#^.*:(.*)#\1#gp&apos;
-[root@oldgirl oldboy]# ifconfig eth0|sed -nr &apos;2s#^.*:(.*)  Bc.*$#\1#gp&apos;
-10.0.0.200
-</code></pre><h5 id="方法二：利用awk"><a href="#方法二：利用awk" class="headerlink" title="方法二：利用awk"></a>方法二：利用awk</h5><pre><code>1）定位截取内容所在的行
-[root@oldgirl oldboy]# ifconfig eth0|awk  &apos;NR==2&apos;
-      inet addr:10.0.0.200  Bcast:10.0.0.255  Mask:255.255.255.0
-
-2）定位截取内容所在列
-[root@oldgirl oldboy]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $4}&apos;
-10.0.0.200
-[root@xmy-01 ~]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $6}&apos;
-10.0.0.255
-[root@xmy-01 ~]# ifconfig eth0|awk &apos;NR==2&apos;|awk -F &quot;[ :]+&quot; &apos;{print $8}&apos;
-255.255.255.0
-</code></pre><h5 id="终极解法："><a href="#终极解法：" class="headerlink" title="终极解法："></a>终极解法：</h5><pre><code>awk &apos;NR==2==条件&apos;   awk -F &quot;[ :]+&quot; &apos;{print $4}==命令&apos;
-
-awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos;     
-
-[root@oldgirl oldboy]# ifconfig eth0|awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos; 
-10.0.0.200
-
- 方法三：利用grep
-    1）定位截取内容所在的行
-       ifconf g eth0|grep &apos;cast&apos;
-
-    2）定位截取内容所在列
-</code></pre><h4 id="未完待续"><a href="#未完待续" class="headerlink" title="-未完待续-"></a>-未完待续-</h4>
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2018/07/25/linux运维学习-第十七天/">
-    <time datetime="2018-07-25T13:13:28.000Z" class="entry-date">
-        2018-07-25
+    <a href="/2018/11/21/ct7部署SSRclient端实现xxxx/">
+    <time datetime="2018-11-21T13:42:12.000Z" class="entry-date">
+        2018-11-21
     </time>
 </a>
     
     
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小东西/">小东西</a></li></ul>
 
     </footer>
 </article>
@@ -219,10 +181,8 @@ awk -F &quot;[ :]+&quot; &apos;NR==2{print $4}&apos;
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/07/27/Linux运维学习-第十八天/" rel="prev"><span class="meta-nav">←</span> Linux运维学习-第十八天</a></span>
     
-    
-        <span class="nav-next"><a href="/2018/07/25/ansible-安装二三事/" rel="next">ansible 安装二三事 <span class="meta-nav">→</span></a></span>
+        <span class="nav-next"><a href="/2018/11/06/docker笔记之部署安装/" rel="next">docker笔记之部署安装 <span class="meta-nav">→</span></a></span>
     
 </nav><!-- .nav-single -->
 
